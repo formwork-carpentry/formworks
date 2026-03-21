@@ -1,0 +1,31 @@
+{
+  "name": "@formwork/cli",
+  "version": "1.0.0-alpha.0",
+  "description": "carpenter CLI: generators, migrations, serve, build",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "carpenter": "./dist/bin.js"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./bin": "./dist/bin.js",
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "lint": "biome check src/"
+  },
+  "dependencies": {
+    "@formwork/core": "*",
+    "create-carpenter-app": "*"
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ]
+}
