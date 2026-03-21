@@ -1,0 +1,23 @@
+{
+  "name": "@formwork/faker",
+  "version": "1.0.0-alpha.0",
+  "description": "Deterministic fake data helpers for factories, seeders, and tests",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "lint": "biome check src/ tests/"
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ]
+}

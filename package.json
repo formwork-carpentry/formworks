@@ -1,0 +1,62 @@
+{
+  "name": "formworks",
+  "version": "1.0.0-alpha.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "packages/cache-adapters/*",
+    "packages/queue-adapters/*",
+    "packages/db-adapters/*",
+    "packages/mail-adapters/*",
+    "packages/storage-adapters/*",
+    "packages/bridge-adapters/*",
+    "packages/ui-adapters/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "test": "bun run ./scripts/test-integration-with-docker.mjs",
+    "test:all": "turbo run test",
+    "test:integration": "bun run ./scripts/test-integration-with-docker.mjs",
+    "test:integration:raw": "vitest run --config ./tests/vitest.config.ts ./tests/integration.test.ts ./tests/real-services.test.ts",
+    "test:integration:keep-up": "bun run ./scripts/test-integration-with-docker.mjs --keep-up",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:ps": "docker compose ps",
+    "docker:logs": "docker compose logs -f --tail=200",
+    "docker:test": "bun run ./scripts/docker-test.mjs",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "publish:dry": "bun run ./scripts/publish.mjs",
+    "publish:npm": "bun run ./scripts/publish.mjs --execute",
+    "publish:bun": "bun run ./scripts/publish.mjs --execute --bun"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/bun": "latest",
+    "@types/node": "^25.5.0",
+    "@types/pg": "^8.20.0",
+    "reflect-metadata": "^0.2.2",
+    "turbo": "^2.8.20",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1014.0",
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.7.15",
+    "bullmq": "^5.71.0",
+    "ioredis": "^5.10.0",
+    "kafkajs": "^2.2.4",
+    "mongodb": "^6.21.0",
+    "mysql2": "^3.20.0",
+    "nats": "^2.29.3",
+    "nodemailer": "^8.0.2",
+    "pg": "^8.20.0",
+    "tsx": "^4.21.0"
+  }
+}

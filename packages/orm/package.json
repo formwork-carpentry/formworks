@@ -1,0 +1,23 @@
+{
+  "name": "@formwork/orm",
+  "version": "1.0.0-alpha.0",
+  "description": "ORM: BaseModel, QueryBuilder, relations, migrations, seeders",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@formwork/core": "*",
+    "@formwork/faker": "*"
+  },
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  }
+}

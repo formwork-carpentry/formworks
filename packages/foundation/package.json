@@ -1,0 +1,25 @@
+{
+  "name": "@formwork/foundation",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@formwork/bridge": "*",
+    "@formwork/cache": "*",
+    "@formwork/core": "*",
+    "@formwork/db": "*",
+    "@formwork/events": "*",
+    "@formwork/log": "*",
+    "@formwork/mail": "*",
+    "@formwork/queue": "*",
+    "@formwork/storage": "*",
+    "@formwork/validation": "*"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  }
+}

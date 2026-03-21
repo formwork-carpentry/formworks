@@ -1,0 +1,22 @@
+/**
+ * @module @formwork/core/container
+ * @description IoC/DI container — dependency injection, binding, singletons, scoping, and decorators.
+ *
+ * @example
+ * ```ts
+ * import { Container } from '@formwork/core/container';
+ * import { Injectable, Inject } from '@formwork/core/decorator';
+ *
+ * @Injectable()
+ * class MyService {
+ *   constructor(@Inject('logger') private logger) {}
+ * }
+ *
+ * const container = new Container();
+ * container.singleton(MyService);
+ * const service = container.make(MyService);
+ * ```
+ */
+
+export * from "./contracts/container/index.js";
+export { Container } from "./container/Container.js";

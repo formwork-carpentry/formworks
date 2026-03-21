@@ -1,0 +1,27 @@
+import type { IContainer } from '@formwork/core/container';
+import { ConfigResolver } from '@formwork/core/config';
+import type { IDatabaseAdapter } from '@formwork/core/contracts';
+import { createQueueManager, type QueueManager } from '@formwork/queue';
+
+export class QueueInfrastructureProvider {
+  constructor(
+    private readonly app: IContainer,
+    private readonly resolver: ConfigResolver,
+  ) {}
+
+  register(): void {
+    this.app.singleton('queue.manager', () => {
+      return createQueueManager(
+        this.resolver.queueConnection(),
+        this.resolver.queueConnections(),
+        {
+          resolveDatabaseAdapter: () => this.app.make('db') as IDatabaseAdapter,
+        },
+      );
+    });
+
+    this.app.singleton('queue', (c) =>
+      (c.make('queue.manager') as QueueManager).connection(),
+    );
+  }
+}

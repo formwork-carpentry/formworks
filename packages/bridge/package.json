@@ -1,0 +1,29 @@
+{
+  "name": "@formwork/bridge",
+  "version": "1.0.0-alpha.0",
+  "description": "Polyglot microservices bridge: service proxy, transport abstraction, CSDL",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "lint": "biome check src/"
+  },
+  "dependencies": {
+    "@formwork/bridge-grpc": "*",
+    "@formwork/bridge-kafka": "*",
+    "@formwork/bridge-nats": "*",
+    "@formwork/core": "*"
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ]
+}

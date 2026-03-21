@@ -1,0 +1,32 @@
+{
+  "name": "@formwork/bridge-grpc",
+  "version": "1.0.0-alpha.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo lint",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@formwork/core": "*"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@grpc/grpc-js": { "optional": true },
+    "@grpc/proto-loader": { "optional": true }
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

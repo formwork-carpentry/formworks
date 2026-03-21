@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist", "rootDir": "../../", "lib": ["ES2022", "DOM"],
+    "types": ["node"], "composite": false, "declaration": false, "declarationMap": false,
+    "baseUrl": "../../",
+    "paths": {
+      "@formwork/db-memory": ["packages/db-adapters/memorydb/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests"]
+}

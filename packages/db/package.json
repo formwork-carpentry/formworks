@@ -1,0 +1,25 @@
+{
+  "name": "@formwork/db",
+  "version": "1.0.0-alpha.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@formwork/core": "*",
+    "@formwork/db-filesystem": "*",
+    "@formwork/db-memory": "*",
+    "@formwork/db-mongodb": "*",
+    "@formwork/db-mysql": "*",
+    "@formwork/db-postgres": "*",
+    "@formwork/db-sqlite": "*"
+  },
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@formwork/queue-bullmq",
+  "version": "1.0.0-alpha.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo lint",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@formwork/core": "*"
+  },
+  "peerDependencies": {
+    "bullmq": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "bullmq": { "optional": true }
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

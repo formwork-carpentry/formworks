@@ -1,0 +1,23 @@
+{
+  "name": "@formwork/core",
+  "version": "1.0.0-alpha.0",
+  "description": "Framework core: IoC container, config, env, exceptions, support utilities",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "lint": "biome check src/"
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ]
+}
