@@ -7,7 +7,7 @@
 
 import type { IDatabaseAdapter } from "@formwork/core/contracts";
 import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
-import { QueryBuilder } from "../../../orm/src/query/QueryBuilder.js";
+import { QueryBuilder } from "@formwork/orm";
 
 export interface DatabaseQueueConfig {
   /** Table name for jobs (default: 'jobs') */

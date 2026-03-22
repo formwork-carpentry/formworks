@@ -17,7 +17,8 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*"
+    "@formwork/core": "*",
+    "@formwork/orm": "*"
   },
   "license": "MIT",
   "files": [

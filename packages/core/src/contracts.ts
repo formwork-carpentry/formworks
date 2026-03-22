@@ -44,3 +44,4 @@ export * from "./contracts/tenancy/index.js";
 export * from "./contracts/flags/index.js";
 export * from "./contracts/wasm/index.js";
 export * from "./contracts/i18n/index.js";
+export * from "./contracts/container/index.js";

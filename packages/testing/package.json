@@ -16,6 +16,9 @@
     "clean": "rm -rf dist",
     "lint": "biome check src/"
   },
+  "dependencies": {
+    "@formwork/db": "*"
+  },
   "license": "MIT",
   "files": [
     "dist"

@@ -11,7 +11,7 @@ export class MailInfrastructureProvider {
   register(): void {
     this.app.singleton('mail.manager', () => {
       const from = this.resolver.mailFrom();
-      return createMailManager(this.resolver.mailMailer(), this.resolver.mailMailers(), {
+      return createMailManager(this.resolver.mailMailer(), this.resolver.mailMailers() as any, {
         fromAddress: from.address,
       });
     });

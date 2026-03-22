@@ -10,7 +10,7 @@ export class StorageInfrastructureProvider {
 
   register(): void {
     this.app.singleton('storage.manager', () => {
-      return createStorageManager(this.resolver.storageDisk(), this.resolver.storageDisks());
+      return createStorageManager(this.resolver.storageDisk(), this.resolver.storageDisks() as any);
     });
 
     this.app.singleton('storage', (c) =>

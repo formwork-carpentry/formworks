@@ -15,7 +15,6 @@ import { ServiceProvider } from '@formwork/core/contracts';
 import { InfrastructureServiceProvider } from './InfrastructureServiceProvider.js';
 
 import type { IContainer } from '@formwork/core/container';
-import type { EnvLoaderOptions } from '@formwork/core/config';
 import type { Dictionary } from '@formwork/core/types';
 
 export interface BootstrapOptions {
@@ -88,7 +87,7 @@ export async function bootstrap(options: BootstrapOptions = {}): Promise<{
 
   // 5. Wire ORM adapter so BaseModel.create/query/find work
   try {
-    const { BaseModel } = await import('../../orm/src/model/BaseModel.js');
+    const { BaseModel } = await import('@formwork/orm');
     BaseModel.adapter = container.make('db');
   } catch {
     // ORM package may not be installed — skip silently

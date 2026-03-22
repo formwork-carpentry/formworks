@@ -8,4 +8,4 @@ export {
   PostgresAdapterStub,
   MySQLAdapterStub,
   MongoDBAdapterStub,
-} from "../../db/src/unsupported-driver-stubs.js";
+} from "@formwork/db";

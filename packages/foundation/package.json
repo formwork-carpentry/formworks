@@ -1,6 +1,6 @@
 {
   "name": "@formwork/foundation",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "./src/index.ts",
   "dependencies": {
@@ -11,15 +11,22 @@
     "@formwork/events": "*",
     "@formwork/log": "*",
     "@formwork/mail": "*",
+    "@formwork/orm": "*",
     "@formwork/queue": "*",
     "@formwork/storage": "*",
     "@formwork/validation": "*"
   },
   "scripts": {
-    "test": "vitest run"
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
   },
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

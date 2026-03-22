@@ -16,7 +16,7 @@
  *             DRY (shared BaseManager), Convention over Configuration
  */
 
-import { ServiceProvider, type IContainer } from '@formwork/core/container';
+import { ServiceProvider } from '@formwork/core/container';
 import { Config, ConfigResolver, buildDefaultConfig } from '@formwork/core/config';
 import {
   DatabaseInfrastructureProvider,

@@ -4,13 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "baseUrl": ".",
-    "paths": {
-      "create-carpenter-app": ["create-carpenter-app/src/index.ts"],
-      "create-carpenter-app/cli": ["create-carpenter-app/src/cli.ts"],
-      "@formwork/faker": ["packages/faker/src/index.ts"],
-      "@formwork/padlock": ["packages/padlock/src/index.ts"],
-      "@formwork/sociallock": ["packages/sociallock/src/index.ts"]
-    },
+    "paths": {},
     "lib": ["ES2022"],
     "strict": true,
     "esModuleInterop": true,

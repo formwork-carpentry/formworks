@@ -1,0 +1,61 @@
+{
+  "name": "@carpentry/formwork",
+  "version": "1.0.0-alpha.0",
+  "description": "The Carpenter Framework — batteries-included TypeScript backend framework. Install once, import everything.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["carpenter", "formwork", "framework", "typescript", "backend", "server"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@formwork/admin": "^1.0.0-alpha.0",
+    "@formwork/ai": "^1.0.0-alpha.0",
+    "@formwork/auth": "^1.0.0-alpha.0",
+    "@formwork/billing": "^1.0.0-alpha.0",
+    "@formwork/bridge": "^1.0.0-alpha.0",
+    "@formwork/cache": "^1.0.0-alpha.0",
+    "@formwork/cli": "^1.0.0-alpha.0",
+    "@formwork/core": "^1.0.0-alpha.0",
+    "@formwork/db": "^1.0.0-alpha.0",
+    "@formwork/edge": "^1.0.0-alpha.0",
+    "@formwork/events": "^1.0.0-alpha.0",
+    "@formwork/faker": "^1.0.0-alpha.0",
+    "@formwork/flags": "^1.0.0-alpha.0",
+    "@formwork/foundation": "^1.0.0-alpha.0",
+    "@formwork/graphql": "^1.0.0-alpha.0",
+    "@formwork/helpers": "^1.0.0-alpha.0",
+    "@formwork/http": "^1.0.0-alpha.0",
+    "@formwork/http-client": "^1.0.0-alpha.0",
+    "@formwork/i18n": "^1.0.0-alpha.0",
+    "@formwork/log": "^1.0.0-alpha.0",
+    "@formwork/mail": "^1.0.0-alpha.0",
+    "@formwork/mcp": "^1.0.0-alpha.0",
+    "@formwork/media": "^1.0.0-alpha.0",
+    "@formwork/notifications": "^1.0.0-alpha.0",
+    "@formwork/orm": "^1.0.0-alpha.0",
+    "@formwork/otel": "^1.0.0-alpha.0",
+    "@formwork/padlock": "^1.0.0-alpha.0",
+    "@formwork/queue": "^1.0.0-alpha.0",
+    "@formwork/realtime": "^1.0.0-alpha.0",
+    "@formwork/resilience": "^1.0.0-alpha.0",
+    "@formwork/scheduler": "^1.0.0-alpha.0",
+    "@formwork/session": "^1.0.0-alpha.0",
+    "@formwork/sociallock": "^1.0.0-alpha.0",
+    "@formwork/storage": "^1.0.0-alpha.0",
+    "@formwork/tenancy": "^1.0.0-alpha.0",
+    "@formwork/testing": "^1.0.0-alpha.0",
+    "@formwork/ui": "^1.0.0-alpha.0",
+    "@formwork/validation": "^1.0.0-alpha.0",
+    "@formwork/wasm": "^1.0.0-alpha.0"
+  }
+}

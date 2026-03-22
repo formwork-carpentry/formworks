@@ -13,7 +13,7 @@ export class QueueInfrastructureProvider {
     this.app.singleton('queue.manager', () => {
       return createQueueManager(
         this.resolver.queueConnection(),
-        this.resolver.queueConnections(),
+        this.resolver.queueConnections() as any,
         {
           resolveDatabaseAdapter: () => this.app.make('db') as IDatabaseAdapter,
         },
