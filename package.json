@@ -52,7 +52,7 @@
     "bullmq": "^5.71.0",
     "ioredis": "^5.10.0",
     "kafkajs": "^2.2.4",
-    "mongodb": "^6.21.0",
+    "mongodb": "^7.1.0",
     "mysql2": "^3.20.0",
     "nats": "^2.29.3",
     "nodemailer": "^8.0.2",
