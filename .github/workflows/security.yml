@@ -41,7 +41,7 @@ jobs:
         run: npm audit --json > /tmp/audit.json || true
 
       - name: Upload audit results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: npm-audit-report
           path: /tmp/audit.json
@@ -110,7 +110,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload license report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: license-report
           path: /tmp/licenses.json
