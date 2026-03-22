@@ -1,0 +1,38 @@
+# CODEOWNERS
+# These owners will be the default owners for everything in the repo.
+# Each line is a file pattern followed by one or more owners.
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owner
+* @elcomware
+
+# Core packages
+/packages/core/ @elcomware
+/packages/foundation/ @elcomware
+/packages/http/ @elcomware
+/packages/auth/ @elcomware
+/packages/orm/ @elcomware
+
+# Infrastructure adapters
+/packages/cache-adapters/ @elcomware
+/packages/queue-adapters/ @elcomware
+/packages/db-adapters/ @elcomware
+/packages/mail-adapters/ @elcomware
+/packages/storage-adapters/ @elcomware
+/packages/bridge-adapters/ @elcomware
+
+# CLI tooling
+/packages/cli/ @elcomware
+
+# CI / Automation
+/.github/ @elcomware
+
+# Documentation
+/docs/ @elcomware
+/CONTRIBUTING.md @elcomware
+/CODE_OF_CONDUCT.md @elcomware
+/SECURITY.md @elcomware
+/README.md @elcomware
+
+# Scripts
+/scripts/ @elcomware

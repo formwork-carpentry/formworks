@@ -1,0 +1,30 @@
+name: Question
+description: Ask a question about usage or concepts
+title: "question: "
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before asking, please check the [documentation](./docs/) and existing issues to see if your question has already been answered.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+    validations:
+      required: true
+
+  - type: input
+    id: package
+    attributes:
+      label: Related Package
+      description: Which `@formwork/*` package does this relate to? (optional)
+      placeholder: "@formwork/core"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Any additional context that might help us answer your question.
