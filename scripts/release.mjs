@@ -128,7 +128,7 @@ function execGit(command) {
 /**
  * Main release function
  */
-async function release() {
+function release() {
   try {
     log.header('Formworks Release Tool');
 
