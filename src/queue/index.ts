@@ -23,6 +23,7 @@
  */
 
 export { BaseJob, SyncQueueAdapter, MemoryQueueAdapter } from "./adapters/Adapters.js";
+export { MemoryQueueAdapter as InMemoryQueueDriver } from "./adapters/Adapters.js";
 export {
   QueueManager,
   setQueueManager,
@@ -35,6 +36,3 @@ export * from "./exceptions.js";
 
 export { DatabaseQueueAdapter } from "./adapters/DatabaseQueueAdapter.js";
 export type { DatabaseQueueConfig } from "./adapters/DatabaseQueueAdapter.js";
-
-export { BullMqAdapter, MockBullMqQueue } from "./adapters/BullMqAdapter.js";
-export type { IBullMqQueue, BullMqConfig } from "./adapters/BullMqAdapter.js";

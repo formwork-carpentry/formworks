@@ -68,6 +68,14 @@ export class MailManager extends CarpenterFactoryBase<IMailAdapter, MailDriverCo
     return this.resolve(name);
   }
 
+  /**
+   * Backward-compatible registration API used by legacy starters.
+   * Registers a concrete transport instance under the given driver name.
+   */
+  addTransport(name: string, transport: IMailAdapter): this {
+    return this.registerDriver(name, () => transport);
+  }
+
   /** Send a mail message */
   /**
    * @param {MailMessage} message

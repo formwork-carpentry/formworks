@@ -62,6 +62,14 @@ export class QueueManager
   }
 
   /**
+   * Backward-compatible registration API used by legacy starters.
+   * Registers a concrete adapter instance under the given driver name.
+   */
+  addDriver(name: string, adapter: IQueueAdapter): this {
+    return this.registerDriver(name, () => adapter);
+  }
+
+  /**
    * @param {QueuedJob<T>} job
    * @returns {Promise<string>}
    */

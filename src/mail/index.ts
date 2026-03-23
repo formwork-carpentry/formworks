@@ -27,12 +27,9 @@
  * @see Mail — Global facade for the configured manager
  */
 
-export { ArrayMailAdapter, LogMailAdapter, BaseMailable } from "./adapters/Adapters.js";
+export { ArrayMailAdapter, ArrayMailAdapter as InMemoryMailTransport, LogMailAdapter, BaseMailable } from "./adapters/Adapters.js";
 export { MailManager, setMailManager, Mail, createMailManager } from "./manager/index.js";
 export type { MailDriverFactory, MailManagerFactoryOptions } from "./manager/index.js";
 
 export { HttpMailAdapter } from "./adapters/HttpMailAdapter.js";
 export type { HttpMailConfig, HttpMailProvider, SendResult } from "./adapters/HttpMailAdapter.js";
-
-export { SmtpMailAdapter, MockSmtpTransport } from "./adapters/SmtpMailAdapter.js";
-export type { ISmtpTransport, SmtpMailConfig } from "./adapters/SmtpMailAdapter.js";

@@ -53,6 +53,13 @@ export class NotificationManager {
     return this;
   }
 
+  /**
+   * Backward-compatible registration API that infers channel name from adapter.name.
+   */
+  addChannel(adapter: INotificationChannel): this {
+    return this.channel(adapter.name, adapter);
+  }
+
   /** Add middleware that can prevent notifications (rate limiting, quiet hours, etc.) */
   /**
    * @param {Object} fn

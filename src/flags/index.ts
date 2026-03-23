@@ -104,6 +104,14 @@ export class InMemoryFlagProvider {
     this.flags.set(name, definition);
   }
 
+  /**
+   * Backward-compatible shorthand used by legacy starters.
+   * Equivalent to define(name, { enabled: value }).
+   */
+  set(name: string, value: boolean): void {
+    this.define(name, { enabled: value });
+  }
+
   /** Override a flag for testing (bypasses all rules) */
   /**
    * @param {string} name
