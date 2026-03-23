@@ -120,8 +120,15 @@ export class S3StorageAdapter implements IStorageAdapter {
     await this.delete(sourceKey);
   }
 
-  async list(_directory?: string): Promise<StorageFile[]> {
-    throw new Error('List operation is not implemented by the lightweight S3 adapter.');
+  async list(directory?: string): Promise<StorageFile[]> {
+    const url = this.buildListUrl(directory);
+    const response = await this.signedRequest('GET', url);
+    if (!response.ok) {
+      return [];
+    }
+
+    const xml = await response.text();
+    return parseS3ListXml(xml);
   }
 
   async size(key: string): Promise<number> {
@@ -151,6 +158,16 @@ export class S3StorageAdapter implements IStorageAdapter {
     return `${host}/${normalizedKey}`;
   }
 
+  private buildListUrl(directory?: string): string {
+    const base = new URL(this.buildUrl(''));
+    base.searchParams.set('list-type', '2');
+    if (directory) {
+      const normalized = directory.replace(/^\/+/, '').replace(/\/+$/, '');
+      base.searchParams.set('prefix', normalized.length > 0 ? `${normalized}/` : '');
+    }
+    return base.toString();
+  }
+
   private async signedRequest(
     method: string,
     url: string,
@@ -167,6 +184,42 @@ export class S3StorageAdapter implements IStorageAdapter {
     };
     return this.fetchFn(url, { method, headers, body: body as RequestInit['body'] });
   }
+}
+
+function parseS3ListXml(xml: string): StorageFile[] {
+  const contents = [...xml.matchAll(/<Contents>([\s\S]*?)<\/Contents>/g)].map((match) => match[1]);
+
+  return contents
+    .map((content): StorageFile | null => {
+      const key = matchXmlTag(content, 'Key');
+      const size = Number(matchXmlTag(content, 'Size') ?? '0');
+      const lastModifiedRaw = matchXmlTag(content, 'LastModified');
+      if (!key) {
+        return null;
+      }
+
+      return {
+        path: decodeXmlEntities(key),
+        size: Number.isFinite(size) ? size : 0,
+        lastModified: lastModifiedRaw ? new Date(lastModifiedRaw) : new Date(),
+        isDirectory: false,
+      };
+    })
+    .filter((item): item is StorageFile => item !== null);
+}
+
+function matchXmlTag(xml: string, tagName: string): string | null {
+  const match = new RegExp(`<${tagName}>([\\s\\S]*?)</${tagName}>`).exec(xml);
+  return match?.[1] ?? null;
+}
+
+function decodeXmlEntities(value: string): string {
+  return value
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
 }
 
 // ── Driver factory (Domain Factory Manager integration) ───

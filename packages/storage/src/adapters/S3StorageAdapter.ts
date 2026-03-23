@@ -218,12 +218,18 @@ export class S3StorageAdapter implements IStorageAdapter {
    * @param {string} [directory]
    * @returns {Promise<StorageFile[]>}
    */
-  async list(_directory?: string): Promise<StorageFile[]> {
-    throw new StorageOperationError(
-      "list",
-      "List operation is not implemented by the lightweight S3 adapter.",
-      { bucket: this.bucket },
-    );
+  async list(directory?: string): Promise<StorageFile[]> {
+    const url = this.buildListUrl(directory);
+    const response = await this.signedRequest("GET", url);
+    if (!response.ok) {
+      throw new StorageOperationError("list", `S3 list failed: ${response.status} ${response.statusText}`, {
+        bucket: this.bucket,
+        status: response.status,
+      });
+    }
+
+    const xml = await response.text();
+    return parseS3ListXml(xml);
   }
 
   /**
@@ -269,6 +275,16 @@ export class S3StorageAdapter implements IStorageAdapter {
     return `${host}/${normalizedKey}`;
   }
 
+  private buildListUrl(directory?: string): string {
+    const base = new URL(this.buildUrl(""));
+    base.searchParams.set("list-type", "2");
+    if (directory) {
+      const normalized = directory.replace(/^\/+/, "").replace(/\/+$/, "");
+      base.searchParams.set("prefix", normalized.length > 0 ? `${normalized}/` : "");
+    }
+    return base.toString();
+  }
+
   // ── Internal: Signed Request ────────────────────────────
   // Simplified signing — in production you'd use full AWS Sig V4.
   // For testing with mock fetch, the signature doesn't matter.
@@ -292,4 +308,40 @@ export class S3StorageAdapter implements IStorageAdapter {
 
     return this.fetchFn(url, { method, headers, body: body as RequestInit["body"] });
   }
+}
+
+function parseS3ListXml(xml: string): StorageFile[] {
+  const contents = [...xml.matchAll(/<Contents>([\s\S]*?)<\/Contents>/g)].map((match) => match[1]);
+
+  return contents
+    .map((content): StorageFile | null => {
+      const key = matchXmlTag(content, "Key");
+      const size = Number(matchXmlTag(content, "Size") ?? "0");
+      const lastModifiedRaw = matchXmlTag(content, "LastModified");
+      if (!key) {
+        return null;
+      }
+
+      return {
+        path: decodeXmlEntities(key),
+        size: Number.isFinite(size) ? size : 0,
+        lastModified: lastModifiedRaw ? new Date(lastModifiedRaw) : new Date(),
+        isDirectory: false,
+      };
+    })
+    .filter((item): item is StorageFile => item !== null);
+}
+
+function matchXmlTag(xml: string, tagName: string): string | null {
+  const match = new RegExp(`<${tagName}>([\\s\\S]*?)</${tagName}>`).exec(xml);
+  return match?.[1] ?? null;
+}
+
+function decodeXmlEntities(value: string): string {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
 }
