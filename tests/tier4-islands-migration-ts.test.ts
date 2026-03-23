@@ -9,8 +9,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 // ISLANDS ARCHITECTURE
 // ═══════════════════════════════════════════════════════════
 
-import { Island, IslandRenderer } from '../packages/ui/src/Islands.js';
-import type { IslandDefinition } from '../packages/ui/src/Islands.js';
+import { Island, IslandRenderer } from '../src/ui/Islands.js';
+import type { IslandDefinition } from '../src/ui/Islands.js';
 
 describe('Islands Architecture', () => {
   let renderer: IslandRenderer;
@@ -138,7 +138,7 @@ describe('Islands Architecture', () => {
 // MIGRATION SCANNER
 // ═══════════════════════════════════════════════════════════
 
-import { MigrationScanner } from '../packages/cli/src/migration-guide.js';
+import { MigrationScanner } from '../../carpenter/cli/src/migration-guide.js';
 
 describe('MigrationScanner', () => {
   let scanner: MigrationScanner;

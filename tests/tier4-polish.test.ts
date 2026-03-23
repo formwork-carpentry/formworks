@@ -176,7 +176,7 @@ describe('GraphQL PubSub', () => {
 // BENCHMARK SUITE
 // ═══════════════════════════════════════════════════════════
 
-import { BenchmarkSuite, SlaContract } from '../packages/testing/src/Benchmark.js';
+import { BenchmarkSuite, SlaContract } from '../src/testing/Benchmark.js';
 
 describe('BenchmarkSuite', () => {
   it('runs benchmarks and produces results', async () => {
@@ -277,9 +277,9 @@ describe('SlaContract', () => {
 // SECURITY AUDIT
 // ═══════════════════════════════════════════════════════════
 
-import { runSecurityAudit } from '../packages/cli/src/security-audit.js';
-import { SecurityAuditCommand } from '../packages/cli/src/security-audit.js';
-import { InMemoryConsole } from '../packages/cli/src/index.js';
+import { runSecurityAudit } from '../../carpenter/cli/src/security-audit.js';
+import { SecurityAuditCommand } from '../../carpenter/cli/src/security-audit.js';
+import { InMemoryConsole } from '../../carpenter/cli/src/index.js';
 
 describe('Security Audit', () => {
   describe('runSecurityAudit (programmatic)', () => {
@@ -358,7 +358,7 @@ describe('Security Audit', () => {
 // DEV SERVER
 // ═══════════════════════════════════════════════════════════
 
-import { DevServer } from '../packages/cli/src/DevServer.js';
+import { DevServer } from '../../carpenter/cli/src/DevServer.js';
 
 describe('DevServer', () => {
   it('creates with default config', () => {
