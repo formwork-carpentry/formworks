@@ -1,11 +1,11 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description HTTP Kernel — full request lifecycle: parse → scope → route → middleware → dispatch → respond
  * @patterns Template Method (handle lifecycle), Chain of Responsibility (middleware + exception)
  * @principles SRP — orchestrates lifecycle only; DIP — depends on IContainer, IRouter interfaces
  */
 
-import type { IContainer } from "@formwork/core/container";
+import type { IContainer } from "@carpentry/core/container";
 import type {
   HttpMethod,
   IHttpKernel,
@@ -14,9 +14,9 @@ import type {
   IResponse,
   ResolvedRoute,
   RouteHandler,
-} from "@formwork/core/contracts";
-import { MethodNotAllowedError, NotFoundError } from "@formwork/core/exceptions";
-import type { Token } from "@formwork/core/types";
+} from "@carpentry/core/contracts";
+import { MethodNotAllowedError, NotFoundError } from "@carpentry/core/exceptions";
+import type { Token } from "@carpentry/core/types";
 import { Pipeline } from "../middleware/Pipeline.js";
 import { Request } from "../request/Request.js";
 import { CarpenterResponse } from "../response/Response.js";

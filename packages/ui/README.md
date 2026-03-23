@@ -1,4 +1,4 @@
-# @formwork/ui
+# @carpentry/ui
 
 CarpenterUI: VDOM, .carp compiler, SSR, signals, client router
 
@@ -11,13 +11,13 @@ CarpenterUI: VDOM, .carp compiler, SSR, signals, client router
 ## Installation
 
 ```bash
-npm install @formwork/ui
+npm install @carpentry/ui
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkui from '@formwork/ui';
+import * as formworkui from '@carpentry/ui';
 
 // Use the package API in your application modules
 ```

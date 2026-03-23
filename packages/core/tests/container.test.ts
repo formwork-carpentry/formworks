@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Complete test suite for IoC Container — CARP-003 through CARP-006
  *
  * CARP-003: Core bindings & resolution (bind, singleton, instance, make, auto-wiring, circular)

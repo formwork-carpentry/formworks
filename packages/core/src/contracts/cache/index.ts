@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/cache
+ * @module @carpentry/core/contracts/cache
  * @description Cache store contract - all cache adapters implement this interface.
  *
  * Implementations: MemoryCacheStore, NullCacheStore, FileCacheStore, RedisCacheStore

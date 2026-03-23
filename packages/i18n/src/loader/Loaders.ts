@@ -1,12 +1,12 @@
 /**
- * @module @formwork/i18n
+ * @module @carpentry/i18n
  * @description Translation loaders — Memory (testing), Object (inline config)
  * @patterns Adapter (implements ITranslationLoader), Strategy (swappable loaders)
  * @principles LSP — all loaders substitutable; SRP — loading translations only
  */
 
-import type { ITranslationLoader } from '@formwork/core/contracts';
-import type { Dictionary } from '@formwork/core/types';
+import type { ITranslationLoader } from '@carpentry/core/contracts';
+import type { Dictionary } from '@carpentry/core/types';
 
 /**
  * In-memory translation loader — for testing.

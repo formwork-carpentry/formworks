@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description CacheManager — resolves cache stores by name from configuration.
  * Extends {@link CarpenterFactoryBase} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -8,9 +8,9 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@formwork/core/adapters";
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import { CarpenterFactoryBase } from "@carpentry/core/adapters";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 import { MemoryCacheStore } from "../adapters/MemoryCacheStore.js";
 import { NullCacheStore } from "../adapters/NullCacheStore.js";
 
@@ -29,7 +29,7 @@ export type CacheStoreFactory = (config: CacheStoreConfig) => ICacheStore;
  *
  * @example
  * ```ts
- * import { CacheManager } from '@formwork/cache';
+ * import { CacheManager } from '@carpentry/cache';
  *
  * const manager = new CacheManager('memory', {
  *   memory: { driver: 'memory' },

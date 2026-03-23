@@ -1,5 +1,5 @@
 /**
- * @module @formwork/sociallock/bindings
+ * @module @carpentry/sociallock/bindings
  */
 
 export const SOCIALLOCK_BINDINGS = {

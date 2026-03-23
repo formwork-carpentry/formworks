@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * @module scripts/publish
- * @description Publish all @formwork/* packages to npm.
+ * @description Publish all @carpentry/* packages to npm.
  *
  * Usage:
  *   node scripts/publish.mjs              # dry-run (default)

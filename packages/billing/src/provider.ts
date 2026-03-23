@@ -1,5 +1,5 @@
 /**
- * @module @formwork/billing
+ * @module @carpentry/billing
  * @description InMemoryPaymentProvider — test/mock payment provider
  * @patterns Strategy (implements IPaymentProvider)
  */
@@ -15,7 +15,7 @@ import type {
  *
  * @example
  * ```ts
- * import { InMemoryPaymentProvider } from '@formwork/billing';
+ * import { InMemoryPaymentProvider } from '@carpentry/billing';
  *
  * const provider = new InMemoryPaymentProvider();
  * await provider.addPlan({

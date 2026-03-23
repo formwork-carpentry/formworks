@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/billing",
+  "name": "@carpentry/billing",
   "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "./src/index.ts",
@@ -12,5 +12,11 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
+  },
+  "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@carpentry/formworks": "workspace:*"
   }
 }

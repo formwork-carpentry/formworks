@@ -1,12 +1,12 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description HTTP Request — wraps Web Standard Request with Laravel-style accessors
  * @patterns Immutable Value Object
  * @principles SRP — only request data access; ISP — implements IRequest
  */
 
-import type { IRequest } from "@formwork/core/contracts";
-import type { Dictionary } from "@formwork/core/types";
+import type { IRequest } from "@carpentry/core/contracts";
+import type { Dictionary } from "@carpentry/core/types";
 
 /**
  * Request — wraps a standard Web `Request` with Carpenter/Laravel-style helpers.

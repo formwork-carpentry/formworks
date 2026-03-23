@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Router — fluent route registration, matching, named routes, resource/API resources
  * @patterns Builder (fluent registration), Composite (route groups), Strategy (matching)
  * @principles OCP — new routes without modifying router; SRP — routing logic only
@@ -13,8 +13,8 @@ import type {
   ResolvedRoute,
   RouteGroupOptions,
   RouteHandler,
-} from "@formwork/core/contracts";
-import type { Constructor, Dictionary, Token } from "@formwork/core/types";
+} from "@carpentry/core/contracts";
+import type { Constructor, Dictionary, Token } from "@carpentry/core/types";
 
 // ── Route Data ────────────────────────────────────────────
 

@@ -1,4 +1,4 @@
-# @formwork/foundation
+# @carpentry/foundation
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/foundation
+npm install @carpentry/foundation
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkfoundation from '@formwork/foundation';
+import * as formworkfoundation from '@carpentry/foundation';
 
 // Use the package API in your application modules
 ```

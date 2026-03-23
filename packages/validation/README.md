@@ -1,4 +1,4 @@
-# @formwork/validation
+# @carpentry/validation
 
 Validator, rules, FormRequest
 
@@ -11,13 +11,13 @@ Validator, rules, FormRequest
 ## Installation
 
 ```bash
-npm install @formwork/validation
+npm install @carpentry/validation
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkvalidation from '@formwork/validation';
+import * as formworkvalidation from '@carpentry/validation';
 
 // Use the package API in your application modules
 ```

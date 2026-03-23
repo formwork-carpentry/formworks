@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/events
+ * @module @carpentry/core/contracts/events
  * @description Event dispatcher contract - the event system interface.
  *
  * Implementations: EventDispatcher, EventFake (for testing)

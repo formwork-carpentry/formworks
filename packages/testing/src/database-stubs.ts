@@ -1,5 +1,5 @@
 /**
- * @module @formwork/testing
+ * @module @carpentry/testing
  * @description Database stub adapters for tests.
  */
 
@@ -8,4 +8,4 @@ export {
   PostgresAdapterStub,
   MySQLAdapterStub,
   MongoDBAdapterStub,
-} from "@formwork/db";
+} from "@carpentry/db";

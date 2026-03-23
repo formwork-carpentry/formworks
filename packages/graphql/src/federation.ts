@@ -1,5 +1,5 @@
 /**
- * @module @formwork/graphql
+ * @module @carpentry/graphql
  * @description GraphQL Federation v2 support — decorators and schema extensions for
  * building federated subgraph services that compose into a single supergraph.
  *

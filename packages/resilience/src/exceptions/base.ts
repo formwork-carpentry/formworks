@@ -1,9 +1,9 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Base error hierarchy for resilience failures.
  */
 
-import { CarpenterError } from "@formwork/core/exceptions";
+import { CarpenterError } from "@carpentry/core/exceptions";
 
 export class ResilienceError extends CarpenterError {
   constructor(message: string, code = "RESILIENCE_ERROR", context: Record<string, unknown> = {}) {

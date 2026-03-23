@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description Tests for Queue system (CARP-026)
  */
 

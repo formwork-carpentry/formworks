@@ -35,7 +35,7 @@
 | **SOLID ISP** | ✅ PASS | Container split: IBindingRegistry + IResolver + IScopeFactory |
 | **SOLID DIP** | ✅ PASS | Constructors accept interfaces, bindings in ServiceProviders |
 | **DRY** (§3.2) | ✅ PASS | Shared base classes (BaseModel, BaseJob, BaseMailable, BaseController) |
-| **Result\<T,E\>** type | ✅ PASS | Defined in @formwork/core, used in 5 files |
+| **Result\<T,E\>** type | ✅ PASS | Defined in @carpentry/core, used in 5 files |
 
 ### ⚠️ Violations (Fixable)
 
@@ -63,7 +63,7 @@
 | Adapter | All infrastructure adapters | ✅ | 12 interface→implementation pairs |
 | Memento | Model dirty tracking | ✅ | BaseModel.isDirty(), getOriginal() |
 | Mediator | EventDispatcher | ✅ | Decouples publishers from subscribers |
-| Proxy | TypedServiceProxy | ✅ | RemoteService.call() in @formwork/bridge |
+| Proxy | TypedServiceProxy | ✅ | RemoteService.call() in @carpentry/bridge |
 
 ---
 
@@ -117,15 +117,15 @@
 
 | Package | Description | Tests |
 |---------|-------------|-------|
-| @formwork/i18n | Internationalization (Translator, Pluralizer, 30+ locales) | 42 |
-| @formwork/session | Session management (flash data, CSRF, regeneration) | 33 |
-| @formwork/billing | Payment provider (charges, refunds, subscriptions, idempotency) | 31 |
-| @formwork/helpers | Str (18 methods), Arr (16), Collection (24), collect() | 45 |
-| @formwork/scheduler | Cron parser, FrequencyBuilder, task scheduling | 30 |
-| @formwork/http-client | Fluent outbound HTTP with FakeTransport | 20 |
-| @formwork/media | MediaCollection, TransformationPipeline, DocumentGenerator | 33 |
-| @formwork/log | Logger (8 levels, 5 channels), AuditLogger | 48 |
-| @formwork/db | SQLiteMemoryAdapter (real in-memory SQL engine) | 12 |
+| @carpentry/i18n | Internationalization (Translator, Pluralizer, 30+ locales) | 42 |
+| @carpentry/session | Session management (flash data, CSRF, regeneration) | 33 |
+| @carpentry/billing | Payment provider (charges, refunds, subscriptions, idempotency) | 31 |
+| @carpentry/helpers | Str (18 methods), Arr (16), Collection (24), collect() | 45 |
+| @carpentry/scheduler | Cron parser, FrequencyBuilder, task scheduling | 30 |
+| @carpentry/http-client | Fluent outbound HTTP with FakeTransport | 20 |
+| @carpentry/media | MediaCollection, TransformationPipeline, DocumentGenerator | 33 |
+| @carpentry/log | Logger (8 levels, 5 channels), AuditLogger | 48 |
+| @carpentry/db | SQLiteMemoryAdapter (real in-memory SQL engine) | 12 |
 
 ---
 
@@ -154,7 +154,7 @@
 
 | # | Issue | Severity | Status |
 |---|-------|----------|--------|
-| 1 | `kernel.test.ts` uses `@formwork/core` instead of relative import | 🔴 Test failure | ✅ Fixed |
+| 1 | `kernel.test.ts` uses `@carpentry/core` instead of relative import | 🔴 Test failure | ✅ Fixed |
 | 2 | 15 source files exceed 300-line KISS limit | 🟡 Style | Open |
 | 3 | 4 functions exceed 40-line KISS limit | 🟡 Style | Open |
 | 4 | 3 source files missing JSDoc headers | 🟢 Minor | Open |

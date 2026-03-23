@@ -1,5 +1,5 @@
 /**
- * @module @formwork/i18n
+ * @module @carpentry/i18n
  * @description Translator — resolve translation keys with replacements, pluralization, fallback locale
  * @patterns Strategy (loaders, pluralizer), Flyweight (caches loaded translations)
  * @principles SRP — translates strings only; DIP — depends on ITranslationLoader interface
@@ -9,8 +9,8 @@ import type {
   ITranslator,
   ITranslationLoader,
   IPluralizer,
-} from '@formwork/core/contracts';
-import type { Dictionary } from '@formwork/core/types';
+} from '@carpentry/core/contracts';
+import type { Dictionary } from '@carpentry/core/types';
 
 /**
  * Translator resolves translation keys into localized strings.
@@ -22,7 +22,7 @@ import type { Dictionary } from '@formwork/core/types';
  *
  * @example
  * ```ts
- * import { Translator, ObjectLoader, Pluralizer } from '@formwork/i18n';
+ * import { Translator, ObjectLoader, Pluralizer } from '@carpentry/i18n';
  *
  * const translator = new Translator(
  *   new ObjectLoader({

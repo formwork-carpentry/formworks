@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { AdminResource, AdminPanel } from '../src/index.js';
 import type { AdminAction } from '../src/index.js';
 
-describe('@formwork/admin: AdminResource', () => {
+describe('@carpentry/admin: AdminResource', () => {
   let resource: AdminResource;
 
   beforeEach(() => {
@@ -120,7 +120,7 @@ describe('@formwork/admin: AdminResource', () => {
   });
 });
 
-describe('@formwork/admin: AdminPanel', () => {
+describe('@carpentry/admin: AdminPanel', () => {
   let panel: AdminPanel;
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Tenancy facades — global access
  * @patterns Facade
  */

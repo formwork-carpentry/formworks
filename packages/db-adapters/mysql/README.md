@@ -1,4 +1,4 @@
-# @formwork/db-mysql
+# @carpentry/db-mysql
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db-mysql
+npm install @carpentry/db-mysql
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdbmysql from '@formwork/db-mysql';
+import * as formworkdbmysql from '@carpentry/db-mysql';
 
 // Use the package API in your application modules
 ```

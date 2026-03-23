@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description HTTP/3 (QUIC) server stub — planned for v1.1.
  *
  * Node.js QUIC/HTTP3 APIs are experimental (--experimental-quic).
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { serveHttp3 } from '@formwork/http';
+ * import { serveHttp3 } from '@carpentry/http';
  *
  * // When Node.js QUIC is stable:
  * serveHttp3(kernel, {

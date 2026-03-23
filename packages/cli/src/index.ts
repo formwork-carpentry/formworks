@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description CLI framework — command registry, argument parsing, help generation
  *
  * @patterns Command (each CLI command), Registry (command lookup), Template Method (BaseCommand),
@@ -8,7 +8,7 @@
  *
  * @example
  * ```ts
- * import { BaseCommand, CliApp } from '@formwork/cli';
+ * import { BaseCommand, CliApp } from '@carpentry/cli';
  *
  * class HelloCommand extends BaseCommand {
  *   name = 'hello';
@@ -91,7 +91,7 @@ export interface CommandOutput {
  *
  * @example
  * ```ts
- * import { BaseCommand, CliApp, type CommandOutput } from '@formwork/cli';
+ * import { BaseCommand, CliApp, type CommandOutput } from '@carpentry/cli';
  *
  * class PingCommand extends BaseCommand {
  *   name = 'ping';
@@ -189,7 +189,7 @@ export abstract class BaseCommand {
  *
  * @example
  * ```ts
- * import { InMemoryConsole, CliApp, BaseCommand, type CommandOutput } from '@formwork/cli';
+ * import { InMemoryConsole, CliApp, BaseCommand, type CommandOutput } from '@carpentry/cli';
  *
  * class HiCommand extends BaseCommand {
  *   name = 'hi';
@@ -316,7 +316,7 @@ export class InMemoryConsole implements CommandOutput {
  *
  * @example
  * ```ts
- * import { parseArgv } from '@formwork/cli';
+ * import { parseArgv } from '@carpentry/cli';
  *
  * const argDefs = [{ name: 'slug', description: 'Tenant', required: true }];
  * const optDefs = [{ name: 'verbose', description: 'Log', type: 'boolean' as const, defaultValue: false }];
@@ -406,7 +406,7 @@ export function parseArgv(
  *
  * @example
  * ```ts
- * import { CommandRegistry, BaseCommand, type CommandOutput } from '@formwork/cli';
+ * import { CommandRegistry, BaseCommand, type CommandOutput } from '@carpentry/cli';
  *
  * class VersionCommand extends BaseCommand {
  *   name = 'version';
@@ -512,7 +512,7 @@ export class CommandRegistry {
  *
  * @example
  * ```ts
- * import { CliApp, BaseCommand, type CommandOutput } from '@formwork/cli';
+ * import { CliApp, BaseCommand, type CommandOutput } from '@carpentry/cli';
  *
  * class EchoCommand extends BaseCommand {
  *   name = 'echo';
@@ -615,7 +615,7 @@ export class CliApp {
  *
  * @example
  * ```ts
- * import { CliApp, ConsoleOutput, BaseCommand, type CommandOutput } from '@formwork/cli';
+ * import { CliApp, ConsoleOutput, BaseCommand, type CommandOutput } from '@carpentry/cli';
  *
  * class OkCommand extends BaseCommand {
  *   name = 'ok';

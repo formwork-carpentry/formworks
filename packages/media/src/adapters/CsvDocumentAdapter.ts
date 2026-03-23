@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media/adapters/CsvDocumentAdapter
+ * @module @carpentry/media/adapters/CsvDocumentAdapter
  * @description CSV document generation adapter.
  * @patterns Strategy (format-specific generation)
  */

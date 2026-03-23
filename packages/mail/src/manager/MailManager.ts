@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description MailManager — resolves mail adapters by name, Mail facade.
  * Extends {@link CarpenterFactoryBase} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -8,8 +8,8 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@formwork/core/adapters";
-import type { IMailAdapter, MailMessage } from "@formwork/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/core/adapters";
+import type { IMailAdapter, MailMessage } from "@carpentry/core/contracts";
 import { ArrayMailAdapter, type BaseMailable, LogMailAdapter } from "../adapters/Adapters.js";
 
 export interface MailDriverConfig {
@@ -29,7 +29,7 @@ export type MailDriverFactory = (config: MailDriverConfig) => IMailAdapter;
  *
  * @example
  * ```ts
- * import { MailManager, setMailManager, Mail } from '@formwork/mail';
+ * import { MailManager, setMailManager, Mail } from '@carpentry/mail';
  *
  * const manager = new MailManager('log', {
  *   log: { driver: 'log' },

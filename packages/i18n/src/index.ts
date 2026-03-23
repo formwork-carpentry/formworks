@@ -1,5 +1,5 @@
 /**
- * @module @formwork/i18n
+ * @module @carpentry/i18n
  * @description Localization and translation — {@link Translator}, {@link Pluralizer}, and loaders.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { Translator, ObjectLoader, Pluralizer } from '@formwork/i18n';
+ * import { Translator, ObjectLoader, Pluralizer } from '@carpentry/i18n';
  *
  * const translator = new Translator(
  *   new ObjectLoader({

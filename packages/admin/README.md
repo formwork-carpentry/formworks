@@ -1,4 +1,4 @@
-# @formwork/admin
+# @carpentry/admin
 
 CarpenterAdmin: auto-generated CRUD panel
 
@@ -11,13 +11,13 @@ CarpenterAdmin: auto-generated CRUD panel
 ## Installation
 
 ```bash
-npm install @formwork/admin
+npm install @carpentry/admin
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkadmin from '@formwork/admin';
+import * as formworkadmin from '@carpentry/admin';
 
 // Use the package API in your application modules
 ```

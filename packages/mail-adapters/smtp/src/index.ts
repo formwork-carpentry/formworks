@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail-smtp
+ * @module @carpentry/mail-smtp
  * @description SmtpMailAdapter — sends email via SMTP using nodemailer.
  *
  * @patterns Adapter (nodemailer → IMailAdapter)
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { SmtpMailAdapter, MockSmtpTransport } from '@formwork/mail-smtp';
+ * import { SmtpMailAdapter, MockSmtpTransport } from '@carpentry/mail-smtp';
  *
  * const mock = new MockSmtpTransport();
  * const mailer = new SmtpMailAdapter(mock, { from: 'noreply@example.com' });
@@ -15,7 +15,7 @@
  * ```
  */
 
-import type { IMailAdapter, MailMessage } from '@formwork/core/contracts';
+import type { IMailAdapter, MailMessage } from '@carpentry/core/contracts';
 import type { ISmtpTransport, SmtpMailOptions, SmtpMailConfig } from './types.js';
 
 export { type ISmtpTransport, type SmtpMailOptions, type SmtpMailConfig } from './types.js';
@@ -38,7 +38,7 @@ export class SmtpMailAdapter implements IMailAdapter {
   }
 
   async send(message: MailMessage): Promise<void> {
-    const normalizeAddr = (v: string | import('@formwork/core/contracts').MailAddress[] | undefined): string | undefined => {
+    const normalizeAddr = (v: string | import('@carpentry/core/contracts').MailAddress[] | undefined): string | undefined => {
       if (!v) return undefined;
       if (typeof v === 'string') return v;
       return v.map((a) => (a.name ? `${a.name} <${a.email}>` : a.email)).join(', ');
@@ -70,7 +70,7 @@ export class SmtpMailAdapter implements IMailAdapter {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * Create a MailManager-compatible driver factory for the SMTP adapter.
@@ -81,7 +81,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  * @example
  * ```ts
  * import nodemailer from 'nodemailer';
- * import { createSmtpMailDriverFactory } from '@formwork/mail-smtp';
+ * import { createSmtpMailDriverFactory } from '@carpentry/mail-smtp';
  *
  * mailManager.registerDriver('smtp', createSmtpMailDriverFactory(
  *   (cfg) => nodemailer.createTransport({ host: cfg['host'], port: cfg['port'] }),

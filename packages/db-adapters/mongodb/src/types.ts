@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mongodb/types
+ * @module @carpentry/db-mongodb/types
  * @description Shared MongoDB adapter configuration and driver contracts.
  */
 

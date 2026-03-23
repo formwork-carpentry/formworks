@@ -1,5 +1,5 @@
 /**
- * @module @formwork/validation
+ * @module @carpentry/validation
  * @description Validator, built-in rules, and custom rule factory helpers.
  *
  * Use this package to validate plain objects (request bodies, DTOs, etc.)
@@ -8,7 +8,7 @@
  *
  * @example
  * ```ts
- * import { Validator } from '@formwork/validation';
+ * import { Validator } from '@carpentry/validation';
  *
  * const validator = new Validator();
  * const result = validator.validate(

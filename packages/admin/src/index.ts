@@ -1,5 +1,5 @@
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description Carpenter admin panel — resources, fields, and panel navigation.
  *
  * Use this package to define admin CRUD resources declaratively and build a dashboard
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { AdminPanel, AdminResource } from '@formwork/admin';
+ * import { AdminPanel, AdminResource } from '@carpentry/admin';
  *
  * const users = new AdminResource({ name: 'users', label: 'User' })
  *   .id()

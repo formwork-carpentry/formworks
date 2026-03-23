@@ -1,4 +1,4 @@
-# @formwork/resilience
+# @carpentry/resilience
 
 Circuit breaker, retry, rate limiter
 
@@ -11,13 +11,13 @@ Circuit breaker, retry, rate limiter
 ## Installation
 
 ```bash
-npm install @formwork/resilience
+npm install @carpentry/resilience
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkresilience from '@formwork/resilience';
+import * as formworkresilience from '@carpentry/resilience';
 
 // Use the package API in your application modules
 ```

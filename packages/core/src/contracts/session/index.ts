@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/session
+ * @module @carpentry/core/contracts/session
  * @description Session store contract - all session drivers implement this interface.
  *
  * Implementations: MemorySessionStore, FileSessionStore

@@ -1,12 +1,12 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description In-memory cache store with TTL — for development and testing
  * @patterns Adapter (implements ICacheStore), Flyweight (shared cache entries)
  * @principles LSP — fully substitutable for Redis/File stores; SRP — caching only
  */
 
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 import { TaggedCache } from "../TaggedCache.js";
 
 interface CacheEntry {

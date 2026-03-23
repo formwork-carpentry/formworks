@@ -1,4 +1,4 @@
-# @formwork/otel
+# @carpentry/otel
 
 OpenTelemetry: auto-instrumentation, traces, metrics, logging
 
@@ -11,13 +11,13 @@ OpenTelemetry: auto-instrumentation, traces, metrics, logging
 ## Installation
 
 ```bash
-npm install @formwork/otel
+npm install @carpentry/otel
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkotel from '@formwork/otel';
+import * as formworkotel from '@carpentry/otel';
 
 // Use the package API in your application modules
 ```

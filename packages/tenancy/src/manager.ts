@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description TenancyManager — holds current tenant context, scoped execution
  * @patterns Mediator, Observer (events)
  * @principles SRP (tenant context management only)
@@ -22,7 +22,7 @@ import type { ITenantStore, TenancyEventHandler } from './store.js';
  *
  * @example
  * ```ts
- * import { TenancyManager, Tenancy } from '@formwork/tenancy';
+ * import { TenancyManager, Tenancy } from '@carpentry/tenancy';
  *
  * const manager = new TenancyManager(resolver, store, 'row');
  * Tenancy.setTenancyManager(manager);

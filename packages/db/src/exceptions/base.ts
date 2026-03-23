@@ -1,9 +1,9 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description Base error hierarchy for database package failures.
  */
 
-import { CarpenterError } from '@formwork/core/exceptions';
+import { CarpenterError } from '@carpentry/core/exceptions';
 
 export class DatabaseError extends CarpenterError {
   constructor(

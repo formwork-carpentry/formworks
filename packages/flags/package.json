@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/flags",
+  "name": "@carpentry/flags",
   "version": "1.0.0-alpha.0",
   "description": "Feature flags and A/B experimentation",
   "type": "module",
@@ -19,5 +19,6 @@
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

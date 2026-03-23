@@ -1,4 +1,4 @@
-# @formwork/mail
+# @carpentry/mail
 
 Mail manager with pluggable adapters (SMTP, SES, Mailgun, Resend)
 
@@ -11,13 +11,13 @@ Mail manager with pluggable adapters (SMTP, SES, Mailgun, Resend)
 ## Installation
 
 ```bash
-npm install @formwork/mail
+npm install @carpentry/mail
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkmail from '@formwork/mail';
+import * as formworkmail from '@carpentry/mail';
 
 // Use the package API in your application modules
 ```

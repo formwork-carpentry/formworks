@@ -1,11 +1,11 @@
 /**
- * @module @formwork/validation
+ * @module @carpentry/validation
  * @description FormRequest — combines authorization + validation for incoming requests
  * @patterns Template Method (authorize/rules defined by subclass)
  * @principles SRP (request validation), DIP (depends on Validator interface)
  */
 
-import type { ValidationResult, ValidationRules } from "@formwork/core/contracts";
+import type { ValidationResult, ValidationRules } from "@carpentry/core/contracts";
 import { Validator } from "./validator/Validator.js";
 
 /**

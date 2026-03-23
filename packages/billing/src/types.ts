@@ -1,10 +1,10 @@
 /**
- * @module @formwork/billing
+ * @module @carpentry/billing
  * @description Billing types, interfaces, and payment provider contract
  */
 
 /**
- * @module @formwork/billing
+ * @module @carpentry/billing
  * @description Billing and payments — charges, refunds, subscriptions, invoices
  *
  * Architecture:

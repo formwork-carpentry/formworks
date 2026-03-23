@@ -1,5 +1,5 @@
 /**
- * @module @formwork/testing
+ * @module @carpentry/testing
  * @description Benchmark harness — measure throughput, latency, and memory usage of
  * framework operations (HTTP handling, ORM queries, cache, serialization).
  *

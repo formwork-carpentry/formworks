@@ -1,5 +1,5 @@
 /**
- * @module @formwork/graphql
+ * @module @carpentry/graphql
  * @description GraphQL schema builder, resolver registry, DataLoader for N+1 prevention
  * @patterns Builder (schema), Registry (resolvers), Proxy (DataLoader batching)
  * @principles SRP — schema definition only; OCP — new types/resolvers via register
@@ -11,7 +11,7 @@
  *
  * @example
  * ```ts
- * import { SchemaBuilder } from '@formwork/graphql';
+ * import { SchemaBuilder } from '@carpentry/graphql';
  *
  * const schema = new SchemaBuilder()
  *   .query('hello', {

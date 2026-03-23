@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Health checking for registered services
  */
 
@@ -11,7 +11,7 @@ import type { ITransport } from "./types.js";
  *
  * @example
  * ```ts
- * import { HealthChecker } from '@formwork/bridge';
+ * import { HealthChecker } from '@carpentry/bridge';
  *
  * const hc = new HealthChecker();
  * hc.register('api', async () => ({ service: 'api', status: 'healthy', latencyMs: 0, checkedAt: new Date() }));

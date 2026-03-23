@@ -1,8 +1,8 @@
 /**
- * @module @formwork/media/adapters
- * @description Re-exports document adapters. Prefer `@formwork/media` for imports.
+ * @module @carpentry/media/adapters
+ * @description Re-exports document adapters. Prefer `@carpentry/media` for imports.
  *
- * @see {@link module:@formwork/media}
+ * @see {@link module:@carpentry/media}
  */
 
 export * from './adapters/index.js';

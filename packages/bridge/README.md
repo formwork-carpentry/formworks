@@ -1,4 +1,4 @@
-# @formwork/bridge
+# @carpentry/bridge
 
 Polyglot microservices bridge: service proxy, transport abstraction, CSDL
 
@@ -11,13 +11,13 @@ Polyglot microservices bridge: service proxy, transport abstraction, CSDL
 ## Installation
 
 ```bash
-npm install @formwork/bridge
+npm install @carpentry/bridge
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkbridge from '@formwork/bridge';
+import * as formworkbridge from '@carpentry/bridge';
 
 // Use the package API in your application modules
 ```

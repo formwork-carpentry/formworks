@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { McpServer } from '../src/index.js';
 
-describe('@formwork/mcp: McpServer', () => {
+describe('@carpentry/mcp: McpServer', () => {
   let server: McpServer;
 
   beforeEach(() => {

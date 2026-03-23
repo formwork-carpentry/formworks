@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Additional generator and utility commands
  * @patterns Template Method (GeneratorCommand), Command
  * @principles SRP (each command one purpose), OCP (add commands without modifying existing)
@@ -47,11 +47,11 @@ abstract class GeneratorCommand extends BaseCommand {
 // ── make:factory ────────────────────────────────────────────
 
 /**
- * CLI command `make:factory` — scaffolds a `ModelFactory` for `@formwork/orm`.
+ * CLI command `make:factory` — scaffolds a `ModelFactory` for `@carpentry/formworks/orm`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeFactoryCommand } from '@formwork/cli';
+ * import { CliApp, MakeFactoryCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeFactoryCommand()).run(['make:factory', 'UserFactory']);
  * ```
  *
@@ -65,7 +65,7 @@ export class MakeFactoryCommand extends GeneratorCommand {
 
   protected generateTemplate(name: string): string {
     const modelName = name.replace(/Factory$/, "");
-    return `import { ModelFactory } from '@formwork/orm';
+    return `import { ModelFactory } from '@carpentry/formworks/orm';
 import { ${modelName} } from '../../models/${modelName}.js';
 
 export class ${name} extends ModelFactory<${modelName}> {
@@ -88,7 +88,7 @@ export class ${name} extends ModelFactory<${modelName}> {
  *
  * @example
  * ```ts
- * import { CliApp, MakeSeederCommand } from '@formwork/cli';
+ * import { CliApp, MakeSeederCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeSeederCommand()).run(['make:seeder', 'DatabaseSeeder']);
  * ```
  *
@@ -101,7 +101,7 @@ export class MakeSeederCommand extends GeneratorCommand {
   protected outputDir = "src/database/seeders";
 
   protected generateTemplate(name: string): string {
-    return `import type { ISeeder } from '@formwork/orm';
+    return `import type { ISeeder } from '@carpentry/formworks/orm';
 
 export class ${name} implements ISeeder {
   async run(): Promise<void> {
@@ -119,7 +119,7 @@ export class ${name} implements ISeeder {
  *
  * @example
  * ```ts
- * import { CliApp, MakeEventCommand } from '@formwork/cli';
+ * import { CliApp, MakeEventCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeEventCommand()).run(['make:event', 'OrderShipped']);
  * ```
  *
@@ -152,7 +152,7 @@ export class ${name} {
  *
  * @example
  * ```ts
- * import { CliApp, MakeListenerCommand } from '@formwork/cli';
+ * import { CliApp, MakeListenerCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeListenerCommand()).run(['make:listener', 'SendShipmentEmail']);
  * ```
  *
@@ -186,11 +186,11 @@ export class MakeListenerCommand extends GeneratorCommand {
 // ── db:seed ─────────────────────────────────────────────────
 
 /**
- * CLI command `db:seed` — placeholder seeder runner (wire to `@formwork/orm` seeders in production).
+ * CLI command `db:seed` — placeholder seeder runner (wire to `@carpentry/formworks/orm` seeders in production).
  *
  * @example
  * ```ts
- * import { CliApp, DbSeedCommand } from '@formwork/cli';
+ * import { CliApp, DbSeedCommand } from '@carpentry/cli';
  * await new CliApp().register(new DbSeedCommand()).run(['db:seed', '--class', 'UserSeeder']);
  * ```
  *
@@ -229,11 +229,11 @@ export class DbSeedCommand extends BaseCommand {
 // ── schedule:run ────────────────────────────────────────────
 
 /**
- * CLI command `schedule:run` — placeholder for the task scheduler (integrate with `@formwork/schedule` if used).
+ * CLI command `schedule:run` — placeholder for the task scheduler (integrate with `@carpentry/formworks/schedule` if used).
  *
  * @example
  * ```ts
- * import { CliApp, ScheduleRunCommand } from '@formwork/cli';
+ * import { CliApp, ScheduleRunCommand } from '@carpentry/cli';
  * await new CliApp().register(new ScheduleRunCommand()).run(['schedule:run']);
  * ```
  *
@@ -261,11 +261,11 @@ export class ScheduleRunCommand extends BaseCommand {
 // ── make:provider ───────────────────────────────────────────
 
 /**
- * CLI command `make:provider` — scaffolds a `ServiceProvider` for `@formwork/core`.
+ * CLI command `make:provider` — scaffolds a `ServiceProvider` for `@carpentry/formworks/core`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeProviderCommand } from '@formwork/cli';
+ * import { CliApp, MakeProviderCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeProviderCommand()).run(['make:provider', 'AppServiceProvider']);
  * ```
  *
@@ -278,7 +278,7 @@ export class MakeProviderCommand extends GeneratorCommand {
   protected outputDir = "src/providers";
 
   protected generateTemplate(name: string): string {
-    return `import { ServiceProvider } from '@formwork/core';
+    return `import { ServiceProvider } from '@carpentry/formworks/core';
 
 export class ${name} extends ServiceProvider {
   register(): void {
@@ -300,7 +300,7 @@ export class ${name} extends ServiceProvider {
  *
  * @example
  * ```ts
- * import { CliApp, MakeRequestCommand } from '@formwork/cli';
+ * import { CliApp, MakeRequestCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeRequestCommand()).run(['make:request', 'StorePostRequest']);
  * ```
  *

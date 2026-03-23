@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Tests for QueryBuilder (CARP-017) — verifies AST structure and compiled SQL
  */
 

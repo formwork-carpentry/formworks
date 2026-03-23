@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Multi-tenancy system — re-exports all public API.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { TenancyManager, Tenancy } from '@formwork/tenancy';
+ * import { TenancyManager, Tenancy } from '@carpentry/tenancy';
  *
  * const tenancyManager = new TenancyManager(resolver, store, 'row');
  * Tenancy.setTenancyManager(tenancyManager);

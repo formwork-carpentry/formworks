@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Tests for Middleware Pipeline (CARP-011)
  */
 
@@ -7,7 +7,7 @@ import { describe, it, expect } from 'vitest';
 import { Pipeline } from '../src/middleware/Pipeline.js';
 import { Request } from '../src/request/Request.js';
 import { CarpenterResponse } from '../src/response/Response.js';
-import type { IMiddleware, IRequest, IResponse, NextFunction } from '@formwork/core/contracts';
+import type { IMiddleware, IRequest, IResponse, NextFunction } from '@carpentry/core/contracts';
 
 /** Helper to create a test request */
 function makeReq(url = 'http://localhost/test'): Request {

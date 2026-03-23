@@ -1,4 +1,4 @@
-# @formwork/bridge-kafka
+# @carpentry/bridge-kafka
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/bridge-kafka
+npm install @carpentry/bridge-kafka
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkbridgekafka from '@formwork/bridge-kafka';
+import * as formworkbridgekafka from '@carpentry/bridge-kafka';
 
 // Use the package API in your application modules
 ```

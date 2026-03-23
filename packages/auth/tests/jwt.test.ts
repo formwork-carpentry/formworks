@@ -1,5 +1,5 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description Tests for JwtGuard, createToken, verifyToken
  */
 

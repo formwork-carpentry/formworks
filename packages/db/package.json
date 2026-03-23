@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/db",
+  "name": "@carpentry/db",
   "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "./src/index.ts",
@@ -9,17 +9,18 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@formwork/core": "*",
-    "@formwork/db-filesystem": "*",
-    "@formwork/db-memory": "*",
-    "@formwork/db-mongodb": "*",
-    "@formwork/db-mysql": "*",
-    "@formwork/db-postgres": "*",
-    "@formwork/db-sqlite": "*"
+    "@carpentry/core": "workspace:*",
+    "@carpentry/db-filesystem": "workspace:*",
+    "@carpentry/db-memory": "workspace:*",
+    "@carpentry/db-mongodb": "workspace:*",
+    "@carpentry/db-mysql": "workspace:*",
+    "@carpentry/db-postgres": "workspace:*",
+    "@carpentry/db-sqlite": "workspace:*"
   },
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "private": true
 }

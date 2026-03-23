@@ -1,4 +1,4 @@
-# @formwork/faker
+# @carpentry/faker
 
 Deterministic fake data helpers for factories, seeders, and tests
 
@@ -11,13 +11,13 @@ Deterministic fake data helpers for factories, seeders, and tests
 ## Installation
 
 ```bash
-npm install @formwork/faker
+npm install @carpentry/faker
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkfaker from '@formwork/faker';
+import * as formworkfaker from '@carpentry/faker';
 
 // Use the package API in your application modules
 ```

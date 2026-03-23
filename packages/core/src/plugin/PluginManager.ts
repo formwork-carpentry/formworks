@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Plugin system — discover, register, and manage framework plugins
  * with lifecycle hooks, dependency resolution, and enable/disable control.
  *
@@ -20,7 +20,7 @@
  *   name: 'carpenter-stripe',
  *   version: '1.0.0',
  *   description: 'Stripe payment integration',
- *   dependencies: ['@formwork/billing'],
+ *   dependencies: ['@carpentry/billing'],
  *
  *   register(app) {
  *     app.singleton('stripe', () => new StripeClient(env('STRIPE_KEY')));

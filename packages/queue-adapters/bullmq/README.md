@@ -1,4 +1,4 @@
-# @formwork/queue-bullmq
+# @carpentry/queue-bullmq
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/queue-bullmq
+npm install @carpentry/queue-bullmq
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkqueuebullmq from '@formwork/queue-bullmq';
+import * as formworkqueuebullmq from '@carpentry/queue-bullmq';
 
 // Use the package API in your application modules
 ```

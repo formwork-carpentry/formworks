@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Tests for Application bootstrap & lifecycle (CARP-007)
  */
 

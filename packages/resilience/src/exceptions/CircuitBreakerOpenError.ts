@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Circuit breaker rejection error.
  */
 

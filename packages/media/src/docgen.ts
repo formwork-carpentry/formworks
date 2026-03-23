@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description DocumentGenerator — generate documents (CSV, HTML, etc.) from template data.
  * @patterns Abstract Factory, Strategy
  */

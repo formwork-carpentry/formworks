@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description Mail manager with pluggable adapters (in-memory array, log, HTTP, SMTP via external).
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { MailManager, setMailManager, Mail, BaseMailable } from '@formwork/mail';
+ * import { MailManager, setMailManager, Mail, BaseMailable } from '@carpentry/mail';
  *
  * const mailManager = new MailManager('log', {
  *   log: { driver: 'log' },

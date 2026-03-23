@@ -25,7 +25,7 @@ This matrix converts the active plan, Scrum documents, and remaining-work backlo
 
 | Area | Status | Evidence | Notes |
 |---|---|---|---|
-| Example import normalization to `@formwork/*` | Done | `examples/*/src/app.ts`, `tests/examples.test.ts` | Example apps no longer rely on deep relative package imports. |
+| Example import normalization to `@carpentry/*` | Done | `examples/*/src/app.ts`, `tests/examples.test.ts` | Example apps no longer rely on deep relative package imports. |
 | Major domain examples retained | Done | `examples/database-example/src/app.ts`, `examples/mail-example/src/app.ts`, `examples/queue-example/src/app.ts`, `examples/storage-example/src/app.ts` | Real domain examples were added and smoke tested. |
 | Example catalog integrity guardrail | Done | `tests/examples-catalog.test.ts`, `examples/packages/catalog.ts` | Catalog file references are enforced by test. |
 | Docs snippets linked to runnable examples | Done | `docs/EXAMPLES-SNIPPETS.md`, `README.md` | Docs now cover platform, data, realtime, AI, GraphQL, edge, multitenancy. |
@@ -56,7 +56,7 @@ This matrix converts the active plan, Scrum documents, and remaining-work backlo
 | Scaffolder interaction hardening | Done | `create-carpenter-app/src/cli.ts`, `create-carpenter-app/tests/cli.test.ts` | Missing CLI inputs are resolved interactively and validated by targeted tests. |
 | Billing repo-gate regression fix | Done | `packages/billing/src/provider.ts` | Cleared the first root `typecheck` blocker by importing `Money` and removing unused billing-only type imports. |
 | Validation contract alignment | Done | `packages/core/src/contracts/validation/index.ts` | Shared validation interfaces now match the validator implementation (`name`, `validate`, richer `ValidationRules`, optional messages). |
-| Internal dependency declaration cleanup | Done | `packages/validation/package.json`, `packages/auth/package.json`, `packages/cli/package.json`, `packages/edge/package.json`, `packages/events/package.json`, `packages/i18n/package.json`, `packages/resilience/package.json` | Workspace packages importing `@formwork/core` now declare that dependency explicitly. |
+| Internal dependency declaration cleanup | Done | `packages/validation/package.json`, `packages/auth/package.json`, `packages/cli/package.json`, `packages/edge/package.json`, `packages/events/package.json`, `packages/i18n/package.json`, `packages/resilience/package.json` | Workspace packages importing `@carpentry/core` now declare that dependency explicitly. |
 | Repo-wide release gate verification | In Progress | `RELEASE-CHECKLIST.md` | Root gates were executed and documented, but the repo still has pre-existing typecheck and tooling blockers outside this session’s scope. |
 
 ## Explicit Deferred Items

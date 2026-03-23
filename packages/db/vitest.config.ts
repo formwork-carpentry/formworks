@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   resolve: {
     alias: {
-      '@formwork/db-memory': '../../packages/db-adapters/memorydb/src/index.ts',
+      '@carpentry/db-memory': '../../packages/db-adapters/memorydb/src/index.ts',
     },
   },
   test: {

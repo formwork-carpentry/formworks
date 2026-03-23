@@ -3,7 +3,7 @@
  * Release script for Formworks monorepo
  * 
  * Updates package versions, creates git tags, and manages releases
- * across all @formwork/* packages in the monorepo.
+ * across all @carpentry/* packages in the monorepo.
  * 
  * Usage:
  *   node scripts/release.mjs [--dry-run]

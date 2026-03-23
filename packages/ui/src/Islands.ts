@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description Islands Architecture — render server-side HTML with selectively hydrated
  * interactive "islands" of client-side JavaScript.
  *

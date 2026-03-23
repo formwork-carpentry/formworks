@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description AdapterBase — abstract base for domain factory managers.
  *
  * Implements the shared pattern used across all Carpenter infrastructure domains
@@ -12,8 +12,8 @@
  *
  * @example
  * ```ts
- * import { CarpenterFactoryBase } from '@formwork/core/adapters';
- * import type { AdapterDriverFactory } from '@formwork/core/adapters';
+ * import { CarpenterFactoryBase } from '@carpentry/core/adapters';
+ * import type { AdapterDriverFactory } from '@carpentry/core/adapters';
  *
  * interface ICacheStore { get(key: string): Promise<unknown>; }
  * interface CacheConfig { driver: string; path?: string; }

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Rate limiting middleware — sliding window per-client request throttling
  * @patterns Strategy (configurable key resolver, limit handler)
  * @principles SRP (rate limiting only), OCP (configurable via options)

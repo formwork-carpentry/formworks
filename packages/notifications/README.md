@@ -1,4 +1,4 @@
-# @formwork/notifications
+# @carpentry/notifications
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/notifications
+npm install @carpentry/notifications
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworknotifications from '@formwork/notifications';
+import * as formworknotifications from '@carpentry/notifications';
 
 // Use the package API in your application modules
 ```

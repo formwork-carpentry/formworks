@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Service registry with load balancing and health tracking
  * @patterns Strategy (load balancing)
  */

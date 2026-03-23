@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description RAG (Retrieval-Augmented Generation) Pipeline — load documents, chunk them,
  * embed into vectors, retrieve relevant chunks, and feed them to an LLM.
  *

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { InMemoryWasmModule, InMemoryWasmLoader, WasmManager } from '../src/index.js';
 
-describe('@formwork/wasm: InMemoryWasmModule', () => {
+describe('@carpentry/wasm: InMemoryWasmModule', () => {
   let mod: InMemoryWasmModule;
 
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('@formwork/wasm: InMemoryWasmModule', () => {
   });
 });
 
-describe('@formwork/wasm: InMemoryWasmLoader', () => {
+describe('@carpentry/wasm: InMemoryWasmLoader', () => {
   it('loads registered modules', async () => {
     const loader = new InMemoryWasmLoader();
     loader.register('math', { add: (a: unknown, b: unknown) => (a as number) + (b as number) });
@@ -64,7 +64,7 @@ describe('@formwork/wasm: InMemoryWasmLoader', () => {
   });
 });
 
-describe('@formwork/wasm: WasmManager', () => {
+describe('@carpentry/wasm: WasmManager', () => {
   let loader: InMemoryWasmLoader;
   let manager: WasmManager;
 

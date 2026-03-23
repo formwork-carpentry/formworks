@@ -1,13 +1,13 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Model factory and seeders for test data generation
  * @patterns Factory Method (factory.definition), Template Method (BaseSeeder.run)
  * @principles SRP — factory builds models, seeder orchestrates; OCP — states extend without modifying
  */
 
 import { BaseModel } from '../model/BaseModel.js';
-import type { Dictionary } from '@formwork/core/types';
-import { createFaker, type FakerManager, type FakerSeed } from '@formwork/faker';
+import type { Dictionary } from '@carpentry/core/types';
+import { createFaker, type FakerManager, type FakerSeed } from '@carpentry/faker';
 
 type FactoryDefinition = (faker?: FakerManager) => Dictionary;
 

@@ -1,10 +1,10 @@
 /**
- * @module @formwork/core/decorator
+ * @module @carpentry/core/decorator
  * @description Decorator utilities for dependency injection — @Injectable, @Inject, @Singleton, @Optional, etc.
  *
  * @example
  * ```ts
- * import { Injectable, Inject, Singleton, Optional, Named } from '@formwork/core/decorator';
+ * import { Injectable, Inject, Singleton, Optional, Named } from '@carpentry/core/decorator';
  *
  * @Injectable()
  * @Singleton()

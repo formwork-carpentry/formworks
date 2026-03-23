@@ -5,7 +5,7 @@
     "types": ["node"], "composite": false, "declaration": false, "declarationMap": false,
     "baseUrl": "../../",
     "paths": {
-      "@formwork/core/*": ["packages/core/src/*.ts"]
+      "@carpentry/core/*": ["packages/core/src/*.ts"]
     }
   },
   "include": ["src/**/*.ts"],

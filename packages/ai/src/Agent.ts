@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description AI Agent — ReAct (Reason+Act) loop with tool calling, memory, and step limits
  * @patterns Strategy (tool selection), Chain of Responsibility (step pipeline), Observer (step events)
  * @principles SRP (orchestration only), OCP (add tools without modifying agent)

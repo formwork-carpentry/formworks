@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description Tests for TaggedCache and cache.tags() functionality
  */
 

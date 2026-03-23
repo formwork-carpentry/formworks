@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description MCP Client — connects to external Model Context Protocol servers
  * to discover and invoke tools, read resources, and use prompt templates.
  *

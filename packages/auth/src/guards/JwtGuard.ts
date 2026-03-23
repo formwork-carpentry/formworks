@@ -1,5 +1,5 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description JwtGuard — stateless JWT authentication using HMAC-SHA256
  * @patterns Strategy (implements IAuthGuard), Factory (token creation)
  * @principles SRP (JWT auth only), DIP (depends on IUserProvider interface)
@@ -10,7 +10,7 @@ import type {
   IAuthGuard,
   IAuthenticatable,
   IUserProvider,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 
 /** JWT configuration options */
 export interface JwtConfig {

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Tests for CircuitBreaker, retry, RateLimiter (CARP-053, CARP-054)
  */
 

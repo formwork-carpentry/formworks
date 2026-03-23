@@ -1,5 +1,5 @@
 /**
- * @module @formwork/validation
+ * @module @carpentry/validation
  * @description Tests for Validator (CARP-031) — rules, nested fields, custom rules, messages
  */
 

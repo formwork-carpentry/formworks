@@ -1,11 +1,11 @@
 /**
- * @module @formwork/core/contracts
- * @description Framework contracts — all 21 framework interfaces in one entry point.
+ * @module @carpentry/core/contracts
+ * @description Framework contracts — all 31 framework interfaces in one entry point.
  *
  * For granular imports by concern, use individual entry points:
- * - @formwork/core/contracts/http
- * - @formwork/core/contracts/orm
- * - @formwork/core/contracts/cache
+ * - @carpentry/core/contracts/http
+ * - @carpentry/core/contracts/orm
+ * - @carpentry/core/contracts/cache
  * - etc.
  *
  * @example
@@ -16,11 +16,11 @@
  *   IDatabaseAdapter,
  *   ICacheStore,
  *   IQueueAdapter,
- * } from '@formwork/core/contracts';
+ * } from '@carpentry/core/contracts';
  *
  * // Option 2: Granular (recommended for tree-shaking)
- * import type { IRequest } from '@formwork/core/contracts/http';
- * import type { IDatabaseAdapter } from '@formwork/core/contracts/orm';
+ * import type { IRequest } from '@carpentry/core/contracts/http';
+ * import type { IDatabaseAdapter } from '@carpentry/core/contracts/orm';
  * ```
  */
 
@@ -45,3 +45,13 @@ export * from "./contracts/flags/index.js";
 export * from "./contracts/wasm/index.js";
 export * from "./contracts/i18n/index.js";
 export * from "./contracts/container/index.js";
+export * from "./contracts/search/index.js";
+export * from "./contracts/health/index.js";
+export * from "./contracts/audit/index.js";
+export * from "./contracts/webhook/index.js";
+export * from "./contracts/encrypt/index.js";
+export * from "./contracts/pipeline/index.js";
+export * from "./contracts/analytics/index.js";
+export * from "./contracts/geo/index.js";
+export * from "./contracts/pdf/index.js";
+export * from "./contracts/excel/index.js";

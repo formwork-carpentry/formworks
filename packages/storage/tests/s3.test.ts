@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description Tests for S3StorageAdapter using mock fetch.
  *
  * Test strategy:
@@ -33,7 +33,7 @@ function mockS3Fetch(status = 200, body = ''): { fetch: typeof fetch; captured: 
   return { fetch: f, captured };
 }
 
-describe('@formwork/storage: S3StorageAdapter', () => {
+describe('@carpentry/storage: S3StorageAdapter', () => {
   const baseConfig = {
     bucket: 'my-bucket',
     region: 'us-east-1',

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/lockout
+ * @module @carpentry/padlock/lockout
  * @description In-memory lockout store for failed login attempts.
  */
 

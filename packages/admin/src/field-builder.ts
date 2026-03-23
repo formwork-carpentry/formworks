@@ -1,5 +1,5 @@
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description AdminFieldBuilder — fluent builder for admin field configuration
  * @patterns Builder
  */

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/exceptions
+ * @module @carpentry/core/exceptions
  * @description HTTP-facing exceptions.
  */
 

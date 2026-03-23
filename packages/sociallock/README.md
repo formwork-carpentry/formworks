@@ -1,4 +1,4 @@
-# @formwork/sociallock
+# @carpentry/sociallock
 
 OAuth 2.0 social login workflows and route integration for Carpenter
 
@@ -11,13 +11,13 @@ OAuth 2.0 social login workflows and route integration for Carpenter
 ## Installation
 
 ```bash
-npm install @formwork/sociallock
+npm install @carpentry/sociallock
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworksociallock from '@formwork/sociallock';
+import * as formworksociallock from '@carpentry/sociallock';
 
 // Use the package API in your application modules
 ```

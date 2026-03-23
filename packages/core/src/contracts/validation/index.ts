@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/validation
+ * @module @carpentry/core/contracts/validation
  * @description Validation contract - input validation interface.
  *
  * Implementations: Validator

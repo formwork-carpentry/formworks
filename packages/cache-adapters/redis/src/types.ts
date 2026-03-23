@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache-redis
+ * @module @carpentry/cache-redis
  * @description Type definitions for the Redis cache adapter.
  */
 

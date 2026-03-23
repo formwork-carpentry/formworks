@@ -170,9 +170,9 @@ describe('GraphQL Federation', () => {
 
 // ── PLUGIN MANAGER ────────────────────────────────────────
 
-import { PluginManager } from '@formwork/core/plugin';
-import type { CarpenterPlugin } from '@formwork/core/plugin';
-import { Container } from '@formwork/core/container';
+import { PluginManager } from '@carpentry/core/plugin';
+import type { CarpenterPlugin } from '@carpentry/core/plugin';
+import { Container } from '@carpentry/core/container';
 
 describe('PluginManager', () => {
   let manager: PluginManager;

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description TenantScope — automatically scopes ORM queries, cache keys, and storage paths per tenant
  * @patterns Decorator (wraps QueryBuilder/CacheStore/StorageAdapter), Proxy
  * @principles SRP (scoping only), OCP (works with any adapter via wrapping)

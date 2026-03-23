@@ -1,10 +1,10 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Bridge types and transport interface
  */
 
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Polyglot bridge — unified RPC across transports (gRPC, NATS, Kafka, HTTP)
  *
  * Architecture:

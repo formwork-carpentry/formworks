@@ -1,8 +1,8 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import { LogManager } from '@formwork/log';
-import { EventDispatcher } from '@formwork/events';
-import { Validator } from '@formwork/validation';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import { LogManager } from '@carpentry/log';
+import { EventDispatcher } from '@carpentry/events';
+import { Validator } from '@carpentry/validation';
 
 export class CoreInfrastructureProvider {
   constructor(

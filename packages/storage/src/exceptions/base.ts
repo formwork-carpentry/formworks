@@ -1,9 +1,9 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description Base error hierarchy for storage package failures.
  */
 
-import { CarpenterError } from "@formwork/core/exceptions";
+import { CarpenterError } from "@carpentry/core/exceptions";
 
 export class StorageError extends CarpenterError {
   constructor(message: string, code = "STORAGE_ERROR", context: Record<string, unknown> = {}) {

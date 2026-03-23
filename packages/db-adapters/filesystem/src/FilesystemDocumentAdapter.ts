@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-filesystem/FilesystemDocumentAdapter
+ * @module @carpentry/db-filesystem/FilesystemDocumentAdapter
  * @description JSON-backed document adapter for lightweight local persistence.
  * @patterns Adapter, Proxy
  * @principles SRP — document persistence only, DIP — implements the shared document contract

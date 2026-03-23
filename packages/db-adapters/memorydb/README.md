@@ -1,4 +1,4 @@
-# @formwork/db-memory
+# @carpentry/db-memory
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db-memory
+npm install @carpentry/db-memory
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdbmemory from '@formwork/db-memory';
+import * as formworkdbmemory from '@carpentry/db-memory';
 
 // Use the package API in your application modules
 ```

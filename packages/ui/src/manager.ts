@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description UIManager — page resolution, shared data, SSR
  * @patterns Facade
  */
@@ -12,7 +12,7 @@ import type { IPageRenderer, PageProps, ResolvedPage, SharedData } from "./types
  *
  * @example
  * ```ts
- * import { UIManager, MockRenderer } from '@formwork/ui';
+ * import { UIManager, MockRenderer } from '@carpentry/ui';
  * const ui = new UIManager().setRenderer(new MockRenderer()).enableSsr();
  * ```
  */

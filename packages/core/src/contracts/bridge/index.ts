@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/bridge
+ * @module @carpentry/core/contracts/bridge
  * @description Microservice bridge contracts - transport, service registry, health checking.
  *
  * Implementations: InMemoryTransport, HttpTransport, GrpcTransportStub, ServiceRegistry

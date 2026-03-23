@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description ComponentRegistry, helpers, MockRenderer, adapters, factory
  * @patterns Factory Method, Strategy, Adapter
  */
@@ -11,7 +11,7 @@ import type { IPageRenderer, PageProps, ResolvedPage } from "./types.js";
  *
  * @example
  * ```ts
- * import { ComponentRegistry } from '@formwork/ui';
+ * import { ComponentRegistry } from '@carpentry/ui';
  * const reg = new ComponentRegistry().page('home', './pages/Home.tsx').layout('main', './layouts/Main.tsx');
  * reg.resolve('home');
  * ```
@@ -133,7 +133,7 @@ export function createForm(
  *
  * @example
  * ```ts
- * import { MockRenderer } from '@formwork/ui';
+ * import { MockRenderer } from '@carpentry/ui';
  * const r = new MockRenderer();
  * await r.render({ component: 'Home', props: {}, layout: null, meta: {} });
  * ```
@@ -192,8 +192,8 @@ export class MockRenderer implements IPageRenderer {
   }
 }
 /**
- * @module @formwork/ui-adapters
- * @description UI framework adapters — React, Vue, Svelte, Solid renderers for @formwork/ui
+ * @module @carpentry/ui-adapters
+ * @description UI framework adapters — React, Vue, Svelte, Solid renderers for @carpentry/ui
  *
  * Each adapter implements IPageRenderer to render pages in its framework.
  * In production, these use the actual framework's SSR APIs.
@@ -225,7 +225,7 @@ export interface UIAdapterConfig {
  *
  * @example
  * ```ts
- * import { ReactPageRenderer } from '@formwork/ui';
+ * import { ReactPageRenderer } from '@carpentry/ui';
  * new ReactPageRenderer({ resolve: (n) => components[n] });
  * ```
  */
@@ -261,7 +261,7 @@ export class ReactPageRenderer implements IPageRenderer {
  *
  * @example
  * ```ts
- * import { VuePageRenderer } from '@formwork/ui';
+ * import { VuePageRenderer } from '@carpentry/ui';
  * new VuePageRenderer({ resolve: (n) => pages[n] });
  * ```
  */
@@ -296,7 +296,7 @@ export class VuePageRenderer implements IPageRenderer {
  *
  * @example
  * ```ts
- * import { SveltePageRenderer } from '@formwork/ui';
+ * import { SveltePageRenderer } from '@carpentry/ui';
  * new SveltePageRenderer({ resolve: (n) => routes[n] });
  * ```
  */
@@ -331,7 +331,7 @@ export class SveltePageRenderer implements IPageRenderer {
  *
  * @example
  * ```ts
- * import { SolidPageRenderer } from '@formwork/ui';
+ * import { SolidPageRenderer } from '@carpentry/ui';
  * new SolidPageRenderer({ resolve: (n) => views[n] });
  * ```
  */

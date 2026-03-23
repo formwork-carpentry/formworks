@@ -1,4 +1,4 @@
-# @formwork/storage-s3
+# @carpentry/storage-s3
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/storage-s3
+npm install @carpentry/storage-s3
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkstorages3 from '@formwork/storage-s3';
+import * as formworkstorages3 from '@carpentry/storage-s3';
 
 // Use the package API in your application modules
 ```

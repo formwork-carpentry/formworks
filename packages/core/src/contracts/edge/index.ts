@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/edge
+ * @module @carpentry/core/contracts/edge
  * @description Edge runtime contracts - runtime detection and capabilities.
  *
  * Implementations: EdgeKernel, EdgeAdapter

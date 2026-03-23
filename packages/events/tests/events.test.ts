@@ -1,11 +1,11 @@
 /**
- * @module @formwork/events
+ * @module @carpentry/events
  * @description Tests for EventDispatcher and EventFake (CARP-032)
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { EventDispatcher, EventFake } from '../src/dispatcher/EventDispatcher.js';
-import type { IEventDispatcher } from '@formwork/core/contracts';
+import type { IEventDispatcher } from '@carpentry/core/contracts';
 
 describe('CARP-032: EventDispatcher', () => {
   let dispatcher: EventDispatcher;

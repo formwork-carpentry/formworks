@@ -70,7 +70,7 @@ describe('IsrCache', () => {
 // ═══════════════════════════════════════════════════════════
 
 import { edgeGeo, edgeABTest, edgeBotGuard } from '../packages/edge/src/middleware.js';
-import type { EdgeRequest, EdgeResponse } from '@formwork/core/contracts';
+import type { EdgeRequest, EdgeResponse } from '@carpentry/core/contracts';
 
 function makeEdgeReq(overrides: Partial<EdgeRequest> = {}): EdgeRequest {
   return {

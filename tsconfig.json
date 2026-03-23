@@ -27,238 +27,238 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@formwork/admin": [
+      "@carpentry/admin": [
         "./packages/admin/src/index.ts"
       ],
-      "@formwork/admin/*": [
+      "@carpentry/admin/*": [
         "./packages/admin/src/*"
       ],
-      "@formwork/ai": [
+      "@carpentry/ai": [
         "./packages/ai/src/index.ts"
       ],
-      "@formwork/ai/*": [
+      "@carpentry/ai/*": [
         "./packages/ai/src/*"
       ],
-      "@formwork/auth": [
+      "@carpentry/auth": [
         "./packages/auth/src/index.ts"
       ],
-      "@formwork/auth/*": [
+      "@carpentry/auth/*": [
         "./packages/auth/src/*"
       ],
-      "@formwork/billing": [
+      "@carpentry/billing": [
         "./packages/billing/src/index.ts"
       ],
-      "@formwork/billing/*": [
+      "@carpentry/billing/*": [
         "./packages/billing/src/*"
       ],
-      "@formwork/bridge": [
+      "@carpentry/bridge": [
         "./packages/bridge/src/index.ts"
       ],
-      "@formwork/bridge/*": [
+      "@carpentry/bridge/*": [
         "./packages/bridge/src/*"
       ],
-      "@formwork/cache": [
+      "@carpentry/cache": [
         "./packages/cache/src/index.ts"
       ],
-      "@formwork/cache/*": [
+      "@carpentry/cache/*": [
         "./packages/cache/src/*"
       ],
-      "@formwork/cli": [
+      "@carpentry/cli": [
         "./packages/cli/src/index.ts"
       ],
-      "@formwork/cli/*": [
+      "@carpentry/cli/*": [
         "./packages/cli/src/*"
       ],
-      "@formwork/core": [
+      "@carpentry/core": [
         "./packages/core/src/index.ts"
       ],
-      "@formwork/core/*": [
+      "@carpentry/core/*": [
         "./packages/core/src/*"
       ],
-      "@formwork/db": [
+      "@carpentry/db": [
         "./packages/db/src/index.ts"
       ],
-      "@formwork/db/*": [
+      "@carpentry/db/*": [
         "./packages/db/src/*"
       ],
-      "@formwork/edge": [
+      "@carpentry/edge": [
         "./packages/edge/src/index.ts"
       ],
-      "@formwork/edge/*": [
+      "@carpentry/edge/*": [
         "./packages/edge/src/*"
       ],
-      "@formwork/events": [
+      "@carpentry/events": [
         "./packages/events/src/index.ts"
       ],
-      "@formwork/events/*": [
+      "@carpentry/events/*": [
         "./packages/events/src/*"
       ],
-      "@formwork/flags": [
+      "@carpentry/flags": [
         "./packages/flags/src/index.ts"
       ],
-      "@formwork/flags/*": [
+      "@carpentry/flags/*": [
         "./packages/flags/src/*"
       ],
-      "@formwork/foundation": [
+      "@carpentry/foundation": [
         "./packages/foundation/src/index.ts"
       ],
-      "@formwork/foundation/*": [
+      "@carpentry/foundation/*": [
         "./packages/foundation/src/*"
       ],
-      "@formwork/graphql": [
+      "@carpentry/graphql": [
         "./packages/graphql/src/index.ts"
       ],
-      "@formwork/graphql/*": [
+      "@carpentry/graphql/*": [
         "./packages/graphql/src/*"
       ],
-      "@formwork/helpers": [
+      "@carpentry/helpers": [
         "./packages/helpers/src/index.ts"
       ],
-      "@formwork/helpers/*": [
+      "@carpentry/helpers/*": [
         "./packages/helpers/src/*"
       ],
-      "@formwork/http": [
+      "@carpentry/http": [
         "./packages/http/src/index.ts"
       ],
-      "@formwork/http/*": [
+      "@carpentry/http/*": [
         "./packages/http/src/*"
       ],
-      "@formwork/http-client": [
+      "@carpentry/http-client": [
         "./packages/http-client/src/index.ts"
       ],
-      "@formwork/http-client/*": [
+      "@carpentry/http-client/*": [
         "./packages/http-client/src/*"
       ],
-      "@formwork/i18n": [
+      "@carpentry/i18n": [
         "./packages/i18n/src/index.ts"
       ],
-      "@formwork/i18n/*": [
+      "@carpentry/i18n/*": [
         "./packages/i18n/src/*"
       ],
-      "@formwork/log": [
+      "@carpentry/log": [
         "./packages/log/src/index.ts"
       ],
-      "@formwork/log/*": [
+      "@carpentry/log/*": [
         "./packages/log/src/*"
       ],
-      "@formwork/mail": [
+      "@carpentry/mail": [
         "./packages/mail/src/index.ts"
       ],
-      "@formwork/mail/*": [
+      "@carpentry/mail/*": [
         "./packages/mail/src/*"
       ],
-      "@formwork/mcp": [
+      "@carpentry/mcp": [
         "./packages/mcp/src/index.ts"
       ],
-      "@formwork/mcp/*": [
+      "@carpentry/mcp/*": [
         "./packages/mcp/src/*"
       ],
-      "@formwork/media": [
+      "@carpentry/media": [
         "./packages/media/src/index.ts"
       ],
-      "@formwork/media/*": [
+      "@carpentry/media/*": [
         "./packages/media/src/*"
       ],
-      "@formwork/notifications": [
+      "@carpentry/notifications": [
         "./packages/notifications/src/index.ts"
       ],
-      "@formwork/notifications/*": [
+      "@carpentry/notifications/*": [
         "./packages/notifications/src/*"
       ],
-      "@formwork/orm": [
+      "@carpentry/orm": [
         "./packages/orm/src/index.ts"
       ],
-      "@formwork/orm/*": [
+      "@carpentry/orm/*": [
         "./packages/orm/src/*"
       ],
-      "@formwork/otel": [
+      "@carpentry/otel": [
         "./packages/otel/src/index.ts"
       ],
-      "@formwork/otel/*": [
+      "@carpentry/otel/*": [
         "./packages/otel/src/*"
       ],
-      "@formwork/queue": [
+      "@carpentry/queue": [
         "./packages/queue/src/index.ts"
       ],
-      "@formwork/queue/*": [
+      "@carpentry/queue/*": [
         "./packages/queue/src/*"
       ],
-      "@formwork/faker": [
+      "@carpentry/faker": [
         "./packages/faker/src/index.ts"
       ],
-      "@formwork/faker/*": [
+      "@carpentry/faker/*": [
         "./packages/faker/src/*"
       ],
-      "@formwork/padlock": [
+      "@carpentry/padlock": [
         "./packages/padlock/src/index.ts"
       ],
-      "@formwork/padlock/*": [
+      "@carpentry/padlock/*": [
         "./packages/padlock/src/*"
       ],
-      "@formwork/sociallock": [
+      "@carpentry/sociallock": [
         "./packages/sociallock/src/index.ts"
       ],
-      "@formwork/sociallock/*": [
+      "@carpentry/sociallock/*": [
         "./packages/sociallock/src/*"
       ],
-      "@formwork/realtime": [
+      "@carpentry/realtime": [
         "./packages/realtime/src/index.ts"
       ],
-      "@formwork/realtime/*": [
+      "@carpentry/realtime/*": [
         "./packages/realtime/src/*"
       ],
-      "@formwork/resilience": [
+      "@carpentry/resilience": [
         "./packages/resilience/src/index.ts"
       ],
-      "@formwork/resilience/*": [
+      "@carpentry/resilience/*": [
         "./packages/resilience/src/*"
       ],
-      "@formwork/scheduler": [
+      "@carpentry/scheduler": [
         "./packages/scheduler/src/index.ts"
       ],
-      "@formwork/scheduler/*": [
+      "@carpentry/scheduler/*": [
         "./packages/scheduler/src/*"
       ],
-      "@formwork/session": [
+      "@carpentry/session": [
         "./packages/session/src/index.ts"
       ],
-      "@formwork/session/*": [
+      "@carpentry/session/*": [
         "./packages/session/src/*"
       ],
-      "@formwork/storage": [
+      "@carpentry/storage": [
         "./packages/storage/src/index.ts"
       ],
-      "@formwork/storage/*": [
+      "@carpentry/storage/*": [
         "./packages/storage/src/*"
       ],
-      "@formwork/tenancy": [
+      "@carpentry/tenancy": [
         "./packages/tenancy/src/index.ts"
       ],
-      "@formwork/tenancy/*": [
+      "@carpentry/tenancy/*": [
         "./packages/tenancy/src/*"
       ],
-      "@formwork/testing": [
+      "@carpentry/testing": [
         "./packages/testing/src/index.ts"
       ],
-      "@formwork/testing/*": [
+      "@carpentry/testing/*": [
         "./packages/testing/src/*"
       ],
-      "@formwork/ui": [
+      "@carpentry/ui": [
         "./packages/ui/src/index.ts"
       ],
-      "@formwork/ui/*": [
+      "@carpentry/ui/*": [
         "./packages/ui/src/*"
       ],
-      "@formwork/validation": [
+      "@carpentry/validation": [
         "./packages/validation/src/index.ts"
       ],
-      "@formwork/validation/*": [
+      "@carpentry/validation/*": [
         "./packages/validation/src/*"
       ],
-      "@formwork/wasm": [
+      "@carpentry/wasm": [
         "./packages/wasm/src/index.ts"
       ],
-      "@formwork/wasm/*": [
+      "@carpentry/wasm/*": [
         "./packages/wasm/src/*"
       ]
     }

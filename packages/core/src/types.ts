@@ -1,10 +1,10 @@
 /**
- * @module @formwork/core/types
+ * @module @carpentry/core/types
  * @description Foundation types — Token, Constructor, Result, and other fundamental type utilities.
  *
  * @example
  * ```ts
- * import type { Token, Constructor, Result } from '@formwork/core/types';
+ * import type { Token, Constructor, Result } from '@carpentry/core/types';
  *
  * const MyToken = new Token<MyService>('my-service');
  * type Resolved = Constructor<MyService>;

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/notifications
+ * @module @carpentry/notifications
  * @description NotificationManager and global facades
  * @patterns Mediator, Facade
  */
@@ -15,7 +15,7 @@ import { ArrayChannel } from './channels.js';
  *
  * @example
  * ```ts
- * import { NotificationManager, ArrayChannel, BaseNotification } from '@formwork/notifications';
+ * import { NotificationManager, ArrayChannel, BaseNotification } from '@carpentry/notifications';
  *
  * class User {
  *   constructor(public email: string) {}

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Tracer, Span, Counter, Histogram, Gauge, MetricsRegistry } from '../src/index.js';
 
-describe('@formwork/otel: Span', () => {
+describe('@carpentry/otel: Span', () => {
   it('records attributes', () => {
     const span = new Span('test', 'trace-1', 'span-1');
     span.setAttribute('http.method', 'GET').setAttribute('http.url', '/users');
@@ -31,7 +31,7 @@ describe('@formwork/otel: Span', () => {
   });
 });
 
-describe('@formwork/otel: Tracer', () => {
+describe('@carpentry/otel: Tracer', () => {
   let tracer: Tracer;
   beforeEach(() => { tracer = new Tracer(); });
 
@@ -93,7 +93,7 @@ describe('@formwork/otel: Tracer', () => {
   });
 });
 
-describe('@formwork/otel: Counter', () => {
+describe('@carpentry/otel: Counter', () => {
   it('increments', () => {
     const c = new Counter('requests');
     c.add();
@@ -109,7 +109,7 @@ describe('@formwork/otel: Counter', () => {
   });
 });
 
-describe('@formwork/otel: Histogram', () => {
+describe('@carpentry/otel: Histogram', () => {
   let h: Histogram;
   beforeEach(() => { h = new Histogram('latency'); });
 
@@ -130,7 +130,7 @@ describe('@formwork/otel: Histogram', () => {
   });
 });
 
-describe('@formwork/otel: Gauge', () => {
+describe('@carpentry/otel: Gauge', () => {
   it('set/increment/decrement', () => {
     const g = new Gauge('connections');
     g.set(10);
@@ -142,7 +142,7 @@ describe('@formwork/otel: Gauge', () => {
   });
 });
 
-describe('@formwork/otel: MetricsRegistry', () => {
+describe('@carpentry/otel: MetricsRegistry', () => {
   let registry: MetricsRegistry;
   beforeEach(() => { registry = new MetricsRegistry(); });
 

@@ -1,10 +1,10 @@
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description Admin types, field definitions, filters, actions
  */
 
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description Admin panel — resource-based CRUD, dashboard widgets, navigation, bulk actions
  *
  * Architecture:

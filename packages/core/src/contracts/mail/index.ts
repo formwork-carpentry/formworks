@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/mail
+ * @module @carpentry/core/contracts/mail
  * @description Mail adapter contract - all mail drivers implement this interface.
  *
  * Implementations: ArrayMailAdapter, LogMailAdapter, HttpMailAdapter, SmtpMailAdapter

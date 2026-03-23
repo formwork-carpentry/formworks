@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-sqlite/helpers/results
+ * @module @carpentry/db-sqlite/helpers/results
  * @description Result-shaping helpers for the SQLite adapter.
  */
 import type { CompiledQuery } from '../types.js';

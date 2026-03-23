@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge/exceptions
+ * @module @carpentry/bridge/exceptions
  * @description Stable subpath export for bridge exceptions.
  */
 

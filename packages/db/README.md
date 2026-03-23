@@ -1,4 +1,4 @@
-# @formwork/db
+# @carpentry/db
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db
+npm install @carpentry/db
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdb from '@formwork/db';
+import * as formworkdb from '@carpentry/db';
 
 // Use the package API in your application modules
 ```

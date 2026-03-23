@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description RemoteService — typed RPC client with timeout and tracing
  * @patterns Proxy (intercepts method calls)
  */
@@ -24,7 +24,7 @@ export interface CallOptions {
  *
  * @example
  * ```ts
- * import { InMemoryTransport, RemoteService } from '@formwork/bridge';
+ * import { InMemoryTransport, RemoteService } from '@carpentry/bridge';
  *
  * const transport = new InMemoryTransport();
  * await transport.connect();

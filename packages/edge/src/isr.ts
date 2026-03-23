@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description ISR (Incremental Static Regeneration) + CDN cache middleware.
  *
  * Provides stale-while-revalidate caching, Surrogate-Key headers for CDN

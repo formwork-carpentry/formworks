@@ -1,6 +1,6 @@
 /**
- * @module @formwork/db
- * @description Database adapters — public entry for `@formwork/db`.
+ * @module @carpentry/db
+ * @description Database adapters — public entry for `@carpentry/db`.
  *
  * **Layout (SOLID / separation of concerns):**
  * - {@link CompiledQuery} / {@link QueryResult} — shared adapter types (`./types`)
@@ -9,12 +9,12 @@
  * - {@link DatabaseManager} — multi-connection resolution (`./DatabaseManager`)
  *
  * Driver-specific **implementations** (pg, mysql2, mongodb, native sqlite) are intended to live in
- * `@formwork/db-postgres`, `@formwork/db-mysql`, etc., and register via `DatabaseManager.registerDriver`.
+ * `@carpentry/db-postgres`, `@carpentry/db-mysql`, etc., and register via `DatabaseManager.registerDriver`.
  * This package keeps the default/test surface small.
  *
  * @example
  * ```ts
- * import { SQLiteMemoryAdapter } from '@formwork/db';
+ * import { SQLiteMemoryAdapter } from '@carpentry/db';
  *
  * const db = new SQLiteMemoryAdapter();
  * await db.execute({ sql: 'CREATE TABLE users (id, name)', bindings: [], type: 'schema' });

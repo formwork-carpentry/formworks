@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/errors
+ * @module @carpentry/padlock/errors
  * @description Domain errors raised by the Padlock workflow layer.
  * @patterns Value Object
  * @principles SRP - centralizes workflow error codes and HTTP-friendly status metadata.

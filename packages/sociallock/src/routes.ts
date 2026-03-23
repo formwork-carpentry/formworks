@@ -1,10 +1,10 @@
 /**
- * @module @formwork/sociallock/routes
+ * @module @carpentry/sociallock/routes
  * @description OAuth route registration.
  */
 
-import type { Token } from "@formwork/core/types";
-import type { Router } from "@formwork/http";
+import type { Token } from "@carpentry/core/types";
+import type { Router } from "@carpentry/http";
 import type { SocialLockController } from "./SocialLockController.js";
 
 export interface SocialLockRouteOptions {

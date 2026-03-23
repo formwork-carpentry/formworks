@@ -1,10 +1,10 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description In-memory SQLite-style adapter for tests — no native dependencies.
  */
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
 import type { CompiledQuery, QueryResult } from './types';
 
 /**

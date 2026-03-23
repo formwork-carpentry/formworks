@@ -12,7 +12,7 @@ function h(res: CarpenterResponse, name: string): string | undefined {
   return res.getHeaders()[name.toLowerCase()] ?? res.getHeaders()[name];
 }
 
-describe('@formwork/http: CorsMiddleware', () => {
+describe('@carpentry/http: CorsMiddleware', () => {
   it('adds CORS headers to normal responses', () => {
     const cors = new CorsMiddleware({ origin: '*' });
     const res = cors.handle(
@@ -64,7 +64,7 @@ describe('@formwork/http: CorsMiddleware', () => {
   });
 });
 
-describe('@formwork/http: RateLimitMiddleware', () => {
+describe('@carpentry/http: RateLimitMiddleware', () => {
   let limiter: RateLimitMiddleware;
   beforeEach(() => { limiter = new RateLimitMiddleware({ maxRequests: 3, windowSeconds: 60 }); });
 

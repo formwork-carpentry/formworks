@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Foundational types used across all framework contracts
  * @patterns None (pure type definitions)
  * @principles ISP — types split by concern; DIP — abstract tokens for DI

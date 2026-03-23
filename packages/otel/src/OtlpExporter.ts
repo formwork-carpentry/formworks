@@ -1,5 +1,5 @@
 /**
- * @module @formwork/otel
+ * @module @carpentry/otel
  * @description OTLP JSON Exporter — exports spans and metrics in OpenTelemetry Protocol format
  * @patterns Adapter (converts internal spans→OTLP), Strategy (configurable endpoint)
  * @principles SRP (export only), OCP (add exporters without modifying Tracer/MetricsRegistry)
@@ -254,7 +254,7 @@ export class OtlpExporter {
         {
           resource: { attributes: resourceAttrs },
           scopeSpans: [
-            { scope: { name: "@formwork/otel", version: "1.0.0" }, spans: spans.map(convertSpan) },
+            { scope: { name: "@carpentry/otel", version: "1.0.0" }, spans: spans.map(convertSpan) },
           ],
         },
       ];
@@ -266,7 +266,7 @@ export class OtlpExporter {
           resource: { attributes: resourceAttrs },
           scopeMetrics: [
             {
-              scope: { name: "@formwork/otel", version: "1.0.0" },
+              scope: { name: "@carpentry/otel", version: "1.0.0" },
               metrics: this.groupMetrics(metrics),
             },
           ],

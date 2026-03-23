@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-sqlite/SQLiteAdapter
+ * @module @carpentry/db-sqlite/SQLiteAdapter
  * @description SQLite adapter backed by lazy `better-sqlite3` loading.
  * @patterns Adapter, Strategy
  */

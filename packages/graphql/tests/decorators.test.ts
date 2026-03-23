@@ -1,5 +1,5 @@
 /**
- * @module @formwork/graphql
+ * @module @carpentry/graphql
  * @description Tests for code-first GraphQL decorators and SDL generation.
  *
  * Test strategy:
@@ -17,7 +17,7 @@ import {
   clearRegistries, buildSchemaFromDecorators,
 } from '../src/decorators.js';
 
-describe('@formwork/graphql: Code-First Decorators', () => {
+describe('@carpentry/graphql: Code-First Decorators', () => {
   beforeEach(() => clearRegistries());
 
   describe('@ObjectType + @Field', () => {

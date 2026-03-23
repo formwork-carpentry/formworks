@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Log and Audit facades — global access points
  * @patterns Facade
  */

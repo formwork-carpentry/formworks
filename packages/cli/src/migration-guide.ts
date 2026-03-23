@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Migration guide commands — help users upgrade between Carpenter versions.
  *
  * WHY: Breaking changes between major versions need clear upgrade paths. Instead of
@@ -209,7 +209,7 @@ export class MigrationScanner {
  *
  * @example
  * ```ts
- * import { CliApp, UpgradeCheckCommand } from '@formwork/cli';
+ * import { CliApp, UpgradeCheckCommand } from '@carpentry/cli';
  * await new CliApp().register(new UpgradeCheckCommand()).run(['upgrade:check', '--to', '1.0', '--path', 'src']);
  * ```
  *

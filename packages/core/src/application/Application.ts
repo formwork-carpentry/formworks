@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Application bootstrap — framework lifecycle manager
  * @patterns Singleton (Application.getInstance), Template Method (boot lifecycle)
  * @principles SRP — manages lifecycle only; OCP — providers extend behaviour; DIP — all via IoC
@@ -32,7 +32,7 @@ type AppEvent = "booting" | "booted" | "terminating" | "terminated";
  *
  * @example
  * ```ts
- * import { Application } from '@formwork/core';
+ * import { Application } from '@carpentry/core';
  * const app = await Application.create({ config: { app: { name: 'Demo' } }, providers: [] });
  * app.config('app.name');
  * ```

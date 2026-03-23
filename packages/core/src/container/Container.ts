@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Full IoC/DI Container with auto-wiring, scoping, circular dependency detection
  * @patterns Singleton, Factory Method, Flyweight (scoped reuse)
  * @principles SRP, OCP, LSP, ISP, DIP — see inline comments
@@ -52,7 +52,7 @@ function findDisposable(value: unknown): IDisposable | null {
  *
  * @example
  * ```ts
- * import { Container } from '@formwork/core';
+ * import { Container } from '@carpentry/core';
  *
  * const container = new Container();
  *

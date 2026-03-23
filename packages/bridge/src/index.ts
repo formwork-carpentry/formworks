@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Polyglot microservices bridge — typed RPC clients + service registry.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { ServiceRegistry, InMemoryTransport, RemoteService } from '@formwork/bridge';
+ * import { ServiceRegistry, InMemoryTransport, RemoteService } from '@carpentry/bridge';
  *
  * const registry = new ServiceRegistry()
  *   .register({ service: 'users', transport: 'memory', host: '127.0.0.1', weight: 1 });

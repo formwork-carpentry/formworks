@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/http",
+  "name": "@carpentry/http",
   "version": "1.0.0-alpha.0",
   "description": "HTTP kernel, routing, request/response, middleware, controllers, sessions",
   "type": "module",
@@ -17,10 +17,11 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*"
+    "@carpentry/core": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

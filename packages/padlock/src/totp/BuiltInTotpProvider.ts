@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/totp
+ * @module @carpentry/padlock/totp
  * @description Built-in TOTP provider using Node.js crypto. No external dependencies.
  * RFC 6238 compliant, compatible with Google Authenticator.
  */

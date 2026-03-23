@@ -1,5 +1,5 @@
 /**
- * @module @formwork/otel
+ * @module @carpentry/otel
  * @description Auto-instrumentation — wraps infrastructure adapters to emit spans automatically
  * @patterns Decorator (wraps adapters), Proxy (intercepts method calls)
  * @principles OCP (add instrumentation without modifying adapters), SRP (tracing only)

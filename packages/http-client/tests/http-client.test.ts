@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HttpClient, FakeTransport } from '../src/index.js';
 
-describe('@formwork/http-client: HttpClient + FakeTransport', () => {
+describe('@carpentry/http-client: HttpClient + FakeTransport', () => {
   let transport: FakeTransport;
   let client: HttpClient;
 

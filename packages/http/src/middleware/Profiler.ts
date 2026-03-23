@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Profiler middleware — collects per-request performance metrics.
  *
  * WHY: Performance regressions are invisible without measurement. The Profiler

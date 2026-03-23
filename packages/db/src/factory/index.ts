@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description Manager API barrel for database resolution.
  */
 

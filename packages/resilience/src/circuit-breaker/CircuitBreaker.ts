@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Circuit Breaker — State pattern: Closed → Open → HalfOpen → Closed
  * @patterns State (circuit states), Observer (event emission)
  * @principles SRP — circuit management only; OCP — extend via events
@@ -30,7 +30,7 @@ export interface CircuitBreakerOptions {
  *
  * @example
  * ```ts
- * import { CircuitBreaker } from '@formwork/resilience';
+ * import { CircuitBreaker } from '@carpentry/resilience';
  *
  * const breaker = new CircuitBreaker({ threshold: 2, timeout: 10_000, halfOpenMax: 1 });
  *

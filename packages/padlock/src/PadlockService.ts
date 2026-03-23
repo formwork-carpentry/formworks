@@ -1,12 +1,12 @@
 /**
- * @module @formwork/padlock/PadlockService
+ * @module @carpentry/padlock/PadlockService
  * @description Fortify-style workflow orchestration built on Carpenter auth primitives.
  * @patterns Facade, Strategy
  * @principles SRP - coordinates auth workflows while repositories, token stores, and notifiers own persistence and delivery concerns.
  */
 
 import { randomBytes } from "node:crypto";
-import type { IAuthGuard, IAuthenticatable, IHashManager } from "@formwork/core/contracts";
+import type { IAuthGuard, IAuthenticatable, IHashManager } from "@carpentry/core/contracts";
 import type {
   IPadlockLockoutStore,
   IPadlockNotifier,

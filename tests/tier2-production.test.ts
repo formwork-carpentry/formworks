@@ -357,7 +357,7 @@ describe('OtlpExporter', () => {
       const payload = exporter.buildPayload([span], [{ name: 'counter', value: 1, attributes: {} }]);
       expect(payload.resourceSpans).toBeDefined();
       expect(payload.resourceMetrics).toBeDefined();
-      expect(payload.resourceSpans![0].scopeSpans[0].scope.name).toBe('@formwork/otel');
+      expect(payload.resourceSpans![0].scopeSpans[0].scope.name).toBe('@carpentry/otel');
     });
   });
 });

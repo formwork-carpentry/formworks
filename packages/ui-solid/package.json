@@ -1,0 +1,27 @@
+{
+  "name": "@carpentry/ui-solid",
+  "version": "1.0.0-alpha.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo lint",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0",
+    "@carpentry/ui": ">=1.0.0",
+    "solid-js": ">=1.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0",
+    "@carpentry/ui": "workspace:*",
+    "@carpentry/formworks": "workspace:*"
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description Tests for Auth system (CARP-029, CARP-030)
  */
 
@@ -7,7 +7,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { HashManager } from '../src/hash/HashManager.js';
 import { Gate } from '../src/gate/Gate.js';
 import { MemoryGuard, InMemoryUserProvider, SimpleUser } from '../src/guards/Guards.js';
-import type { IAuthenticatable } from '@formwork/core/auth';
+import type { IAuthenticatable } from '@carpentry/core/auth';
 
 // ── HashManager ───────────────────────────────────────────
 

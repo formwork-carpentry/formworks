@@ -1,5 +1,5 @@
 /**
- * @module @formwork/session
+ * @module @carpentry/session
  * @description Session system — flash data, CSRF tokens, old input, and pluggable stores.
  *
  * Use this package to:
@@ -14,7 +14,7 @@
  *
  * @example
  * ```ts
- * import { SessionManager } from '@formwork/session';
+ * import { SessionManager } from '@carpentry/session';
  *
  * const manager = new SessionManager('memory');
  * const session = manager.create(); // default driver

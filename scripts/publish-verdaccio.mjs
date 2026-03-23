@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * @module scripts/publish-verdaccio
- * @description Publish all @formwork/* packages to a local Verdaccio registry.
+ * @description Publish all @carpentry/* packages to a local Verdaccio registry.
  *
  * This script handles the src→dist rewriting that's needed because packages
  * export from ./src/ in development but ship ./dist/ when published.

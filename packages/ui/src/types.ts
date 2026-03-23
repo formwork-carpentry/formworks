@@ -1,10 +1,10 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description UI types and renderer interface
  */
 
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description Framework-agnostic UI layer — page resolution, shared data, SSR, component registry
  *
  * This is the server-side abstraction. Framework-specific packages (ui-react, ui-vue, ui-svelte, ui-solid)

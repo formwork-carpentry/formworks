@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Schema facade — create/modify/drop tables
  * @patterns Facade
  */
 
 import { Blueprint } from './Blueprint.js';
-import type { IDatabaseAdapter, CompiledQuery } from '@formwork/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery } from '@carpentry/core/contracts';
 import type { ColumnDefinition, IndexDefinition } from './column-types.js';
 
 /**

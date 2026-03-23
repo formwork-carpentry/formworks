@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage/exceptions
+ * @module @carpentry/storage/exceptions
  * @description Stable subpath export for storage exceptions.
  */
 

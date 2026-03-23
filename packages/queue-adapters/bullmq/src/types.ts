@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue-bullmq
+ * @module @carpentry/queue-bullmq
  * @description Type definitions for the BullMQ queue adapter.
  */
 

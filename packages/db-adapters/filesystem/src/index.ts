@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-filesystem
+ * @module @carpentry/db-filesystem
  * @description Public entrypoint for the filesystem document adapter package.
  */
 export { FilesystemDocumentAdapter } from './FilesystemDocumentAdapter.js';
@@ -7,7 +7,7 @@ export type { FilesystemDocumentAdapterConfig } from './FilesystemDocumentAdapte
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 import { FilesystemDocumentAdapter } from './FilesystemDocumentAdapter.js';
 import type { FilesystemDocumentAdapterConfig } from './FilesystemDocumentAdapter.js';
 
@@ -16,7 +16,7 @@ import type { FilesystemDocumentAdapterConfig } from './FilesystemDocumentAdapte
  *
  * @example
  * ```ts
- * import { filesystemAdapter } from '@formwork/db-filesystem';
+ * import { filesystemAdapter } from '@carpentry/db-filesystem';
  * dbManager.registerDriver('filesystem', filesystemAdapter);
  * ```
  */

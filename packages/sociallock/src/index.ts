@@ -1,5 +1,5 @@
 /**
- * @module @formwork/sociallock
+ * @module @carpentry/sociallock
  * @description OAuth 2.0 social login (Google, GitHub, Facebook) for Carpenter.
  *
  * Use this package to:
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { SocialLockService } from '@formwork/sociallock';
+ * import { SocialLockService } from '@carpentry/sociallock';
  *
  * // deps come from your app (guard/repository/state/provider configs)
  * const service = new SocialLockService({

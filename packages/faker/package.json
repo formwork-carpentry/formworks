@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/faker",
+  "name": "@carpentry/faker",
   "version": "1.0.0-alpha.0",
   "description": "Deterministic fake data helpers for factories, seeders, and tests",
   "type": "module",
@@ -19,5 +19,6 @@
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

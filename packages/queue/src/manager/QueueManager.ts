@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description QueueManager — resolves queue adapters by name, proxies to default.
  * Extends {@link CarpenterFactoryBase} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -8,8 +8,8 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@formwork/core/adapters";
-import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/core/adapters";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/core/contracts";
 import { MemoryQueueAdapter, SyncQueueAdapter } from "../adapters/Adapters.js";
 import { QueueNotInitializedError } from "../exceptions/base.js";
 
@@ -28,7 +28,7 @@ export type QueueDriverFactory = (config: QueueConnectionConfig) => IQueueAdapte
  *
  * @example
  * ```ts
- * import { QueueManager } from '@formwork/queue';
+ * import { QueueManager } from '@carpentry/queue';
  *
  * const manager = new QueueManager('sync', {
  *   sync: { driver: 'sync' },

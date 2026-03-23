@@ -1,12 +1,12 @@
 /**
- * @module @formwork/events
+ * @module @carpentry/events
  * @description EventDispatcher — typed event dispatch with wildcards, once, and testable EventFake
  * @patterns Mediator (dispatcher), Observer (listeners)
  * @principles SRP — event routing only; OCP — new events/listeners without modifying dispatcher
  */
 
-import type { EventListener, IEventDispatcher, IEventSubscriber } from "@formwork/core/contracts";
-import type { Unsubscribe } from "@formwork/core/types";
+import type { EventListener, IEventDispatcher, IEventSubscriber } from "@carpentry/core/contracts";
+import type { Unsubscribe } from "@carpentry/core/types";
 
 /**
  * EventDispatcher — typed event dispatcher with wildcard listeners and "once" handlers.

@@ -1,4 +1,4 @@
-# @formwork/testing
+# @carpentry/testing
 
 Test application, HTTP client, all infrastructure mocks
 
@@ -11,13 +11,13 @@ Test application, HTTP client, all infrastructure mocks
 ## Installation
 
 ```bash
-npm install @formwork/testing
+npm install @carpentry/testing
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworktesting from '@formwork/testing';
+import * as formworktesting from '@carpentry/testing';
 
 // Use the package API in your application modules
 ```

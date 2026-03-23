@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/exceptions
+ * @module @carpentry/core/exceptions
  * @description Framework exception hierarchy — split by concern, exported through a stable barrel.
  * @patterns Chain of Responsibility (ExceptionHandler)
  * @principles SRP — each file groups one concern; OCP — new exceptions extend base

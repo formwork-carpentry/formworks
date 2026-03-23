@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mysql/helpers/driverLoader
+ * @module @carpentry/db-mysql/helpers/driverLoader
  * @description Lazy driver loading helpers for MySQL.
  */
 import type { IMySQLDriverModule } from '../types.js';

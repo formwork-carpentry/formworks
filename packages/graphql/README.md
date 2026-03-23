@@ -1,4 +1,4 @@
-# @formwork/graphql
+# @carpentry/graphql
 
 GraphQL: code-first schema, resolvers, DataLoader, federation
 
@@ -11,13 +11,13 @@ GraphQL: code-first schema, resolvers, DataLoader, federation
 ## Installation
 
 ```bash
-npm install @formwork/graphql
+npm install @carpentry/graphql
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkgraphql from '@formwork/graphql';
+import * as formworkgraphql from '@carpentry/graphql';
 
 // Use the package API in your application modules
 ```

@@ -1,10 +1,10 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
 import {
   createDatabaseManager,
   type DatabaseConnectionConfig,
   type DatabaseManager,
-} from '@formwork/db';
+} from '@carpentry/db';
 
 export class DatabaseInfrastructureProvider {
   constructor(

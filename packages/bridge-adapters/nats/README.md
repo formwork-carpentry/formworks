@@ -1,4 +1,4 @@
-# @formwork/bridge-nats
+# @carpentry/bridge-nats
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/bridge-nats
+npm install @carpentry/bridge-nats
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkbridgenats from '@formwork/bridge-nats';
+import * as formworkbridgenats from '@carpentry/bridge-nats';
 
 // Use the package API in your application modules
 ```

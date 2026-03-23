@@ -30,8 +30,8 @@ Critical and high findings are concentrated in **starter templates** (demo code)
 ## OWASP Top 10 Coverage
 
 ### A01:2021 — Broken Access Control ✅
-- `@formwork/padlock` provides authentication guards
-- `@formwork/admin` has role-based resource access
+- `@carpentry/padlock` provides authentication guards
+- `@carpentry/admin` has role-based resource access
 - Gate/Policy system in starters for fine-grained authorization
 
 ### A02:2021 — Cryptographic Failures ⚠️
@@ -75,14 +75,14 @@ Critical and high findings are concentrated in **starter templates** (demo code)
   - **Severity:** Medium — enables theoretical timing-based CSRF extraction.
 
 ### A09:2021 — Security Logging and Monitoring Failures ✅
-- `@formwork/log` with multiple channels (console, file, array).
-- `@formwork/otel` for distributed tracing via Jaeger.
+- `@carpentry/log` with multiple channels (console, file, array).
+- `@carpentry/otel` for distributed tracing via Jaeger.
 - `AuditLogger` tracks admin/data operations.
 - Activity log table in database migrations.
 
 ### A10:2021 — Server-Side Request Forgery (SSRF) ✅
 - External API calls in `AnalyticsService` use hardcoded mock — no user-controlled URLs.
-- `@formwork/http-client` wraps fetch() — consumers must validate URLs.
+- `@carpentry/http-client` wraps fetch() — consumers must validate URLs.
 
 ---
 
@@ -142,7 +142,7 @@ Critical and high findings are concentrated in **starter templates** (demo code)
 
 1. Add HMAC-signed temporary URLs in `LocalStorageAdapter`
 2. Use `timingSafeEqual` in CSRF `verifyToken()`
-3. Ship bcrypt hash driver as `@formwork/auth-bcrypt` adapter
+3. Ship bcrypt hash driver as `@carpentry/auth-bcrypt` adapter
 4. Add trusted proxy configuration to rate limiter
 5. Default CORS origin to `null` (require explicit configuration)
 6. Enforce minimum JWT secret length (≥32 chars) at guard construction

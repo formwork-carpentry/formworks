@@ -1,4 +1,4 @@
-# @formwork/events
+# @carpentry/events
 
 Event dispatcher, listeners, subscribers
 
@@ -11,13 +11,13 @@ Event dispatcher, listeners, subscribers
 ## Installation
 
 ```bash
-npm install @formwork/events
+npm install @carpentry/events
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkevents from '@formwork/events';
+import * as formworkevents from '@carpentry/events';
 
 // Use the package API in your application modules
 ```

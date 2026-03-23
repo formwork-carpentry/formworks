@@ -1,11 +1,11 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description BaseController — provides common helpers via Template Method pattern
  * @patterns Template Method (controller lifecycle)
  * @principles SRP — helpers delegate to services; DIP — no direct infrastructure access
  */
 
-import type { Dictionary } from "@formwork/core/types";
+import type { Dictionary } from "@carpentry/core/types";
 import { CarpenterResponse, type ViewResponse } from "../response/Response.js";
 
 /**
@@ -13,7 +13,7 @@ import { CarpenterResponse, type ViewResponse } from "../response/Response.js";
  *
  * @example
  * ```ts
- * import { BaseController } from '@formwork/http';
+ * import { BaseController } from '@carpentry/http';
  *
  * class PostsController extends BaseController {
  *   async index() {

@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/validation",
+  "name": "@carpentry/validation",
   "version": "1.0.0-alpha.0",
   "description": "Validator, rules, FormRequest",
   "type": "module",
@@ -17,10 +17,11 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*"
+    "@carpentry/core": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

@@ -6,10 +6,10 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { Config, env } from '@formwork/core/config';
-import { loadEnv, parseEnvString, envRequired } from '@formwork/core/config';
-import { ConfigResolver } from '@formwork/core/config';
-import { buildDefaultConfig } from '@formwork/core/config';
+import { Config, env } from '@carpentry/core/config';
+import { loadEnv, parseEnvString, envRequired } from '@carpentry/core/config';
+import { ConfigResolver } from '@carpentry/core/config';
+import { buildDefaultConfig } from '@carpentry/core/config';
 import { DatabaseManager } from '../packages/db/src/DatabaseManager.js';
 import { SQLiteMemoryAdapter } from '../packages/db/src/index.js';
 import { CacheManager } from '../packages/cache/src/manager/CacheManager.js';

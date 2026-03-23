@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { parseCron, isDue, FrequencyBuilder, Scheduler } from '../src/index.js';
 
-describe('@formwork/scheduler: parseCron', () => {
+describe('@carpentry/scheduler: parseCron', () => {
   it('parses wildcard', () => {
     const cron = parseCron('* * * * *');
     expect(cron.minute).toHaveLength(60);
@@ -34,7 +34,7 @@ describe('@formwork/scheduler: parseCron', () => {
   });
 });
 
-describe('@formwork/scheduler: isDue', () => {
+describe('@carpentry/scheduler: isDue', () => {
   it('every minute is always due', () => {
     expect(isDue('* * * * *')).toBe(true);
   });
@@ -60,7 +60,7 @@ describe('@formwork/scheduler: isDue', () => {
   });
 });
 
-describe('@formwork/scheduler: FrequencyBuilder', () => {
+describe('@carpentry/scheduler: FrequencyBuilder', () => {
   it('everyMinute', () => { expect(new FrequencyBuilder().everyMinute().getExpression()).toBe('* * * * *'); });
   it('everyFiveMinutes', () => { expect(new FrequencyBuilder().everyFiveMinutes().getExpression()).toBe('*/5 * * * *'); });
   it('hourly', () => { expect(new FrequencyBuilder().hourly().getExpression()).toBe('0 * * * *'); });
@@ -74,7 +74,7 @@ describe('@formwork/scheduler: FrequencyBuilder', () => {
   it('weekends', () => { expect(new FrequencyBuilder().weekends().getExpression()).toBe('0 0 * * 0,6'); });
 });
 
-describe('@formwork/scheduler: Scheduler', () => {
+describe('@carpentry/scheduler: Scheduler', () => {
   let scheduler: Scheduler;
   let log: string[];
 

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Security audit commands — check application configuration, environment,
  * and common security misconfigurations.
  *
@@ -179,7 +179,7 @@ const BUILTIN_CHECKS: AuditCheck[] = [
  * Runs all security checks against the current environment and reports results.
  * @example
  * ```ts
- * import { CliApp, SecurityAuditCommand } from '@formwork/cli';
+ * import { CliApp, SecurityAuditCommand } from '@carpentry/cli';
  * await new CliApp().register(new SecurityAuditCommand()).run(['security:audit']);
  * ```
  * @see BaseCommand

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/testing
+ * @module @carpentry/padlock/testing
  * @description In-memory testing doubles for Padlock user persistence and token storage.
  * @patterns Repository, Test Double
  * @principles SRP - testing doubles stay package-owned and implement the same public Padlock contracts.
@@ -11,7 +11,7 @@ import type {
   IAuthenticatable,
   IHashManager,
   IUserProvider,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 import type {
   CreatePadlockTokenInput,
   CreatePadlockUserInput,

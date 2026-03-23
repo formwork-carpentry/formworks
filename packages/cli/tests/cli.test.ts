@@ -55,7 +55,7 @@ class FailCommand extends BaseCommand {
 
 // ── parseArgv ─────────────────────────────────────────────
 
-describe('@formwork/cli: parseArgv', () => {
+describe('@carpentry/cli: parseArgv', () => {
   it('parses positional arguments', () => {
     const { args } = parseArgv(
       ['Alice'],
@@ -135,7 +135,7 @@ describe('@formwork/cli: parseArgv', () => {
 
 // ── InMemoryConsole ───────────────────────────────────────
 
-describe('@formwork/cli: InMemoryConsole', () => {
+describe('@carpentry/cli: InMemoryConsole', () => {
   let console: InMemoryConsole;
 
   beforeEach(() => { console = new InMemoryConsole(); });
@@ -182,7 +182,7 @@ describe('@formwork/cli: InMemoryConsole', () => {
 
 // ── CommandRegistry ───────────────────────────────────────
 
-describe('@formwork/cli: CommandRegistry', () => {
+describe('@carpentry/cli: CommandRegistry', () => {
   let registry: CommandRegistry;
 
   beforeEach(() => {
@@ -217,7 +217,7 @@ describe('@formwork/cli: CommandRegistry', () => {
 
 // ── CliApp ────────────────────────────────────────────────
 
-describe('@formwork/cli: CliApp', () => {
+describe('@carpentry/cli: CliApp', () => {
   let app: CliApp;
   let output: InMemoryConsole;
 

@@ -203,7 +203,7 @@ Each pattern below maps to a specific Carpenter module. AI must implement these 
 
 - Every I/O operation wrapped in `Result<T, CarpenterError>` type.
 - No raw `throw` in service/repository layer — use `Result` or typed errors.
-- Circuit breaker pattern available in `@formwork/resilience` package.
+- Circuit breaker pattern available in `@carpentry/resilience` package.
 
 ---
 
@@ -212,7 +212,7 @@ Each pattern below maps to a specific Carpenter module. AI must implement these 
 ```
 carpenter/
 ├── packages/
-│   ├── core/                    # @formwork/core
+│   ├── core/                    # @carpentry/core
 │   │   ├── src/
 │   │   │   ├── application/     # Application bootstrap & kernel
 │   │   │   ├── container/       # IoC container
@@ -224,7 +224,7 @@ carpenter/
 │   │   │   └── contracts/       # All framework interfaces (ISP-split)
 │   │   └── tests/
 │   │
-│   ├── http/                    # @formwork/http
+│   ├── http/                    # @carpentry/http
 │   │   ├── src/
 │   │   │   ├── kernel/          # HttpKernel
 │   │   │   ├── router/          # Web + API router
@@ -235,7 +235,7 @@ carpenter/
 │   │   │   └── session/         # Session manager + adapters
 │   │   └── tests/
 │   │
-│   ├── orm/                     # @formwork/orm
+│   ├── orm/                     # @carpentry/orm
 │   │   ├── src/
 │   │   │   ├── model/           # BaseModel, ActiveRecord
 │   │   │   ├── query/           # QueryBuilder, Grammar, AST
@@ -246,7 +246,7 @@ carpenter/
 │   │   │   └── adapters/        # DB adapter contracts + manager
 │   │   └── tests/
 │   │
-│   ├── faker/                   # @formwork/faker
+│   ├── faker/                   # @carpentry/faker
 │   │   ├── src/
 │   │   │   ├── manager/         # FakerManager + fake() helper
 │   │   │   ├── providers/       # Person, company, commerce, internet, finance
@@ -254,20 +254,26 @@ carpenter/
 │   │   │   └── testing/         # Unique pools, sequences, scenario builders
 │   │   └── tests/
 │   │
-│   ├── db-adapters/             # @formwork/db-adapters
-│   │   ├── postgres/            # @formwork/db-postgres
-│   │   ├── mysql/               # @formwork/db-mysql
-│   │   ├── sqlite/              # @formwork/db-sqlite
-│   │   └── mongodb/             # @formwork/db-mongodb
+│   ├── db-adapters/             # @carpentry/db-adapters
+│   │   ├── postgres/            # @carpentry/db-postgres
+│   │   ├── mysql/               # @carpentry/db-mysql
+│   │   ├── sqlite/              # @carpentry/db-sqlite
+│   │   ├── mongodb/             # @carpentry/db-mongodb
+│   │   └── turso/               # @carpentry/db-turso (libSQL edge database)
 │   │
-│   ├── cache/                   # @formwork/cache
+│   ├── cache/                   # @carpentry/cache
+│   ├── cache/                   # @carpentry/cache
 │   │   ├── src/
 │   │   │   ├── manager/         # CacheManager
 │   │   │   ├── contracts/       # CacheStore interface
 │   │   │   └── adapters/        # Redis, Memory, File, Null
 │   │   └── tests/
 │   │
-│   ├── queue/                   # @formwork/queue
+│   ├── cache-adapters/          # @carpentry/cache-adapters
+│   │   ├── redis/               # @carpentry/cache-redis
+│   │   └── memcached/           # @carpentry/cache-memcached (via memjs)
+│   │
+│   ├── queue/                   # @carpentry/queue
 │   │   ├── src/
 │   │   │   ├── manager/         # QueueManager
 │   │   │   ├── worker/          # Queue worker process
@@ -275,20 +281,30 @@ carpenter/
 │   │   │   └── adapters/        # BullMQ, SQS, Database, Sync
 │   │   └── tests/
 │   │
-│   ├── mail/                    # @formwork/mail
+│   ├── queue-adapters/          # @carpentry/queue-adapters
+│   │   ├── bullmq/              # @carpentry/queue-bullmq
+│   │   ├── sqs/                 # @carpentry/queue-sqs (AWS SQS)
+│   │   └── database/            # @carpentry/queue-database (ORM-backed)
+│   │
+│   ├── mail/                    # @carpentry/mail
 │   │   ├── src/
 │   │   │   ├── manager/         # MailManager
 │   │   │   ├── mailable/        # BaseMailable, MailBuilder
 │   │   │   └── adapters/        # SMTP, SES, Mailgun, Resend, Log, Array
 │   │   └── tests/
 │   │
-│   ├── storage/                 # @formwork/storage
+│   ├── storage/                 # @carpentry/storage
 │   │   ├── src/
 │   │   │   ├── manager/         # StorageManager
 │   │   │   └── adapters/        # Local, S3, GCS, Azure
 │   │   └── tests/
 │   │
-│   ├── auth/                    # @formwork/auth
+│   ├── storage-adapters/        # @carpentry/storage-adapters
+│   │   ├── s3/                  # @carpentry/storage-s3
+│   │   ├── gcs/                 # @carpentry/storage-gcs (Google Cloud Storage)
+│   │   └── azure/               # @carpentry/storage-azure (Azure Blob Storage)
+│   │
+│   ├── auth/                    # @carpentry/auth
 │   │   ├── src/
 │   │   │   ├── guards/          # Session, JWT, API Token guards
 │   │   │   ├── providers/       # EloquentProvider, etc.
@@ -296,7 +312,7 @@ carpenter/
 │   │   │   └── policies/        # BasePolicy, Gate
 │   │   └── tests/
 │   │
-│   ├── padlock/                 # @formwork/padlock
+│   ├── padlock/                 # @carpentry/padlock
 │   │   ├── src/
 │   │   │   ├── services/        # Register, login, reset-password, verify-email flows
 │   │   │   ├── http/            # Controllers, DTOs, route registration
@@ -306,7 +322,7 @@ carpenter/
 │   │   │   └── testing/         # In-memory repositories, token stores, test helpers
 │   │   └── tests/
 │   │
-│   ├── validation/              # @formwork/validation
+│   ├── validation/              # @carpentry/validation
 │   │   ├── src/
 │   │   │   ├── validator/       # Validator
 │   │   │   ├── rules/           # Built-in rules
@@ -314,14 +330,14 @@ carpenter/
 │   │   │   └── contracts/
 │   │   └── tests/
 │   │
-│   ├── events/                  # @formwork/events
+│   ├── events/                  # @carpentry/events
 │   │   ├── src/
 │   │   │   ├── dispatcher/      # EventDispatcher (Mediator)
 │   │   │   ├── listener/        # BaseListener
 │   │   │   └── subscriber/      # EventSubscriber
 │   │   └── tests/
 │   │
-│   ├── ui/                      # @formwork/ui (CarpenterUI engine)
+│   ├── ui/                      # @carpentry/ui (CarpenterUI engine)
 │   │   ├── src/
 │   │   │   ├── vdom/            # Virtual DOM implementation
 │   │   │   ├── compiler/        # .carp SFC compiler
@@ -332,13 +348,15 @@ carpenter/
 │   │   │   └── bridge/          # Web route ↔ UI bridge (Inertia-style)
 │   │   └── tests/
 │   │
-│   ├── ui-adapters/             # @formwork/ui-adapters
-│   │   ├── react/               # @formwork/ui-react
-│   │   ├── vue/                 # @formwork/ui-vue
-│   │   ├── svelte/              # @formwork/ui-svelte
-│   │   └── solid/               # @formwork/ui-solid
+│   ├── ui-adapters/             # @carpentry/ui-adapters
+│   │   ├── react/               # @carpentry/ui-react
+│   │   ├── vue/                 # @carpentry/ui-vue
+│   │   ├── svelte/              # @carpentry/ui-svelte
+│   │   ├── solid/               # @carpentry/ui-solid
+│   │   └── charts/              # @carpentry/ui-charts
+│   ├── icons/                   # @carpentry/icons (SVG UI icons + country flags)
 │   │
-│   ├── testing/                 # @formwork/testing
+│   ├── testing/                 # @carpentry/testing
 │   │   ├── src/
 │   │   │   ├── application/     # TestApplication bootstrap
 │   │   │   ├── http/            # TestHttpClient
@@ -352,14 +370,46 @@ carpenter/
 │   │   │   └── traits/          # DatabaseTransactions, RefreshDatabase
 │   │   └── tests/
 │   │
-│   ├── resilience/              # @formwork/resilience
+│   ├── resilience/              # @carpentry/resilience
 │   │   ├── src/
 │   │   │   ├── circuit-breaker/
 │   │   │   ├── retry/
 │   │   │   └── rate-limiter/
 │   │   └── tests/
 │   │
-│   └── cli/                     # @formwork/cli
+│   ├── broadcasting/            # @carpentry/broadcasting (channel-based pub/sub)
+│   │   ├── src/
+│   │   │   ├── manager/         # BroadcastManager (Log, Null, Pusher, Soketi, Ably)
+│   │   │   └── channels/        # Channel, PresenceChannel
+│   │   └── tests/
+│   │
+│   ├── search/                  # @carpentry/search (full-text search abstraction)
+│   │   ├── src/
+│   │   │   └── manager/         # SearchManager (database, Meilisearch, Typesense, Algolia)
+│   │   └── tests/
+│   │
+│   ├── audit/                   # @carpentry/audit (audit logging)
+│   │   ├── src/
+│   │   │   └── manager/         # AuditManager (database, file)
+│   │   └── tests/
+│   │
+│   ├── webhook/                 # @carpentry/webhook (webhook receiving & verification)
+│   │   ├── src/
+│   │   │   └── receiver/        # WebhookReceiver (Stripe, GitHub, custom providers)
+│   │   └── tests/
+│   │
+│   ├── health/                  # @carpentry/health (health check probes)
+│   │   ├── src/
+│   │   │   ├── checker/         # HealthChecker (composite)
+│   │   │   └── checks/          # Database, Cache, Memory, Disk checks
+│   │   └── tests/
+│   │
+│   ├── encrypt/                 # @carpentry/encrypt (field-level AES-256-GCM)
+│   │   ├── src/
+│   │   │   └── aes/             # AesEncrypter (Node.js crypto, zero deps)
+│   │   └── tests/
+│   │
+│   └── cli/                     # @carpentry/cli
 │       ├── src/
 │       │   ├── commands/        # All carpenter CLI commands
 │       │   └── stubs/           # File generation templates
@@ -407,6 +457,12 @@ Package layout invariant:
 | E18 | CLI Toolchain | `carpenter` CLI with all generators and commands |
 | E19 | Resilience Patterns | Circuit breaker, retry, rate limiter |
 | E20 | Docs, Examples & Release | Documentation, example apps, NPM publish |
+| E36 | Broadcasting System | BroadcastManager + Log, Null, Pusher, Soketi, Ably drivers |
+| E37 | Search System | SearchManager + Database, Meilisearch, Typesense, Algolia drivers |
+| E38 | Audit & Webhooks | AuditManager (DB/file) + WebhookReceiver (Stripe, GitHub, custom) |
+| E39 | Health & Encryption | HealthChecker (composite probes) + AesEncrypter (AES-256-GCM) |
+| E40 | Extended Adapters | db-turso, queue-sqs, queue-database, cache-memcached, storage-gcs, storage-azure |
+| E41 | Islands UI Ecosystem | ui-react, ui-vue, ui-svelte, ui-solid, ui-charts, icons |
 
 ---
 
@@ -456,13 +512,13 @@ So that development can proceed in parallel without circular dependencies.
 
 Acceptance Criteria:
 - [ ] All packages in /packages/* created with package.json, tsconfig, src/, tests/
-- [ ] @formwork/core/contracts/ defines all framework interfaces:
+- [ ] @carpentry/core/contracts/ defines all framework interfaces:
       IApplication, IContainer, IConfig, IRouter, IRequest, IResponse,
       IMiddleware, IKernel, IDatabaseAdapter, ICacheStore, IQueueAdapter,
       IMailAdapter, IStorageAdapter, IAuthGuard, IEventDispatcher
 - [ ] All interfaces are ISP-compliant (no god interfaces)
-- [ ] Interfaces exported from @formwork/core contracts barrel
-- [ ] `@formwork/faker` and `@formwork/padlock` included in the initial scaffold with standard package layout
+- [ ] Interfaces exported from @carpentry/core contracts barrel
+- [ ] `@carpentry/faker` and `@carpentry/padlock` included in the initial scaffold with standard package layout
 - [ ] No package relies on committed `dist/` artifacts as canonical source code
 - [ ] Zero circular dependency warnings
 ```
@@ -1039,8 +1095,8 @@ So that I can populate databases for testing and development.
 Technical Spec:
 - abstract class BaseSeeder — Template Method with run()
 - class ModelFactory<T extends BaseModel> — Factory Method pattern
-- `@formwork/faker` wraps `@faker-js/faker` behind Carpenter contracts and a Laravel-style `fake()` helper
-- factory.definition(): Partial<T> — returns fake data (uses `@formwork/faker`, never direct vendor imports)
+- `@carpentry/faker` wraps `@faker-js/faker` behind Carpenter contracts and a Laravel-style `fake()` helper
+- factory.definition(): Partial<T> — returns fake data (uses `@carpentry/faker`, never direct vendor imports)
 - factory.make(overrides?): T — builds without saving
 - factory.create(overrides?): Promise<T> — builds and saves
 - factory.count(n).create(): creates n records
@@ -1059,7 +1115,7 @@ Acceptance Criteria:
 
 ---
 
-**CARP-021A** `[E05 + E17]` Faker DX Package (`@formwork/faker`)  
+**CARP-021A** `[E05 + E17]` Faker DX Package (`@carpentry/faker`)  
 **Points:** 5 | **Priority:** Medium
 
 ```
@@ -1068,7 +1124,7 @@ I want a first-class faker package with Laravel-style ergonomics
 So that factories and tests get modern, deterministic fake data generation without leaking third-party APIs into app code.
 
 Technical Spec:
-- Package name: `@formwork/faker`
+- Package name: `@carpentry/faker`
 - Backed internally by `@faker-js/faker`, but exposed via Carpenter-native contracts only
 - `fake()` helper returns a typed `FakerManager`
 - Supports `seed()`, `locale()`, `unique()`, `sequence()`, and provider registration
@@ -1076,7 +1132,7 @@ Technical Spec:
 - Provides domain presets for user, company, commerce, finance, dates, and internet data
 
 Acceptance Criteria:
-- [ ] `@formwork/faker` exports `fake()`, `FakerManager`, and provider contracts
+- [ ] `@carpentry/faker` exports `fake()`, `FakerManager`, and provider contracts
 - [ ] Application code never imports `@faker-js/faker` directly
 - [ ] Seeded runs are deterministic across tests and seeder executions
 - [ ] Locale switching works per factory/test without global shared-state leaks
@@ -1281,7 +1337,7 @@ Technical Spec:
 - Auth facade: Auth.user(), Auth.check(), Auth.id()
 - Multi-guard: Auth.guard('api').user()
 - Password reset/token primitives consumed by higher-level workflow packages
-- Low-level auth primitives stay in `@formwork/auth`; end-user auth flows live in `@formwork/padlock`
+- Low-level auth primitives stay in `@carpentry/auth`; end-user auth flows live in `@carpentry/padlock`
 
 Acceptance Criteria:
 - [ ] SessionGuard reads/writes user from session
@@ -1304,8 +1360,8 @@ I want a dedicated Padlock package with a normal source layout
 So that higher-level authentication workflows are first-class and the package is no longer effectively hidden inside build artifacts.
 
 Technical Spec:
-- Package name: `@formwork/padlock`
-- Sits on top of `@formwork/auth` and provides Laravel Fortify-style workflows:
+- Package name: `@carpentry/padlock`
+- Sits on top of `@carpentry/auth` and provides Laravel Fortify-style workflows:
   registration, login, logout, forgot password, password reset, email verification,
   TOTP-based two-factor auth, recovery codes, and lockout throttling
 - Canonical package layout must be `package.json`, `tsconfig.json`, `src/`, `tests/`
@@ -1319,8 +1375,8 @@ Acceptance Criteria:
 - [ ] No runtime or build step depends on hidden implementation files under `dist/`
 - [ ] Registration/login/logout/password reset/email verification flows are implemented
 - [ ] Two-factor auth supports TOTP challenges, recovery codes, and attempt lockout
-- [ ] HTTP route registrar integrates cleanly with `@formwork/http`
-- [ ] Mail and notification hooks integrate cleanly with `@formwork/mail`
+- [ ] HTTP route registrar integrates cleanly with `@carpentry/http`
+- [ ] Mail and notification hooks integrate cleanly with `@carpentry/mail`
 - [ ] In-memory repositories, token stores, and notifier fakes ship for tests and starter kits
 - [ ] Full tests cover happy paths, lockouts, token expiry, and invalid-token flows
 ```
@@ -1708,7 +1764,7 @@ Acceptance Criteria:
 
 ---
 
-**CARP-043** `[E16]` React Adapter (@formwork/ui-react)  
+**CARP-043** `[E16]` React Adapter (@carpentry/ui-react)  
 **Points:** 8 | **Priority:** High
 
 ```
@@ -1732,7 +1788,7 @@ Acceptance Criteria:
 
 ---
 
-**CARP-044** `[E16]` Vue Adapter (@formwork/ui-vue)  
+**CARP-044** `[E16]` Vue Adapter (@carpentry/ui-vue)  
 **Points:** 8 | **Priority:** High
 
 ```
@@ -1758,8 +1814,8 @@ Acceptance Criteria:
 
 ```
 Acceptance Criteria:
-- [ ] @formwork/ui-svelte: SvelteKit-compatible integration
-- [ ] @formwork/ui-solid: SolidJS integration with createSignal-based state
+- [ ] @carpentry/ui-svelte: SvelteKit-compatible integration
+- [ ] @carpentry/ui-solid: SolidJS integration with createSignal-based state
 - [ ] Both implement same bridge protocol (usePage, useForm, Link)
 - [ ] Basic tests for each adapter
 ```
@@ -1840,7 +1896,7 @@ Acceptance Criteria:
 - [ ] Mocks configurable to return specific values or throw errors
 - [ ] MockDatabaseAdapter can replay a sequence of results
 - [ ] Full tests for each mock (mocks are tested too!)
-- [ ] All mocks exported from @formwork/testing
+- [ ] All mocks exported from @carpentry/testing
 ```
 
 ---
@@ -1852,7 +1908,7 @@ Acceptance Criteria:
 Technical Spec:
 - DatabaseTransactions trait: wraps each test in a transaction, auto-rollback
 - RefreshDatabase trait: migrates fresh before suite, truncates between tests
-- WithFaker trait: provides `@formwork/faker` instance
+- WithFaker trait: provides `@carpentry/faker` instance
 - WithFactories trait: factory() helper shortcut
 
 Acceptance Criteria:
@@ -2293,7 +2349,7 @@ Examples:
    - API versioning
 
 3. Fullstack with React
-   - Same blog features using @formwork/ui-react
+   - Same blog features using @carpentry/ui-react
    - SSR with hydration
 
 Acceptance Criteria:
@@ -2310,7 +2366,7 @@ Acceptance Criteria:
 
 ```
 Acceptance Criteria:
-- [ ] All packages published to npm under @formwork/* scope
+- [ ] All packages published to npm under @carpentry/* scope
 - [ ] Semantic versioning with changesets (changeset-action in CI)
 - [ ] Each package has README, LICENSE (MIT), CHANGELOG
 - [ ] Provenance attestation in npm publish
@@ -2360,26 +2416,26 @@ A story is **Done** when ALL of the following are true:
 
 | Package | Unit | Integration | E2E |
 |---------|------|-------------|-----|
-| @formwork/core | ✅ | — | — |
-| @formwork/container | ✅ | — | — |
-| @formwork/http | ✅ | ✅ (TestApp) | — |
-| @formwork/orm | ✅ (mock DB) | ✅ (SQLite) | — |
-| @formwork/db-postgres | ✅ (mock pg) | ✅ (Docker) | — |
-| @formwork/cache | ✅ (mock) | ✅ (Docker Redis) | — |
-| @formwork/queue | ✅ (mock) | ✅ (BullMQ+Redis) | — |
-| @formwork/auth | ✅ | ✅ (TestApp) | — |
-| @formwork/padlock | ✅ | ✅ (TestApp) | — |
-| @formwork/faker | ✅ | — | — |
-| @formwork/ui | ✅ (JSDOM) | ✅ | ✅ (Playwright) |
-| @formwork/testing | ✅ | — | — |
+| @carpentry/core | ✅ | — | — |
+| @carpentry/container | ✅ | — | — |
+| @carpentry/http | ✅ | ✅ (TestApp) | — |
+| @carpentry/orm | ✅ (mock DB) | ✅ (SQLite) | — |
+| @carpentry/db-postgres | ✅ (mock pg) | ✅ (Docker) | — |
+| @carpentry/cache | ✅ (mock) | ✅ (Docker Redis) | — |
+| @carpentry/queue | ✅ (mock) | ✅ (BullMQ+Redis) | — |
+| @carpentry/auth | ✅ | ✅ (TestApp) | — |
+| @carpentry/padlock | ✅ | ✅ (TestApp) | — |
+| @carpentry/faker | ✅ | — | — |
+| @carpentry/ui | ✅ (JSDOM) | ✅ | ✅ (Playwright) |
+| @carpentry/testing | ✅ | — | — |
 
 ### 8.3 Mock Strategy
 
-**Rule:** Every external service MUST have a mock in `@formwork/testing`. Tests that require external services run only in the `integration` test suite (CI, not local by default).
+**Rule:** Every external service MUST have a mock in `@carpentry/testing`. Tests that require external services run only in the `integration` test suite (CI, not local by default).
 
 ```typescript
 // Example: All tests use mocks by default
-import { MockDatabaseAdapter, MockCacheStore, MockQueueAdapter } from '@formwork/testing'
+import { MockDatabaseAdapter, MockCacheStore, MockQueueAdapter } from '@carpentry/testing'
 
 describe('UserService', () => {
   let app: TestApplication
@@ -2414,7 +2470,7 @@ describe('UserService', () => {
 ### 9.1 Container Interface (ISP-split)
 
 ```typescript
-// @formwork/core/contracts/container/IBindingRegistry.ts
+// @carpentry/core/contracts/container/IBindingRegistry.ts
 interface IBindingRegistry {
   bind<T>(abstract: Token<T>, factory: Factory<T>): void
   singleton<T>(abstract: Token<T>, factory: Factory<T>): void
@@ -2422,14 +2478,14 @@ interface IBindingRegistry {
   alias(abstract: Token, alias: Token): void
 }
 
-// @formwork/core/contracts/container/IResolver.ts
+// @carpentry/core/contracts/container/IResolver.ts
 interface IResolver {
   make<T>(abstract: Token<T>): T
   makeWith<T>(abstract: Token<T>, params: Record<string, unknown>): T
   bound(abstract: Token): boolean
 }
 
-// @formwork/core/contracts/container/IScopeFactory.ts
+// @carpentry/core/contracts/container/IScopeFactory.ts
 interface IScopeFactory {
   scope(): IContainer
 }
@@ -2551,7 +2607,7 @@ Every infrastructure adapter MUST:
 
 1. Implement its interface (`IDatabaseAdapter`, `ICacheStore`, etc.)
 2. Be registered via a `ServiceProvider` (never `new`'d directly in application code)
-3. Have a corresponding **Mock** in `@formwork/testing`
+3. Have a corresponding **Mock** in `@carpentry/testing`
 4. Accept its config through constructor injection (DIP)
 5. Never throw raw errors — wrap in typed `CarpenterError` subclasses
 
@@ -2646,12 +2702,12 @@ class DatabaseServiceProvider extends ServiceProvider {
 1. **Execute stories strictly in Sprint order.** Sprint N stories may depend on Sprint N-1.
 2. **Before writing any class**, write the interface it implements in `contracts/`.
 3. **Every constructor parameter** must be an interface type, resolved by the IoC container.
-4. **Every test file** must import from `@formwork/testing` for infrastructure — never instantiate real adapters.
+4. **Every test file** must import from `@carpentry/testing` for infrastructure — never instantiate real adapters.
 5. **After each story**, run `bun test` and `tsc --noEmit` — only proceed if both pass.
 6. **File header JSDoc** is mandatory on every new file:
    ```typescript
    /**
-    * @module @formwork/[package]
+    * @module @carpentry/[package]
     * @description [One sentence description]
     * @patterns [List GoF patterns used]
     * @principles [List SOLID principles demonstrated]

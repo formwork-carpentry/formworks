@@ -1,11 +1,11 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description Queue adapters — Sync (immediate), Memory (testing/assertion)
  * @patterns Command (Job), Adapter (queue drivers), Template Method (BaseJob)
  * @principles LSP — all adapters substitutable; DIP — app dispatches via IQueueAdapter
  */
 
-import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/core/contracts";
 
 // ── BaseJob — Template Method ─────────────────────────────
 
@@ -17,7 +17,7 @@ import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
  *
  * @example
  * ```ts
- * import { BaseJob, dispatch } from '@formwork/queue';
+ * import { BaseJob, dispatch } from '@carpentry/queue';
  *
  * type Payload = { userId: number };
  *
@@ -80,7 +80,7 @@ export abstract class BaseJob<T = unknown> {
  *
  * @example
  * ```ts
- * import { SyncQueueAdapter } from '@formwork/queue';
+ * import { SyncQueueAdapter } from '@carpentry/queue';
  *
  * const adapter = new SyncQueueAdapter();
  * adapter.registerHandler('SendEmail', async (payload) => {
@@ -157,7 +157,7 @@ export class SyncQueueAdapter implements IQueueAdapter {
  *
  * @example
  * ```ts
- * import { MemoryQueueAdapter } from '@formwork/queue';
+ * import { MemoryQueueAdapter } from '@carpentry/queue';
  *
  * const adapter = new MemoryQueueAdapter();
  * await adapter.push({ name: 'SendEmail', payload: { userId: 1 }, queue: 'emails', attempts: 0, maxTries: 3, retryAfterSeconds: 60, timeout: 300 } as any);

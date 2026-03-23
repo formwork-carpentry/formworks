@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description CORS middleware — handles preflight OPTIONS and sets Access-Control-* headers
  * @patterns Strategy (configurable origin/methods/headers)
  * @principles SRP (CORS only), OCP (configurable via options)

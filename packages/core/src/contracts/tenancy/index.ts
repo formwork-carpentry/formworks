@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/tenancy
+ * @module @carpentry/core/contracts/tenancy
  * @description Multi-tenancy contracts - tenant resolution, store, and scoping.
  *
  * Implementations: SubdomainResolver, PathResolver, HeaderResolver, TenancyManager,

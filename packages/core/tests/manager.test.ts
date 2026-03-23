@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description BaseManager test suite — verifies the shared Domain Factory Manager pattern.
  *
  * Covers:

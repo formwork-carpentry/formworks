@@ -4,7 +4,7 @@ import {
   HttpTransport, GrpcTransportStub, NatsTransportStub, KafkaTransportStub,
 } from '../src/index.js';
 
-describe('@formwork/bridge: InMemoryTransport', () => {
+describe('@carpentry/bridge: InMemoryTransport', () => {
   let transport: InMemoryTransport;
 
   beforeEach(async () => {
@@ -63,7 +63,7 @@ describe('@formwork/bridge: InMemoryTransport', () => {
   });
 });
 
-describe('@formwork/bridge: ServiceRegistry', () => {
+describe('@carpentry/bridge: ServiceRegistry', () => {
   let registry: ServiceRegistry;
 
   beforeEach(() => { registry = new ServiceRegistry(); });
@@ -123,7 +123,7 @@ describe('@formwork/bridge: ServiceRegistry', () => {
   });
 });
 
-describe('@formwork/bridge: RemoteService', () => {
+describe('@carpentry/bridge: RemoteService', () => {
   let transport: InMemoryTransport;
 
   beforeEach(async () => {
@@ -169,7 +169,7 @@ describe('@formwork/bridge: RemoteService', () => {
   });
 });
 
-describe('@formwork/bridge: HealthChecker', () => {
+describe('@carpentry/bridge: HealthChecker', () => {
   it('checks health via ping', async () => {
     const transport = new InMemoryTransport();
     await transport.connect();
@@ -205,7 +205,7 @@ describe('@formwork/bridge: HealthChecker', () => {
   });
 });
 
-describe('@formwork/bridge-adapters: HttpTransport', () => {
+describe('@carpentry/bridge-adapters: HttpTransport', () => {
   let transport: HttpTransport;
 
   beforeEach(async () => {
@@ -251,7 +251,7 @@ describe('@formwork/bridge-adapters: HttpTransport', () => {
   });
 });
 
-describe('@formwork/bridge-adapters: Transport stubs', () => {
+describe('@carpentry/bridge-adapters: Transport stubs', () => {
   it('GrpcTransportStub throws on connect', async () => {
     await expect(new GrpcTransportStub().connect()).rejects.toThrow('grpc-js');
   });

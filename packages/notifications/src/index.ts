@@ -1,5 +1,5 @@
 /**
- * @module @formwork/notifications
+ * @module @carpentry/notifications
  * @description Notifications — re-exports.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { NotificationManager, BaseNotification, ArrayChannel } from '@formwork/notifications';
+ * import { NotificationManager, BaseNotification, ArrayChannel } from '@carpentry/notifications';
  *
  * class User {
  *   constructor(public email: string) {}

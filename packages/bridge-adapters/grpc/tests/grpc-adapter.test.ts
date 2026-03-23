@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { GrpcTransport, GrpcBridgeServer } from '../src/index.js';
-import type { BridgeMessage } from '@formwork/core/contracts';
+import type { BridgeMessage } from '@carpentry/core/contracts';
 
 function createMockGrpcDriver() {
   const mockMetadata = { set: vi.fn() };

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { NatsTransport, NatsBridgeServer } from '../src/index.js';
-import type { BridgeMessage } from '@formwork/core/contracts';
+import type { BridgeMessage } from '@carpentry/core/contracts';
 
 const textEncoder = new TextEncoder();
 

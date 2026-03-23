@@ -7,7 +7,7 @@ import { mongodbAdapter } from '../../db-adapters/mongodb/src/index.js';
 import { filesystemAdapter } from '../../db-adapters/filesystem/src/index.js';
 import { memoryAdapter } from '../../db-adapters/memorydb/src/index.js';
 
-describe('@formwork/db adapter package exports', () => {
+describe('@carpentry/db adapter package exports', () => {
   it('creates a postgres adapter from its factory', () => {
     const adapter = postgresDriverFactory({
       driver: 'postgres',

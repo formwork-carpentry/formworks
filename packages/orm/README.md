@@ -1,4 +1,4 @@
-# @formwork/orm
+# @carpentry/orm
 
 ORM: BaseModel, QueryBuilder, relations, migrations, seeders
 
@@ -11,13 +11,13 @@ ORM: BaseModel, QueryBuilder, relations, migrations, seeders
 ## Installation
 
 ```bash
-npm install @formwork/orm
+npm install @carpentry/orm
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkorm from '@formwork/orm';
+import * as formworkorm from '@carpentry/orm';
 
 // Use the package API in your application modules
 ```

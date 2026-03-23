@@ -1,8 +1,7 @@
 {
-  "name": "@formwork/bridge-kafka",
+  "name": "@carpentry/bridge-kafka",
   "version": "1.0.0-alpha.0",
   "type": "module",
-  "private": true,
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
@@ -14,17 +13,18 @@
     "lint": "echo lint",
     "clean": "rm -rf dist"
   },
-  "dependencies": {
-    "@formwork/core": "*"
-  },
   "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0",
     "kafkajs": "^2.0.0"
   },
   "peerDependenciesMeta": {
-    "kafkajs": { "optional": true }
+    "kafkajs": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "@carpentry/formworks": "workspace:*"
   }
 }

@@ -4,12 +4,12 @@
 [![Test](https://github.com/formwork-carpentry/formworks/actions/workflows/test.yml/badge.svg)](https://github.com/formwork-carpentry/formworks/actions/workflows/test.yml)
 [![Security](https://github.com/formwork-carpentry/formworks/actions/workflows/security.yml/badge.svg)](https://github.com/formwork-carpentry/formworks/actions/workflows/security.yml)
 [![codecov](https://codecov.io/gh/formwork-carpentry/formworks/branch/main/graph/badge.svg)](https://codecov.io/gh/formwork-carpentry/formworks)
-[![npm](https://img.shields.io/npm/v/@formwork/core?label=%40formwork%2Fcore)](https://www.npmjs.com/package/@formwork/core)
+[![npm](https://img.shields.io/npm/v/@carpentry/core?label=%40formwork%2Fcore)](https://www.npmjs.com/package/@carpentry/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Formworks is the package monorepo powering the **Carpenter** framework ecosystem. It contains modular framework packages, adapters, testing utilities, and integration tooling — following the same philosophy as Laravel/Illuminate.
 
-> 📦 **Package namespace**: `@formwork/*`  
+> 📦 **Package namespace**: `@carpentry/*`  
 > 🔨 **Framework**: [Carpenter](https://github.com/formwork-carpentry)  
 > 🏗 **Organization**: [formwork-carpentry](https://github.com/formwork-carpentry)
 
@@ -17,17 +17,17 @@ Formworks is the package monorepo powering the **Carpenter** framework ecosystem
 
 | Package | Description | Version |
 |---------|-------------|---------|
-| `@formwork/core` | IoC container, config, env, exceptions | [![npm](https://img.shields.io/npm/v/@formwork/core)](https://www.npmjs.com/package/@formwork/core) |
-| `@formwork/http` | HTTP server & routing | [![npm](https://img.shields.io/npm/v/@formwork/http)](https://www.npmjs.com/package/@formwork/http) |
-| `@formwork/orm` | Database ORM abstraction | [![npm](https://img.shields.io/npm/v/@formwork/orm)](https://www.npmjs.com/package/@formwork/orm) |
-| `@formwork/auth` | Authentication & authorization | [![npm](https://img.shields.io/npm/v/@formwork/auth)](https://www.npmjs.com/package/@formwork/auth) |
-| `@formwork/cache` | Caching abstractions | [![npm](https://img.shields.io/npm/v/@formwork/cache)](https://www.npmjs.com/package/@formwork/cache) |
-| `@formwork/queue` | Job queue abstractions | [![npm](https://img.shields.io/npm/v/@formwork/queue)](https://www.npmjs.com/package/@formwork/queue) |
-| `@formwork/mail` | Mail service | [![npm](https://img.shields.io/npm/v/@formwork/mail)](https://www.npmjs.com/package/@formwork/mail) |
-| `@formwork/storage` | File storage abstractions | [![npm](https://img.shields.io/npm/v/@formwork/storage)](https://www.npmjs.com/package/@formwork/storage) |
-| `@formwork/cli` | Carpenter CLI | [![npm](https://img.shields.io/npm/v/@formwork/cli)](https://www.npmjs.com/package/@formwork/cli) |
-| `@formwork/validation` | Input validation | [![npm](https://img.shields.io/npm/v/@formwork/validation)](https://www.npmjs.com/package/@formwork/validation) |
-| `@formwork/testing` | Testing helpers & utilities | [![npm](https://img.shields.io/npm/v/@formwork/testing)](https://www.npmjs.com/package/@formwork/testing) |
+| `@carpentry/core` | IoC container, config, env, exceptions | [![npm](https://img.shields.io/npm/v/@carpentry/core)](https://www.npmjs.com/package/@carpentry/core) |
+| `@carpentry/http` | HTTP server & routing | [![npm](https://img.shields.io/npm/v/@carpentry/http)](https://www.npmjs.com/package/@carpentry/http) |
+| `@carpentry/orm` | Database ORM abstraction | [![npm](https://img.shields.io/npm/v/@carpentry/orm)](https://www.npmjs.com/package/@carpentry/orm) |
+| `@carpentry/auth` | Authentication & authorization | [![npm](https://img.shields.io/npm/v/@carpentry/auth)](https://www.npmjs.com/package/@carpentry/auth) |
+| `@carpentry/cache` | Caching abstractions | [![npm](https://img.shields.io/npm/v/@carpentry/cache)](https://www.npmjs.com/package/@carpentry/cache) |
+| `@carpentry/queue` | Job queue abstractions | [![npm](https://img.shields.io/npm/v/@carpentry/queue)](https://www.npmjs.com/package/@carpentry/queue) |
+| `@carpentry/mail` | Mail service | [![npm](https://img.shields.io/npm/v/@carpentry/mail)](https://www.npmjs.com/package/@carpentry/mail) |
+| `@carpentry/storage` | File storage abstractions | [![npm](https://img.shields.io/npm/v/@carpentry/storage)](https://www.npmjs.com/package/@carpentry/storage) |
+| `@carpentry/cli` | Carpenter CLI | [![npm](https://img.shields.io/npm/v/@carpentry/cli)](https://www.npmjs.com/package/@carpentry/cli) |
+| `@carpentry/validation` | Input validation | [![npm](https://img.shields.io/npm/v/@carpentry/validation)](https://www.npmjs.com/package/@carpentry/validation) |
+| `@carpentry/testing` | Testing helpers & utilities | [![npm](https://img.shields.io/npm/v/@carpentry/testing)](https://www.npmjs.com/package/@carpentry/testing) |
 
 ## Getting Started
 
@@ -70,7 +70,7 @@ npm run test:integration:keep-up
 
 ```
 formworks/
-├── packages/               # All @formwork/* packages
+├── packages/               # All @carpentry/* packages
 │   ├── core/               # IoC container, config, env
 │   ├── http/               # HTTP server & routing
 │   ├── orm/                # Database ORM

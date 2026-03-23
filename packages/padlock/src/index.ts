@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock
+ * @module @carpentry/padlock
  * @description Padlock - higher-level authentication workflows and Fortify-style HTTP integration for Carpenter.
  * @patterns Facade
  * @principles SRP - exports the Padlock package surface while underlying modules keep responsibilities focused.

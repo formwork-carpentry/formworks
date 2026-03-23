@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description Public queue exceptions.
  */
 

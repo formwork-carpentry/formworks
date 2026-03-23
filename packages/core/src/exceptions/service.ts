@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/exceptions
+ * @module @carpentry/core/exceptions
  * @description Service and upstream integration exceptions.
  */
 

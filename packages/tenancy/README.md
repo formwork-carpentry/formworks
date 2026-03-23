@@ -1,4 +1,4 @@
-# @formwork/tenancy
+# @carpentry/tenancy
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/tenancy
+npm install @carpentry/tenancy
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworktenancy from '@formwork/tenancy';
+import * as formworktenancy from '@carpentry/tenancy';
 
 // Use the package API in your application modules
 ```

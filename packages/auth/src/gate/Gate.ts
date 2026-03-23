@@ -1,11 +1,11 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description Gate — authorization with abilities, policies, before() hooks
  * @patterns Strategy (policy methods as strategies), Chain of Responsibility (before hook)
  * @principles OCP — new abilities/policies without modifying Gate; SRP — authorization only
  */
 
-import type { GateCallback, IAuthenticatable, IGate } from "@formwork/core/contracts";
+import type { GateCallback, IAuthenticatable, IGate } from "@carpentry/core/contracts";
 
 /**
  * Authorization gate: define abilities and evaluate them for a user.
@@ -14,7 +14,7 @@ import type { GateCallback, IAuthenticatable, IGate } from "@formwork/core/contr
  *
  * @example
  * ```ts
- * import { Gate } from '@formwork/auth';
+ * import { Gate } from '@carpentry/auth';
  *
  * const gate = new Gate();
  *

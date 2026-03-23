@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description CSDL Code Generator — reads .proto or .csdl service definitions
  * and generates TypeScript interfaces, client stubs, and server handlers.
  *
@@ -220,7 +220,7 @@ function genClient(svc: ServiceDefinition): string {
   });
 
   return [
-    `import type { ITransport } from '@formwork/core/contracts/bridge/index.js';`,
+    `import type { ITransport } from '@carpentry/formworks/core/contracts/bridge/index.js';`,
     `import type { I${svc.name} } from './I${svc.name}.js';`,
     "",
     "/**",

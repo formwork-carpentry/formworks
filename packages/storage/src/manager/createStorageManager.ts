@@ -1,6 +1,6 @@
-import type { CarpenterFactoryAdapter } from "@formwork/core/adapters";
-import type { IStorageAdapter } from "@formwork/core/contracts";
-import { s3DriverFactory } from "@formwork/storage-s3";
+import type { CarpenterFactoryAdapter } from "@carpentry/core/adapters";
+import type { IStorageAdapter } from "@carpentry/core/contracts";
+import { s3DriverFactory } from "@carpentry/storage-s3";
 
 import { LocalStorageAdapter } from "../adapters/LocalStorageAdapter.js";
 import { type StorageDiskConfig, StorageManager } from "./StorageManager.js";

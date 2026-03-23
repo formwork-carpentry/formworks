@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage-s3
+ * @module @carpentry/storage-s3
  * @description S3StorageAdapter — stores files in AWS S3 or S3-compatible services
  * (MinIO, DigitalOcean Spaces, Cloudflare R2) using raw HTTP requests.
  *
@@ -8,7 +8,7 @@
  *
  * @example
  * ```ts
- * import { S3StorageAdapter } from '@formwork/storage-s3';
+ * import { S3StorageAdapter } from '@carpentry/storage-s3';
  *
  * const s3 = new S3StorageAdapter({
  *   bucket: 'my-app-uploads',
@@ -27,7 +27,7 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from '@formwork/core/contracts';
+} from '@carpentry/core/contracts';
 import type { S3Config } from './types.js';
 
 export { type S3Config } from './types.js';
@@ -171,7 +171,7 @@ export class S3StorageAdapter implements IStorageAdapter {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * StorageManager-compatible driver factory for the S3 adapter.
@@ -180,7 +180,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  *
  * @example
  * ```ts
- * import { s3DriverFactory } from '@formwork/storage-s3';
+ * import { s3DriverFactory } from '@carpentry/storage-s3';
  *
  * storageManager.registerDriver('s3', s3DriverFactory);
  * ```

@@ -1,11 +1,11 @@
 /**
- * @module @formwork/i18n
+ * @module @carpentry/i18n
  * @description Pluralizer — selects correct plural form from pipe-separated translation strings
  * @patterns Strategy (per-locale plural rules)
  * @principles SRP — pluralization logic only; OCP — add new locale rules without modifying core
  */
 
-import type { IPluralizer } from '@formwork/core/contracts';
+import type { IPluralizer } from '@carpentry/core/contracts';
 
 /**
  * Pluralizer — picks the right segment from pipe-separated translation strings.

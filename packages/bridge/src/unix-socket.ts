@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Unix socket transport — ultra-low-latency IPC for same-machine services.
  *
  * Uses node:net to create a Unix domain socket connection with JSON-RPC messaging.
@@ -23,7 +23,7 @@
 
 import { unlinkSync as fsUnlink } from "node:fs";
 import { type Server, type Socket, createConnection, createServer } from "node:net";
-import type { BridgeMessage, BridgeResponse, ITransport } from "@formwork/core/contracts";
+import type { BridgeMessage, BridgeResponse, ITransport } from "@carpentry/core/contracts";
 import { BridgeTimeoutError, BridgeTransportNotConnectedError } from "./exceptions/transport.js";
 
 /**

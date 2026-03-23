@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage-s3
+ * @module @carpentry/storage-s3
  * @description Type definitions for the S3 storage adapter.
  */
 

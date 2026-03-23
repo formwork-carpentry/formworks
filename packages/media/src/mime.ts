@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description MIME type utilities — extension lookup, type checks, file size formatting.
  */
 

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description TypeScript decorators for IoC container integration
  * @patterns Decorator (structural GoF — adds metadata without modifying class)
  * @principles OCP — classes declare injectability without touching container code

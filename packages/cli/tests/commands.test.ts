@@ -18,7 +18,7 @@ import {
 } from '../src/tenant-commands.js';
 import { InMemoryConsole, CliApp } from '../src/index.js';
 
-describe('@formwork/cli: Generator Commands', () => {
+describe('@carpentry/cli: Generator Commands', () => {
   let output: InMemoryConsole;
   beforeEach(() => { output = new InMemoryConsole(); });
 

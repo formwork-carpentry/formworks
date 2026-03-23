@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description Incremental Static Regeneration (ISR) and CDN cache management.
  *
  * @example

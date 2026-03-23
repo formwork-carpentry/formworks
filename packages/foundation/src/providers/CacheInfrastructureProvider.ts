@@ -1,6 +1,6 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import { createCacheManager, type CacheManager } from '@formwork/cache';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import { createCacheManager, type CacheManager } from '@carpentry/cache';
 
 export class CacheInfrastructureProvider {
   constructor(

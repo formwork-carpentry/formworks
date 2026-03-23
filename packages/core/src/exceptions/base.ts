@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/exceptions
+ * @module @carpentry/core/exceptions
  * @description Base framework exception hierarchy.
  */
 
@@ -10,7 +10,7 @@ import type { Dictionary } from "../types/index.js";
  *
  * @example
  * ```ts
- * import { CarpenterError } from '@formwork/core/exceptions';
+ * import { CarpenterError } from '@carpentry/core/exceptions';
  * throw new CarpenterError('Something failed', 'MY_CODE', { requestId: 'abc' });
  * ```
  */

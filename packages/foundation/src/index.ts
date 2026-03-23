@@ -1,13 +1,13 @@
 /**
- * @module @formwork/foundation
+ * @module @carpentry/foundation
  * @description Application foundation — bootstrapping, service provider wiring, and config-driven infrastructure.
  *
  * This package is the primary entry point for wiring up a full Carpenter application.
- * It connects {@link module:@formwork/core} to infrastructure packages like DB, cache, queue, mail, storage, etc.
+ * It connects {@link module:@carpentry/core} to infrastructure packages like DB, cache, queue, mail, storage, etc.
  *
  * @example
  * ```ts
- * import { bootstrap } from '@formwork/foundation';
+ * import { bootstrap } from '@carpentry/foundation';
  *
  * const { container, config } = await bootstrap({
  *   skipEnv: true,

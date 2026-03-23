@@ -1,5 +1,5 @@
 /**
- * @module @formwork/graphql
+ * @module @carpentry/graphql
  * @description Code-first GraphQL decorators — define schema from TypeScript classes
  * @patterns Decorator (metadata annotation), Registry (type/resolver collection), Builder (schema assembly)
  * @principles OCP (add types without modifying schema builder), DIP (resolvers decoupled from transport)

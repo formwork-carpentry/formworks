@@ -66,7 +66,7 @@ class MultiChannel extends BaseNotification<{ text: string }> {
 
 // ── Tests ─────────────────────────────────────────────────
 
-describe('@formwork/notifications: NotificationManager', () => {
+describe('@carpentry/notifications: NotificationManager', () => {
   let manager: NotificationManager;
   let mailChannel: ArrayChannel;
   let smsChannel: ArrayChannel;
@@ -185,7 +185,7 @@ describe('@formwork/notifications: NotificationManager', () => {
   });
 });
 
-describe('@formwork/notifications: LogChannel', () => {
+describe('@carpentry/notifications: LogChannel', () => {
   it('logs notifications', async () => {
     const log = new LogChannel();
     const alice = new TestUser('1', 'a@b.com', '+1');
@@ -196,7 +196,7 @@ describe('@formwork/notifications: LogChannel', () => {
   });
 });
 
-describe('@formwork/notifications: InMemoryDatabaseChannel', () => {
+describe('@carpentry/notifications: InMemoryDatabaseChannel', () => {
   let db: InMemoryDatabaseChannel;
   let alice: TestUser;
 
@@ -230,7 +230,7 @@ describe('@formwork/notifications: InMemoryDatabaseChannel', () => {
   });
 });
 
-describe('@formwork/notifications: notify() global helper', () => {
+describe('@carpentry/notifications: notify() global helper', () => {
   it('dispatches via global manager', async () => {
     const manager = new NotificationManager();
     const fakeChannel = new ArrayChannel('mail');

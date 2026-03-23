@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description AI provider abstraction — unified interface for OpenAI, Anthropic, etc.
  * @patterns Strategy (providers), Adapter (normalize different API shapes)
  * @principles DIP — app depends on provider interface; OCP — new providers without modifying core
@@ -11,7 +11,7 @@
  *
  * @example
  * ```ts
- * import { AI, setAIProvider, MockAIProvider } from '@formwork/ai';
+ * import { AI, setAIProvider, MockAIProvider } from '@carpentry/ai';
  *
  * const provider = new MockAIProvider()
  *   .queueResponse('Hello from the mock model');
@@ -159,7 +159,7 @@ export class MockAIProvider {
  *
  * @example
  * ```ts
- * import { InMemoryVectorStore } from '@formwork/ai';
+ * import { InMemoryVectorStore } from '@carpentry/ai';
  *
  * const store = new InMemoryVectorStore();
  * // embedding vectors should be same dimensionality

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Blueprint — defines table columns and constraints
  * @patterns Builder
  */

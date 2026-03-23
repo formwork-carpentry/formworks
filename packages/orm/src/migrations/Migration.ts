@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Migrations — re-exports
  */
 

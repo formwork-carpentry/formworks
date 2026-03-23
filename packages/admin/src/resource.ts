@@ -1,5 +1,5 @@
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description AdminResource — declarative CRUD resource definition
  * @patterns Template Method
  */

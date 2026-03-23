@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description StorageManager — resolves storage disks by name, proxies to default disk.
  * Extends {@link BaseManager} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -8,13 +8,13 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase } from "@formwork/core/adapters";
+import { CarpenterFactoryBase } from "@carpentry/core/adapters";
 import type {
   IStorageAdapter,
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 import { MemoryStorageAdapter } from "../adapters/MemoryStorageAdapter.js";
 import { StorageNotInitializedError } from "../exceptions/base.js";
 

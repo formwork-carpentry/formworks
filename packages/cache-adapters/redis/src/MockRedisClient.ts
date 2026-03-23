@@ -1,10 +1,10 @@
 /**
- * @module @formwork/cache-redis
+ * @module @carpentry/cache-redis
  * @description Mock Redis client for testing — no Redis server needed.
  *
  * @example
  * ```ts
- * import { RedisCacheStore, MockRedisClient } from '@formwork/cache-redis';
+ * import { RedisCacheStore, MockRedisClient } from '@carpentry/cache-redis';
  * const mock = new MockRedisClient();
  * const cache = new RedisCacheStore(mock);
  * await cache.put('key', 'value');

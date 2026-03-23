@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-postgres/PostgresAdapter
+ * @module @carpentry/db-postgres/PostgresAdapter
  * @description PostgreSQL adapter backed by a lazily loaded `pg` pool.
  * @patterns Adapter, Strategy
  */

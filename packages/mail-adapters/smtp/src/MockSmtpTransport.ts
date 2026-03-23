@@ -1,10 +1,10 @@
 /**
- * @module @formwork/mail-smtp
+ * @module @carpentry/mail-smtp
  * @description Mock SMTP transport for testing — no mail server needed.
  *
  * @example
  * ```ts
- * import { SmtpMailAdapter, MockSmtpTransport } from '@formwork/mail-smtp';
+ * import { SmtpMailAdapter, MockSmtpTransport } from '@carpentry/mail-smtp';
  * const mock = new MockSmtpTransport();
  * const mailer = new SmtpMailAdapter(mock);
  * await mailer.send({ to: 'test@test.com', subject: 'Hi', text: 'Hello' });

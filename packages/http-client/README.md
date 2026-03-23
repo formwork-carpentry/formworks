@@ -1,4 +1,4 @@
-# @formwork/http-client
+# @carpentry/http-client
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/http-client
+npm install @carpentry/http-client
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkhttpclient from '@formwork/http-client';
+import * as formworkhttpclient from '@carpentry/http-client';
 
 // Use the package API in your application modules
 ```

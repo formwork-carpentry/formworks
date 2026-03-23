@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description TransformationPipeline — chain media transformations (resize, rename, convert).
  * @patterns Chain of Responsibility, Strategy
  */

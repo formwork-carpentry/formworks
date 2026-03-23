@@ -1,5 +1,5 @@
 /**
- * @module @formwork/events
+ * @module @carpentry/events
  * @description Event dispatcher, listeners, subscribers, and {@link EventFake} for testing.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { EventDispatcher } from '@formwork/events';
+ * import { EventDispatcher } from '@carpentry/events';
  *
  * const events = new EventDispatcher();
  * events.on('user.registered', async (payload) => {

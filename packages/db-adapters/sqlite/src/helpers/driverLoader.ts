@@ -1,9 +1,9 @@
 /**
- * @module @formwork/db-sqlite/helpers/driverLoader
+ * @module @carpentry/db-sqlite/helpers/driverLoader
  * @description Lazy driver loading helpers for the SQLite adapter.
  */
 import type { SQLiteDriverConstructor } from '../types.js';
-import {} from '@formwork/core/exceptions';
+import {} from '@carpentry/core/exceptions';
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 const dynamicImport = new Function('specifier', 'return import(specifier)') as (specifier: string) => Promise<{ default?: SQLiteDriverConstructor }>;

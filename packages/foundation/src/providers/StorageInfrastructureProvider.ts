@@ -1,6 +1,6 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import { createStorageManager, type StorageManager } from '@formwork/storage';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import { createStorageManager, type StorageManager } from '@carpentry/storage';
 
 export class StorageInfrastructureProvider {
   constructor(

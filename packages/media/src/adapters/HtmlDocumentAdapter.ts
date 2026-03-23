@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media/adapters/HtmlDocumentAdapter
+ * @module @carpentry/media/adapters/HtmlDocumentAdapter
  * @description HTML document generation adapter.
  * @patterns Strategy (format-specific generation)
  */

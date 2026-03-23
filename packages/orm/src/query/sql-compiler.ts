@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description SQL compiler — converts QueryAST into SQL strings with parameterized bindings
  * @patterns Visitor (traverses AST nodes), Strategy (compilation per statement type)
  * @principles SRP (only SQL generation), OCP (add statement types without modifying existing)
  */
 
-import type { Dictionary } from '@formwork/core/types';
+import type { Dictionary } from '@carpentry/core/types';
 
 /** AST node types used by the compiler */
 export interface WhereClause { column: string; operator: string; value: unknown; boolean: 'and' | 'or'; }

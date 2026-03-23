@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge-kafka
+ * @module @carpentry/bridge-kafka
  * @description Kafka-backed bridge transport and responder implementations.
  *
  * @patterns Adapter (normalizes Kafka request/reply to bridge contracts),
@@ -7,7 +7,7 @@
  * @principles DIP - bridge clients and responders depend on contracts, not the Kafka SDK
  */
 import { randomUUID } from 'node:crypto';
-import type { BridgeMessage, BridgeResponse, ITransport } from '@formwork/core/contracts';
+import type { BridgeMessage, BridgeResponse, ITransport } from '@carpentry/core/contracts';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
@@ -378,7 +378,7 @@ async function loadKafkaDriver(): Promise<KafkaDriverModule> {
     // kafkajs is installed as a dev dependency and should be available at runtime
     return await import('kafkajs') as unknown as KafkaDriverModule;
   } catch (error) {
-    throw createMissingDriverError('kafkajs', 'npm install @formwork/bridge-kafka kafkajs', error);
+    throw createMissingDriverError('kafkajs', 'npm install @carpentry/bridge-kafka kafkajs', error);
   }
 }
 
@@ -390,7 +390,7 @@ function createMissingDriverError(packageName: string, installCommand: string, c
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * BridgeManager-compatible driver factory for the Kafka transport.
@@ -399,7 +399,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  *
  * @example
  * ```ts
- * import { kafkaDriverFactory } from '@formwork/bridge-kafka';
+ * import { kafkaDriverFactory } from '@carpentry/bridge-kafka';
  * bridgeManager.registerDriver('kafka', kafkaDriverFactory);
  * ```
  */

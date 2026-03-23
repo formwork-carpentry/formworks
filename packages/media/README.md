@@ -1,4 +1,4 @@
-# @formwork/media
+# @carpentry/media
 
 Media handling, document generation, file transformations
 
@@ -11,13 +11,13 @@ Media handling, document generation, file transformations
 ## Installation
 
 ```bash
-npm install @formwork/media
+npm install @carpentry/media
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkmedia from '@formwork/media';
+import * as formworkmedia from '@carpentry/media';
 
 // Use the package API in your application modules
 ```

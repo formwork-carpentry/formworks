@@ -1,13 +1,13 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description DatabaseQueueAdapter — persists jobs to a database table via QueryBuilder
  * @patterns Adapter (implements IQueueAdapter), Repository (job table CRUD)
  * @principles LSP (substitutable for SyncQueue/BullMQ), SRP (DB job persistence only)
  */
 
-import type { IDatabaseAdapter } from "@formwork/core/contracts";
-import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
-import { QueryBuilder } from "@formwork/orm";
+import type { IDatabaseAdapter } from "@carpentry/core/contracts";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/core/contracts";
+import { QueryBuilder } from "@carpentry/orm";
 
 export interface DatabaseQueueConfig {
   /** Table name for jobs (default: 'jobs') */

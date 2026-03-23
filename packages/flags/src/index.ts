@@ -1,5 +1,5 @@
 /**
- * @module @formwork/flags
+ * @module @carpentry/flags
  * @description Feature flags and A/B experimentation — percentage rollout, user/group targeting, deterministic bucketing
  * @patterns Strategy (flag evaluation), Observer (flag change events)
  * @principles OCP (add providers without modifying core), SRP (flag evaluation only)
@@ -11,7 +11,7 @@
  *
  * @example
  * ```ts
- * import { InMemoryFlagProvider, setFlagProvider, feature, Experiment } from '@formwork/flags';
+ * import { InMemoryFlagProvider, setFlagProvider, feature, Experiment } from '@carpentry/flags';
  *
  * const provider = new InMemoryFlagProvider();
  * provider.define('new-payments', {
@@ -49,7 +49,7 @@ interface FlagProviderLike {
 }
 
 /**
- * @module @formwork/flags
+ * @module @carpentry/flags
  * @description Feature flags with percentage rollout, user targeting, and A/B experiments
  * @patterns Strategy (flag providers), Observer (flag change events)
  * @principles OCP — new providers (LaunchDarkly, Flagsmith) without modifying core

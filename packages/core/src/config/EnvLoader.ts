@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description EnvLoader — reads .env files and populates process.env
  * @patterns Strategy (file reading), Template Method (parse rules)
  * @principles SRP (only .env loading), OCP (extendable parse rules)
@@ -23,7 +23,7 @@ export interface EnvLoaderOptions {
  *
  * @example
  * ```ts
- * import { parseEnvString } from '@formwork/core';
+ * import { parseEnvString } from '@carpentry/core';
  * const vars = parseEnvString('FOO=bar');
  * ```
  */

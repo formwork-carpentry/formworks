@@ -5,7 +5,7 @@
     "types": ["node"], "composite": false, "declaration": false, "declarationMap": false,
     "baseUrl": "../../",
     "paths": {
-      "@formwork/db-memory": ["packages/db-adapters/memorydb/src/index.ts"]
+      "@carpentry/db-memory": ["packages/db-adapters/memorydb/src/index.ts"]
     }
   },
   "include": ["src/**/*.ts"],

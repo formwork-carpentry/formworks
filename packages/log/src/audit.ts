@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description AuditLogger — CRUD/auth event auditing with value diffing
  * @patterns Observer (audit events), Template Method (action tracking)
  * @principles SRP (only audit logging)

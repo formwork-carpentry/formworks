@@ -1,13 +1,13 @@
 /**
- * @module @formwork/padlock/PadlockController
+ * @module @carpentry/padlock/PadlockController
  * @description HTTP controller that validates requests and maps them onto Padlock workflow operations.
  * @patterns Facade, Adapter
  * @principles SRP - request validation and response mapping stay here while PadlockService owns auth workflows.
  */
 
-import type { IAuthenticatable, IRequest, ValidationRules } from "@formwork/core/contracts";
-import { CarpenterResponse } from "@formwork/http";
-import { Validator } from "@formwork/validation";
+import type { IAuthenticatable, IRequest, ValidationRules } from "@carpentry/core/contracts";
+import { CarpenterResponse } from "@carpentry/http";
+import { Validator } from "@carpentry/validation";
 import type { PadlockService } from "./PadlockService.js";
 import type { PadlockDispatchResult } from "./contracts.js";
 import { PadlockError } from "./errors.js";

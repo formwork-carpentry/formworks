@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description Form helpers — framework-agnostic form state management with
  * validation error binding, processing state, and auto-reset.
  *

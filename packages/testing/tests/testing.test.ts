@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { TestResponse, TestRequest, assertThrows, assertCompletesWithin, FakeClock } from '../src/index.js';
 
-describe('@formwork/testing: TestResponse', () => {
+describe('@carpentry/testing: TestResponse', () => {
   const ok = new TestResponse(200, { id: 1, name: 'Alice' }, { 'content-type': 'application/json' });
   const err = new TestResponse(422, { errors: { name: ['Required'] } }, {});
 
@@ -25,7 +25,7 @@ describe('@formwork/testing: TestResponse', () => {
   });
 });
 
-describe('@formwork/testing: TestRequest', () => {
+describe('@carpentry/testing: TestRequest', () => {
   it('builds GET request', () => {
     const req = TestRequest.get('/users').build();
     expect(req.method).toBe('GET');
@@ -49,7 +49,7 @@ describe('@formwork/testing: TestRequest', () => {
   });
 });
 
-describe('@formwork/testing: assertThrows', () => {
+describe('@carpentry/testing: assertThrows', () => {
   it('passes when function throws', async () => {
     await assertThrows(() => { throw new Error('boom'); });
   });
@@ -67,7 +67,7 @@ describe('@formwork/testing: assertThrows', () => {
   });
 });
 
-describe('@formwork/testing: FakeClock', () => {
+describe('@carpentry/testing: FakeClock', () => {
   it('starts at given time', () => {
     const clock = new FakeClock(1000);
     expect(clock.now()).toBe(1000);

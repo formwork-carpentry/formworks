@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Built-in log channel implementations
  * @patterns Strategy (each channel is a strategy)
  * @principles OCP (add channels without modifying Logger), LSP (all substitute ILogChannel)
@@ -17,7 +17,7 @@ import type { LogEntry, ILogChannel, LogLevel } from './types.js';
  *
  * @example
  * ```ts
- * import { Logger, ConsoleChannel } from '@formwork/log';
+ * import { Logger, ConsoleChannel } from '@carpentry/log';
  *
  * const logger = new Logger(new ConsoleChannel('info'), { app: 'carpenter' });
  * logger.error('Something failed', { route: '/login' });

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mongodb/helpers/query
+ * @module @carpentry/db-mongodb/helpers/query
  * @description Query helper functions for MongoDB document operations.
  */
 import type { DocumentFilter, DocumentQueryOptions } from '../types.js';

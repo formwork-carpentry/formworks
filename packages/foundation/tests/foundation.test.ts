@@ -1,13 +1,13 @@
 /**
- * @module @formwork/foundation
+ * @module @carpentry/foundation
  * @description Tests for InfrastructureServiceProvider and bootstrap()
  */
 
 import { describe, it, expect } from 'vitest';
-import { Container } from '@formwork/core/container';
-import { Config } from '@formwork/core/config';
-import { buildDefaultConfig } from '@formwork/core/config';
-import { ConfigResolver } from '@formwork/core/config';
+import { Container } from '@carpentry/core/container';
+import { Config } from '@carpentry/core/config';
+import { buildDefaultConfig } from '@carpentry/core/config';
+import { ConfigResolver } from '@carpentry/core/config';
 import { InfrastructureServiceProvider } from '../src/InfrastructureServiceProvider.js';
 import { bootstrap } from '../src/Bootstrap.js';
 

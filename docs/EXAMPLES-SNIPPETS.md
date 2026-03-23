@@ -10,8 +10,8 @@ Source app: `examples/minimal-api/src/app.ts`
 
 ```ts
 import 'reflect-metadata';
-import { bootstrap } from '@formwork/foundation';
-import { Router, HttpKernel, CarpenterResponse } from '@formwork/http';
+import { bootstrap } from '@carpentry/foundation';
+import { Router, HttpKernel, CarpenterResponse } from '@carpentry/http';
 
 export async function createApp() {
   const { container } = await bootstrap({
@@ -31,7 +31,7 @@ export async function createApp() {
 Source app: `examples/database-example/src/app.ts`
 
 ```ts
-import { createDatabaseManager } from '@formwork/db';
+import { createDatabaseManager } from '@carpentry/db';
 
 const dbManager = createDatabaseManager('memory', {
   memory: { driver: 'memory' },
@@ -45,7 +45,7 @@ const db = dbManager.connection();
 Source app: `examples/queue-example/src/app.ts`
 
 ```ts
-import { QueueManager } from '@formwork/queue';
+import { QueueManager } from '@carpentry/queue';
 
 const queue = new QueueManager('memory', {
   memory: { driver: 'memory' },
@@ -64,7 +64,7 @@ queue.registerDriver('memory', () => ({
 Source app: `examples/mail-example/src/app.ts`
 
 ```ts
-import { createMailManager, setMailManager, Mail } from '@formwork/mail';
+import { createMailManager, setMailManager, Mail } from '@carpentry/mail';
 
 const mailManager = createMailManager('log', {
   log: { driver: 'log' },
@@ -88,7 +88,7 @@ const sent = mailTestDouble.getSent();
 Source app: `examples/storage-example/src/app.ts`
 
 ```ts
-import { createStorageManager, setStorageManager, Storage } from '@formwork/storage';
+import { createStorageManager, setStorageManager, Storage } from '@carpentry/storage';
 
 const storageManager = createStorageManager('memory', {
   memory: { driver: 'memory', baseUrl: '/files' },
@@ -106,7 +106,7 @@ const url = Storage.url('docs/hello.txt');
 Source app: `examples/realtime-collab/src/app.ts`
 
 ```ts
-import { CollaborativeDoc } from '@formwork/realtime';
+import { CollaborativeDoc } from '@carpentry/realtime';
 
 const doc = new CollaborativeDoc('demo');
 doc.insert(0, 'Hello', 'alice');
@@ -121,8 +121,8 @@ const text = doc.getText();
 Source app: `examples/ai-assistant/src/app.ts`
 
 ```ts
-import { Agent, AiGuard, RagPipeline, RecursiveChunker, InMemoryRagVectorStore } from '@formwork/ai';
-import type { IAIProvider } from '@formwork/ai';
+import { Agent, AiGuard, RagPipeline, RecursiveChunker, InMemoryRagVectorStore } from '@carpentry/ai';
+import type { IAIProvider } from '@carpentry/ai';
 
 const aiTestDoubleProvider: IAIProvider = {
   getProviderName: () => 'mock',
@@ -150,7 +150,7 @@ const agent = new Agent({ provider: aiTestDoubleProvider, tools: [], maxSteps: 5
 Source app: `examples/graphql-api/src/app.ts`
 
 ```ts
-import { SchemaBuilder, ObjectType, Field, buildSchemaFromDecorators } from '@formwork/graphql';
+import { SchemaBuilder, ObjectType, Field, buildSchemaFromDecorators } from '@carpentry/graphql';
 
 class User { id!: string; name!: string; email!: string; }
 ObjectType({ description: 'A user' })(User);
@@ -170,7 +170,7 @@ const sdl = buildSchemaFromDecorators([User], []);
 Source app: `examples/edge-app/src/app.ts`
 
 ```ts
-import { EdgeKernel, edgeJson, edgeText, edgeCors } from '@formwork/edge';
+import { EdgeKernel, edgeJson, edgeText, edgeCors } from '@carpentry/edge';
 
 const kernel = new EdgeKernel();
 kernel.use(edgeCors({ origin: '*' }));
@@ -190,13 +190,13 @@ export { kernel };
 Source app: `examples/saas/src/app.ts`
 
 ```ts
-import { createCacheManager } from '@formwork/cache';
+import { createCacheManager } from '@carpentry/cache';
 import {
   InMemoryTenantStore,
   SubdomainResolver,
   TenancyManager,
   TenantCacheScope,
-} from '@formwork/tenancy';
+} from '@carpentry/tenancy';
 
 const tenantStore = new InMemoryTenantStore();
 await tenantStore.create({

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ui
+ * @module @carpentry/ui
  * @description UI bridge — islands architecture, SSR shells, and framework-agnostic helpers.
  *
  * Use this package to build "island" pages:
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { Island, IslandRenderer, useForm } from '@formwork/ui';
+ * import { Island, IslandRenderer, useForm } from '@carpentry/ui';
  *
  * const Counter = Island({
  *   name: 'Counter',

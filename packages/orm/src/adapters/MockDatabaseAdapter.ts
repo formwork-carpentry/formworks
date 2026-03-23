@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Mock database adapter for testing — records all queries, returns configured results
  * @patterns Adapter (implements IDatabaseAdapter), Test Double
  * @principles LSP — fully substitutable for any real adapter
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@formwork/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@carpentry/core/contracts';
 
 /**
  * MockDatabaseAdapter — records executed queries and returns queued {@link QueryResult} rows.

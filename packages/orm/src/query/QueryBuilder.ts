@@ -1,12 +1,12 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Fluent QueryBuilder — produces AST consumed by database adapters, not raw SQL
  * @patterns Builder (fluent chaining), Visitor (AST traversal by adapters)
  * @principles SRP — builds queries only; DIP — depends on IDatabaseAdapter interface
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult, IPaginator } from '@formwork/core/contracts';
-import type { Dictionary } from '@formwork/core/types';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult, IPaginator } from '@carpentry/core/contracts';
+import type { Dictionary } from '@carpentry/core/types';
 import { compileQuery } from './sql-compiler.js';
 
 // Re-export types so existing imports don't break
@@ -21,7 +21,7 @@ import type { QueryAST } from './sql-compiler.js';
  *
  * @example
  * ```ts
- * import { QueryBuilder, MockDatabaseAdapter } from '@formwork/orm';
+ * import { QueryBuilder, MockDatabaseAdapter } from '@carpentry/orm';
  *
  * const adapter = new MockDatabaseAdapter().queueResult([{ id: 1 }], 1);
  * const qb = new QueryBuilder(adapter, 'users');

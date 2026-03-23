@@ -8,8 +8,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@formwork/core': path.resolve(__dirname, '../core/src/index.ts'),
-      '@formwork/faker': path.resolve(__dirname, '../faker/src/index.ts'),
+      '@carpentry/core': path.resolve(__dirname, '../core/src/index.ts'),
+      '@carpentry/faker': path.resolve(__dirname, '../faker/src/index.ts'),
     },
   },
 });

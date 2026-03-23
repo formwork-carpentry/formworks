@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description BaseRelation — abstract base for all relation types
  * @patterns Template Method
  */
 
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
-import type { Dictionary } from '@formwork/core/types';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
+import type { Dictionary } from '@carpentry/core/types';
 import type { QueryBuilder } from '../query/QueryBuilder.js';
 import { BaseModel } from '../model/BaseModel.js';
 

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/graphql
+ * @module @carpentry/core/contracts/graphql
  * @description GraphQL contracts - schema, type definition, and resolver interfaces.
  *
  * Implementations: SchemaBuilder, DataLoader, PubSub

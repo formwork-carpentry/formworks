@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description Cache manager with pluggable adapters (Memory, Null, Redis via external package).
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { CacheManager, TaggedCache } from '@formwork/cache';
+ * import { CacheManager, TaggedCache } from '@carpentry/cache';
  *
  * const manager = new CacheManager('memory', {
  *   memory: { driver: 'memory' },

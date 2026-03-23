@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Security headers middleware — sets X-Frame-Options, CSP, HSTS, etc.
  * @patterns Strategy (configurable header sets)
  * @principles OCP (extend via config), SRP (only security headers)
@@ -97,7 +97,7 @@ export type NextFn = (req: CarpenterRequest) => Promise<CarpenterResponse>;
  *
  * @example
  * ```ts
- * import { SecureHeadersMiddleware } from '@formwork/http';
+ * import { SecureHeadersMiddleware } from '@carpentry/http';
  * const mw = new SecureHeadersMiddleware({ frameOptions: 'DENY' });
  * ```
  */

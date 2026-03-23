@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Tests for BaseModel (CARP-018) — Active Record, Memento, Observer patterns
  */
 

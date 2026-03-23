@@ -14,7 +14,7 @@ function makeTenant(slug: string, id: string | number = slug): Tenant {
 
 // ── Resolvers ─────────────────────────────────────────────
 
-describe('@formwork/tenancy: SubdomainResolver', () => {
+describe('@carpentry/tenancy: SubdomainResolver', () => {
   const resolver = new SubdomainResolver('app.com');
 
   it('resolves subdomain', async () => {
@@ -38,7 +38,7 @@ describe('@formwork/tenancy: SubdomainResolver', () => {
   });
 });
 
-describe('@formwork/tenancy: PathResolver', () => {
+describe('@carpentry/tenancy: PathResolver', () => {
   it('resolves first path segment', async () => {
     const resolver = new PathResolver();
     expect(await resolver.resolve({ path: '/acme/dashboard' })).toBe('acme');
@@ -55,7 +55,7 @@ describe('@formwork/tenancy: PathResolver', () => {
   });
 });
 
-describe('@formwork/tenancy: HeaderResolver', () => {
+describe('@carpentry/tenancy: HeaderResolver', () => {
   it('resolves from header', async () => {
     const resolver = new HeaderResolver('x-tenant-id');
     expect(await resolver.resolve({ headers: { 'x-tenant-id': 'acme' } })).toBe('acme');
@@ -67,7 +67,7 @@ describe('@formwork/tenancy: HeaderResolver', () => {
   });
 });
 
-describe('@formwork/tenancy: DomainResolver', () => {
+describe('@carpentry/tenancy: DomainResolver', () => {
   it('resolves from domain mapping', async () => {
     const resolver = new DomainResolver()
       .addMapping('acme.com', 'acme')
@@ -79,7 +79,7 @@ describe('@formwork/tenancy: DomainResolver', () => {
   });
 });
 
-describe('@formwork/tenancy: ChainResolver', () => {
+describe('@carpentry/tenancy: ChainResolver', () => {
   it('tries resolvers in order', async () => {
     const chain = new ChainResolver([
       new HeaderResolver(),
@@ -103,7 +103,7 @@ describe('@formwork/tenancy: ChainResolver', () => {
 
 // ── TenantStore ───────────────────────────────────────────
 
-describe('@formwork/tenancy: InMemoryTenantStore', () => {
+describe('@carpentry/tenancy: InMemoryTenantStore', () => {
   let store: InMemoryTenantStore;
 
   beforeEach(() => { store = new InMemoryTenantStore(); });
@@ -143,7 +143,7 @@ describe('@formwork/tenancy: InMemoryTenantStore', () => {
 
 // ── TenancyManager ───────────────────────────────────────
 
-describe('@formwork/tenancy: TenancyManager', () => {
+describe('@carpentry/tenancy: TenancyManager', () => {
   let manager: TenancyManager;
   let store: InMemoryTenantStore;
 
@@ -238,7 +238,7 @@ describe('@formwork/tenancy: TenancyManager', () => {
 
 // ── Facade ────────────────────────────────────────────────
 
-describe('@formwork/tenancy: Tenancy facade', () => {
+describe('@carpentry/tenancy: Tenancy facade', () => {
   beforeEach(async () => {
     const store = new InMemoryTenantStore();
     await store.create(makeTenant('acme', 1));
@@ -261,7 +261,7 @@ describe('@formwork/tenancy: Tenancy facade', () => {
 
 // ── TenantMigrator ────────────────────────────────────────
 
-describe('@formwork/tenancy: TenantMigrator', () => {
+describe('@carpentry/tenancy: TenantMigrator', () => {
   let store: InMemoryTenantStore;
   let exporter: InMemoryTenantExporter;
   let importer: InMemoryTenantImporter;

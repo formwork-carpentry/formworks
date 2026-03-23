@@ -1,5 +1,5 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description Auth Guards — SessionGuard for web routes, MemoryGuard for testing
  * @patterns Strategy (guard implementations), Adapter
  * @principles LSP — all guards substitutable; DIP — depends on IUserProvider/IHashManager
@@ -11,7 +11,7 @@ import type {
   IAuthenticatable,
   IHashManager,
   IUserProvider,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 
 /**
  * MemoryGuard — keeps the authenticated user in memory (for tests and simple apps).
@@ -20,7 +20,7 @@ import type {
  *
  * @example
  * ```ts
- * import { HashManager } from '@formwork/auth';
+ * import { HashManager } from '@carpentry/auth';
  *
  * const hasher = new HashManager('sha256');
  * const provider = new InMemoryUserProvider();

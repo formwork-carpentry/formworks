@@ -1,5 +1,5 @@
 /**
- * @module @formwork/realtime
+ * @module @carpentry/realtime
  * @description CollaborativeDoc — a CRDT-based collaborative document that supports
  * concurrent editing by multiple users without conflicts.
  *
@@ -89,7 +89,7 @@ export type CursorListener = (cursor: UserCursor) => void;
  *
  * Thread-safe for single-threaded JS runtimes (Node, Deno, browser).
  * For multi-server deployments, operations should be broadcast to all
- * replicas via the @formwork/realtime broadcaster.
+ * replicas via the @carpentry/realtime broadcaster.
  */
 export class CollaborativeDoc {
   /** Document ID (shared across all replicas) */

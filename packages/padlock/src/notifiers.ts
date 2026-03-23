@@ -1,11 +1,11 @@
 /**
- * @module @formwork/padlock/notifiers
+ * @module @carpentry/padlock/notifiers
  * @description Built-in Padlock notifier implementations for no-op usage and testing.
  * @patterns Null Object, Test Double
  * @principles SRP - token delivery concerns remain behind notifier implementations.
  */
 
-import type { IAuthenticatable } from "@formwork/core/contracts";
+import type { IAuthenticatable } from "@carpentry/core/contracts";
 import type { IPadlockNotifier, PadlockTokenRecord } from "./contracts.js";
 
 /**

@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/mail",
+  "name": "@carpentry/mail",
   "version": "1.0.0-alpha.0",
   "description": "Mail manager with pluggable adapters (SMTP, SES, Mailgun, Resend)",
   "type": "module",
@@ -17,10 +17,11 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*"
+    "@carpentry/core": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

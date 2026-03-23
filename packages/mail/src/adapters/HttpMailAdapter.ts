@@ -1,11 +1,11 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description HttpMailAdapter — sends mail via HTTP API (Mailgun, Resend, SendGrid, etc.)
  * @patterns Adapter (implements IMailAdapter), Strategy (provider-specific config)
  * @principles LSP (substitutable for SMTP/SES), SRP (HTTP mail dispatch only)
  */
 
-import type { IMailAdapter, MailMessage } from "@formwork/core/contracts";
+import type { IMailAdapter, MailMessage } from "@carpentry/core/contracts";
 
 export type HttpMailProvider = "mailgun" | "resend" | "sendgrid" | "postmark" | "custom";
 

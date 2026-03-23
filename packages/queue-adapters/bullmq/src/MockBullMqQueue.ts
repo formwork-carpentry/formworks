@@ -1,10 +1,10 @@
 /**
- * @module @formwork/queue-bullmq
+ * @module @carpentry/queue-bullmq
  * @description Mock BullMQ Queue for testing — no Redis needed.
  *
  * @example
  * ```ts
- * import { BullMqAdapter, MockBullMqQueue } from '@formwork/queue-bullmq';
+ * import { BullMqAdapter, MockBullMqQueue } from '@carpentry/queue-bullmq';
  * const mockQueue = new MockBullMqQueue();
  * const adapter = new BullMqAdapter(mockQueue);
  * await adapter.push({ name: 'Test', payload: {} });

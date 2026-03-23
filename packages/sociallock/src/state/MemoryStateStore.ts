@@ -1,5 +1,5 @@
 /**
- * @module @formwork/sociallock/state
+ * @module @carpentry/sociallock/state
  * @description In-memory OAuth state store for CSRF protection.
  */
 

@@ -72,7 +72,7 @@ npm run test:integration
 
 ```
 formworks/
-├── packages/               # All @formwork/* packages
+├── packages/               # All @carpentry/* packages
 │   ├── core/               # IoC container, config, env, exceptions
 │   ├── http/               # HTTP server & routing
 │   ├── orm/                # Database ORM abstraction
@@ -217,7 +217,7 @@ chore(deps): upgrade vitest to 4.x
 2. Create a `package.json` following the existing pattern:
    ```json
    {
-     "name": "@formwork/my-package",
+     "name": "@carpentry/my-package",
      "version": "1.0.0-alpha.0",
      "description": "...",
      "type": "module",

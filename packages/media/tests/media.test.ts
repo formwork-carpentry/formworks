@@ -18,7 +18,7 @@ function makeMedia(overrides: Partial<MediaItem> = {}): MediaItem {
 
 // ── MediaCollection ───────────────────────────────────────
 
-describe('@formwork/media: MediaCollection', () => {
+describe('@carpentry/media: MediaCollection', () => {
   let collection: MediaCollection;
 
   beforeEach(() => {
@@ -74,7 +74,7 @@ describe('@formwork/media: MediaCollection', () => {
 
 // ── TransformationPipeline ────────────────────────────────
 
-describe('@formwork/media: TransformationPipeline', () => {
+describe('@carpentry/media: TransformationPipeline', () => {
   const input: TransformInput = {
     buffer: Buffer.from('test image data'),
     mimeType: 'image/jpeg',
@@ -117,7 +117,7 @@ describe('@formwork/media: TransformationPipeline', () => {
 
 // ── DocumentGenerator ─────────────────────────────────────
 
-describe('@formwork/media: DocumentGenerator', () => {
+describe('@carpentry/media: DocumentGenerator', () => {
   let generator: DocumentGenerator;
 
   beforeEach(() => {
@@ -161,7 +161,7 @@ describe('@formwork/media: DocumentGenerator', () => {
 
 // ── CsvDocumentAdapter ────────────────────────────────────
 
-describe('@formwork/media: CsvDocumentAdapter', () => {
+describe('@carpentry/media: CsvDocumentAdapter', () => {
   const adapter = new CsvDocumentAdapter();
 
   it('generates CSV from rows', async () => {
@@ -219,7 +219,7 @@ describe('@formwork/media: CsvDocumentAdapter', () => {
 
 // ── HtmlDocumentAdapter ───────────────────────────────────
 
-describe('@formwork/media: HtmlDocumentAdapter', () => {
+describe('@carpentry/media: HtmlDocumentAdapter', () => {
   it('generates HTML from template function', async () => {
     const adapter = new HtmlDocumentAdapter();
     adapter.registerTemplate('voucher', (data) =>
@@ -248,7 +248,7 @@ describe('@formwork/media: HtmlDocumentAdapter', () => {
 
 // ── ArrayDocumentAdapter ──────────────────────────────────
 
-describe('@formwork/media: ArrayDocumentAdapter', () => {
+describe('@carpentry/media: ArrayDocumentAdapter', () => {
   it('records generated docs for assertions', async () => {
     const adapter = new ArrayDocumentAdapter('pdf');
     await adapter.generate({ name: 'invoice', data: {}, format: 'pdf' });
@@ -267,7 +267,7 @@ describe('@formwork/media: ArrayDocumentAdapter', () => {
 
 // ── MIME utilities ─────────────────────────────────────────
 
-describe('@formwork/media: MIME utilities', () => {
+describe('@carpentry/media: MIME utilities', () => {
   it('mimeFromExtension()', () => {
     expect(mimeFromExtension('jpg')).toBe('image/jpeg');
     expect(mimeFromExtension('.png')).toBe('image/png');

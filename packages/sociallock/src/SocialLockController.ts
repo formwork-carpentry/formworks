@@ -1,11 +1,11 @@
 /**
- * @module @formwork/sociallock/SocialLockController
+ * @module @carpentry/sociallock/SocialLockController
  * @description HTTP controller for OAuth social login.
  */
 
-import type { IAuthenticatable } from "@formwork/core/contracts";
-import type { IRequest } from "@formwork/core/contracts";
-import { CarpenterResponse } from "@formwork/http";
+import type { IAuthenticatable } from "@carpentry/core/contracts";
+import type { IRequest } from "@carpentry/core/contracts";
+import { CarpenterResponse } from "@carpentry/http";
 import { SocialLockError } from "./errors.js";
 import type { SocialLockService } from "./SocialLockService.js";
 

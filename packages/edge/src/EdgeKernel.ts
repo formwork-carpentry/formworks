@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description EdgeKernel — a lightweight, zero-dependency HTTP kernel designed for edge runtimes
  * (Cloudflare Workers, Deno Deploy, Vercel Edge, Fastly Compute).
  *
@@ -18,7 +18,7 @@
  * @example
  * ```ts
  * // Cloudflare Workers
- * import { EdgeKernel, edgeJson, edgeCors } from '@formwork/edge';
+ * import { EdgeKernel, edgeJson, edgeCors } from '@carpentry/edge';
  *
  * const kernel = new EdgeKernel();
  * kernel.use(edgeCors({ origin: 'https://myapp.com' }));

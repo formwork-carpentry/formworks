@@ -1,10 +1,10 @@
 /**
- * @module @formwork/core/application
+ * @module @carpentry/core/application
  * @description Application lifecycle — bootstrap, service provider registration, and app shutdown.
  *
  * @example
  * ```ts
- * import { Application } from '@formwork/core/application';
+ * import { Application } from '@carpentry/core/application';
  *
  * const app = Application.create('my-app');
  * app.register(MyServiceProvider);

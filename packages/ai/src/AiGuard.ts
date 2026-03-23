@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description AiGuardMiddleware — security layer for AI requests.
  * Detects PII (personally identifiable information), prompt injection attempts,
  * and applies content filtering before messages reach the AI provider.

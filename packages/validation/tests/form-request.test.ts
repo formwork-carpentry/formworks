@@ -1,11 +1,11 @@
 /**
- * @module @formwork/validation
+ * @module @carpentry/validation
  * @description Tests for FormRequest (Sprint 12 spec: FormRequest class)
  */
 
 import { describe, it, expect } from 'vitest';
 import { FormRequest } from '../src/FormRequest.js';
-import type { ValidationRules } from '@formwork/core/contracts';
+import type { ValidationRules } from '@carpentry/core/contracts';
 
 class StoreUserRequest extends FormRequest {
   rules(): ValidationRules {

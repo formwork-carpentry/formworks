@@ -1,12 +1,12 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description Null cache store — always misses, never stores. For testing "no cache" scenarios.
  * @patterns Null Object
  * @principles LSP — substitutable for any ICacheStore
  */
 
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 
 /**
  * NullCacheStore — no-op cache that always misses.

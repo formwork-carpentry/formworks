@@ -1,11 +1,11 @@
 /**
- * @module @formwork/notifications
+ * @module @carpentry/notifications
  * @description Notification types, channel interfaces, BaseNotification
  * @patterns Template Method (BaseNotification)
  */
 
 /**
- * @module @formwork/notifications
+ * @module @carpentry/notifications
  * @description Unified notification system — one Notification, many Channels
  *
  * Architecture:

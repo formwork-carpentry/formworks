@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { SchemaBuilder, DataLoader } from '../src/index.js';
 
-describe('@formwork/graphql: SchemaBuilder', () => {
+describe('@carpentry/graphql: SchemaBuilder', () => {
   let schema: SchemaBuilder;
 
   beforeEach(() => {
@@ -159,7 +159,7 @@ describe('@formwork/graphql: SchemaBuilder', () => {
   });
 });
 
-describe('@formwork/graphql: DataLoader', () => {
+describe('@carpentry/graphql: DataLoader', () => {
   it('batches multiple loads into single call', async () => {
     let batchCalls = 0;
     const loader = new DataLoader<number, string>(async (keys) => {

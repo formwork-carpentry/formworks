@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description MigrationRunner — executes and tracks migrations
  * @patterns Command (each migration is a command)
  */
 
 import { Schema } from './Schema.js';
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
 
 export interface MigrationRecord {
   name: string;

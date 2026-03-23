@@ -8,7 +8,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@formwork/core': path.resolve(__dirname, '../core/src'),
+      '@carpentry/core': path.resolve(__dirname, '../core/src'),
       // Allow relative ../../../core/src paths to resolve .ts from .js
     },
     extensions: ['.ts', '.js', '.mjs'],

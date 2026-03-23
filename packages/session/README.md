@@ -1,4 +1,4 @@
-# @formwork/session
+# @carpentry/session
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/session
+npm install @carpentry/session
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworksession from '@formwork/session';
+import * as formworksession from '@carpentry/session';
 
 // Use the package API in your application modules
 ```

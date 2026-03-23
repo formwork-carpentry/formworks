@@ -1,4 +1,4 @@
-# @formwork/realtime
+# @carpentry/realtime
 
 Real-time: presence, CRDT collaboration, live cursors
 
@@ -11,13 +11,13 @@ Real-time: presence, CRDT collaboration, live cursors
 ## Installation
 
 ```bash
-npm install @formwork/realtime
+npm install @carpentry/realtime
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkrealtime from '@formwork/realtime';
+import * as formworkrealtime from '@carpentry/realtime';
 
 // Use the package API in your application modules
 ```

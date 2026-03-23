@@ -1,4 +1,4 @@
-# @formwork/http
+# @carpentry/http
 
 HTTP kernel, routing, request/response, middleware, controllers, sessions
 
@@ -11,13 +11,13 @@ HTTP kernel, routing, request/response, middleware, controllers, sessions
 ## Installation
 
 ```bash
-npm install @formwork/http
+npm install @carpentry/http
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkhttp from '@formwork/http';
+import * as formworkhttp from '@carpentry/http';
 
 // Use the package API in your application modules
 ```

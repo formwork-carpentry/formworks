@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { InMemoryFlagProvider, Experiment, setFlagProvider, feature } from '../src/index.js';
 
-describe('@formwork/flags: InMemoryFlagProvider', () => {
+describe('@carpentry/flags: InMemoryFlagProvider', () => {
   let flags: InMemoryFlagProvider;
 
   beforeEach(() => { flags = new InMemoryFlagProvider(); });
@@ -91,7 +91,7 @@ describe('@formwork/flags: InMemoryFlagProvider', () => {
   });
 });
 
-describe('@formwork/flags: Experiment', () => {
+describe('@carpentry/flags: Experiment', () => {
   it('assigns variant deterministically', () => {
     const exp = new Experiment('button-color', [
       { name: 'control', value: 'blue', weight: 50 },
@@ -137,7 +137,7 @@ describe('@formwork/flags: Experiment', () => {
   });
 });
 
-describe('@formwork/flags: feature() helper', () => {
+describe('@carpentry/flags: feature() helper', () => {
   it('returns false when no provider set', async () => {
     expect(await feature('anything')).toBe(false);
   });

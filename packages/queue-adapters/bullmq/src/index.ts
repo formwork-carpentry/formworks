@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue-bullmq
+ * @module @carpentry/queue-bullmq
  * @description BullMqAdapter — production queue adapter backed by Redis via BullMQ.
  *
  * Wraps BullMQ's Queue with the IQueueAdapter interface. Jobs are serialized to JSON,
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { BullMqAdapter, MockBullMqQueue } from '@formwork/queue-bullmq';
+ * import { BullMqAdapter, MockBullMqQueue } from '@carpentry/queue-bullmq';
  *
  * const mockQueue = new MockBullMqQueue();
  * const adapter = new BullMqAdapter(mockQueue);
@@ -18,7 +18,7 @@
  * ```
  */
 
-import type { IQueueAdapter, QueuedJob } from '@formwork/core/contracts';
+import type { IQueueAdapter, QueuedJob } from '@carpentry/core/contracts';
 import type { IBullMqQueue, BullMqAdapterConfig } from './types.js';
 
 export { type IBullMqQueue, type BullMqAdapterConfig } from './types.js';
@@ -91,7 +91,7 @@ export class BullMqAdapter implements IQueueAdapter {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * Create a QueueManager-compatible driver factory for the BullMQ adapter.
@@ -102,7 +102,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  * @example
  * ```ts
  * import { Queue } from 'bullmq';
- * import { createBullMqDriverFactory } from '@formwork/queue-bullmq';
+ * import { createBullMqDriverFactory } from '@carpentry/queue-bullmq';
  *
  * queueManager.registerDriver('bullmq', createBullMqDriverFactory(
  *   (cfg) => new Queue(cfg['queueName'] as string ?? 'default', { connection: cfg['connection'] }),

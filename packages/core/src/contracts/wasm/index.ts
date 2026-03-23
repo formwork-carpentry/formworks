@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/wasm
+ * @module @carpentry/core/contracts/wasm
  * @description WebAssembly contracts - module loading and execution.
  *
  * Implementations: WasmLoader, WasmManager, InMemoryWasmModule

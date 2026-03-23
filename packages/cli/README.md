@@ -1,4 +1,4 @@
-# @formwork/cli
+# @carpentry/cli
 
 carpenter CLI: generators, migrations, serve, build
 
@@ -11,13 +11,13 @@ carpenter CLI: generators, migrations, serve, build
 ## Installation
 
 ```bash
-npm install @formwork/cli
+npm install @carpentry/cli
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkcli from '@formwork/cli';
+import * as formworkcli from '@carpentry/cli';
 
 // Use the package API in your application modules
 ```

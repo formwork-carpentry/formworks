@@ -1,5 +1,5 @@
 /**
- * @module @formwork/helpers
+ * @module @carpentry/helpers
  * @description Str, Arr, and Collection utilities — the everyday helpers.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { Arr, Str, collect } from '@formwork/helpers';
+ * import { Arr, Str, collect } from '@carpentry/helpers';
  *
  * const users = [{ id: 1 }, { id: 2 }];
  * const ids = Arr.pluck(users, 'id'); // [1, 2]
@@ -257,7 +257,7 @@ export const Arr = {
  *
  * @example
  * ```ts
- * import { Collection } from '@formwork/helpers';
+ * import { Collection } from '@carpentry/helpers';
  * Collection.of([{ id: 1 }, { id: 2 }]).pluck('id').toArray();
  * ```
  */

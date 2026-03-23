@@ -1,4 +1,4 @@
-# @formwork/padlock
+# @carpentry/padlock
 
 Higher-level authentication workflows and route/provider integration for Carpenter
 
@@ -11,13 +11,13 @@ Higher-level authentication workflows and route/provider integration for Carpent
 ## Installation
 
 ```bash
-npm install @formwork/padlock
+npm install @carpentry/padlock
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkpadlock from '@formwork/padlock';
+import * as formworkpadlock from '@carpentry/padlock';
 
 // Use the package API in your application modules
 ```

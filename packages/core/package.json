@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/core",
+  "name": "@carpentry/core",
   "version": "1.0.0-alpha.0",
   "description": "Framework core: IoC container, config, env, exceptions, support utilities",
   "type": "module",
@@ -19,5 +19,6 @@
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

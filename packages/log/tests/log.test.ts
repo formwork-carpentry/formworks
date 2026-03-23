@@ -9,7 +9,7 @@ import {
 // APPLICATION LOGGING
 // ════════════════════════════════════════════════════════════
 
-describe('@formwork/log: Logger', () => {
+describe('@carpentry/log: Logger', () => {
   let channel: ArrayChannel;
   let logger: Logger;
 
@@ -84,7 +84,7 @@ describe('@formwork/log: Logger', () => {
 
 // ── ArrayChannel assertions ───────────────────────────────
 
-describe('@formwork/log: ArrayChannel', () => {
+describe('@carpentry/log: ArrayChannel', () => {
   let channel: ArrayChannel;
 
   beforeEach(() => { channel = new ArrayChannel(); });
@@ -137,7 +137,7 @@ describe('@formwork/log: ArrayChannel', () => {
 
 // ── Other channels ────────────────────────────────────────
 
-describe('@formwork/log: JsonChannel', () => {
+describe('@carpentry/log: JsonChannel', () => {
   it('outputs structured JSON lines', () => {
     const channel = new JsonChannel();
     new Logger(channel).info('request handled', { method: 'GET', path: '/users' });
@@ -153,7 +153,7 @@ describe('@formwork/log: JsonChannel', () => {
   });
 });
 
-describe('@formwork/log: NullChannel', () => {
+describe('@carpentry/log: NullChannel', () => {
   it('discards everything', () => {
     const channel = new NullChannel();
     new Logger(channel).error('ignored');
@@ -161,7 +161,7 @@ describe('@formwork/log: NullChannel', () => {
   });
 });
 
-describe('@formwork/log: StackChannel', () => {
+describe('@carpentry/log: StackChannel', () => {
   it('fan-out to multiple channels', () => {
     const a = new ArrayChannel('chan-a');
     const b = new ArrayChannel('chan-b');
@@ -181,7 +181,7 @@ describe('@formwork/log: StackChannel', () => {
 
 // ── LogManager ────────────────────────────────────────────
 
-describe('@formwork/log: LogManager', () => {
+describe('@carpentry/log: LogManager', () => {
   let manager: LogManager;
 
   beforeEach(() => { manager = new LogManager('console'); });
@@ -215,7 +215,7 @@ describe('@formwork/log: LogManager', () => {
 
 // ── Log Facade ────────────────────────────────────────────
 
-describe('@formwork/log: Log Facade', () => {
+describe('@carpentry/log: Log Facade', () => {
   let fake: ArrayChannel;
 
   beforeEach(() => {
@@ -249,7 +249,7 @@ describe('@formwork/log: Log Facade', () => {
 // AUDIT LOGGING
 // ════════════════════════════════════════════════════════════
 
-describe('@formwork/log: AuditLogger', () => {
+describe('@carpentry/log: AuditLogger', () => {
   let channel: InMemoryAuditChannel;
   let audit: AuditLogger;
 
@@ -353,7 +353,7 @@ describe('@formwork/log: AuditLogger', () => {
 
 // ── InMemoryAuditChannel queries ──────────────────────────
 
-describe('@formwork/log: InMemoryAuditChannel queries', () => {
+describe('@carpentry/log: InMemoryAuditChannel queries', () => {
   let channel: InMemoryAuditChannel;
   let audit: AuditLogger;
 
@@ -408,7 +408,7 @@ describe('@formwork/log: InMemoryAuditChannel queries', () => {
 
 // ── LogAuditChannel ───────────────────────────────────────
 
-describe('@formwork/log: LogAuditChannel', () => {
+describe('@carpentry/log: LogAuditChannel', () => {
   it('writes audit entries to app logger', async () => {
     const logChannel = new ArrayChannel('app');
     const logger = new Logger(logChannel);
@@ -424,7 +424,7 @@ describe('@formwork/log: LogAuditChannel', () => {
 
 // ── Audit Facade ──────────────────────────────────────────
 
-describe('@formwork/log: Audit Facade', () => {
+describe('@carpentry/log: Audit Facade', () => {
   let channel: InMemoryAuditChannel;
 
   beforeEach(() => {

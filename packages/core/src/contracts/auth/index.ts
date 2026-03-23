@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/auth
+ * @module @carpentry/core/contracts/auth
  * @description Authentication contracts - guard and user provider interfaces.
  *
  * Implementations: JwtGuard, MemoryGuard, InMemoryUserProvider

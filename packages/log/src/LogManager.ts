@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description LogManager — channel registration and Logger factory
  * @patterns Factory Method (creates Loggers), Strategy (selects channels)
  */
@@ -19,7 +19,7 @@ import { ConsoleChannel, NullChannel, ArrayChannel } from './channels.js';
  *
  * @example
  * ```ts
- * import { LogManager, ArrayChannel, setLogManager, Log } from '@formwork/log';
+ * import { LogManager, ArrayChannel, setLogManager, Log } from '@carpentry/log';
  *
  * const channel = new ArrayChannel('test');
  * const manager = new LogManager('test').addChannel(channel);

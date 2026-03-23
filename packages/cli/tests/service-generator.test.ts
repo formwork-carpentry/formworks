@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { generateTypeScript, parseProto } from '../src/generators/ServiceGenerator.js';
 
-describe('@formwork/cli: service generator', () => {
+describe('@carpentry/cli: service generator', () => {
   it('parses proto messages and service methods', () => {
     const source = [
       'message GetUserRequest {',

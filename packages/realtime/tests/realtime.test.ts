@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { InMemoryBroadcaster, ChannelManager, setBroadcaster, Broadcast } from '../src/index.js';
 
-describe('@formwork/realtime: InMemoryBroadcaster', () => {
+describe('@carpentry/realtime: InMemoryBroadcaster', () => {
   let broadcaster: InMemoryBroadcaster;
 
   beforeEach(() => { broadcaster = new InMemoryBroadcaster(); });
@@ -87,7 +87,7 @@ describe('@formwork/realtime: InMemoryBroadcaster', () => {
   });
 });
 
-describe('@formwork/realtime: ChannelManager', () => {
+describe('@carpentry/realtime: ChannelManager', () => {
   let broadcaster: InMemoryBroadcaster;
   let manager: ChannelManager;
 
@@ -136,7 +136,7 @@ describe('@formwork/realtime: ChannelManager', () => {
   });
 });
 
-describe('@formwork/realtime: Broadcast facade', () => {
+describe('@carpentry/realtime: Broadcast facade', () => {
   let broadcaster: InMemoryBroadcaster;
 
   beforeEach(() => {

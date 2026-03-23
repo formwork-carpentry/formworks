@@ -1,4 +1,4 @@
-# @formwork/helpers
+# @carpentry/helpers
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/helpers
+npm install @carpentry/helpers
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkhelpers from '@formwork/helpers';
+import * as formworkhelpers from '@carpentry/helpers';
 
 // Use the package API in your application modules
 ```

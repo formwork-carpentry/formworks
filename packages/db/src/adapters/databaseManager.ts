@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description DatabaseManager — resolves database adapters by connection name from config.
  * Extends {@link CarpenterFactoryBase} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -9,8 +9,8 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase, type CarpenterFactoryAdapter } from '@formwork/core/adapters';
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
+import { CarpenterFactoryBase, type CarpenterFactoryAdapter } from '@carpentry/core/adapters';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
 
 export interface DatabaseConnectionConfig {
   /** Driver name: 'sqlite', 'postgres', 'mysql', 'mongodb', 'memory' */

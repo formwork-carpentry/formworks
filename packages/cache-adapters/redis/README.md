@@ -1,4 +1,4 @@
-# @formwork/cache-redis
+# @carpentry/cache-redis
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/cache-redis
+npm install @carpentry/cache-redis
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkcacheredis from '@formwork/cache-redis';
+import * as formworkcacheredis from '@carpentry/cache-redis';
 
 // Use the package API in your application modules
 ```

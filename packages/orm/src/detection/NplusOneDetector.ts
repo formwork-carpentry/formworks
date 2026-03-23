@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description N+1 Query Detector — dev-mode middleware that tracks queries per request
  * and warns when a pattern suggests N+1 query problems.
  * @patterns Observer (listens to query events), Proxy (wraps query execution)

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/queue
+ * @module @carpentry/core/contracts/queue
  * @description Queue adapter contract - all queue drivers implement this interface.
  *
  * Implementations: SyncQueue, MemoryQueue, DatabaseQueueAdapter, BullMqAdapter

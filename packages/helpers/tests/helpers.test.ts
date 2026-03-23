@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { Str, Arr, Collection, collect } from '../src/index.js';
 
-describe('@formwork/helpers: Str', () => {
+describe('@carpentry/helpers: Str', () => {
   it('camel', () => { expect(Str.camel('hello_world')).toBe('helloWorld'); expect(Str.camel('foo-bar')).toBe('fooBar'); });
   it('snake', () => { expect(Str.snake('helloWorld')).toBe('hello_world'); });
   it('kebab', () => { expect(Str.kebab('helloWorld')).toBe('hello-world'); });
@@ -21,7 +21,7 @@ describe('@formwork/helpers: Str', () => {
   it('is', () => { expect(Str.is('user.*', 'user.created')).toBe(true); expect(Str.is('user.*', 'post.created')).toBe(false); });
 });
 
-describe('@formwork/helpers: Arr', () => {
+describe('@carpentry/helpers: Arr', () => {
   it('get (dot notation)', () => {
     const obj = { user: { address: { city: 'NYC' } } };
     expect(Arr.get(obj, 'user.address.city')).toBe('NYC');
@@ -71,7 +71,7 @@ describe('@formwork/helpers: Arr', () => {
   it('zip', () => { expect(Arr.zip(['a', 'b'], [1, 2])).toEqual([['a', 1], ['b', 2]]); });
 });
 
-describe('@formwork/helpers: Collection', () => {
+describe('@carpentry/helpers: Collection', () => {
   it('chaining: filter → map → toArray', () => {
     const result = collect([1, 2, 3, 4, 5])
       .filter((n) => n > 2)

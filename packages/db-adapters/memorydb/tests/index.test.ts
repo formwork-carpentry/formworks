@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { SQLiteMemoryAdapter } from '../src/index.js';
 
-describe('@formwork/db-adapters: SQLiteMemoryAdapter', () => {
+describe('@carpentry/db-adapters: SQLiteMemoryAdapter', () => {
   let db: SQLiteMemoryAdapter;
 
   beforeEach(() => { db = new SQLiteMemoryAdapter(); });

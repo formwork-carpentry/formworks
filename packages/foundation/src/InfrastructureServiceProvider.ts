@@ -1,5 +1,5 @@
 /**
- * @module @formwork/foundation
+ * @module @carpentry/foundation
  * @description InfrastructureServiceProvider — reads config and wires all infrastructure
  * managers (DB, cache, queue, mail, storage, bridge, logger, events, validator) into the container.
  * Lives in foundation, NOT core, to keep core lean and dependency-free.
@@ -16,8 +16,8 @@
  *             DRY (shared BaseManager), Convention over Configuration
  */
 
-import { ServiceProvider } from '@formwork/core/container';
-import { Config, ConfigResolver, buildDefaultConfig } from '@formwork/core/config';
+import { ServiceProvider } from '@carpentry/core/container';
+import { Config, ConfigResolver, buildDefaultConfig } from '@carpentry/core/config';
 import {
   DatabaseInfrastructureProvider,
   CacheInfrastructureProvider,
@@ -45,8 +45,8 @@ import {
  *
  * @example
  * ```ts
- * import { Application } from '@formwork/core';
- * import { InfrastructureServiceProvider } from '@formwork/foundation';
+ * import { Application } from '@carpentry/core';
+ * import { InfrastructureServiceProvider } from '@carpentry/foundation';
  *
  * const app = await Application.create({
  *   providers: [InfrastructureServiceProvider],

@@ -1,12 +1,12 @@
 /**
- * @module @formwork/testing
+ * @module @carpentry/testing
  * @description Testing utilities — TestCase with HTTP helpers, service test doubles, and assertion utilities.
  * @patterns Template Method (TestCase lifecycle), Facade (service test doubles), Builder (TestRequest)
  * @principles SRP — testing infrastructure only; DIP — test doubles satisfy the same interfaces as real services
  *
  * @example
  * ```ts
- * import { TestRequest, TestResponse, assertThrows } from '@formwork/testing';
+ * import { TestRequest, TestResponse, assertThrows } from '@carpentry/testing';
  *
  * // Build a synthetic Request for framework/unit tests
  * const req = TestRequest.get('/health').withHeader('x-test', '1').build();

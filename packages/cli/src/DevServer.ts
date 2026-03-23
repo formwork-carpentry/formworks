@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description DevServer — watches source files and auto-restarts the application
  * on changes. Provides the `carpenter dev` command for local development.
  *
@@ -14,7 +14,7 @@
  *
  * NOTE: This is NOT browser HMR (Vite/webpack-style). It's server-side
  * auto-restart, like nodemon. For browser HMR, use the Vite integration
- * with @formwork/ui.
+ * with @carpentry/formworks/ui.
  *
  * @patterns Observer (file system events), Template Method (restart lifecycle)
  * @principles SRP (file watching + process management only)
@@ -82,7 +82,7 @@ export interface DevServerState {
  *
  * @example
  * ```ts
- * import { DevServer } from '@formwork/cli';
+ * import { DevServer } from '@carpentry/cli';
  *
  * const dev = new DevServer({ entry: 'src/server.ts', watch: ['src'], debounceMs: 250 });
  * await dev.start();

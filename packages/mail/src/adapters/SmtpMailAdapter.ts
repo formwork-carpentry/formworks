@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description SmtpMailAdapter — sends email via SMTP using nodemailer.
  *
  * WHY: HTTP mail APIs (Resend, SendGrid) require vendor accounts and can't send
@@ -28,7 +28,7 @@
  * ```
  */
 
-import type { IMailAdapter, MailMessage } from "@formwork/core/contracts";
+import type { IMailAdapter, MailMessage } from "@carpentry/core/contracts";
 
 /** Nodemailer-compatible transport interface — allows mock injection */
 export interface ISmtpTransport {
@@ -104,7 +104,7 @@ export class SmtpMailAdapter implements IMailAdapter {
    */
   async send(message: MailMessage): Promise<void> {
     const normalizeAddr = (
-      v: string | import("@formwork/core/contracts").MailAddress[] | undefined,
+      v: string | import("@carpentry/core/contracts").MailAddress[] | undefined,
     ): string | undefined => {
       if (!v) return undefined;
       if (typeof v === "string") return v;

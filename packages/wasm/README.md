@@ -1,4 +1,4 @@
-# @formwork/wasm
+# @carpentry/wasm
 
 WASM module loader with TypeScript bindings
 
@@ -11,13 +11,13 @@ WASM module loader with TypeScript bindings
 ## Installation
 
 ```bash
-npm install @formwork/wasm
+npm install @carpentry/wasm
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkwasm from '@formwork/wasm';
+import * as formworkwasm from '@carpentry/wasm';
 
 // Use the package API in your application modules
 ```

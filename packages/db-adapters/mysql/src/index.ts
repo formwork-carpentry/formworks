@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mysql
+ * @module @carpentry/db-mysql
  * @description Public entrypoint for the MySQL adapter package.
  */
 export { MySQLAdapter } from './mysqlAdapter.js';
@@ -18,7 +18,7 @@ export { loadMySQLDriver } from './helpers/driverLoader.js';
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 import { MySQLAdapter } from './mysqlAdapter.js';
 import type { MySQLConnectionConfig } from './types.js';
 
@@ -27,7 +27,7 @@ import type { MySQLConnectionConfig } from './types.js';
  *
  * @example
  * ```ts
- * import { mysqlAdapter } from '@formwork/db-mysql';
+ * import { mysqlAdapter } from '@carpentry/db-mysql';
  * dbManager.registerDriver('mysql', mysqlAdapter);
  * ```
  */

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/otel
+ * @module @carpentry/otel
  * @description OpenTelemetry-compatible tracing and metrics — in-memory for testing, pluggable exporters
  * @patterns Strategy (exporters), Builder (span), Observer (metric recording)
  * @principles OCP — new exporters (Jaeger, Zipkin, OTLP) without modifying core
@@ -12,7 +12,7 @@
  *
  * @example
  * ```ts
- * import { Tracer, OtlpExporter, instrumentHttp } from '@formwork/otel';
+ * import { Tracer, OtlpExporter, instrumentHttp } from '@carpentry/otel';
  *
  * const tracer = new Tracer();
  * const exporter = new OtlpExporter({

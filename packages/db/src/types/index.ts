@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description Shared query types for database adapters.
  */
 

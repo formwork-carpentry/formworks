@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createFaker, fake } from "../src/index.js";
 
-describe("@formwork/faker", () => {
+describe("@carpentry/faker", () => {
   it("is deterministic for the same seed", () => {
     const a = createFaker("seed-1");
     const b = createFaker("seed-1");

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/sociallock/providers
+ * @module @carpentry/sociallock/providers
  * @description Built-in OAuth provider configuration factories.
  */
 

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/adapters
+ * @module @carpentry/core/adapters
  * @description Public subpath export for adapter base abstractions.
  */
 

@@ -56,7 +56,7 @@ Use consistent language across code, docs, tests, and examples:
 
 ```ts
 /**
- * @module @formwork/package-name
+ * @module @carpentry/package-name
  * @description One-line summary of what this package does.
  *
  * Use this package to:
@@ -65,7 +65,7 @@ Use consistent language across code, docs, tests, and examples:
  *
  * @example
  * ```ts
- * import { Foo } from '@formwork/package-name';
+ * import { Foo } from '@carpentry/package-name';
  * const foo = new Foo();
  * foo.doSomething();
  * ```
@@ -161,16 +161,16 @@ export function formatFileSize(bytes: number): string { ... }
 
 These packages follow the standard and serve as examples:
 
-- **@formwork/media** — Gold standard (types, collection, pipeline, docgen, mime, adapters)
-- **@formwork/foundation** — bootstrap, BootstrapOptions
-- **@formwork/events** — EventDispatcher, on, once, emit
-- **@formwork/cache** — CacheManager, store, registerDriver
-- **@formwork/core** — Module header
-- **@formwork/http** — Module header, CarpenterResponse.json
-- **@formwork/auth** — Module header
-- **@formwork/i18n** — Module header
-- **@formwork/helpers** — Module header
-- **@formwork/resilience** — Module header
-- **@formwork/http-client** — Module header
+- **@carpentry/media** — Gold standard (types, collection, pipeline, docgen, mime, adapters)
+- **@carpentry/foundation** — bootstrap, BootstrapOptions
+- **@carpentry/events** — EventDispatcher, on, once, emit
+- **@carpentry/cache** — CacheManager, store, registerDriver
+- **@carpentry/core** — Module header
+- **@carpentry/http** — Module header, CarpenterResponse.json
+- **@carpentry/auth** — Module header
+- **@carpentry/i18n** — Module header
+- **@carpentry/helpers** — Module header
+- **@carpentry/resilience** — Module header
+- **@carpentry/http-client** — Module header
 
 Additional packages (orm, storage, session, validation) were updated via parallel task.

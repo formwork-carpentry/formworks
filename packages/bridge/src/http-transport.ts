@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description HTTP-based RPC transport
  * @patterns Adapter (wraps fetch API)
  */
@@ -12,7 +12,7 @@ import type { BridgeMessage, BridgeResponse, ITransport } from "./types.js";
  *
  * @example
  * ```ts
- * import { HttpTransport } from '@formwork/bridge';
+ * import { HttpTransport } from '@carpentry/bridge';
  * const t = new HttpTransport();
  * t.mapService('users', 'https://users.internal/rpc');
  * ```

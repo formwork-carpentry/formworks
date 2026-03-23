@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Tenant store — retrieves and manages tenant data
  * @patterns Repository
  */
@@ -41,7 +41,7 @@ export interface ITenantStore {
  *
  * @example
  * ```ts
- * import { InMemoryTenantStore } from '@formwork/tenancy';
+ * import { InMemoryTenantStore } from '@carpentry/tenancy';
  *
  * const store = new InMemoryTenantStore();
  * await store.create({ id: '1', slug: 'acme', name: 'Acme', status: 'active', config: {} });

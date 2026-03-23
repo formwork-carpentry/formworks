@@ -1,4 +1,4 @@
-# @formwork/flags
+# @carpentry/flags
 
 Feature flags and A/B experimentation
 
@@ -11,13 +11,13 @@ Feature flags and A/B experimentation
 ## Installation
 
 ```bash
-npm install @formwork/flags
+npm install @carpentry/flags
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkflags from '@formwork/flags';
+import * as formworkflags from '@carpentry/flags';
 
 // Use the package API in your application modules
 ```

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db/exceptions
+ * @module @carpentry/db/exceptions
  * @description Stable subpath export for database exceptions.
  */
 

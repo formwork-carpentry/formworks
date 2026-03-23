@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail-smtp
+ * @module @carpentry/mail-smtp
  * @description Type definitions for the SMTP mail adapter.
  */
 

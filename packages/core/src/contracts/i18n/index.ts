@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/i18n
+ * @module @carpentry/core/contracts/i18n
  * @description Internationalization contracts - translation and pluralization.
  *
  * Implementations: Translator, ObjectLoader, MemoryLoader, Pluralizer

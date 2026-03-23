@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail-http
+ * @module @carpentry/mail-http
  * @description Type definitions for the HTTP mail adapter.
  */
 

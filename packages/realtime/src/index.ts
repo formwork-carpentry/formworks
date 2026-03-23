@@ -1,5 +1,5 @@
 /**
- * @module @formwork/realtime
+ * @module @carpentry/realtime
  * @description Realtime broadcasting — channels, presence, and collaboration primitives.
  * @patterns Mediator (broadcaster), Observer (channel subscriptions), Strategy (transport adapters)
  * @principles OCP — new transports (WebSocket, SSE, Pusher, Ably) without modifying core
@@ -12,7 +12,7 @@
  *
  * @example
  * ```ts
- * import { InMemoryBroadcaster, CollaborativeDoc } from '@formwork/realtime';
+ * import { InMemoryBroadcaster, CollaborativeDoc } from '@carpentry/realtime';
  *
  * const broadcaster = new InMemoryBroadcaster();
  * const doc = new CollaborativeDoc('doc-1');

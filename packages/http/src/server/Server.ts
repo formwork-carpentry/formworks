@@ -1,10 +1,10 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Server — wraps node:http around HttpKernel so the app actually listens on a port.
  *
  * @example
  * ```ts
- * import { serve } from '@formwork/http';
+ * import { serve } from '@carpentry/http';
  * import { createApp } from './app.js';
  *
  * const { kernel, config } = await createApp();

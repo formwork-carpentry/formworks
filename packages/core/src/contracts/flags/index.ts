@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/flags
+ * @module @carpentry/core/contracts/flags
  * @description Feature flag contracts - feature gating and experimentation.
  *
  * Implementations: InMemoryFlagProvider, Experiment

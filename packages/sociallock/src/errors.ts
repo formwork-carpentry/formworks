@@ -1,5 +1,5 @@
 /**
- * @module @formwork/sociallock/errors
+ * @module @carpentry/sociallock/errors
  * @description Domain errors for SocialLock.
  */
 

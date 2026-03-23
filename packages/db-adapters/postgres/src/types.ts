@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-postgres/types
+ * @module @carpentry/db-postgres/types
  * @description Shared PostgreSQL adapter configuration and driver contracts.
  */
 

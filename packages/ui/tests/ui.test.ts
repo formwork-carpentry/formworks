@@ -7,7 +7,7 @@ import {
 } from '../src/index.js';
 import type { ResolvedPage } from '../src/index.js';
 
-describe('@formwork/ui: UIManager', () => {
+describe('@carpentry/ui: UIManager', () => {
   let ui: UIManager;
 
   beforeEach(() => { ui = new UIManager(); });
@@ -105,7 +105,7 @@ describe('@formwork/ui: UIManager', () => {
   });
 });
 
-describe('@formwork/ui: ComponentRegistry', () => {
+describe('@carpentry/ui: ComponentRegistry', () => {
   let registry: ComponentRegistry;
 
   beforeEach(() => { registry = new ComponentRegistry(); });
@@ -134,7 +134,7 @@ describe('@formwork/ui: ComponentRegistry', () => {
   });
 });
 
-describe('@formwork/ui: MockRenderer', () => {
+describe('@carpentry/ui: MockRenderer', () => {
   it('records rendered pages', async () => {
     const renderer = new MockRenderer();
     await renderer.render({ component: 'Home', props: { x: 1 }, url: '/', version: '1' });
@@ -157,7 +157,7 @@ describe('@formwork/ui: MockRenderer', () => {
   });
 });
 
-describe('@formwork/ui: helpers', () => {
+describe('@carpentry/ui: helpers', () => {
   it('createLink()', () => {
     const link = createLink('/users', { method: 'GET', preserveScroll: true });
     expect(link.href).toBe('/users');
@@ -183,7 +183,7 @@ const testPage: ResolvedPage = {
 
 const mockResolve = (name: string) => name === 'Users/Index' ? {} : null;
 
-describe('@formwork/ui-adapters: ReactPageRenderer', () => {
+describe('@carpentry/ui-adapters: ReactPageRenderer', () => {
   it('renders page data into HTML shell', async () => {
     const renderer = new ReactPageRenderer({ resolve: mockResolve });
     const html = await renderer.render(testPage);
@@ -203,7 +203,7 @@ describe('@formwork/ui-adapters: ReactPageRenderer', () => {
   });
 });
 
-describe('@formwork/ui-adapters: VuePageRenderer', () => {
+describe('@carpentry/ui-adapters: VuePageRenderer', () => {
   it('renders page', async () => {
     const renderer = new VuePageRenderer({ resolve: mockResolve });
     const html = await renderer.render(testPage);
@@ -211,7 +211,7 @@ describe('@formwork/ui-adapters: VuePageRenderer', () => {
   });
 });
 
-describe('@formwork/ui-adapters: SveltePageRenderer', () => {
+describe('@carpentry/ui-adapters: SveltePageRenderer', () => {
   it('renders page', async () => {
     const renderer = new SveltePageRenderer({ resolve: mockResolve });
     const html = await renderer.render(testPage);
@@ -219,7 +219,7 @@ describe('@formwork/ui-adapters: SveltePageRenderer', () => {
   });
 });
 
-describe('@formwork/ui-adapters: SolidPageRenderer', () => {
+describe('@carpentry/ui-adapters: SolidPageRenderer', () => {
   it('renders page', async () => {
     const renderer = new SolidPageRenderer({ resolve: mockResolve });
     const html = await renderer.render(testPage);
@@ -227,7 +227,7 @@ describe('@formwork/ui-adapters: SolidPageRenderer', () => {
   });
 });
 
-describe('@formwork/ui-adapters: createPageRenderer', () => {
+describe('@carpentry/ui-adapters: createPageRenderer', () => {
   it('creates React renderer', () => {
     const r = createPageRenderer('react', { resolve: mockResolve });
     expect(r).toBeInstanceOf(ReactPageRenderer);

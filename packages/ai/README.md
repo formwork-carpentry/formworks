@@ -1,4 +1,4 @@
-# @formwork/ai
+# @carpentry/ai
 
 AI/LLM integration: providers, streaming, RAG, agents, MCP
 
@@ -11,13 +11,13 @@ AI/LLM integration: providers, streaming, RAG, agents, MCP
 ## Installation
 
 ```bash
-npm install @formwork/ai
+npm install @carpentry/ai
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkai from '@formwork/ai';
+import * as formworkai from '@carpentry/ai';
 
 // Use the package API in your application modules
 ```

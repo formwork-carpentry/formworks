@@ -1,5 +1,5 @@
 /**
- * @module @formwork/scheduler
+ * @module @carpentry/scheduler
  * @description Task scheduling — cron expressions, frequency builder, and due-task resolution (in-memory).
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { Scheduler } from '@formwork/scheduler';
+ * import { Scheduler } from '@carpentry/scheduler';
  *
  * const scheduler = new Scheduler();
  *

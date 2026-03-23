@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description AI Streaming — Server-Sent Events (SSE) parser for streaming AI responses,
  * stream() method extension for providers, and useStream() composable for clients.
  *

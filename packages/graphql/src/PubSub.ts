@@ -1,5 +1,5 @@
 /**
- * @module @formwork/graphql
+ * @module @carpentry/graphql
  * @description GraphQL Subscriptions — in-memory pub/sub engine for real-time GraphQL.
  *
  * WHY: GraphQL subscriptions let clients receive live updates (new messages, price changes,
@@ -42,11 +42,11 @@ export type Unsubscribe = () => void;
  * In-memory PubSub engine for GraphQL subscriptions.
  *
  * For multi-server deployments, extend this with Redis PubSub or
- * use the @formwork/realtime broadcaster as the transport.
+ * use the @carpentry/realtime broadcaster as the transport.
  *
  * @example
  * ```ts
- * import { PubSub } from '@formwork/graphql';
+ * import { PubSub } from '@carpentry/graphql';
  * const bus = new PubSub();
  * bus.subscribe('evt', console.log);
  * bus.publish('evt', { x: 1 });

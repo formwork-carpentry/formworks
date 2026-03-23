@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description Tests for AI providers, AIManager, and Agent (ReAct loop).
  *
  * Test strategy:
@@ -70,7 +70,7 @@ function createMockAI(responses: string[]): IAIProvider {
 // ANTHROPIC PROVIDER
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: AnthropicProvider', () => {
+describe('@carpentry/ai: AnthropicProvider', () => {
   it('sends messages in Anthropic format (system separate from messages)', async () => {
     const { fetch, captured } = createMockFetch({
       content: [{ type: 'text', text: 'Hello from Claude!' }],
@@ -134,7 +134,7 @@ describe('@formwork/ai: AnthropicProvider', () => {
 // OPENAI PROVIDER
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: OpenAIProvider', () => {
+describe('@carpentry/ai: OpenAIProvider', () => {
   it('sends messages in OpenAI chat completions format', async () => {
     const { fetch, captured } = createMockFetch({
       choices: [{ message: { content: 'Hi from GPT!' }, finish_reason: 'stop' }],
@@ -171,7 +171,7 @@ describe('@formwork/ai: OpenAIProvider', () => {
 // GROQ + OLLAMA (OpenAI-compatible)
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: GroqProvider', () => {
+describe('@carpentry/ai: GroqProvider', () => {
   it('uses Groq base URL and provider name', () => {
     const { fetch } = createMockFetch({});
     const p = new GroqProvider({ apiKey: 'x', fetchFn: fetch });
@@ -179,7 +179,7 @@ describe('@formwork/ai: GroqProvider', () => {
   });
 });
 
-describe('@formwork/ai: OllamaProvider', () => {
+describe('@carpentry/ai: OllamaProvider', () => {
   it('defaults to localhost:11434 and no API key required', () => {
     const { fetch } = createMockFetch({});
     const p = new OllamaProvider({ fetchFn: fetch });
@@ -191,7 +191,7 @@ describe('@formwork/ai: OllamaProvider', () => {
 // AI MANAGER
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: AIManager', () => {
+describe('@carpentry/ai: AIManager', () => {
   it('resolves default provider', () => {
     const { fetch } = createMockFetch({});
     const manager = new AIManager('anthropic', {
@@ -235,7 +235,7 @@ describe('@formwork/ai: AIManager', () => {
 // AI AGENT (ReAct Loop)
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: Agent', () => {
+describe('@carpentry/ai: Agent', () => {
   describe('direct answer (no tools needed)', () => {
     it('returns FINAL_ANSWER immediately', async () => {
       const agent = new Agent({

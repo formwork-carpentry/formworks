@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description HTTP layer — kernel, routing, request/response, middleware pipeline, and controllers.
  *
  * Use this package to:
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { Router, HttpKernel, CarpenterResponse } from '@formwork/http';
+ * import { Router, HttpKernel, CarpenterResponse } from '@carpentry/http';
  *
  * const router = new Router();
  * router.get('/health', () => CarpenterResponse.json({ status: 'ok' }));
@@ -29,6 +29,17 @@ export { CarpenterResponse, ViewResponse, response } from "./response/Response.j
 export { Pipeline } from "./middleware/Pipeline.js";
 export type { MiddlewareEntry, MiddlewareFunction } from "./middleware/Pipeline.js";
 export { Router } from "./router/Router.js";
+export {
+	buildRouteGauger,
+	defineRouteGaugerReference,
+	generateRouteGaugerFiles,
+} from "./router/route-gauger.js";
+export type {
+	RouteGaugerFile,
+	RouteGaugerEntry,
+	RouteParams,
+	RouteGaugerReference,
+} from "./router/route-gauger.js";
 export { HttpKernel } from "./kernel/HttpKernel.js";
 export type { HttpKernelOptions } from "./kernel/HttpKernel.js";
 export { ExceptionHandler } from "./kernel/ExceptionHandler.js";

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description Queue manager with pluggable adapters (sync, in-memory, database, and BullMQ via external adapters).
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { QueueManager } from '@formwork/queue';
+ * import { QueueManager } from '@carpentry/queue';
  *
  * const manager = new QueueManager('sync', {
  *   sync: { driver: 'sync' },

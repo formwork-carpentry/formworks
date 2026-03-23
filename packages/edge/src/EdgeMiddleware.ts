@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description Edge middleware — geo-routing, A/B testing, bot detection.
  *
  * @example
@@ -15,7 +15,7 @@
  * ```
  */
 
-import type { EdgeMiddleware, EdgeRequest } from "@formwork/core/contracts";
+import type { EdgeMiddleware, EdgeRequest } from "@carpentry/core/contracts";
 
 // ── Geo-Routing ───────────────────────────────────────────
 

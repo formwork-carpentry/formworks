@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description In-memory storage adapter — stores files in a Map for testing
  * @patterns Adapter (implements IStorageAdapter), Null Object variant
  * @principles LSP — substitutable for Local/S3/GCS adapters
@@ -10,7 +10,7 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 import { StorageFileNotFoundError } from "../exceptions/base.js";
 
 interface StoredFile {

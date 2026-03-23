@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/storage
+ * @module @carpentry/core/contracts/storage
  * @description File storage contract - all storage adapters implement this interface.
  *
  * Implementations: MemoryStorageAdapter, LocalStorageAdapter, S3StorageAdapter

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description BullMqAdapter — production queue adapter backed by Redis via BullMQ.
  *
  * WHY: In-memory and sync queues lose jobs on restart. BullMQ provides persistent,
@@ -28,7 +28,7 @@
  * ```
  */
 
-import type { IQueueAdapter, QueuedJob } from "@formwork/core/contracts";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/core/contracts";
 
 /** BullMQ-compatible Queue interface — allows mock injection */
 export interface IBullMqQueue {

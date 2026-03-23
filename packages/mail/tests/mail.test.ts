@@ -1,12 +1,12 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description Tests for Mail system (CARP-027)
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { ArrayMailAdapter, LogMailAdapter, BaseMailable } from '../src/adapters/Adapters.js';
 import { MailManager, setMailManager, Mail } from '../src/manager/MailManager.js';
-import type { MailMessage } from '@formwork/core/contracts';
+import type { MailMessage } from '@carpentry/core/contracts';
 
 // ── Test Mailable ─────────────────────────────────────────
 

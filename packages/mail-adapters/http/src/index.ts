@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mail-http
+ * @module @carpentry/mail-http
  * @description HttpMailAdapter — sends mail via HTTP API (Mailgun, Resend, SendGrid, Postmark).
  *
  * @patterns Adapter (implements IMailAdapter), Strategy (provider-specific config)
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { HttpMailAdapter } from '@formwork/mail-http';
+ * import { HttpMailAdapter } from '@carpentry/mail-http';
  *
  * const mailer = new HttpMailAdapter({
  *   provider: 'resend',
@@ -18,7 +18,7 @@
  * ```
  */
 
-import type { IMailAdapter, MailMessage } from '@formwork/core/contracts';
+import type { IMailAdapter, MailMessage } from '@carpentry/core/contracts';
 import type { HttpMailConfig, SendResult } from './types.js';
 
 export { type HttpMailConfig, type HttpMailProvider, type SendResult } from './types.js';
@@ -148,7 +148,7 @@ export class HttpMailAdapter implements IMailAdapter {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * MailManager-compatible driver factory for the HTTP mail adapter.
@@ -158,7 +158,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  *
  * @example
  * ```ts
- * import { httpMailDriverFactory } from '@formwork/mail-http';
+ * import { httpMailDriverFactory } from '@carpentry/mail-http';
  *
  * mailManager.registerDriver('resend', httpMailDriverFactory('resend'));
  * mailManager.registerDriver('sendgrid', httpMailDriverFactory('sendgrid'));

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Retry with backoff strategies and in-memory Rate Limiter
  * @patterns Strategy (backoff strategies)
  * @principles SRP — retry logic only; OCP — new backoff strategies

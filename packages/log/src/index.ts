@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Structured logging and audit trail.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { LogManager, ArrayChannel, setLogManager, Log } from '@formwork/log';
+ * import { LogManager, ArrayChannel, setLogManager, Log } from '@carpentry/log';
  *
  * const channel = new ArrayChannel('test');
  * const manager = new LogManager('test').addChannel(channel);

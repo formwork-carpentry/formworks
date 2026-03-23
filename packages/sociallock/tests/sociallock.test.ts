@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { IAuthGuard, IAuthenticatable } from "@formwork/core/contracts";
-import { FakeTransport } from "@formwork/http-client";
+import type { IAuthGuard, IAuthenticatable } from "@carpentry/core/contracts";
+import { FakeTransport } from "@carpentry/http-client";
 import {
   githubProvider,
   googleProvider,
@@ -39,7 +39,7 @@ class TestGuard implements IAuthGuard {
   }
 }
 
-describe("@formwork/sociallock", () => {
+describe("@carpentry/sociallock", () => {
   it("builds provider configs", () => {
     expect(googleProvider("id", "secret", "http://localhost/callback").authUrl).toContain(
       "accounts.google.com",

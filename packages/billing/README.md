@@ -1,4 +1,4 @@
-# @formwork/billing
+# @carpentry/billing
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/billing
+npm install @carpentry/billing
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkbilling from '@formwork/billing';
+import * as formworkbilling from '@carpentry/billing';
 
 // Use the package API in your application modules
 ```

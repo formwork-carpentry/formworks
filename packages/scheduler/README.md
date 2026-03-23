@@ -1,4 +1,4 @@
-# @formwork/scheduler
+# @carpentry/scheduler
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/scheduler
+npm install @carpentry/scheduler
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkscheduler from '@formwork/scheduler';
+import * as formworkscheduler from '@carpentry/scheduler';
 
 // Use the package API in your application modules
 ```

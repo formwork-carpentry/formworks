@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/media",
+  "name": "@carpentry/media",
   "version": "1.0.0-alpha.0",
   "description": "Media handling, document generation, file transformations",
   "type": "module",
@@ -17,5 +17,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "private": true
 }

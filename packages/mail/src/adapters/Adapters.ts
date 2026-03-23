@@ -1,11 +1,11 @@
 /**
- * @module @formwork/mail
+ * @module @carpentry/mail
  * @description Mail adapters — Array (testing assertions), Log (dev console output)
  * @patterns Adapter, Template Method (BaseMailable)
  * @principles LSP — all adapters substitutable; SRP — each adapter handles one transport
  */
 
-import type { IMailAdapter, MailAddress, MailMessage } from "@formwork/core/contracts";
+import type { IMailAdapter, MailAddress, MailMessage } from "@carpentry/core/contracts";
 
 // ── ArrayMailAdapter — stores sent mails for testing ──────
 
@@ -162,8 +162,8 @@ export abstract class BaseMailable {
    *
    * @example
    * ```ts
-   * import type { MailMessage } from '@formwork/mail';
-   * import { BaseMailable } from '@formwork/mail';
+   * import type { MailMessage } from '@carpentry/mail';
+   * import { BaseMailable } from '@carpentry/mail';
    *
    * class WelcomeMail extends BaseMailable {
    *   constructor(private name: string) { super(); }

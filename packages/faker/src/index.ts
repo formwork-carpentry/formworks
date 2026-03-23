@@ -1,5 +1,5 @@
 /**
- * @module @formwork/faker
+ * @module @carpentry/faker
  * @description Deterministic fake data helpers for factories, seeders, and tests.
  */
 

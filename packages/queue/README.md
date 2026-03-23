@@ -1,4 +1,4 @@
-# @formwork/queue
+# @carpentry/queue
 
 Queue manager with pluggable adapters (BullMQ, SQS, Database, Sync)
 
@@ -11,13 +11,13 @@ Queue manager with pluggable adapters (BullMQ, SQS, Database, Sync)
 ## Installation
 
 ```bash
-npm install @formwork/queue
+npm install @carpentry/queue
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkqueue from '@formwork/queue';
+import * as formworkqueue from '@carpentry/queue';
 
 // Use the package API in your application modules
 ```

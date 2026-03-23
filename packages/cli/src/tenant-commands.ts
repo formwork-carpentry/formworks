@@ -1,10 +1,10 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Tenant management CLI commands — create, list, and migrate tenants.
  *
  * WHY: Multi-tenant apps need a way to create new tenants and run their
  * migrations from the command line. These commands integrate with the
- * TenancyManager and TenantStore from @formwork/tenancy.
+ * TenancyManager and TenantStore from @carpentry/formworks/tenancy.
  *
  * @patterns Command
  * @principles SRP (each command one purpose)
@@ -24,7 +24,7 @@ import type { CommandOutput } from "./index.js";
  * ```
  * @example
  * ```ts
- * import { CliApp, TenantCreateCommand } from '@formwork/cli';
+ * import { CliApp, TenantCreateCommand } from '@carpentry/cli';
  * await new CliApp().register(new TenantCreateCommand()).run(['tenant:create', 'acme', '--name', 'Acme Corp']);
  * ```
  */
@@ -89,7 +89,7 @@ export class TenantCreateCommand extends BaseCommand {
  * ```
  * @example
  * ```ts
- * import { CliApp, TenantMigrateCommand } from '@formwork/cli';
+ * import { CliApp, TenantMigrateCommand } from '@carpentry/cli';
  * await new CliApp().register(new TenantMigrateCommand()).run(['tenant:migrate', 'acme', '--seed']);
  * ```
  */
@@ -163,7 +163,7 @@ export class TenantMigrateCommand extends BaseCommand {
  * ```
  * @example
  * ```ts
- * import { CliApp, TenantListCommand } from '@formwork/cli';
+ * import { CliApp, TenantListCommand } from '@carpentry/cli';
  * await new CliApp().register(new TenantListCommand()).run(['tenant:list', '--status', 'active']);
  * ```
  */

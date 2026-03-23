@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description RedisCacheStore — production cache adapter backed by Redis via ioredis.
  *
  * WHY: In-memory and file caches don't survive process restarts or work across
@@ -24,8 +24,8 @@
  * ```
  */
 
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 
 /** ioredis-compatible interface — allows mock injection for testing */
 export interface IRedisClient {

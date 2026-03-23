@@ -1,9 +1,9 @@
 /**
- * @module @formwork/padlock/contracts
+ * @module @carpentry/padlock/contracts
  * @description Public contracts for the Padlock workflow layer.
  */
 
-import type { IAuthenticatable, IHashManager } from "@formwork/core/contracts";
+import type { IAuthenticatable, IHashManager } from "@carpentry/core/contracts";
 
 export type PadlockTokenPurpose = "email-verification" | "password-reset" | "two-factor-challenge";
 

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Tenant resolvers — identify tenant from request context
  * @patterns Strategy (each resolver is a strategy), Chain of Responsibility (ChainResolver)
  */
@@ -11,7 +11,7 @@ import type { ITenantResolver, TenantResolverContext } from './types.js';
  *
  * @example
  * ```ts
- * import { SubdomainResolver } from '@formwork/tenancy';
+ * import { SubdomainResolver } from '@carpentry/tenancy';
  * const r = new SubdomainResolver('example.com');
  * await r.resolve({ hostname: 'tenant.example.com', path: '/', headers: {} });
  * ```
@@ -41,7 +41,7 @@ export class SubdomainResolver implements ITenantResolver {
  *
  * @example
  * ```ts
- * import { PathResolver } from '@formwork/tenancy';
+ * import { PathResolver } from '@carpentry/tenancy';
  * const r = new PathResolver();
  * await r.resolve({ hostname: 'x', path: '/acme/posts', headers: {} });
  * ```
@@ -72,7 +72,7 @@ export class PathResolver implements ITenantResolver {
  *
  * @example
  * ```ts
- * import { HeaderResolver } from '@formwork/tenancy';
+ * import { HeaderResolver } from '@carpentry/tenancy';
  * const r = new HeaderResolver('x-tenant');
  * await r.resolve({ hostname: 'x', path: '/', headers: { 'x-tenant': 'acme' } });
  * ```
@@ -96,7 +96,7 @@ export class HeaderResolver implements ITenantResolver {
  *
  * @example
  * ```ts
- * import { DomainResolver } from '@formwork/tenancy';
+ * import { DomainResolver } from '@carpentry/tenancy';
  * const r = new DomainResolver().addMapping('client.com', 'client');
  * await r.resolve({ hostname: 'client.com', path: '/', headers: {} });
  * ```
@@ -131,7 +131,7 @@ export class DomainResolver implements ITenantResolver {
  *
  * @example
  * ```ts
- * import { ChainResolver, HeaderResolver, SubdomainResolver } from '@formwork/tenancy';
+ * import { ChainResolver, HeaderResolver, SubdomainResolver } from '@carpentry/tenancy';
  * const r = new ChainResolver([new HeaderResolver(), new SubdomainResolver('app.test')]);
  * ```
  *

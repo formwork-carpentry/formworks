@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mysql/MySQLAdapter
+ * @module @carpentry/db-mysql/MySQLAdapter
  * @description MySQL adapter backed by a lazily loaded `mysql2` pool.
  * @patterns Adapter, Strategy
  */

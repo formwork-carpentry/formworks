@@ -1,5 +1,5 @@
 /**
- * @module @formwork/i18n
+ * @module @carpentry/i18n
  * @description Tests for i18n system — translation, pluralization, loaders, helpers
  */
 

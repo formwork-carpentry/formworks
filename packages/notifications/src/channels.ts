@@ -1,5 +1,5 @@
 /**
- * @module @formwork/notifications
+ * @module @carpentry/notifications
  * @description Built-in notification channel implementations
  * @patterns Strategy
  */

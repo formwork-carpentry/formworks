@@ -36,7 +36,7 @@
 | **Django** | Admin panel, ORM, batteries included, robust auth, migrations | Python GIL, not truly async, template engine dated, slow type story | Native async throughout, built-in CarpenterAdmin (E28), modern reactive UI, TypeScript end to end |
 | **AdonisJS** | Laravel-for-Node inspired, TypeScript, decent DX | Smaller ecosystem, incomplete feature parity, some Laravel idioms lost in translation | Direct Laravel-parity DX, full ecosystem planned, no compromises |
 | **Remix** | Web standards alignment, loader/action pattern, progressive enhancement | React-only, complex loader model, limited streaming control | Web standards throughout, UI-adapter agnostic, full streaming SSR control |
-| **tRPC** | End-to-end type safety, zero-schema RPC | React/Next.js only, breaks REST contracts, no versioning story | @formwork/trpc — type-safe RPC AND REST simultaneously, any UI, versioned |
+| **tRPC** | End-to-end type safety, zero-schema RPC | React/Next.js only, breaks REST contracts, no versioning story | @carpentry/trpc — type-safe RPC AND REST simultaneously, any UI, versioned |
 | **Prisma** | Type-safe queries, auto-generated types, migrations with diffing | Binary runtime engine, vendor lock-in, raw query escape hatch friction, no true polymorphism | Carpenter ORM generates types, pure TypeScript, no external runtime binary, full polymorphism |
 | **Hono** | Ultra-fast, edge-native, web standards, tiny bundle | Micro-framework — no ORM, no DI, no queues, no auth | Carpenter uses Hono as optional HTTP transport layer internally — keeps speed, adds everything else |
 | **SvelteKit** | File-based routing, SSR, progressive enhancement, form actions, small bundle | Svelte-only, limited ecosystem, niche skillset | CarpenterUI inspired by Svelte's compilation model; .carp SFC format; React/Vue/Svelte all supported |
@@ -76,9 +76,9 @@
 | O2 | **Bun's native speed** | Express/Node throughput ceiling well-known | HTTP layer on `Bun.serve`; connection handling 10x faster than Express; Node fallback preserved |
 | O3 | **TypeScript maturity** | Many frameworks treat TS as afterthought; leaky `any` everywhere | Strict TypeScript throughout; no `any`; generics on all APIs; generated types from ORM/GraphQL |
 | O4 | **Web Standards convergence** | Frameworks diverge from native Fetch/Request/Response | `Request`/`Response` are Web Standard objects; code portable to browser/edge/server |
-| O5 | **AI/LLM Integration** | No full-stack framework has first-class AI primitives | `@formwork/ai` — streaming, agents, RAG pipelines, tool calling, MCP client/server |
-| O6 | **WASM modules** | Ignored by all major web frameworks | `@formwork/wasm` — load and call WASM modules (Rust/C/C++/Go) directly in app |
-| O7 | **Polyglot microservices** | Painful, boilerplate-heavy integration with non-JS services | `@formwork/bridge` — gRPC, NATS, Kafka, Unix socket; code-gen from .proto / CSDL |
+| O5 | **AI/LLM Integration** | No full-stack framework has first-class AI primitives | `@carpentry/ai` — streaming, agents, RAG pipelines, tool calling, MCP client/server |
+| O6 | **WASM modules** | Ignored by all major web frameworks | `@carpentry/wasm` — load and call WASM modules (Rust/C/C++/Go) directly in app |
+| O7 | **Polyglot microservices** | Painful, boilerplate-heavy integration with non-JS services | `@carpentry/bridge` — gRPC, NATS, Kafka, Unix socket; code-gen from .proto / CSDL |
 | O8 | **Islands Architecture** | Only Astro does this well | CarpenterUI Islands: static HTML shell + hydrate only interactive components |
 | O9 | **HTTP/3 and QUIC** | Almost no framework supports it out of the box | HTTP/3 via Bun's native QUIC; automatic protocol negotiation |
 | O10 | **Streaming everywhere** | Streaming SSR rare; streaming API responses rarer | `Response.stream()`, streaming AI responses, streaming ORM cursors — all first-class |
@@ -87,8 +87,8 @@
 | O13 | **Fine-grained reactivity** | React VDOM thrash; Vue proxy overhead | Signals (Solid-inspired) in CarpenterUI — surgical DOM updates, zero unnecessary re-renders |
 | O14 | **Container-native deployment** | Frameworks ignore Kubernetes lifecycle | Health `/healthz`, `/readyz` endpoints; graceful shutdown; resource limit awareness built-in |
 | O15 | **Multi-tenancy** | Bolted-on in every SaaS app separately | First-class multi-tenancy: tenant-scoped DB/cache/storage; multiple isolation strategies |
-| O16 | **Feature flags** | External-service-only (LaunchDarkly), no framework integration | `@formwork/flags` — local, database, and LaunchDarkly/Unleash-backed feature flags |
-| O17 | **Real-time collaboration** | CRDTs and OT not accessible to web framework users | `@formwork/crdt` — Yjs-backed collaborative primitives with persistence adapters |
+| O16 | **Feature flags** | External-service-only (LaunchDarkly), no framework integration | `@carpentry/flags` — local, database, and LaunchDarkly/Unleash-backed feature flags |
+| O17 | **Real-time collaboration** | CRDTs and OT not accessible to web framework users | `@carpentry/crdt` — Yjs-backed collaborative primitives with persistence adapters |
 | O18 | **OpenTelemetry** | Manual instrumentation, per-framework plugins | Auto-instrumented: every DB query, cache op, queue job, HTTP request, AI call — zero boilerplate |
 
 ### 2.2 Threats — Carpenter Must Guard Against
@@ -97,7 +97,7 @@
 |---|--------|-----------------|------------------|
 | T1 | **Supply chain attacks** | Malicious npm packages, typosquatting, dependency confusion | Minimal dependencies policy (< 15 direct); lockfile integrity in CI; `npm audit` gate; allowlist policy |
 | T2 | **Dependency breaking changes** | Semver violations, deprecated APIs | All external packages behind internal adapter interfaces; never exposed directly to app code |
-| T3 | **TypeScript breaking changes** | TS 6.x changes decorator semantics, strict mode tightening | Decorator logic isolated in `@formwork/container`; upgrade CI matrix tests TS N and N+1 |
+| T3 | **TypeScript breaking changes** | TS 6.x changes decorator semantics, strict mode tightening | Decorator logic isolated in `@carpentry/container`; upgrade CI matrix tests TS N and N+1 |
 | T4 | **Bun API instability** | Bun 2.x changes `Bun.serve` / `Bun.sqlite` APIs | `IHttpServer` abstraction; Bun adapter swappable for Node/Hono; CI tests both runtimes |
 | T5 | **Memory leaks** | Event listener accumulation, unclosed DB connections, circular refs | `IDisposable` pattern; scope destroy = release resources; leak detector in dev mode; heap snapshot command |
 | T6 | **Race conditions** | Concurrent requests mutating shared state | Request-scoped containers; immutable request objects; `AsyncLocalStorage` for context; no module-level mutation |
@@ -137,6 +137,12 @@
 | E33 | HTTP/3, WebTransport & Streaming | 34 |
 | E34 | ISR, Islands Architecture & Partial Hydration | 34 |
 | E35 | Performance Benchmarks, Stress Tests & SLA Specs | 35 |
+| E36 | Broadcasting System | 18 (partial) |
+| E37 | Search System | 41 |
+| E38 | Audit & Webhooks | 41 |
+| E39 | Health & Encryption | 41 |
+| E40 | Extended Adapters (Turso, SQS, GCS, Azure, Memcached) | 41 |
+| E41 | Islands UI Ecosystem (Framework adapters, charts, icons) | 42 |
 
 ---
 
@@ -204,7 +210,7 @@ Acceptance Criteria:
 
 ---
 
-**CARP-069** `[E21]` gRPC Transport Adapter (@formwork/bridge-grpc)  
+**CARP-069** `[E21]` gRPC Transport Adapter (@carpentry/bridge-grpc)  
 **Points:** 8 | **Priority:** High
 
 ```
@@ -248,14 +254,14 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** High
 
 ```
-@formwork/bridge-nats:
+@carpentry/bridge-nats:
 - NATS request/reply (synchronous RPC pattern over pub/sub)
 - NATS publish (fire-and-forget notify)
 - NATS subscribe (long-lived — for server-push patterns)
 - JetStream: persistent streams, consumer groups, replay
 - Queue groups: N instances of same service, load-balanced by NATS
 
-@formwork/bridge-kafka:
+@carpentry/bridge-kafka:
 - Kafka producer: send(topic, key, value, headers)
 - Kafka consumer: subscribe(topics, groupId, handler) — auto-commit or manual
 - Exactly-once semantics: transactional producer option
@@ -805,7 +811,7 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** Medium
 
 ```
-MCP Client (@formwork/mcp-client):
+MCP Client (@carpentry/mcp-client):
   - Connects to any MCP server (stdio transport or HTTP/SSE)
   - Discovers tools, resources, and prompts from server
   - Makes them available to Agents as ITool implementations
@@ -819,7 +825,7 @@ MCP Client (@formwork/mcp-client):
         url: https://mcp.github.com/sse
         auth: Bearer ${GITHUB_TOKEN}
 
-MCP Server (@formwork/mcp-server):
+MCP Server (@carpentry/mcp-server):
   - Exposes Carpenter routes/services as MCP tools
   - @McpTool() decorator on service methods
   - Carpenter app becomes an MCP server any AI can connect to
@@ -860,7 +866,7 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** High
 
 ```
-Technical Spec (@formwork/graphql):
+Technical Spec (@carpentry/graphql):
 Code-first (primary):
   @ObjectType() class Post {
     @Field(() => ID)   id: string
@@ -1306,7 +1312,7 @@ I want to load and call WASM modules compiled from Rust, C, C++, Go, or Zig
 With TypeScript types generated from the WASM interface,
 So that I can use high-performance native code without leaving TypeScript.
 
-Technical Spec (@formwork/wasm):
+Technical Spec (@carpentry/wasm):
   WasmModule class:
     static load(path: string): Promise<WasmModule>  // lazy-loaded on first use
     call<TIn, TOut>(fn: string, input: TIn): TOut   // calls exported WASM function
@@ -1375,7 +1381,7 @@ Secret Scanning:
 
 Dependency Confusion Protection:
   .npmrc: registry=https://registry.npmjs.org  (no fallback to package manager guessing)
-  All internal packages scoped under @formwork/ or custom org scope
+  All internal packages scoped under @carpentry/ or custom org scope
 
 Acceptance Criteria:
 - [ ] npm audit gate: high severity vulns fail CI build
@@ -1403,7 +1409,7 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** Medium
 
 ```
-Technical Spec (@formwork/flags):
+Technical Spec (@carpentry/flags):
 interface IFlagProvider {
   isEnabled(flag: string, context?: FlagContext): Promise<boolean>
   getValue<T>(flag: string, defaultValue: T, context?: FlagContext): Promise<T>
@@ -1468,7 +1474,7 @@ Acceptance Criteria:
 **Points:** 13 | **Priority:** Low
 
 ```
-Technical Spec (@formwork/realtime):
+Technical Spec (@carpentry/realtime):
 Presence:
   PresenceChannel('room:123'):
     - track which users are in a channel
@@ -1523,7 +1529,7 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** High
 
 ```
-Technical Spec (@formwork/ts-plugin):
+Technical Spec (@carpentry/ts-plugin):
 TypeScript Language Service Plugin:
   - Route completions: route('posts.|') → shows 'index', 'show', 'create', etc.
   - Config key completions: config('database.|') → shows all config keys
@@ -1532,7 +1538,7 @@ TypeScript Language Service Plugin:
   - Model attribute type inference: User.find(1) → fully typed User instance
   - Facade type inference: DB.table('users') → returns typed QueryBuilder<User>
 
-VS Code Extension (@formwork/vscode):
+VS Code Extension (@carpentry/vscode):
   - .carp file syntax highlighting and IntelliSense
   - Route hover: hover over route name → shows URL, middleware, controller
   - Jump to definition: Ctrl+Click on route name → opens controller method
@@ -1763,7 +1769,7 @@ Acceptance Criteria:
 **Points:** 8 | **Priority:** Medium
 
 ```
-Technical Spec (@formwork/chaos):
+Technical Spec (@carpentry/chaos):
 Load test scenarios (using k6 or autocannon):
   - Spike test: 0 → 1000 req/s in 10s, sustain 60s, back to 0
   - Soak test: 200 req/s for 60 minutes (leak detection)
@@ -1829,7 +1835,7 @@ CARP-105: Edge deployment integration (CF Workers emulator + D1 + KV)
 
 Each story:
 - [ ] Complete app built from scratch using only public Carpenter APIs
-- [ ] 100% test coverage using @formwork/testing mocks
+- [ ] 100% test coverage using @carpentry/testing mocks
 - [ ] Zero TypeScript errors under strict mode
 - [ ] All SOLID principles verified in code review
 - [ ] Performance within SLA targets
@@ -1915,7 +1921,7 @@ Plugin API requirements:
 CARP-121: Performance polish — profile hot paths, optimize IoC resolution, ORM query compilation
 CARP-122: Final API review — ensure all public APIs are stable, mark experimental APIs clearly
 CARP-123: Changelog and migration guide for pre-1.0 users (if any)
-CARP-124: npm publish all @formwork/* packages with provenance
+CARP-124: npm publish all @carpentry/* packages with provenance
 CARP-125: Launch: announcement blog post, demo video, Product Hunt launch
 
 Release checklist:
@@ -1925,6 +1931,75 @@ Release checklist:
 - [ ] Documentation covers 100% of public API surface
 - [ ] At least 3 complete example applications
 - [ ] All packages at 90%+ test coverage (100% for core + container)
+```
+
+---
+
+### Sprint 41 — Broadcasting, Search, Health, Audit, Webhooks, Encryption & Extended Adapters (E36–E40)
+
+**Sprint Goal:** Ship 6 new optional packages (broadcasting, search, audit, webhook, health, encrypt) plus 6 new adapters (db-turso, queue-sqs, queue-database, cache-memcached, storage-gcs, storage-azure). Add 5 new core contracts (ISearchEngine, IHealthChecker, IAuditLogger, IWebhookReceiver, IEncrypter).
+
+**CARP-126 through CARP-137** — **36 points**
+
+```
+CARP-126 [E39]: HealthChecker — composite aggregator with Database, Cache, Memory built-in checks (3 pts)
+CARP-127 [E39]: AesEncrypter — AES-256-GCM field-level encryption using Node.js crypto (3 pts)
+CARP-128 [E36]: BroadcastManager — channel-based pub/sub with Log, Null drivers + IBroadcaster contract (3 pts)
+CARP-129 [E36]: Pusher/Soketi/Ably broadcast adapters (5 pts)
+CARP-130 [E37]: SearchManager — full-text search abstraction with ISearchEngine contract (3 pts)
+CARP-131 [E37]: Meilisearch + Typesense search adapters (5 pts)
+CARP-132 [E38]: AuditManager — audit logging with change tracking, database + file drivers (3 pts)
+CARP-133 [E38]: WebhookReceiver — signature verification for Stripe, GitHub, Shopify, custom providers (3 pts)
+CARP-134 [E40]: db-turso adapter — @libsql/client with edge-friendly embedded replicas (2 pts)
+CARP-135 [E40]: queue-sqs + queue-database adapters — AWS SQS and ORM-backed queue drivers (3 pts)
+CARP-136 [E40]: cache-memcached adapter — memjs-based Memcached cache store (2 pts)
+CARP-137 [E40]: storage-gcs + storage-azure adapters — Google Cloud Storage and Azure Blob Storage (2 pts)
+
+Core contracts added:
+- ISearchEngine (search/index, search/search, search/remove, search/createIndex, search/dropIndex)
+- IHealthChecker (health/register, health/check) + IHealthCheck (single probe)
+- IAuditLogger (audit/log, audit/query)
+- IWebhookReceiver (webhook/on, webhook/onAny, webhook/handle)
+- IEncrypter (encrypt/encrypt, encrypt/decrypt, encrypt/generateKey)
+
+Acceptance criteria:
+- [ ] All 12 packages scaffolded with package.json, tsconfig.json, src/index.ts
+- [ ] 5 new contract interfaces in @carpentry/core/contracts and exported from barrel
+- [ ] HealthChecker, AesEncrypter fully implemented (zero external deps)
+- [ ] BroadcastManager Log/Null drivers working end-to-end
+- [ ] SearchManager, AuditManager, WebhookReceiver have stub implementations
+- [ ] All 6 adapter packages have config types and stub implementations
+- [ ] encrypt package is private: true (tier-1 primitive in bundle)
+- [ ] 90%+ test coverage for HealthChecker and AesEncrypter
+```
+
+---
+
+### Sprint 42 — Islands UI Adapters, Charts & Icons (E41)
+
+**Sprint Goal:** Ship the framework-facing islands UI layer: `@carpentry/ui-react`, `@carpentry/ui-vue`, `@carpentry/ui-svelte`, `@carpentry/ui-solid`, `@carpentry/ui-charts`, and `@carpentry/icons`. Standardize `createCarpenterApp()`, `usePage()`, `useForm()`, and `Link` across adapters.
+
+**CARP-138 through CARP-145** — **24 points**
+
+```
+CARP-138 [E41]: ui-react adapter — React-facing createCarpenterApp, usePage, useForm, Link wrapper (3 pts)
+CARP-139 [E41]: ui-vue adapter — Vue-facing createCarpenterApp, usePage, useForm, Link wrapper (3 pts)
+CARP-140 [E41]: ui-svelte adapter — Svelte-facing createCarpenterApp, usePage, useForm, Link wrapper (3 pts)
+CARP-141 [E41]: ui-solid adapter — Solid-facing createCarpenterApp, usePage, useForm, Link wrapper (3 pts)
+CARP-142 [E41]: ui-charts package — chart dataset helpers and islands-friendly chart primitives (3 pts)
+CARP-143 [E41]: icons package — IIconProps plus placeholder UI icons and country flags (3 pts)
+CARP-144 [E41]: adapter parity — align Link/usePage/useForm semantics across all framework packages (3 pts)
+CARP-145 [E41]: adapter smoke tests — package exports, peer dependencies, and scaffold validation (3 pts)
+
+Acceptance criteria:
+- [ ] All 6 packages scaffolded with package.json, tsconfig.json, src/index.ts
+- [ ] ui-react peers: react + react-dom
+- [ ] ui-vue peers: vue
+- [ ] ui-svelte peers: svelte
+- [ ] ui-solid peers: solid-js
+- [ ] Every adapter exports createCarpenterApp(), usePage(), useForm(), and Link
+- [ ] icons exports IIconProps and placeholder SVG components for UI icons and country flags
+- [ ] CLI feature catalog exposes the 6 new optional packages
 ```
 
 ---
@@ -2116,7 +2191,7 @@ carpenter security:scan --full:
   6. Reports: summary with critical/high/medium/low counts
 
 Responsible disclosure: SECURITY.md with GPG key for encrypted reports
-CVE tracking: GitHub Security Advisories for all @formwork/* packages
+CVE tracking: GitHub Security Advisories for all @carpentry/* packages
 Patch SLA: Critical = 24h, High = 72h, Medium = 2 weeks
 ```
 
@@ -2173,10 +2248,10 @@ Carpenter ships Grafana dashboard JSON configs (import with one click):
 ```
 carpenter/
 ├── packages/ (from Part I)
-│   └── ... (all 22 original packages, including @formwork/faker and @formwork/padlock)
+│   └── ... (all 22 original packages, including @carpentry/faker and @carpentry/padlock)
 │
 ├── packages/ (new in Part II)
-│   ├── bridge/                  # @formwork/bridge (polyglot microservices core)
+│   ├── bridge/                  # @carpentry/bridge (polyglot microservices core)
 │   │   ├── src/
 │   │   │   ├── manager/         # MicroserviceManager
 │   │   │   ├── proxy/           # TypedServiceProxy (ES Proxy)
@@ -2184,18 +2259,18 @@ carpenter/
 │   │   │   └── contracts/       # ITransportAdapter, IRemoteService
 │   │   └── tests/
 │   │
-│   ├── bridge-grpc/             # @formwork/bridge-grpc
-│   ├── bridge-nats/             # @formwork/bridge-nats
-│   ├── bridge-kafka/            # @formwork/bridge-kafka
+│   ├── bridge-grpc/             # @carpentry/bridge-grpc
+│   ├── bridge-nats/             # @carpentry/bridge-nats
+│   ├── bridge-kafka/            # @carpentry/bridge-kafka
 │   │
-│   ├── edge/                    # @formwork/edge
+│   ├── edge/                    # @carpentry/edge
 │   │   ├── src/
 │   │   │   ├── runtime/         # EdgeBootstrap, runtime detection
 │   │   │   ├── adapters/        # All edge-specific adapter implementations
 │   │   │   └── build/           # Edge build target plugins
 │   │   └── tests/
 │   │
-│   ├── ai/                      # @formwork/ai
+│   ├── ai/                      # @carpentry/ai
 │   │   ├── src/
 │   │   │   ├── providers/       # IAIProvider + all implementations
 │   │   │   ├── agent/           # Agent, @AiTool, memory
@@ -2204,17 +2279,17 @@ carpenter/
 │   │   │   └── guard/           # AiGuardMiddleware
 │   │   └── tests/
 │   │
-│   ├── graphql/                 # @formwork/graphql
-│   ├── graphql-federation/      # @formwork/graphql-federation
+│   ├── graphql/                 # @carpentry/graphql
+│   ├── graphql-federation/      # @carpentry/graphql-federation
 │   │
-│   ├── otel/                    # @formwork/otel
+│   ├── otel/                    # @carpentry/otel
 │   │   ├── src/
 │   │   │   ├── tracing/         # Trace instrumentation hooks
 │   │   │   ├── metrics/         # Metric collectors + Prometheus exporter
 │   │   │   └── logging/         # Structured logger + adapters
 │   │   └── tests/
 │   │
-│   ├── multitenancy/            # @formwork/multitenancy
+│   ├── multitenancy/            # @carpentry/multitenancy
 │   │   ├── src/
 │   │   │   ├── resolver/        # Tenant resolution strategies
 │   │   │   ├── context/         # TenantContext (AsyncLocalStorage)
@@ -2222,7 +2297,7 @@ carpenter/
 │   │   │   └── manager/         # TenantManager, provisioning pipeline
 │   │   └── tests/
 │   │
-│   ├── admin/                   # @formwork/admin
+│   ├── admin/                   # @carpentry/admin
 │   │   ├── src/
 │   │   │   ├── resources/       # BaseAdminResource, field types
 │   │   │   ├── actions/         # BaseAdminAction
@@ -2231,24 +2306,56 @@ carpenter/
 │   │   │   └── pages/           # CarpenterUI .carp pages for admin
 │   │   └── tests/
 │   │
-│   ├── wasm/                    # @formwork/wasm
+│   ├── wasm/                    # @carpentry/wasm
 │   │
-│   ├── flags/                   # @formwork/flags
+│   ├── flags/                   # @carpentry/flags
 │   │   ├── src/
 │   │   │   ├── manager/         # FlagManager
 │   │   │   ├── providers/       # Local, Database, LaunchDarkly, Unleash, GrowthBook
 │   │   │   └── experiment/      # A/B testing, variant tracking
 │   │   └── tests/
 │   │
-│   ├── realtime/                # @formwork/realtime
+│   ├── realtime/                # @carpentry/realtime
 │   │   ├── src/
 │   │   │   ├── presence/        # PresenceChannel
 │   │   │   └── crdt/            # CollaborativeDoc (Yjs integration)
 │   │   └── tests/
 │   │
-│   ├── chaos/                   # @formwork/chaos (non-prod only)
-│   ├── ts-plugin/               # @formwork/ts-plugin (Language Service Plugin)
-│   └── vscode/                  # @formwork/vscode (VS Code extension)
+│   ├── broadcasting/            # @carpentry/broadcasting (channel-based pub/sub)
+│   │   ├── src/
+│   │   │   ├── manager/         # BroadcastManager (Log, Null, Pusher, Soketi, Ably)
+│   │   │   └── channels/        # Channel, PresenceChannel
+│   │   └── tests/
+│   │
+│   ├── search/                  # @carpentry/search (full-text search)
+│   │   ├── src/
+│   │   │   └── manager/         # SearchManager (database, Meilisearch, Typesense, Algolia)
+│   │   └── tests/
+│   │
+│   ├── audit/                   # @carpentry/audit (audit logging)
+│   │   ├── src/
+│   │   │   └── manager/         # AuditManager (database, file, with change tracking)
+│   │   └── tests/
+│   │
+│   ├── webhook/                 # @carpentry/webhook (webhook receiving & verification)
+│   │   ├── src/
+│   │   │   └── receiver/        # WebhookReceiver (Stripe, GitHub, Shopify, custom)
+│   │   └── tests/
+│   │
+│   ├── health/                  # @carpentry/health (health check probes)
+│   │   ├── src/
+│   │   │   ├── checker/         # HealthChecker (composite aggregator)
+│   │   │   └── checks/          # Database, Cache, Memory, Disk built-in checks
+│   │   └── tests/
+│   │
+│   ├── encrypt/                 # @carpentry/encrypt (field-level AES-256-GCM, tier-1 private)
+│   │   ├── src/
+│   │   │   └── aes/             # AesEncrypter (Node.js crypto, zero external deps)
+│   │   └── tests/
+│   │
+│   ├── chaos/                   # @carpentry/chaos (non-prod only)
+│   ├── ts-plugin/               # @carpentry/ts-plugin (Language Service Plugin)
+│   └── vscode/                  # @carpentry/vscode (VS Code extension)
 │
 ├── examples/ (Part I + new)
 │   ├── blog-app/
@@ -2313,7 +2420,8 @@ carpenter/
 | 38 | Documentation + Migration Guides | 40 |
 | 39 | Plugin System + Community | 30 |
 | 40 | Final Polish + v1.0 GA Release | 25 |
-| **TOTAL** | | **~876 points across 125 stories** |
+| 41 | Broadcasting, Search, Health, Audit, Webhooks, Encryption & Extended Adapters | 36 |
+| **TOTAL** | | **~936 points across 145 stories** |
 
 ---
 
@@ -2351,5 +2459,5 @@ It is built on the conviction that a sufficiently well-designed architecture —
 ---
 
 *Carpenter Framework SCRUM Plan v1.0.0 — Parts I + II*  
-*125 Stories · 40 Sprints · ~876 Story Points*  
+*145 Stories · 42 Sprints · ~936 Story Points*  
 *License: MIT | Runtime: Bun ≥1.1 / Node.js ≥20 | Language: TypeScript 5.x*

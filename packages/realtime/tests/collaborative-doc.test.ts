@@ -1,5 +1,5 @@
 /**
- * @module @formwork/realtime
+ * @module @carpentry/realtime
  * @description Tests for CollaborativeDoc (CRDT-based collaborative editing)
  */
 
@@ -7,7 +7,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { CollaborativeDoc } from '../src/CollaborativeDoc.js';
 import type { DocOperation } from '../src/CollaborativeDoc.js';
 
-describe('@formwork/realtime: CollaborativeDoc', () => {
+describe('@carpentry/realtime: CollaborativeDoc', () => {
   let doc: CollaborativeDoc;
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Logger — main application logger with level filtering and context
  * @patterns Facade (simplified logging API), Strategy (channel selection)
  * @principles SRP (only logging), DIP (depends on ILogChannel interface)
@@ -16,7 +16,7 @@ import type { LogLevel, LogEntry, ILogChannel } from './types.js';
  *
  * @example
  * ```ts
- * import { Logger, ArrayChannel } from '@formwork/log';
+ * import { Logger, ArrayChannel } from '@carpentry/log';
  *
  * const logger = new Logger(new ArrayChannel('test'), { app: 'carpenter' });
  * logger.withContext({ requestId: 'abc' }).info('Request started');

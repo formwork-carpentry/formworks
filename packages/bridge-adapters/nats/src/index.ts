@@ -1,12 +1,12 @@
 /**
- * @module @formwork/bridge-nats
+ * @module @carpentry/bridge-nats
  * @description NATS-backed bridge transport and responder implementations.
  *
  * @patterns Adapter (normalizes NATS request/reply to bridge contracts),
  *           Strategy (driver loading and subject naming)
  * @principles DIP - bridge clients and responders depend on contracts, not the NATS SDK
  */
-import type { BridgeMessage, BridgeResponse, ITransport } from '@formwork/core/contracts';
+import type { BridgeMessage, BridgeResponse, ITransport } from '@carpentry/core/contracts';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
@@ -266,7 +266,7 @@ async function loadNatsDriver(): Promise<NatsDriverModule> {
     // nats is installed as a dev dependency and should be available at runtime
     return await import('nats') as unknown as NatsDriverModule;
   } catch (error) {
-    throw createMissingDriverError('nats', 'npm install @formwork/bridge-nats nats', error);
+    throw createMissingDriverError('nats', 'npm install @carpentry/bridge-nats nats', error);
   }
 }
 
@@ -278,14 +278,14 @@ function createMissingDriverError(packageName: string, installCommand: string, c
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * BridgeManager-compatible driver factory for the NATS transport.
  *
  * @example
  * ```ts
- * import { natsDriverFactory } from '@formwork/bridge-nats';
+ * import { natsDriverFactory } from '@carpentry/bridge-nats';
  * bridgeManager.registerDriver('nats', natsDriverFactory);
  * ```
  */

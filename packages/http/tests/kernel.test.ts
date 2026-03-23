@@ -1,24 +1,24 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Integration tests for HttpKernel (CARP-013), BaseController (CARP-014), ExceptionHandler (CARP-016)
  */
 
 import 'reflect-metadata';
 import { describe, it, expect, beforeEach } from 'vitest';
-import { Container } from '@formwork/core/container';
+import { Container } from '@carpentry/core/container';
 import { Router } from '../src/router/Router.js';
 import { HttpKernel } from '../src/kernel/HttpKernel.js';
 import { Request } from '../src/request/Request.js';
 import { CarpenterResponse } from '../src/response/Response.js';
 import { BaseController } from '../src/controller/BaseController.js';
-import type { IRequest, IResponse, IMiddleware, NextFunction } from '@formwork/core/contracts';
+import type { IRequest, IResponse, IMiddleware, NextFunction } from '@carpentry/core/contracts';
 import {
   NotFoundError,
   ValidationError,
   AuthenticationError,
   AuthorizationError,
   TooManyRequestsError,
-} from '@formwork/core/exceptions';
+} from '@carpentry/core/exceptions';
 
 // ── Fixtures ──────────────────────────────────────────────
 

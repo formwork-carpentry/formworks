@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description MediaCollection — filterable set of media items grouped by purpose.
  * @patterns Composite
  */

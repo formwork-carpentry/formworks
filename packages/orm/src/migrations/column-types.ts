@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Column types, definitions, and builder
  * @patterns Builder (ColumnBuilder)
  */
 
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Migration system — Schema builder, Blueprint, MigrationRunner
  * @patterns Template Method (BaseMigration up/down), Builder (Blueprint)
  * @principles SRP — schema management only; DIP — compiles via IDatabaseAdapter

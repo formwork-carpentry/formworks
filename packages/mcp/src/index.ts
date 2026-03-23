@@ -1,5 +1,5 @@
 /**
- * @module @formwork/mcp
+ * @module @carpentry/mcp
  * @description Model Context Protocol — expose Carpenter resources and tools to AI models
  *
  * Architecture:
@@ -13,7 +13,7 @@
  *
  * @example
  * ```ts
- * import { McpServer } from '@formwork/mcp';
+ * import { McpServer } from '@carpentry/mcp';
  *
  * const server = new McpServer();
  *

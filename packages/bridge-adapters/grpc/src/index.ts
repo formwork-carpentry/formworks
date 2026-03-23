@@ -1,12 +1,12 @@
 /**
- * @module @formwork/bridge-grpc
+ * @module @carpentry/bridge-grpc
  * @description gRPC-backed bridge transport and responder implementations.
  *
  * @patterns Adapter (normalizes grpc-js to bridge contracts),
  *           Proxy (client-side unary bridge invocation)
  * @principles DIP - bridge clients and responders depend on contracts, not grpc-js
  */
-import type { BridgeMessage, BridgeResponse, ITransport } from '@formwork/core/contracts';
+import type { BridgeMessage, BridgeResponse, ITransport } from '@carpentry/core/contracts';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
@@ -281,7 +281,7 @@ async function loadGrpcDriver(): Promise<GrpcDriverModule> {
     // @grpc/grpc-js is installed as a dev dependency and should be available at runtime
     return await import('@grpc/grpc-js') as unknown as GrpcDriverModule;
   } catch (error) {
-    throw createMissingDriverError('@grpc/grpc-js', 'npm install @formwork/bridge-grpc @grpc/grpc-js', error);
+    throw createMissingDriverError('@grpc/grpc-js', 'npm install @carpentry/bridge-grpc @grpc/grpc-js', error);
   }
 }
 
@@ -308,7 +308,7 @@ const BRIDGE_SERVICE_DEFINITION = {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * BridgeManager-compatible driver factory for the gRPC transport.
@@ -317,7 +317,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  *
  * @example
  * ```ts
- * import { grpcDriverFactory } from '@formwork/bridge-grpc';
+ * import { grpcDriverFactory } from '@carpentry/bridge-grpc';
  * bridgeManager.registerDriver('grpc', grpcDriverFactory);
  * ```
  */

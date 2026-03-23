@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description Comprehensive test suite for EdgeKernel, helpers, and CORS middleware.
  *
  * Test strategy:
@@ -31,7 +31,7 @@ async function json<T = Record<string, unknown>>(res: Response): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-describe('@formwork/edge: EdgeKernel', () => {
+describe('@carpentry/edge: EdgeKernel', () => {
   let kernel: EdgeKernel;
   beforeEach(() => { kernel = new EdgeKernel(); });
 

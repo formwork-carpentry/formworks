@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mysql/types
+ * @module @carpentry/db-mysql/types
  * @description Shared MySQL adapter configuration and driver contracts.
  */
 

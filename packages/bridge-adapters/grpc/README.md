@@ -1,4 +1,4 @@
-# @formwork/bridge-grpc
+# @carpentry/bridge-grpc
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/bridge-grpc
+npm install @carpentry/bridge-grpc
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkbridgegrpc from '@formwork/bridge-grpc';
+import * as formworkbridgegrpc from '@carpentry/bridge-grpc';
 
 // Use the package API in your application modules
 ```

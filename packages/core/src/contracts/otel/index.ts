@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/otel
+ * @module @carpentry/core/contracts/otel
  * @description OpenTelemetry contracts - tracing, metrics, and span interfaces.
  *
  * Implementations: Tracer, Span, Counter, Histogram, Gauge, MetricsRegistry, OtlpExporter

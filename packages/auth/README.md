@@ -1,4 +1,4 @@
-# @formwork/auth
+# @carpentry/auth
 
 Authentication guards, authorization policies, Gate
 
@@ -11,13 +11,13 @@ Authentication guards, authorization policies, Gate
 ## Installation
 
 ```bash
-npm install @formwork/auth
+npm install @carpentry/auth
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkauth from '@formwork/auth';
+import * as formworkauth from '@carpentry/auth';
 
 // Use the package API in your application modules
 ```

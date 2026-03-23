@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/cli",
+  "name": "@carpentry/cli",
   "version": "1.0.0-alpha.0",
   "description": "carpenter CLI: generators, migrations, serve, build",
   "type": "module",
@@ -21,7 +21,8 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*",
+    "@carpentry/core": "workspace:*",
+    "@carpentry/http": "workspace:*",
     "create-carpenter-app": "*"
   },
   "license": "MIT",

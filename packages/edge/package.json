@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/edge",
+  "name": "@carpentry/edge",
   "version": "1.0.0-alpha.0",
   "description": "Edge runtime adapters: CF Workers, Deno Deploy, Vercel Edge",
   "type": "module",
@@ -16,11 +16,14 @@
     "clean": "rm -rf dist",
     "lint": "biome check src/"
   },
-  "dependencies": {
-    "@formwork/core": "*"
-  },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@carpentry/formworks": "workspace:*"
+  }
 }

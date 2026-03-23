@@ -1,4 +1,4 @@
-# @formwork/db-sqlite
+# @carpentry/db-sqlite
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db-sqlite
+npm install @carpentry/db-sqlite
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdbsqlite from '@formwork/db-sqlite';
+import * as formworkdbsqlite from '@carpentry/db-sqlite';
 
 // Use the package API in your application modules
 ```

@@ -1,4 +1,4 @@
-# @formwork/i18n
+# @carpentry/i18n
 
 Localization and translation system — Laravel-style __(), trans(), transChoice()
 
@@ -11,13 +11,13 @@ Localization and translation system — Laravel-style __(), trans(), transChoice
 ## Installation
 
 ```bash
-npm install @formwork/i18n
+npm install @carpentry/i18n
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworki18n from '@formwork/i18n';
+import * as formworki18n from '@carpentry/i18n';
 
 // Use the package API in your application modules
 ```

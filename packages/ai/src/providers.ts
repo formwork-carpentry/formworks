@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description HTTP-based AI providers for Anthropic Claude and OpenAI GPT APIs
  * @patterns Adapter (each provider normalizes a different API), Strategy (configurable provider)
  * @principles LSP (all providers substitutable), SRP (each provider handles one API)

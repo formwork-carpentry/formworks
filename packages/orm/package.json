@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/orm",
+  "name": "@carpentry/orm",
   "version": "1.0.0-alpha.0",
   "description": "ORM: BaseModel, QueryBuilder, relations, migrations, seeders",
   "type": "module",
@@ -12,12 +12,13 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@formwork/core": "*",
-    "@formwork/faker": "*"
+    "@carpentry/core": "workspace:*",
+    "@carpentry/faker": "workspace:*"
   },
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "private": true
 }

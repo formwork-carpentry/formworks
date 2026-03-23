@@ -1,13 +1,13 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Exception handler — converts CarpenterError subtypes to HTTP responses
  * @patterns Chain of Responsibility (handler chain), Strategy (renderers per error type)
  * @principles OCP — custom handlers registered without modifying ExceptionHandler
  *             SRP — only maps exceptions to responses
  */
 
-import type { IRequest } from "@formwork/core/contracts";
-import type { IResponse } from "@formwork/core/contracts";
+import type { IRequest } from "@carpentry/core/contracts";
+import type { IResponse } from "@carpentry/core/contracts";
 import {
   AuthenticationError,
   AuthorizationError,
@@ -18,7 +18,7 @@ import {
   NotFoundError,
   TooManyRequestsError,
   ValidationError,
-} from "@formwork/core/exceptions";
+} from "@carpentry/core/exceptions";
 import { CarpenterResponse } from "../response/Response.js";
 
 export type ExceptionRenderer = (error: Error, request: IRequest) => IResponse | null;

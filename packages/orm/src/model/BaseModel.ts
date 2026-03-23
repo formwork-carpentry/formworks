@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description BaseModel — Active Record pattern with dirty tracking, timestamps, soft deletes
  * @patterns Active Record, Memento (dirty tracking/getOriginal), Template Method (lifecycle hooks),
  *           Observer (model events), Strategy (casting)
@@ -7,8 +7,8 @@
  *             DIP — depends on IDatabaseAdapter, never on concrete DB driver
  */
 
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
-import type { Dictionary } from '@formwork/core/types';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
+import type { Dictionary } from '@carpentry/core/types';
 import { QueryBuilder } from '../query/QueryBuilder.js';
 
 // Re-export extracted types so existing imports don't break
@@ -30,7 +30,7 @@ type ModelStatic<T extends BaseModel = BaseModel> = (typeof BaseModel) & (new (a
  *
  * @example
  * ```ts
- * import { BaseModel, MockDatabaseAdapter } from '@formwork/orm';
+ * import { BaseModel, MockDatabaseAdapter } from '@carpentry/orm';
  *
  * class User extends BaseModel {
  *   static table = 'users';

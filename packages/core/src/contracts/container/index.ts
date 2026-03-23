@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/container
+ * @module @carpentry/core/contracts/container
  * @description IoC Container contracts - ISP-split into Binding, Resolution, and Scoping.
  *
  * Implementations: Container

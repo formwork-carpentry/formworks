@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience
+ * @module @carpentry/resilience
  * @description Resilience patterns — circuit breaker, retry with backoff, and rate limiting.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { CircuitBreaker, retry } from '@formwork/resilience';
+ * import { CircuitBreaker, retry } from '@carpentry/resilience';
  *
  * const breaker = new CircuitBreaker({ threshold: 3, timeout: 10_000 });
  *

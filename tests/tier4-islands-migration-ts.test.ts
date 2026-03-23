@@ -240,7 +240,7 @@ describe('MigrationScanner', () => {
 // TS COMPLETION PROVIDER
 // ═══════════════════════════════════════════════════════════
 
-import { CompletionProvider, KNOWN_BINDINGS, KNOWN_CONFIG_PATHS } from '@formwork/core/plugin';
+import { CompletionProvider, KNOWN_BINDINGS, KNOWN_CONFIG_PATHS } from '@carpentry/core/plugin';
 
 describe('CompletionProvider (TS Plugin)', () => {
   let provider: CompletionProvider;

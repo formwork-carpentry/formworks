@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mongodb
+ * @module @carpentry/db-mongodb
  * @description Public entrypoint for the MongoDB document adapter package.
  */
 export { MongoDBAdapter } from './mongoDBAdapter.js';
@@ -26,7 +26,7 @@ export {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 import { MongoDBAdapter } from './mongoDBAdapter.js';
 import type { MongoDBConnectionConfig } from './types.js';
 
@@ -35,7 +35,7 @@ import type { MongoDBConnectionConfig } from './types.js';
  *
  * @example
  * ```ts
- * import { mongodbAdapter } from '@formwork/db-mongodb';
+ * import { mongodbAdapter } from '@carpentry/db-mongodb';
  * dbManager.registerDriver('mongodb', mongodbAdapter);
  * ```
  */

@@ -1,4 +1,4 @@
-# @formwork/db-postgres
+# @carpentry/db-postgres
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db-postgres
+npm install @carpentry/db-postgres
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdbpostgres from '@formwork/db-postgres';
+import * as formworkdbpostgres from '@carpentry/db-postgres';
 
 // Use the package API in your application modules
 ```

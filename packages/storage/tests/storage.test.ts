@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description Tests for Storage system (CARP-028)
  */
 

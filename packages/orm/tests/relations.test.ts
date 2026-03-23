@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Tests for ORM Relations (CARP-019)
  */
 

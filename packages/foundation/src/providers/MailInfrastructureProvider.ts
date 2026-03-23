@@ -1,6 +1,6 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import { createMailManager, type MailManager } from '@formwork/mail';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import { createMailManager, type MailManager } from '@carpentry/mail';
 
 export class MailInfrastructureProvider {
   constructor(

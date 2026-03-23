@@ -1,14 +1,14 @@
 /**
- * @module @formwork/padlock/routes
+ * @module @carpentry/padlock/routes
  * @description Default Padlock route registration with optional built-in auth throttling.
  * @patterns Facade, Strategy
  * @principles SRP - route registration and throttling stay separate from workflow orchestration and request validation.
  */
 
-import type { IAuthenticatable, IRequest } from "@formwork/core/contracts";
-import type { Token } from "@formwork/core/types";
-import { CarpenterResponse, RateLimitMiddleware, type Request, type Router } from "@formwork/http";
-import type { RateLimitOptions } from "@formwork/http";
+import type { IAuthenticatable, IRequest } from "@carpentry/core/contracts";
+import type { Token } from "@carpentry/core/types";
+import { CarpenterResponse, RateLimitMiddleware, type Request, type Router } from "@carpentry/http";
+import type { RateLimitOptions } from "@carpentry/http";
 import type { PadlockController } from "./PadlockController.js";
 
 /**

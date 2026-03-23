@@ -15,7 +15,7 @@ const yearlyPlan: Plan = {
   interval: 'year', intervalCount: 1,
 };
 
-describe('@formwork/billing: InMemoryPaymentProvider', () => {
+describe('@carpentry/billing: InMemoryPaymentProvider', () => {
   let provider: InMemoryPaymentProvider;
 
   beforeEach(() => {
@@ -274,7 +274,7 @@ describe('@formwork/billing: InMemoryPaymentProvider', () => {
   });
 });
 
-describe('@formwork/billing: Billing facade', () => {
+describe('@carpentry/billing: Billing facade', () => {
   beforeEach(() => {
     const provider = new InMemoryPaymentProvider();
     provider.addPlan(monthlyPlan);

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description TypeScript Language Service Plugin — provides IDE autocomplete,
  * hover info, and diagnostics for Carpenter-specific APIs.
  *
@@ -13,7 +13,7 @@
  *
  * HOW: This is a TypeScript Language Service plugin. Install it in tsconfig.json:
  * ```json
- * { "compilerOptions": { "plugins": [{ "name": "@formwork/ts-plugin" }] } }
+ * { "compilerOptions": { "plugins": [{ "name": "@carpentry/ts-plugin" }] } }
  * ```
  *
  * NOTE: This module defines the plugin API and completion data. The actual TS

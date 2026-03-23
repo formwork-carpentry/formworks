@@ -1,12 +1,12 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description TaggedCache — enables tag-based cache invalidation
  * @patterns Decorator (wraps ICacheStore), Proxy (delegates get/put to underlying store)
  * @principles OCP (adds tagging without modifying stores), SRP (tag tracking only)
  */
 
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 
 /**
  * Global tag→keys index shared across all TaggedCache instances

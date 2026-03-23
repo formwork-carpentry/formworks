@@ -1,5 +1,5 @@
 /**
- * @module @formwork/ai
+ * @module @carpentry/ai
  * @description Tests for McpClient, RAG Pipeline, and AiGuard.
  *
  * Test strategy:
@@ -21,7 +21,7 @@ import type { AiViolation } from '../src/AiGuard.js';
 // MCP CLIENT
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: McpClient', () => {
+describe('@carpentry/ai: McpClient', () => {
   let transport: InMemoryMcpTransport;
   let client: McpClient;
 
@@ -139,7 +139,7 @@ const mockEmbed = async (text: string): Promise<number[]> => {
   return VOCAB.map(w => lower.includes(w) ? 1.0 : 0.0);
 };
 
-describe('@formwork/ai: RAG Pipeline', () => {
+describe('@carpentry/ai: RAG Pipeline', () => {
   describe('RecursiveChunker', () => {
     it('splits long text into chunks', () => {
       const chunker = new RecursiveChunker({ chunkSize: 50, overlap: 10 });
@@ -232,7 +232,7 @@ describe('@formwork/ai: RAG Pipeline', () => {
 // AI GUARD
 // ═══════════════════════════════════════════════════════════
 
-describe('@formwork/ai: AiGuard', () => {
+describe('@carpentry/ai: AiGuard', () => {
   describe('PII detection', () => {
     it('detects email addresses', () => {
       const guard = new AiGuard();

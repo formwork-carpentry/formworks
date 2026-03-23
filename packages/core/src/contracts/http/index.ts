@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/http
+ * @module @carpentry/core/contracts/http
  * @description HTTP contracts - request, response, routing, and middleware interfaces.
  *
  * Implementations: Request, CarpenterResponse, Router, HttpKernel, Pipeline

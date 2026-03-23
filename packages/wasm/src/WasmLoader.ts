@@ -1,5 +1,5 @@
 /**
- * @module @formwork/wasm
+ * @module @carpentry/wasm
  * @description WasmLoader — loads and instantiates WebAssembly modules with type-safe bindings.
  *
  * WHY: WASM modules can accelerate hot-path computations (image processing,

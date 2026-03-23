@@ -1,4 +1,4 @@
-# @formwork/core
+# @carpentry/core
 
 Framework core: IoC container, config, env, exceptions, support utilities
 
@@ -11,13 +11,13 @@ Framework core: IoC container, config, env, exceptions, support utilities
 ## Installation
 
 ```bash
-npm install @formwork/core
+npm install @carpentry/core
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkcore from '@formwork/core';
+import * as formworkcore from '@carpentry/core';
 
 // Use the package API in your application modules
 ```

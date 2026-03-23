@@ -8,43 +8,43 @@ export default defineConfig({
 	resolve: {
 		alias: [
 			{
-				find: '@formwork/db-memory',
+				find: '@carpentry/db-memory',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/memorydb/src/index.ts'),
 			},
 			{
-				find: '@formwork/db-postgres',
+				find: '@carpentry/db-postgres',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/postgres/src/index.ts'),
 			},
 			{
-				find: '@formwork/db-mysql',
+				find: '@carpentry/db-mysql',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/mysql/src/index.ts'),
 			},
 			{
-				find: '@formwork/db-sqlite',
+				find: '@carpentry/db-sqlite',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/sqlite/src/index.ts'),
 			},
 			{
-				find: '@formwork/db-mongodb',
+				find: '@carpentry/db-mongodb',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/mongodb/src/index.ts'),
 			},
 			{
-				find: '@formwork/db-filesystem',
+				find: '@carpentry/db-filesystem',
 				replacement: path.resolve(__dirname, '../packages/db-adapters/filesystem/src/index.ts'),
 			},
 			{
-				find: '@formwork/storage-s3',
+				find: '@carpentry/storage-s3',
 				replacement: path.resolve(__dirname, '../packages/storage-adapters/s3/src/index.ts'),
 			},
 			{
-				find: '@formwork/bridge-grpc',
+				find: '@carpentry/bridge-grpc',
 				replacement: path.resolve(__dirname, '../packages/bridge-adapters/grpc/src/index.ts'),
 			},
 			{
-				find: '@formwork/bridge-kafka',
+				find: '@carpentry/bridge-kafka',
 				replacement: path.resolve(__dirname, '../packages/bridge-adapters/kafka/src/index.ts'),
 			},
 			{
-				find: '@formwork/bridge-nats',
+				find: '@carpentry/bridge-nats',
 				replacement: path.resolve(__dirname, '../packages/bridge-adapters/nats/src/index.ts'),
 			},
 			{

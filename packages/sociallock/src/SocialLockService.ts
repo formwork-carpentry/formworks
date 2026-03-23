@@ -1,10 +1,10 @@
 /**
- * @module @formwork/sociallock/SocialLockService
+ * @module @carpentry/sociallock/SocialLockService
  * @description OAuth 2.0 social login orchestration.
  */
 
-import type { IAuthGuard, IAuthenticatable } from "@formwork/core/contracts";
-import { HttpClient } from "@formwork/http-client";
+import type { IAuthGuard, IAuthenticatable } from "@carpentry/core/contracts";
+import { HttpClient } from "@carpentry/http-client";
 import type {
   OAuthProviderConfig,
   SocialAuthResult,

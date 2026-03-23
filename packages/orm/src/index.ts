@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description ORM — QueryBuilder, BaseModel, migrations, seeders, relations, and helpers.
  *
  * Use this package to:
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { BaseModel, MockDatabaseAdapter } from '@formwork/orm';
+ * import { BaseModel, MockDatabaseAdapter } from '@carpentry/orm';
  *
  * class User extends BaseModel {
  *   static table = 'users';

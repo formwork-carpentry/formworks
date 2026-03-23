@@ -1,4 +1,4 @@
-# @formwork/log
+# @carpentry/log
 
 Structured logging — app logs, audit logs, multiple channels
 
@@ -11,13 +11,13 @@ Structured logging — app logs, audit logs, multiple channels
 ## Installation
 
 ```bash
-npm install @formwork/log
+npm install @carpentry/log
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworklog from '@formwork/log';
+import * as formworklog from '@carpentry/log';
 
 // Use the package API in your application modules
 ```

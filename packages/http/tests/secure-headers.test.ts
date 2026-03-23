@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Tests for SecureHeaders middleware (Sprint 19 gap fix)
  */
 

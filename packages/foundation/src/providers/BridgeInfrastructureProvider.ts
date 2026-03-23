@@ -1,6 +1,6 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import { createBridgeManager, type BridgeManager } from '@formwork/bridge';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import { createBridgeManager, type BridgeManager } from '@carpentry/bridge';
 
 export class BridgeInfrastructureProvider {
   constructor(

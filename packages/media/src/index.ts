@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description Media management — collections, transformations, document generation, and MIME utilities.
  *
  * Use this package to:
@@ -15,7 +15,7 @@
  *   DocumentGenerator,
  *   CsvDocumentAdapter,
  *   formatFileSize,
- * } from '@formwork/media';
+ * } from '@carpentry/media';
  *
  * const gallery = new MediaCollection('gallery');
  * gallery.add({ id: '1', name: 'Photo', fileName: 'photo.jpg', mimeType: 'image/jpeg', ... });

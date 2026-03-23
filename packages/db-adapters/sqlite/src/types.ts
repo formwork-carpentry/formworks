@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-sqlite/types
+ * @module @carpentry/db-sqlite/types
  * @description Shared SQLite adapter configuration and driver contracts.
  */
 

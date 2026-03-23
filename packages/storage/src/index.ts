@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description Storage manager with pluggable disk adapters (in-memory, local, S3, etc.).
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { StorageManager, setStorageManager, Storage } from '@formwork/storage';
+ * import { StorageManager, setStorageManager, Storage } from '@carpentry/storage';
  *
  * const manager = new StorageManager('local', {
  *   local: { driver: 'local', root: 'storage/app/public' },

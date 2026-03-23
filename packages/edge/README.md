@@ -1,4 +1,4 @@
-# @formwork/edge
+# @carpentry/edge
 
 Edge runtime adapters: CF Workers, Deno Deploy, Vercel Edge
 
@@ -11,13 +11,13 @@ Edge runtime adapters: CF Workers, Deno Deploy, Vercel Edge
 ## Installation
 
 ```bash
-npm install @formwork/edge
+npm install @carpentry/edge
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkedge from '@formwork/edge';
+import * as formworkedge from '@carpentry/edge';
 
 // Use the package API in your application modules
 ```

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/wasm
+ * @module @carpentry/wasm
  * @description WASM module loading and sandboxed execution
  * @patterns Strategy (loaders), Proxy (sandboxed calls), Factory (module instantiation)
  * @principles DIP — app depends on IWasmModule; OCP — new loaders via registerLoader
@@ -11,7 +11,7 @@
  *
  * @example
  * ```ts
- * import { WasmManager, InMemoryWasmLoader } from '@formwork/wasm';
+ * import { WasmManager, InMemoryWasmLoader } from '@carpentry/wasm';
  *
  * const loader = new InMemoryWasmLoader().register('math', {
  *   add: (a: number, b: number) => a + b,
@@ -66,7 +66,7 @@ export interface WasmLoadOptions {
  *
  * @example
  * ```ts
- * import { InMemoryWasmModule } from '@formwork/wasm';
+ * import { InMemoryWasmModule } from '@carpentry/wasm';
  * const m = new InMemoryWasmModule('demo', { add: (a: number, b: number) => a + b });
  * m.call<number>('add', 2, 3);
  * ```
@@ -155,7 +155,7 @@ export interface IWasmLoader {
  *
  * @example
  * ```ts
- * import { InMemoryWasmLoader, WasmManager } from '@formwork/wasm';
+ * import { InMemoryWasmLoader, WasmManager } from '@carpentry/wasm';
  * const loader = new InMemoryWasmLoader().register('math', { double: (n: number) => n * 2 });
  * const mod = await new WasmManager(loader).load('math', new Uint8Array());
  * ```
@@ -200,7 +200,7 @@ export class InMemoryWasmLoader implements IWasmLoader {
  *
  * @example
  * ```ts
- * import { WasmManager, InMemoryWasmLoader } from '@formwork/wasm';
+ * import { WasmManager, InMemoryWasmLoader } from '@carpentry/wasm';
  * const mgr = new WasmManager(new InMemoryWasmLoader().register('x', {}));
  * await mgr.load('x', new Uint8Array());
  * ```

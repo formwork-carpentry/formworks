@@ -1,9 +1,9 @@
 /**
- * @module @formwork/db
+ * @module @carpentry/db
  * @description Stub IDatabaseAdapter implementations for missing native driver packages.
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@formwork/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@carpentry/core/contracts';
 import { DatabaseDriverDependencyError, DatabaseOperationError } from './exceptions/base.js';
 
 export class UnsupportedDriverAdapter implements IDatabaseAdapter {

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/edge
+ * @module @carpentry/edge
  * @description Edge runtime abstraction — detect capabilities, adapt APIs for edge environments
  * @patterns Adapter (normalize edge APIs), Strategy (runtime-specific adapters)
  * @principles DIP — app code uses EdgeRuntime, never Cloudflare/Deno APIs directly
@@ -12,7 +12,7 @@
  *
  * @example
  * ```ts
- * import { detectRuntime, getCapabilities, InMemoryEdgeKV } from '@formwork/edge';
+ * import { detectRuntime, getCapabilities, InMemoryEdgeKV } from '@carpentry/edge';
  *
  * const runtime = detectRuntime();
  * const caps = getCapabilities(runtime);

@@ -1,4 +1,4 @@
-import { HashManager, MemoryGuard } from "@formwork/auth";
+import { HashManager, MemoryGuard } from "@carpentry/auth";
 import { describe, expect, it } from "vitest";
 import {
   InMemoryPadlockUserRepository,

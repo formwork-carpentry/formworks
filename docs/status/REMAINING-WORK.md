@@ -98,7 +98,7 @@ carpenter generate:service services/users.proto --out generated/services
 
 ### 5. `carpenter add/remove` Disk I/O
 
-The commands are fully implemented with `execSync('npm install')`, `writeFileSync()`, and `appendFileSync()`. They work. But they haven't been tested end-to-end in a real project directory because the starters use monorepo-relative imports, not published `@formwork/*` packages.
+The commands are fully implemented with `execSync('npm install')`, `writeFileSync()`, and `appendFileSync()`. They work. But they haven't been tested end-to-end in a real project directory because the starters use monorepo-relative imports, not published `@carpentry/*` packages.
 
 **To test:** Create a temp project, run `carpenter add cache`, verify it installs the package, creates `src/config/cache.ts`, and appends to `.env`.
 
@@ -134,7 +134,7 @@ The commands are fully implemented with `execSync('npm install')`, `writeFileSyn
 
 ### 10. npm Publish + v1.0 Release (needs npm account)
 
-~~**CARP-067** — Changesets for versioning, GitHub Actions CI/CD, publish all 36 packages to `@formwork/*` scope.~~
+~~**CARP-067** — Changesets for versioning, GitHub Actions CI/CD, publish all 36 packages to `@carpentry/*` scope.~~
 
 **✅ CI/CD Pipeline created:**
 - `.github/workflows/ci.yml` — lint, typecheck, test, integration test jobs (Bun + Node.js, Postgres/Redis services)
@@ -229,7 +229,7 @@ Rewrote `starters/saas-starter/` to use 30 workspace packages:
 - Every public method: `@param {type} name` + `@returns {type}`
 - Functions under 40 lines (extract helpers)
 - Zero `any` — use `unknown` + type guards
-- Adapters implement interfaces from `@formwork/core/contracts`
+- Adapters implement interfaces from `@carpentry/core/contracts`
 - `EventDispatcher.dispatch()` in application code (not `.emit()`)
 - `ObjectLoader`: `locale -> namespace -> { key: value }` format
 - `Translator.loadAll(locale)` before `get()` works

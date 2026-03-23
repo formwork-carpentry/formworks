@@ -1,5 +1,5 @@
 /**
- * @module @formwork/validation
+ * @module @carpentry/validation
  * @description Validator — validates data against rule strings and returns structured errors.
  *
  * Use {@link Validator} with built-in rules (e.g. `required|email|min:2`) or register custom
@@ -14,8 +14,8 @@ import type {
   IValidator,
   ValidationResult,
   ValidationRules,
-} from "@formwork/core/contracts";
-import type { Dictionary } from "@formwork/core/types";
+} from "@carpentry/core/contracts";
+import type { Dictionary } from "@carpentry/core/types";
 
 // ── Built-in Rules ────────────────────────────────────────
 

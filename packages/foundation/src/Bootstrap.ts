@@ -1,5 +1,5 @@
 /**
- * @module @formwork/foundation
+ * @module @carpentry/foundation
  * @description Bootstrap — one-call application bootstrapper.
  * Loads .env, builds config, registers the InfrastructureServiceProvider,
  * and returns a fully wired container.
@@ -7,15 +7,15 @@
  * @principles Convention over Configuration, DIP
  */
 
-import { Container } from '@formwork/core/container';
-import { Config } from '@formwork/core/config';
-import { loadEnv } from '@formwork/core/config';
-import { buildDefaultConfig } from '@formwork/core/config';
-import { ServiceProvider } from '@formwork/core/contracts';
+import { Container } from '@carpentry/core/container';
+import { Config } from '@carpentry/core/config';
+import { loadEnv } from '@carpentry/core/config';
+import { buildDefaultConfig } from '@carpentry/core/config';
+import { ServiceProvider } from '@carpentry/core/contracts';
 import { InfrastructureServiceProvider } from './InfrastructureServiceProvider.js';
 
-import type { IContainer } from '@formwork/core/container';
-import type { Dictionary } from '@formwork/core/types';
+import type { IContainer } from '@carpentry/core/container';
+import type { Dictionary } from '@carpentry/core/types';
 
 export interface BootstrapOptions {
   /** Path to .env file (default: process.cwd() + '/.env') */
@@ -87,7 +87,7 @@ export async function bootstrap(options: BootstrapOptions = {}): Promise<{
 
   // 5. Wire ORM adapter so BaseModel.create/query/find work
   try {
-    const { BaseModel } = await import('@formwork/orm');
+    const { BaseModel } = await import('@carpentry/orm');
     BaseModel.adapter = container.make('db');
   } catch {
     // ORM package may not be installed — skip silently

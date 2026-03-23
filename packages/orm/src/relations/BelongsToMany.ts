@@ -1,11 +1,11 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description BelongsToMany relation — many-to-many via pivot table
  * @patterns Strategy (relation resolution)
  * @principles SRP (only many-to-many logic)
  */
 
-import type { Dictionary } from '@formwork/core/types';
+import type { Dictionary } from '@carpentry/core/types';
 import { QueryBuilder } from '../query/QueryBuilder.js';
 import { BaseModel } from '../model/BaseModel.js';
 import { BaseRelation } from './BaseRelation.js';

@@ -1,11 +1,11 @@
 /**
- * @module @formwork/core/container
+ * @module @carpentry/core/container
  * @description IoC/DI container — dependency injection, binding, singletons, scoping, and decorators.
  *
  * @example
  * ```ts
- * import { Container } from '@formwork/core/container';
- * import { Injectable, Inject } from '@formwork/core/decorator';
+ * import { Container } from '@carpentry/core/container';
+ * import { Injectable, Inject } from '@carpentry/core/decorator';
  *
  * @Injectable()
  * class MyService {

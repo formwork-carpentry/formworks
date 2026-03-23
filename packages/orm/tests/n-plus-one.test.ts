@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Tests for N+1 Query Detector (Sprint 17/19 spec requirement)
  */
 

@@ -1,4 +1,4 @@
-# @formwork/mail-http
+# @carpentry/mail-http
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/mail-http
+npm install @carpentry/mail-http
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkmailhttp from '@formwork/mail-http';
+import * as formworkmailhttp from '@carpentry/mail-http';
 
 // Use the package API in your application modules
 ```

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Built-in generator commands — make:model, make:controller, make:migration, etc.
  * @patterns Template Method (GeneratorCommand), Factory (file templates)
  */
@@ -15,7 +15,7 @@ type NewAppRunner = (argv: string[]) => Promise<number>;
  *
  * @example
  * ```ts
- * import { CliApp, NewAppCommand } from '@formwork/cli';
+ * import { CliApp, NewAppCommand } from '@carpentry/cli';
  * await new CliApp().register(new NewAppCommand()).run(['new', 'my-app', '--preset', 'minimal']);
  * ```
  */
@@ -107,11 +107,11 @@ abstract class GeneratorCommand extends BaseCommand {
 // ── make:model ────────────────────────────────────────────
 
 /**
- * CLI command `make:model` — prints a `BaseModel` subclass stub under `src/models` (from `@formwork/orm`).
+ * CLI command `make:model` — prints a `BaseModel` subclass stub under `src/models` (from `@carpentry/formworks/orm`).
  *
  * @example
  * ```ts
- * import { CliApp, MakeModelCommand } from '@formwork/cli';
+ * import { CliApp, MakeModelCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeModelCommand()).run(['make:model', 'Post']);
  * ```
  *
@@ -131,7 +131,7 @@ export class MakeModelCommand extends GeneratorCommand {
 
   protected generateTemplate(name: string): string {
     const table = `${name.toLowerCase()}s`;
-    return `import { BaseModel } from '@formwork/orm';
+    return `import { BaseModel } from '@carpentry/formworks/orm';
 
 export class ${name} extends BaseModel {
   static table = '${table}';
@@ -146,11 +146,11 @@ export class ${name} extends BaseModel {
 // ── make:controller ───────────────────────────────────────
 
 /**
- * CLI command `make:controller` — emits a `BaseController` stub (plain, resource, or API) for `@formwork/http`.
+ * CLI command `make:controller` — emits a `BaseController` stub (plain, resource, or API) for `@carpentry/formworks/http`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeControllerCommand } from '@formwork/cli';
+ * import { CliApp, MakeControllerCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeControllerCommand()).run(['make:controller', 'Posts', '--resource']);
  * ```
  *
@@ -196,7 +196,7 @@ export class MakeControllerCommand extends GeneratorCommand {
   }
 
   protected generateTemplate(name: string): string {
-    return `import { BaseController } from '@formwork/http';
+    return `import { BaseController } from '@carpentry/formworks/http';
 
 export class ${name} extends BaseController {
   async index() {
@@ -233,7 +233,7 @@ export class ${name} extends BaseController {
       })
       .join("\n\n");
 
-    return `import { BaseController } from '@formwork/http';
+    return `import { BaseController } from '@carpentry/formworks/http';
 
 export class ${name} extends BaseController {
 ${methodBodies}
@@ -245,11 +245,11 @@ ${methodBodies}
 // ── make:migration ────────────────────────────────────────
 
 /**
- * CLI command `make:migration` — prints a timestamped migration module using `Schema` from `@formwork/orm`.
+ * CLI command `make:migration` — prints a timestamped migration module using `Schema` from `@carpentry/formworks/orm`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeMigrationCommand } from '@formwork/cli';
+ * import { CliApp, MakeMigrationCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeMigrationCommand()).run(['make:migration', 'create_posts_table', '--create', 'posts']);
  * ```
  *
@@ -298,8 +298,8 @@ export class MakeMigrationCommand extends GeneratorCommand {
   }
 
   private createTableTemplate(name: string, table: string): string {
-    return `import { Schema } from '@formwork/orm';
-import type { MigrationClass } from '@formwork/orm';
+    return `import { Schema } from '@carpentry/formworks/orm';
+import type { MigrationClass } from '@carpentry/formworks/orm';
 
 const migration: MigrationClass = {
   name: '${name}',
@@ -331,11 +331,11 @@ export default migration;
 // ── make:middleware ────────────────────────────────────────
 
 /**
- * CLI command `make:middleware` — scaffolds an `IMiddleware` implementation for `@formwork/core`.
+ * CLI command `make:middleware` — scaffolds an `IMiddleware` implementation for `@carpentry/formworks/core`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeMiddlewareCommand } from '@formwork/cli';
+ * import { CliApp, MakeMiddlewareCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeMiddlewareCommand()).run(['make:middleware', 'AuthMiddleware']);
  * ```
  *
@@ -348,7 +348,7 @@ export class MakeMiddlewareCommand extends GeneratorCommand {
   protected outputDir = "src/middleware";
 
   protected generateTemplate(name: string): string {
-    return `import type { IMiddleware, IRequest, NextFunction } from '@formwork/core';
+    return `import type { IMiddleware, IRequest, NextFunction } from '@carpentry/formworks/core';
 
 export class ${name} implements IMiddleware {
   /**
@@ -373,7 +373,7 @@ export class ${name} implements IMiddleware {
  *
  * @example
  * ```ts
- * import { CliApp, MakeNotificationCommand } from '@formwork/cli';
+ * import { CliApp, MakeNotificationCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeNotificationCommand()).run(['make:notification', 'InvoicePaid']);
  * ```
  *
@@ -386,8 +386,8 @@ export class MakeNotificationCommand extends GeneratorCommand {
   protected outputDir = "src/notifications";
 
   protected generateTemplate(name: string): string {
-    return `import { BaseNotification } from '@formwork/notifications';
-import type { Notifiable, MailChannelMessage } from '@formwork/notifications';
+    return `import { BaseNotification } from '@carpentry/formworks/notifications';
+import type { Notifiable, MailChannelMessage } from '@carpentry/formworks/notifications';
 
 interface ${name}Data {
   // Define your notification data here
@@ -424,11 +424,11 @@ export class ${name} extends BaseNotification<${name}Data> {
 // ── make:job ──────────────────────────────────────────────
 
 /**
- * CLI command `make:job` — scaffolds a `BaseJob` subclass for `@formwork/queue`.
+ * CLI command `make:job` — scaffolds a `BaseJob` subclass for `@carpentry/formworks/queue`.
  *
  * @example
  * ```ts
- * import { CliApp, MakeJobCommand } from '@formwork/cli';
+ * import { CliApp, MakeJobCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeJobCommand()).run(['make:job', 'SendWelcomeEmail']);
  * ```
  *
@@ -441,7 +441,7 @@ export class MakeJobCommand extends GeneratorCommand {
   protected outputDir = "src/jobs";
 
   protected generateTemplate(name: string): string {
-    return `import { BaseJob } from '@formwork/queue';
+    return `import { BaseJob } from '@carpentry/formworks/queue';
 
 interface ${name}Payload {
   // Define your job payload here
@@ -477,7 +477,7 @@ export class ${name} extends BaseJob<${name}Payload> {
  *
  * @example
  * ```ts
- * import { CliApp, MakeTestCommand } from '@formwork/cli';
+ * import { CliApp, MakeTestCommand } from '@carpentry/cli';
  * await new CliApp().register(new MakeTestCommand()).run(['make:test', 'UserService']);
  * ```
  *
@@ -519,7 +519,7 @@ describe('${name}', () => {
  *
  * @example
  * ```ts
- * import { CliApp, ServeCommand } from '@formwork/cli';
+ * import { CliApp, ServeCommand } from '@carpentry/cli';
  * await new CliApp().register(new ServeCommand()).run(['serve', '--port', '4000']);
  * ```
  *
@@ -565,7 +565,7 @@ export class ServeCommand extends BaseCommand {
  *
  * @example
  * ```ts
- * import { CliApp, MigrateRunCommand } from '@formwork/cli';
+ * import { CliApp, MigrateRunCommand } from '@carpentry/cli';
  * await new CliApp().register(new MigrateRunCommand()).run(['migrate', '--seed']);
  * ```
  *
@@ -732,6 +732,7 @@ import {
   ListFeaturesCommand,
   RemoveFeatureCommand,
 } from "./feature-commands.js";
+import { RoutesGenerateCommand } from "./routes-commands.js";
 import { UpgradeCheckCommand } from "./migration-guide.js";
 import { SecurityAuditCommand } from "./security-audit.js";
 
@@ -741,7 +742,7 @@ import { SecurityAuditCommand } from "./security-audit.js";
  *
  * @example
  * ```ts
- * import { CliApp, registerBuiltinCommands } from '@formwork/cli';
+ * import { CliApp, registerBuiltinCommands } from '@carpentry/cli';
  *
  * const app = new CliApp();
  * registerBuiltinCommands(app);
@@ -780,5 +781,6 @@ export function registerBuiltinCommands(app: { register(cmd: BaseCommand): unkno
   app.register(new AddFeatureCommand());
   app.register(new RemoveFeatureCommand());
   app.register(new ListFeaturesCommand());
+  app.register(new RoutesGenerateCommand());
   app.register(new GenerateServiceCommand());
 }

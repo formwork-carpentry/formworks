@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-postgres/helpers/driverLoader
+ * @module @carpentry/db-postgres/helpers/driverLoader
  * @description Lazy driver loading helpers for PostgreSQL.
  */
 import type { IPostgresDriverModule } from '../types.js';

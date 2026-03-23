@@ -1,7 +1,7 @@
-import type { IContainer } from '@formwork/core/container';
-import { ConfigResolver } from '@formwork/core/config';
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
-import { createQueueManager, type QueueManager } from '@formwork/queue';
+import type { IContainer } from '@carpentry/core/container';
+import { ConfigResolver } from '@carpentry/core/config';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
+import { createQueueManager, type QueueManager } from '@carpentry/queue';
 
 export class QueueInfrastructureProvider {
   constructor(

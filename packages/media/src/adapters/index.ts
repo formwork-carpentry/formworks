@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media/adapters
+ * @module @carpentry/media/adapters
  * @description Document format adapters for {@link DocumentGenerator}.
  *
  * - {@link CsvDocumentAdapter} — CSV from rows/headers

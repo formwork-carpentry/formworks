@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Default configuration template — all standard sections driven by environment variables
  * @principles Convention over configuration — sensible defaults, override via .env
  */
@@ -14,8 +14,8 @@ import { env } from "./Config.js";
  *
  * @example
  * ```ts
- * import { loadEnv } from '@formwork/core';
- * import { buildDefaultConfig } from '@formwork/core';
+ * import { loadEnv } from '@carpentry/core';
+ * import { buildDefaultConfig } from '@carpentry/core';
  *
  * await loadEnv(); // reads .env, .env.local
  * const config = new Config(buildDefaultConfig());

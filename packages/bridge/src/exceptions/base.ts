@@ -1,9 +1,9 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Base error hierarchy for bridge package failures.
  */
 
-import { CarpenterError } from "@formwork/core/exceptions";
+import { CarpenterError } from "@carpentry/core/exceptions";
 
 export class BridgeError extends CarpenterError {
   constructor(message: string, code = "BRIDGE_ERROR", context: Record<string, unknown> = {}) {

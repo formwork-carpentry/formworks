@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 
 import { DatabaseManager } from '../src/adapters/databaseManager.js';
-import type { IDatabaseAdapter } from '@formwork/core/contracts';
+import type { IDatabaseAdapter } from '@carpentry/core/contracts';
 
 type TestAdapter = IDatabaseAdapter & {
   disconnect: () => Promise<void>;
@@ -24,7 +24,7 @@ function makeAdapter(): { adapter: TestAdapter; disconnect: ReturnType<typeof vi
   return { adapter, disconnect };
 }
 
-describe('@formwork/db DatabaseManager', () => {
+describe('@carpentry/db DatabaseManager', () => {
   it('returns cached connections per name', () => {
     const created: TestAdapter[] = [];
     const factory = vi.fn(() => {

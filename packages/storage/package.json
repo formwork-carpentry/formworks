@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/storage",
+  "name": "@carpentry/storage",
   "version": "1.0.0-alpha.0",
   "description": "Storage manager with pluggable adapters (Local, S3, GCS, Azure)",
   "type": "module",
@@ -17,11 +17,12 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*",
-    "@formwork/storage-s3": "*"
+    "@carpentry/core": "workspace:*",
+    "@carpentry/storage-s3": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

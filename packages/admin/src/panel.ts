@@ -1,5 +1,5 @@
 /**
- * @module @formwork/admin
+ * @module @carpentry/admin
  * @description AdminPanel — registers resources and builds navigation
  * @patterns Facade
  */

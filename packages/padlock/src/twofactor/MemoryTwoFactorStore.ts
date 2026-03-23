@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/twofactor
+ * @module @carpentry/padlock/twofactor
  * @description In-memory 2FA store for testing and simple setups.
  */
 

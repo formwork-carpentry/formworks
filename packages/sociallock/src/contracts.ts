@@ -1,10 +1,10 @@
 /**
- * @module @formwork/sociallock/contracts
+ * @module @carpentry/sociallock/contracts
  * @description Public contracts for OAuth 2.0 social login.
  */
 
-import type { IAuthGuard, IAuthenticatable } from "@formwork/core/contracts";
-import type { HttpTransport } from "@formwork/http-client";
+import type { IAuthGuard, IAuthenticatable } from "@carpentry/core/contracts";
+import type { HttpTransport } from "@carpentry/http-client";
 
 export interface SocialLockStateMetadata {
   provider: string;

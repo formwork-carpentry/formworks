@@ -1,12 +1,12 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description HTTP Response — fluent builder producing Web Standard Response
  * @patterns Builder (fluent chaining)
  * @principles SRP — response construction only; LSP — implements IResponse
  */
 
-import type { CookieOptions, IResponse } from "@formwork/core/contracts";
-import type { Dictionary } from "@formwork/core/types";
+import type { CookieOptions, IResponse } from "@carpentry/core/contracts";
+import type { Dictionary } from "@carpentry/core/types";
 
 /**
  * CarpenterResponse — fluent HTTP response builder.
@@ -16,7 +16,7 @@ import type { Dictionary } from "@formwork/core/types";
  *
  * @example
  * ```ts
- * import { CarpenterResponse } from '@formwork/http';
+ * import { CarpenterResponse } from '@carpentry/http';
  *
  * return CarpenterResponse.json({ ok: true }, 200)
  *   .header('x-request-id', 'abc123');
@@ -175,7 +175,7 @@ export class CarpenterResponse implements IResponse {
  *
  * @example
  * ```ts
- * import { ViewResponse } from '@formwork/http';
+ * import { ViewResponse } from '@carpentry/http';
  * new ViewResponse('Dashboard', { userId: 1 });
  * ```
  */

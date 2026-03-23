@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { MockAIProvider, InMemoryVectorStore, setAIProvider, AI } from '../src/index.js';
 
-describe('@formwork/ai: MockAIProvider', () => {
+describe('@carpentry/ai: MockAIProvider', () => {
   let ai: MockAIProvider;
 
   beforeEach(() => { ai = new MockAIProvider(); });
@@ -57,7 +57,7 @@ describe('@formwork/ai: MockAIProvider', () => {
   });
 });
 
-describe('@formwork/ai: InMemoryVectorStore', () => {
+describe('@carpentry/ai: InMemoryVectorStore', () => {
   let store: InMemoryVectorStore;
 
   beforeEach(() => { store = new InMemoryVectorStore(); });
@@ -95,7 +95,7 @@ describe('@formwork/ai: InMemoryVectorStore', () => {
   });
 });
 
-describe('@formwork/ai: AI Facade', () => {
+describe('@carpentry/ai: AI Facade', () => {
   beforeEach(() => {
     const provider = new MockAIProvider();
     provider.queueResponse('Facade response');

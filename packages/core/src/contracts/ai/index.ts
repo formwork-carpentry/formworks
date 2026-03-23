@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/ai
+ * @module @carpentry/core/contracts/ai
  * @description AI/LLM contracts - provider, message, and completion interfaces.
  *
  * Implementations: MockAIProvider, AnthropicProvider, OpenAIProvider, GroqProvider, OllamaProvider

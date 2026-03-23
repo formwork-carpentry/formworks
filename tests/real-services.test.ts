@@ -8,11 +8,11 @@
  */
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { PostgresAdapter } from '@formwork/db-postgres';
-import { MySQLAdapter } from '@formwork/db-mysql';
-import { NatsTransport, NatsBridgeServer } from '@formwork/bridge-nats';
-import { KafkaTransport, KafkaBridgeServer } from '@formwork/bridge-kafka';
-import type { BridgeMessage } from '@formwork/core/contracts';
+import { PostgresAdapter } from '@carpentry/db-postgres';
+import { MySQLAdapter } from '@carpentry/db-mysql';
+import { NatsTransport, NatsBridgeServer } from '@carpentry/bridge-nats';
+import { KafkaTransport, KafkaBridgeServer } from '@carpentry/bridge-kafka';
+import type { BridgeMessage } from '@carpentry/core/contracts';
 
 // ── Compose service coordinates (must match docker-compose.yml) ────
 

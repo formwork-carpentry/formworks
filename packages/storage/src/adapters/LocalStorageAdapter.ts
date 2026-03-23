@@ -1,5 +1,5 @@
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description LocalStorageAdapter — stores files on the local filesystem
  * @patterns Adapter (implements IStorageAdapter)
  * @principles LSP (substitutable for S3/GCS), SRP (local file I/O only)
@@ -12,7 +12,7 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 
 export interface LocalStorageConfig {
   /** Root directory for file storage */

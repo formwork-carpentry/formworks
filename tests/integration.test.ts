@@ -14,8 +14,8 @@ import 'reflect-metadata';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 // Core
-import { Container } from '@formwork/core/container';
-import { Config } from '@formwork/core/config';
+import { Container } from '@carpentry/core/container';
+import { Config } from '@carpentry/core/config';
 
 // HTTP
 import { Router } from '../packages/http/src/router/Router.js';

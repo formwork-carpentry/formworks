@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/notifications",
+  "name": "@carpentry/notifications",
   "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "./src/index.ts",
@@ -16,5 +16,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "private": true
 }

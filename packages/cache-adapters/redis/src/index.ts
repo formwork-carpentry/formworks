@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache-redis
+ * @module @carpentry/cache-redis
  * @description RedisCacheStore — production cache adapter backed by Redis via ioredis.
  *
  * Wraps ioredis with the ICacheStore interface. Uses Redis SET with EX for TTL,
@@ -10,7 +10,7 @@
  *
  * @example
  * ```ts
- * import { RedisCacheStore } from '@formwork/cache-redis';
+ * import { RedisCacheStore } from '@carpentry/cache-redis';
  * import Redis from 'ioredis';
  *
  * const redis = new Redis('redis://localhost:6379');
@@ -21,8 +21,8 @@
  * ```
  */
 
-import type { ICacheStore } from '@formwork/core/contracts';
-import type { MaybeAsync } from '@formwork/core/types';
+import type { ICacheStore } from '@carpentry/core/contracts';
+import type { MaybeAsync } from '@carpentry/core/types';
 import type { IRedisClient, RedisCacheConfig } from './types.js';
 
 export { type IRedisClient, type RedisCacheConfig } from './types.js';
@@ -110,7 +110,7 @@ export class RedisCacheStore implements ICacheStore {
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 
 /**
  * Create a CacheManager-compatible driver factory for the Redis cache adapter.
@@ -122,7 +122,7 @@ import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
  * @example
  * ```ts
  * import Redis from 'ioredis';
- * import { createRedisCacheDriverFactory } from '@formwork/cache-redis';
+ * import { createRedisCacheDriverFactory } from '@carpentry/cache-redis';
  *
  * cacheManager.registerDriver('redis', createRedisCacheDriverFactory(
  *   (cfg) => new Redis(cfg['url'] as string),

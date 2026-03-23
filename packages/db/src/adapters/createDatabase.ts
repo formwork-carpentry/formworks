@@ -1,9 +1,9 @@
-import { postgresDriverFactory } from '@formwork/db-postgres';
-import { mysqlAdapter } from '@formwork/db-mysql';
-import { sqliteAdapter } from '@formwork/db-sqlite';
-import { mongodbAdapter } from '@formwork/db-mongodb';
-import { filesystemAdapter } from '@formwork/db-filesystem';
-import { memoryAdapter } from '@formwork/db-memory';
+import { postgresDriverFactory } from '@carpentry/db-postgres';
+import { mysqlAdapter } from '@carpentry/db-mysql';
+import { sqliteAdapter } from '@carpentry/db-sqlite';
+import { mongodbAdapter } from '@carpentry/db-mongodb';
+import { filesystemAdapter } from '@carpentry/db-filesystem';
+import { memoryAdapter } from '@carpentry/db-memory';
 
 import {
   DatabaseManager,

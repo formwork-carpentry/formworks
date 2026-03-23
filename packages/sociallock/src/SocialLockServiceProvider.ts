@@ -1,12 +1,12 @@
 /**
- * @module @formwork/sociallock/SocialLockServiceProvider
+ * @module @carpentry/sociallock/SocialLockServiceProvider
  * @description Service provider for SocialLock OAuth workflows.
  */
 
-import type { IAuthGuard, IAuthenticatable } from "@formwork/core/contracts";
-import { type IContainer, ServiceProvider } from "@formwork/core/container";
-import type { Token } from "@formwork/core/types";
-import type { Router } from "@formwork/http";
+import type { IAuthGuard, IAuthenticatable } from "@carpentry/core/contracts";
+import { type IContainer, ServiceProvider } from "@carpentry/core/container";
+import type { Token } from "@carpentry/core/types";
+import type { Router } from "@carpentry/http";
 import { SOCIALLOCK_BINDINGS } from "./bindings.js";
 import type { IStateStore, ISocialUserRepository, OAuthProviderConfig } from "./contracts.js";
 import { SocialLockController, type SocialLockControllerOptions } from "./SocialLockController.js";

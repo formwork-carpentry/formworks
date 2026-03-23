@@ -1,4 +1,4 @@
-# @formwork/mail-smtp
+# @carpentry/mail-smtp
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/mail-smtp
+npm install @carpentry/mail-smtp
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkmailsmtp from '@formwork/mail-smtp';
+import * as formworkmailsmtp from '@carpentry/mail-smtp';
 
 // Use the package API in your application modules
 ```

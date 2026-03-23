@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description BridgeManager test suite — verifies transport resolution, lifecycle,
  * and driver registration via the Domain Factory Manager pattern.
  */

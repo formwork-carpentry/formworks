@@ -10,7 +10,7 @@
 
 ## Context
 
-The Formworks project aims to manage and maintain 40+ interdependent TypeScript packages under the `@formwork/*` namespace. Key challenges include:
+The Formworks project aims to manage and maintain 40+ interdependent TypeScript packages under the `@carpentry/*` namespace. Key challenges include:
 
 1. **Dependency Management**: Ensuring consistent versions across multiple packages while allowing for independent updates
 2. **Build Optimization**: Avoiding redundant builds when only specific packages change
@@ -135,9 +135,9 @@ Root `turbo.json`:
 ```
 formworks/
 ├── packages/
-│   ├── @formwork/core/
-│   ├── @formwork/cli/
-│   ├── @formwork/utils/
+│   ├── @carpentry/core/
+│   ├── @carpentry/cli/
+│   ├── @carpentry/utils/
 │   └── ... (37+ more packages)
 ├── scripts/
 ├── docs/

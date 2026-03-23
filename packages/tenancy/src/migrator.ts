@@ -1,5 +1,5 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description TenantMigrator — migrate tenants between isolation strategies
  * @patterns Strategy (migration strategies), Observer (progress events)
  */
@@ -232,7 +232,7 @@ export interface DryRunResult {
  *
  * @example
  * ```ts
- * import { InMemoryTenantExporter } from '@formwork/tenancy';
+ * import { InMemoryTenantExporter } from '@carpentry/tenancy';
  * const ex = new InMemoryTenantExporter();
  * ex.seed('t1', { users: [{ id: 1 }] });
  * ```
@@ -270,7 +270,7 @@ export class InMemoryTenantExporter implements TenantDataExporter {
  *
  * @example
  * ```ts
- * import { InMemoryTenantImporter } from '@formwork/tenancy';
+ * import { InMemoryTenantImporter } from '@carpentry/tenancy';
  * const im = new InMemoryTenantImporter();
  * ```
  *

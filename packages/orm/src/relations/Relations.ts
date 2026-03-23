@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description ORM Relations — HasOne, HasMany, BelongsTo
  * @patterns Strategy (relation types), Proxy (lazy loading), Builder (eager loading query)
  * @principles OCP — new relation types without modifying BaseModel
@@ -7,7 +7,7 @@
  *             DIP — relations use QueryBuilder, not raw SQL
  */
 
-import type { Dictionary } from '@formwork/core/types';
+import type { Dictionary } from '@carpentry/core/types';
 import { QueryBuilder } from '../query/QueryBuilder.js';
 import { BaseModel } from '../model/BaseModel.js';
 import { BaseRelation } from './BaseRelation.js';

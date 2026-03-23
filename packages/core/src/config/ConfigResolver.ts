@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description ConfigServiceProvider — the bridge between Config and infrastructure managers.
  * Reads config values and wires DatabaseManager, CacheManager, QueueManager, MailManager, StorageManager.
  * @patterns Abstract Factory (config-driven adapter creation), Mediator (connects config to managers)
@@ -119,7 +119,7 @@ import type { Config } from "./Config.js";
  *
  * @example
  * ```ts
- * import { Config, ConfigResolver } from '@formwork/core';
+ * import { Config, ConfigResolver } from '@carpentry/core';
  *
  * const resolver = new ConfigResolver(new Config({ database: { default: 'sqlite', connections: { sqlite: {} } } }));
  * resolver.dbConnection();

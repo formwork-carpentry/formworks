@@ -1,8 +1,8 @@
 # Carpenter Framework — Building Plan
 
 **From:** Incomplete DX  
-**To:** CARP-121-125 (v1.0 GA Release)  
-**Items:** 27 remaining · 8 phases · ~108 hours (~4 weeks at 6h/day)
+**To:** CARP-145 (v1.0 GA Release + UI Ecosystem Packages)  
+**Items:** 45 remaining · 10 phases · ~136 hours (~5-6 weeks at 6h/day)
 
 **Current state:** 1,678 tests · 192 source files · 41,038 lines · 11 example apps · 25 CLI commands
 
@@ -36,6 +36,42 @@
 
 **Done when:** `npx vitest run --project integration` passes against real Postgres, MySQL, Redis, SMTP.  
 **Unlocks:** Full integration test suites (CARP-101 through 105).
+
+---
+
+## Phase 2b — New Packages & Extended Adapters (~16 hours)
+
+*Buildable immediately. No external dependencies for stubs; Docker for adapter integration tests.*
+
+| # | Item | CARP | What to Build | Effort |
+|---|------|------|---------------|--------|
+| 2e | Health checks | 126 | `HealthChecker` (composite aggregator) + `DatabaseHealthCheck`, `CacheHealthCheck`, `MemoryHealthCheck`. Expose via `/health` endpoint. | 2h |
+| 2f | Field-level encryption | 127 | `AesEncrypter` — AES-256-GCM via Node.js crypto. `IEncrypter` contract. Tier-1 private primitive in bundle. | 2h |
+| 2g | Broadcasting | 128-129 | `BroadcastManager` with Log/Null drivers. `Channel`, `PresenceChannel`. Pusher/Soketi/Ably stubs. | 3h |
+| 2h | Full-text search | 130-131 | `SearchManager` with `ISearchEngine` contract. Database LIKE fallback. Meilisearch/Typesense stubs. | 2h |
+| 2i | Audit logging + Webhooks | 132-133 | `AuditManager` (DB/file) + `WebhookReceiver` (Stripe/GitHub signature verification). | 3h |
+| 2j | Extended adapters | 134-137 | `db-turso` (@libsql/client), `queue-sqs` (AWS SQS), `queue-database` (ORM-backed), `cache-memcached` (memjs), `storage-gcs`, `storage-azure`. | 4h |
+
+**Done when:** All 12 new packages scaffolded with types, stubs, and config. HealthChecker and AesEncrypter fully implemented and tested. 5 new core contracts (ISearchEngine, IHealthChecker, IAuditLogger, IWebhookReceiver, IEncrypter) exported from barrel.  
+**Unlocks:** Sprint 41 stories (CARP-126 through 137).
+
+---
+
+## Phase 2c — Islands UI Adapters, Charts & Icons (~12 hours)
+
+*Buildable immediately. Peer dependency declarations only; no framework runtime bundling required in core packages.*
+
+| # | Item | CARP | What to Build | Effort |
+|---|------|------|---------------|--------|
+| 2k | React + Vue adapters | 138-139 | `@carpentry/ui-react` and `@carpentry/ui-vue` with `createCarpenterApp`, `usePage`, `useForm`, `Link`, and framework peer dependencies. | 3h |
+| 2l | Svelte + Solid adapters | 140-141 | `@carpentry/ui-svelte` and `@carpentry/ui-solid` with matching islands bridge surface. | 3h |
+| 2m | Adapter parity layer | 144 | Align `Link`, `usePage`, and `useForm` semantics across all four framework adapters. | 2h |
+| 2n | ui-charts package | 142 | `@carpentry/ui-charts` chart dataset helpers for islands-friendly dashboards and reports. | 2h |
+| 2o | icons package | 143 | `@carpentry/icons` with `IIconProps`, placeholder navigation icons, and country flags. | 1h |
+| 2p | Package smoke tests | 145 | Validate exports, peer dependency declarations, and CLI feature registration for the 6 UI packages. | 1h |
+
+**Done when:** All 6 UI packages exist with required exports and peer dependency metadata. Icons and chart helpers are available for starter apps.  
+**Unlocks:** Sprint 42 stories (CARP-138 through 145).
 
 ---
 
@@ -106,7 +142,7 @@
 
 | # | Item | CARP | What to Build | Effort |
 |---|------|------|---------------|--------|
-| 7a | TypeDoc API reference | 065 | `typedoc.json` config for all 37 packages. Generated HTML at `/api`. Every public class/method/interface documented. | 3h |
+| 7a | TypeDoc API reference | 065 | `typedoc.json` config for all workspace packages. Generated HTML at `/api`. Every public class/method/interface documented. | 3h |
 | 7b | Getting started guide | 111 | Tutorial: scaffold → add features → model → routes → migrate → test → deploy. ~2000 words with code snippets. | 4h |
 | 7c | Package guides | 112–114 | One guide per major package (ORM, Auth, AI, Edge, Tenancy, etc.). WHY/WHEN/HOW format. ~1000 words each. 8–10 guides. | 8h |
 | 7d | Migration guide (0.x → 1.0) | 115 | All breaking changes with before/after code. The `MigrationScanner` CLI (already built) automates detection. | 2h |
@@ -122,11 +158,11 @@
 
 | # | Item | CARP | What to Build | Effort |
 |---|------|------|---------------|--------|
-| 8a | npm publish pipeline | 067 | Changesets for versioning. GitHub Actions: test → build → publish. All 37 packages to `@formwork/*` scope. `create-carpenter-app` as standalone. | 4h |
+| 8a | npm publish pipeline | 067 | Changesets for versioning. GitHub Actions: test → build → publish. All publishable workspace packages to `@carpentry/*` scope. `create-carpenter-app` as standalone. | 4h |
 | 8b | Plugin templates | 116–120 | `carpenter make:plugin my-plugin` scaffold. Community preset registry (JSON). 2–3 example plugins (Stripe, Algolia). | 4h |
 | 8c | v1.0 GA release | 121–125 | CHANGELOG.md. Semver 1.0.0 on all packages. `npm publish --tag latest`. GitHub Release. Announcement post. Verify `npx create-carpenter-app` from clean machine. | 3h |
 
-**Done when:** `npm install @formwork/core` works. `npx create-carpenter-app my-app` works from a clean machine. v1.0.0 tag on GitHub.
+**Done when:** `npm install @carpentry/core` works. `npx create-carpenter-app my-app` works from a clean machine. v1.0.0 tag on GitHub.
 
 ---
 
@@ -136,24 +172,28 @@
 |-------|-------|-------|-------|-------|-----------|
 | **1** | DX Polish | 042, 063 + CLI | ~10 | Nothing | Start here |
 | **2** | Real DB Adapters | 023, 024 + Docker | ~11 | Docker | After 1 |
+| **2b** | New Packages & Adapters | 126-137 | ~16 | Nothing | With 2 |
+| **2c** | Islands UI Packages | 138-145 | ~12 | Nothing | With 2/2b |
 | **3** | AI Streaming + Edge | 079, 076, 077 | ~10 | Nothing | With 2 |
 | **4** | Transport Adapters | 069–071, 073 | ~18 | Docker + npm | With 2/3 |
 | **5** | Security Audit | 092, 106–110 | ~13 | Running app | After 2 |
 | **6** | Performance + Chaos | 097, 100 | ~14 | Docker + k6 | With 5 |
 | **7** | Documentation | 065, 111–115 | ~21 | Nothing | With 5/6 |
 | **8** | npm Publish + v1.0 | 067, 116–125 | ~11 | npm account | After all |
-| | **TOTAL** | **27 items** | **~108h** | | **~18 working days** |
+| | **TOTAL** | **45 items** | **~136h** | | **~23 working days** |
 
 ### Critical Path
 
 ```
 Phase 1 (DX) → Phase 2 (DB) → Phase 5 (Security) → Phase 7 (Docs) → Phase 8 (Release)
                     ↕                   ↕
-              Phase 3 (AI/Edge)    Phase 6 (Perf)
+              Phase 2b (New Packages)  Phase 6 (Perf)
+              Phase 2c (UI Packages)
+              Phase 3 (AI/Edge)
               Phase 4 (Transports)
 ```
 
-Phases 3, 4, 6, and 7 can run in parallel with the critical path, saving ~2 weeks if multiple people work on it.
+Phases 2b, 2c, 3, 4, 6, and 7 can run in parallel with the critical path, saving ~2–3 weeks if multiple people work on it.
 
 ### What's Deliberately Excluded
 

@@ -1,12 +1,12 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description HashManager — Strategy pattern for password hashing
  * @patterns Strategy (hash drivers)
  * @principles DIP — app code depends on IHashManager; OCP — new drivers via registerDriver
  */
 
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { IHashManager } from "@formwork/core/contracts";
+import type { IHashManager } from "@carpentry/core/contracts";
 
 /**
  * Sha256HashDriver — salted SHA-256 hashing for tests and non-production use.
@@ -73,7 +73,7 @@ export class Sha256HashDriver implements IHashManager {
  *
  * @example
  * ```ts
- * import { HashManager, Sha256HashDriver } from '@formwork/auth';
+ * import { HashManager, Sha256HashDriver } from '@carpentry/auth';
  *
  * const hashes = new HashManager('sha256');
  * hashes.registerDriver('sha256', new Sha256HashDriver());

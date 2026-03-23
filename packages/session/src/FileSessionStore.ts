@@ -1,5 +1,5 @@
 /**
- * @module @formwork/session
+ * @module @carpentry/session
  * @description FileSessionStore — persists sessions as JSON files on disk
  * @patterns Adapter (implements ISessionStore)
  * @principles LSP (substitutable for Memory/Redis/DB stores), SRP (file I/O only)

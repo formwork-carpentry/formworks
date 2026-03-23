@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/testing",
+  "name": "@carpentry/testing",
   "version": "1.0.0-alpha.0",
   "description": "Test application, HTTP client, all infrastructure mocks",
   "type": "module",
@@ -17,10 +17,11 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/db": "*"
+    "@carpentry/db": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

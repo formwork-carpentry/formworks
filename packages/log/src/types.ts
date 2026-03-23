@@ -1,11 +1,11 @@
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Log types, levels, and channel interfaces
  * @principles ISP (small interfaces)
  */
 
 /**
- * @module @formwork/log
+ * @module @carpentry/log
  * @description Structured logging — application logs, audit logs, multiple channels
  *
  * Three concerns, one package:

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description Tests for Cache system (CARP-025)
  */
 

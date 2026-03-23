@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media
+ * @module @carpentry/media
  * @description Core types for media handling — MediaItem and related interfaces.
  */
 

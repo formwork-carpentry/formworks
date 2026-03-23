@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-sqlite
+ * @module @carpentry/db-sqlite
  * @description Public entrypoint for the SQLite adapter package.
  */
 export { SQLiteAdapter } from './sqliteAdapter.js';
@@ -17,7 +17,7 @@ export { normalizeSQLiteInsertId, shouldReturnRows } from './helpers/results.js'
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 import { SQLiteAdapter } from './sqliteAdapter.js';
 import type { SQLiteConnectionConfig } from './types.js';
 
@@ -26,8 +26,8 @@ import type { SQLiteConnectionConfig } from './types.js';
  *
  * @example
  * ```ts
- * import { sqliteAdapter } from '@formwork/db-sqlite';
- * import { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+ * import { sqliteAdapter } from '@carpentry/db-sqlite';
+ * import { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
  * dbManager.registerDriver('sqlite', sqliteAdapter);
  * ```
  */

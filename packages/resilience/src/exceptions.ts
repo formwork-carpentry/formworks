@@ -1,5 +1,5 @@
 /**
- * @module @formwork/resilience/exceptions
+ * @module @carpentry/resilience/exceptions
  * @description Stable subpath export for resilience exceptions.
  */
 

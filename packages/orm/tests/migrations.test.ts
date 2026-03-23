@@ -1,5 +1,5 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description Tests for Migration system (CARP-020) and Factory/Seeder (CARP-021)
  */
 

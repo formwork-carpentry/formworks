@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http-client
+ * @module @carpentry/http-client
  * @description Outbound HTTP client — fluent request builder, timeout/retry support, and deterministic test-double transport support.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { HttpClient, FakeTransport } from '@formwork/http-client';
+ * import { HttpClient, FakeTransport } from '@carpentry/http-client';
  *
  * const transport = new FakeTransport().setDefault({
  *   status: 200,
@@ -193,7 +193,7 @@ export class HttpClient {
  *
  * @example
  * ```ts
- * import { HttpClient } from '@formwork/http-client';
+ * import { HttpClient } from '@carpentry/http-client';
  *
  * const client = new HttpClient()
  *   .withBaseUrl('https://api.example.com')
@@ -358,7 +358,7 @@ export interface StubbedResponse {
  *
  * @example
  * ```ts
- * import { HttpClient, FakeTransport } from '@formwork/http-client';
+ * import { HttpClient, FakeTransport } from '@carpentry/http-client';
  *
  * const transport = new FakeTransport()
  *   .setDefault({ status: 200, body: { ok: true } })

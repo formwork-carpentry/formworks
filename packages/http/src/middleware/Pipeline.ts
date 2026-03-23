@@ -1,11 +1,11 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Middleware pipeline — processes request through ordered middleware chain
  * @patterns Chain of Responsibility (middleware chain), Composite (pipeline as a unit)
  * @principles OCP — new middleware without modifying pipeline; SRP — pipeline orchestration only
  */
 
-import type { IMiddleware, IRequest, IResponse, NextFunction } from "@formwork/core/contracts";
+import type { IMiddleware, IRequest, IResponse, NextFunction } from "@carpentry/core/contracts";
 
 export type MiddlewareFunction = (request: IRequest, next: NextFunction) => Promise<IResponse>;
 export type MiddlewareEntry = IMiddleware | MiddlewareFunction;

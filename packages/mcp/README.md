@@ -1,4 +1,4 @@
-# @formwork/mcp
+# @carpentry/mcp
 
 Model Context Protocol client and server
 
@@ -11,13 +11,13 @@ Model Context Protocol client and server
 ## Installation
 
 ```bash
-npm install @formwork/mcp
+npm install @carpentry/mcp
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkmcp from '@formwork/mcp';
+import * as formworkmcp from '@carpentry/mcp';
 
 // Use the package API in your application modules
 ```

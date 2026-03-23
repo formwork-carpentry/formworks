@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Transport stubs for gRPC, NATS, Kafka
  */
 

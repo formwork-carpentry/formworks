@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/padlock",
+  "name": "@carpentry/padlock",
   "version": "1.0.0-alpha.0",
   "description": "Higher-level authentication workflows and route/provider integration for Carpenter",
   "type": "module",
@@ -16,14 +16,14 @@
     "clean": "rm -rf dist",
     "lint": "biome check src/ tests/"
   },
-  "dependencies": {
-    "@formwork/auth": "*",
-    "@formwork/core": "*",
-    "@formwork/http": "*",
-    "@formwork/validation": "*"
-  },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@carpentry/formworks": "workspace:*"
+  }
 }

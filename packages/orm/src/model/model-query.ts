@@ -1,10 +1,10 @@
 /**
- * @module @formwork/orm
+ * @module @carpentry/orm
  * @description ModelQueryBuilder — wraps QueryBuilder to return hydrated model instances
  * @patterns Proxy (delegates to QueryBuilder)
  */
 
-import type { Dictionary } from '@formwork/core/types';
+import type { Dictionary } from '@carpentry/core/types';
 import type { QueryBuilder } from '../query/QueryBuilder.js';
 import type { BaseModel } from './BaseModel.js';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/log",
+  "name": "@carpentry/log",
   "version": "1.0.0-alpha.0",
   "description": "Structured logging — app logs, audit logs, multiple channels",
   "type": "module",
@@ -17,5 +17,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
-  }
+  },
+  "private": true
 }

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core/contracts/broadcast
+ * @module @carpentry/core/contracts/broadcast
  * @description Broadcasting contract - real-time event delivery to channels.
  *
  * Implementations: InMemoryBroadcaster, LogBroadcaster

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-postgres
+ * @module @carpentry/db-postgres
  * @description Public entrypoint for the PostgreSQL adapter package.
  */
 export { PostgresAdapter } from './postgresAdapter.js';
@@ -18,7 +18,7 @@ export { loadPostgresDriver } from './helpers/driverLoader.js';
 
 // ── Driver factory (Domain Factory Manager integration) ───
 
-import type { CarpenterFactoryAdapter } from '@formwork/core/adapters';
+import type { CarpenterFactoryAdapter } from '@carpentry/core/adapters';
 import { PostgresAdapter } from './postgresAdapter.js';
 import type { PostgresConnectionConfig } from './types.js';
 
@@ -27,7 +27,7 @@ import type { PostgresConnectionConfig } from './types.js';
  *
  * @example
  * ```ts
- * import { postgresDriverFactory } from '@formwork/db-postgres';
+ * import { postgresDriverFactory } from '@carpentry/db-postgres';
  * dbManager.registerDriver('postgres', postgresDriverFactory);
  * ```
  */

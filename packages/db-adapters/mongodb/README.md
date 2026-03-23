@@ -1,4 +1,4 @@
-# @formwork/db-mongodb
+# @carpentry/db-mongodb
 
 Production-ready package for the Carpenter ecosystem.
 
@@ -11,13 +11,13 @@ Production-ready package for the Carpenter ecosystem.
 ## Installation
 
 ```bash
-npm install @formwork/db-mongodb
+npm install @carpentry/db-mongodb
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkdbmongodb from '@formwork/db-mongodb';
+import * as formworkdbmongodb from '@carpentry/db-mongodb';
 
 // Use the package API in your application modules
 ```

@@ -1,4 +1,4 @@
-# @formwork/cache
+# @carpentry/cache
 
 Cache manager with pluggable adapters (Redis, Memory, File, Null)
 
@@ -11,13 +11,13 @@ Cache manager with pluggable adapters (Redis, Memory, File, Null)
 ## Installation
 
 ```bash
-npm install @formwork/cache
+npm install @carpentry/cache
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkcache from '@formwork/cache';
+import * as formworkcache from '@carpentry/cache';
 
 // Use the package API in your application modules
 ```

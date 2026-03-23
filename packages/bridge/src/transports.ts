@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description Transport implementations (InMemory + HTTP)
  * @patterns Strategy (ITransport), Adapter (HttpTransport wraps fetch)
  */
@@ -12,7 +12,7 @@ import type { BridgeMessage, BridgeResponse, ITransport } from "./types.js";
  *
  * @example
  * ```ts
- * import { InMemoryTransport } from '@formwork/bridge';
+ * import { InMemoryTransport } from '@carpentry/bridge';
  * const t = new InMemoryTransport();
  * await t.connect();
  * ```

@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/i18n",
+  "name": "@carpentry/i18n",
   "version": "1.0.0-alpha.0",
   "description": "Localization and translation system — Laravel-style __(), trans(), transChoice()",
   "type": "module",
@@ -16,10 +16,11 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@formwork/core": "*"
+    "@carpentry/core": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

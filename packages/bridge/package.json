@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/bridge",
+  "name": "@carpentry/bridge",
   "version": "1.0.0-alpha.0",
   "description": "Polyglot microservices bridge: service proxy, transport abstraction, CSDL",
   "type": "module",
@@ -17,13 +17,14 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/bridge-grpc": "*",
-    "@formwork/bridge-kafka": "*",
-    "@formwork/bridge-nats": "*",
-    "@formwork/core": "*"
+    "@carpentry/bridge-grpc": "workspace:*",
+    "@carpentry/bridge-kafka": "workspace:*",
+    "@carpentry/bridge-nats": "workspace:*",
+    "@carpentry/core": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

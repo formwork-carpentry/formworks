@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mysql/helpers/results
+ * @module @carpentry/db-mysql/helpers/results
  * @description Result normalization and config helpers for the MySQL adapter.
  */
 import type { IMySQLResultHeader, MySQLConnectionConfig, QueryResult } from '../types.js';

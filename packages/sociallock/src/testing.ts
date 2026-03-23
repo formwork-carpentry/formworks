@@ -1,9 +1,9 @@
 /**
- * @module @formwork/sociallock/testing
+ * @module @carpentry/sociallock/testing
  * @description In-memory testing doubles for SocialLock.
  */
 
-import type { IAuthenticatable } from "@formwork/core/contracts";
+import type { IAuthenticatable } from "@carpentry/core/contracts";
 import type { ISocialUserRepository, SocialUserProfile } from "./contracts.js";
 
 export class InMemorySocialUser implements IAuthenticatable {

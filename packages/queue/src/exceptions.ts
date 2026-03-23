@@ -1,5 +1,5 @@
 /**
- * @module @formwork/queue/exceptions
+ * @module @carpentry/queue/exceptions
  * @description Stable subpath export for queue exceptions.
  */
 

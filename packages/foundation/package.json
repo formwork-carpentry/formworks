@@ -1,20 +1,20 @@
 {
-  "name": "@formwork/foundation",
+  "name": "@carpentry/foundation",
   "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "./src/index.ts",
   "dependencies": {
-    "@formwork/bridge": "*",
-    "@formwork/cache": "*",
-    "@formwork/core": "*",
-    "@formwork/db": "*",
-    "@formwork/events": "*",
-    "@formwork/log": "*",
-    "@formwork/mail": "*",
-    "@formwork/orm": "*",
-    "@formwork/queue": "*",
-    "@formwork/storage": "*",
-    "@formwork/validation": "*"
+    "@carpentry/bridge": "workspace:*",
+    "@carpentry/cache": "workspace:*",
+    "@carpentry/core": "workspace:*",
+    "@carpentry/db": "workspace:*",
+    "@carpentry/events": "workspace:*",
+    "@carpentry/log": "workspace:*",
+    "@carpentry/mail": "workspace:*",
+    "@carpentry/orm": "workspace:*",
+    "@carpentry/queue": "workspace:*",
+    "@carpentry/storage": "workspace:*",
+    "@carpentry/validation": "workspace:*"
   },
   "scripts": {
     "build": "tsc -b",
@@ -28,5 +28,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

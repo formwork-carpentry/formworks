@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-postgres/helpers/compileQuery
+ * @module @carpentry/db-postgres/helpers/compileQuery
  * @description SQL compilation helpers for PostgreSQL placeholders and result normalization.
  */
 import type { CompiledQuery, PostgresConnectionConfig, PostgresQueryExecutionResult, QueryResult } from '../types.js';

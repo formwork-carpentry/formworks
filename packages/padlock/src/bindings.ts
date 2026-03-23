@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/bindings
+ * @module @carpentry/padlock/bindings
  * @description Canonical container tokens used by the Padlock service provider.
  * @patterns Registry
  * @principles SRP - centralizes Padlock container token names in one place for provider and application wiring.

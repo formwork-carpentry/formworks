@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mongodb/helpers/driverLoader
+ * @module @carpentry/db-mongodb/helpers/driverLoader
  * @description Lazy driver loading helpers for the MongoDB document adapter.
  */
 import type { IMongoDriverModule } from '../types.js';

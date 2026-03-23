@@ -1,5 +1,5 @@
 /**
- * @module @formwork/media/adapters/ArrayDocumentAdapter
+ * @module @carpentry/media/adapters/ArrayDocumentAdapter
  * @description In-memory document adapter for testing.
  * @patterns Strategy, Test Double
  */

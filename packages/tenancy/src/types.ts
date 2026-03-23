@@ -1,10 +1,10 @@
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Core types and interfaces
  */
 
 /**
- * @module @formwork/tenancy
+ * @module @carpentry/tenancy
  * @description Tenancy — tenant resolution, isolation strategies, scoped operations
  *
  * Architecture:

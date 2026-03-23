@@ -1,5 +1,5 @@
 /**
- * @module @formwork/auth
+ * @module @carpentry/auth
  * @description Authentication guards, authorization {@link Gate}, and password hashing {@link HashManager}.
  *
  * Use this package to:
@@ -9,7 +9,7 @@
  *
  * @example
  * ```ts
- * import { HashManager, Sha256HashDriver, Gate } from '@formwork/auth';
+ * import { HashManager, Sha256HashDriver, Gate } from '@carpentry/auth';
  *
  * const hashes = new HashManager();
  * hashes.registerDriver('sha256', new Sha256HashDriver());

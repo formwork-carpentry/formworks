@@ -1,10 +1,10 @@
 /**
- * @module @formwork/core/plugin
+ * @module @carpentry/core/plugin
  * @description TypeScript plugin system — IDE support, completions, and plugin manager.
  *
  * @example
  * ```ts
- * import { PluginManager, CompletionProvider } from '@formwork/core/plugin';
+ * import { PluginManager, CompletionProvider } from '@carpentry/core/plugin';
  *
  * const pm = new PluginManager();
  * const completions = CompletionProvider.completions('container.m', lineText, position);

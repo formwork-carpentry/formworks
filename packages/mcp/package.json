@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/mcp",
+  "name": "@carpentry/mcp",
   "version": "1.0.0-alpha.0",
   "description": "Model Context Protocol client and server",
   "type": "module",
@@ -19,5 +19,11 @@
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "peerDependencies": {
+    "@carpentry/formworks": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@carpentry/formworks": "workspace:*"
+  }
 }

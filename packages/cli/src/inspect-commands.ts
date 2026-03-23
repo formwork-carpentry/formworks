@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cli
+ * @module @carpentry/cli
  * @description Diagnostic and inspection commands
  * @patterns Command
  * @principles SRP (each command one purpose)
@@ -15,7 +15,7 @@ import type { CommandOutput } from "./index.js";
  *
  * @example
  * ```ts
- * import { CliApp, InspectRoutesCommand } from '@formwork/cli';
+ * import { CliApp, InspectRoutesCommand } from '@carpentry/cli';
  * await new CliApp().register(new InspectRoutesCommand()).run(['inspect:routes', '--json']);
  * ```
  *
@@ -70,7 +70,7 @@ export class InspectRoutesCommand extends BaseCommand {
  *
  * @example
  * ```ts
- * import { CliApp, InspectContainerCommand } from '@formwork/cli';
+ * import { CliApp, InspectContainerCommand } from '@carpentry/cli';
  * await new CliApp().register(new InspectContainerCommand()).run(['inspect:container', '--tag', 'http']);
  * ```
  *
@@ -126,7 +126,7 @@ export class InspectContainerCommand extends BaseCommand {
  *
  * @example
  * ```ts
- * import { CliApp, DoctorCommand } from '@formwork/cli';
+ * import { CliApp, DoctorCommand } from '@carpentry/cli';
  * await new CliApp().register(new DoctorCommand()).run(['doctor']);
  * ```
  *

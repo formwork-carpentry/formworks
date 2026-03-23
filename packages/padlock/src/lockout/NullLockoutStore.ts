@@ -1,5 +1,5 @@
 /**
- * @module @formwork/padlock/lockout
+ * @module @carpentry/padlock/lockout
  * @description No-op lockout store when lockout is disabled.
  */
 

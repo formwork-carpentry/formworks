@@ -1,20 +1,20 @@
 /**
- * @module @formwork/padlock/PadlockServiceProvider
+ * @module @carpentry/padlock/PadlockServiceProvider
  * @description Service provider that wires Padlock services, controller bindings, and optional default routes.
  * @patterns Service Provider, Facade, Template Method
  * @principles SRP - provider bootstraps Padlock bindings while auth/session/database implementations remain external collaborators.
  */
 
-import { HashManager, MemoryGuard } from "@formwork/auth";
-import { type IContainer, ServiceProvider } from "@formwork/core/container";
+import { HashManager, MemoryGuard } from "@carpentry/auth";
+import { type IContainer, ServiceProvider } from "@carpentry/core/container";
 import type {
   IAuthGuard,
   IAuthenticatable,
   IHashManager,
   IUserProvider,
-} from "@formwork/core/contracts";
-import type { IContainerResolver, Token } from "@formwork/core/types";
-import type { Router } from "@formwork/http";
+} from "@carpentry/core/contracts";
+import type { IContainerResolver, Token } from "@carpentry/core/types";
+import type { Router } from "@carpentry/http";
 import { PadlockController } from "./PadlockController.js";
 import type { PadlockControllerOptions } from "./PadlockController.js";
 import { PadlockService } from "./PadlockService.js";

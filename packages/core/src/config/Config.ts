@@ -1,5 +1,5 @@
 /**
- * @module @formwork/core
+ * @module @carpentry/core
  * @description Typed configuration with dot-notation access and environment variable overrides
  * @patterns Flyweight (cached after first load)
  * @principles SRP — only manages config values; DIP — no dependency on filesystem directly
@@ -33,7 +33,7 @@ export interface ConfigRepository {
  *
  * @example
  * ```ts
- * import { Config } from '@formwork/core';
+ * import { Config } from '@carpentry/core';
  *
  * const config = new Config({ app: { name: 'API' }, db: { host: 'localhost' } });
  * config.get<string>('app.name');

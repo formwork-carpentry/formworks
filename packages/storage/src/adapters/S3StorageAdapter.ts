@@ -3,11 +3,11 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@formwork/core/contracts";
+} from "@carpentry/core/contracts";
 import { StorageFileNotFoundError, StorageOperationError } from "../exceptions/base.js";
 
 /**
- * @module @formwork/storage
+ * @module @carpentry/storage
  * @description S3StorageAdapter — stores files in AWS S3 or any S3-compatible service
  * (MinIO, DigitalOcean Spaces, Cloudflare R2) using raw HTTP requests.
  *

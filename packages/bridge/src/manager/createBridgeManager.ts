@@ -1,9 +1,9 @@
-import { grpcDriverFactory } from "@formwork/bridge-grpc";
-import { kafkaDriverFactory } from "@formwork/bridge-kafka";
-import { natsDriverFactory } from "@formwork/bridge-nats";
+import { grpcDriverFactory } from "@carpentry/bridge-grpc";
+import { kafkaDriverFactory } from "@carpentry/bridge-kafka";
+import { natsDriverFactory } from "@carpentry/bridge-nats";
 
-import type { CarpenterFactoryAdapter } from "@formwork/core/adapters";
-import type { ITransport } from "@formwork/core/contracts";
+import type { CarpenterFactoryAdapter } from "@carpentry/core/adapters";
+import type { ITransport } from "@carpentry/core/contracts";
 import { BridgeManager, type BridgeTransportConfig } from "./BridgeManager.js";
 
 export function createBridgeManager(

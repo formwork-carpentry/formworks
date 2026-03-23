@@ -1,5 +1,5 @@
 /**
- * @module @formwork/http
+ * @module @carpentry/http
  * @description Tests for HTTP Response builder (CARP-010)
  */
 

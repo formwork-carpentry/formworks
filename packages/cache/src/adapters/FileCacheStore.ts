@@ -1,5 +1,5 @@
 /**
- * @module @formwork/cache
+ * @module @carpentry/cache
  * @description FileCacheStore — persistent file-based cache with TTL
  * @patterns Adapter (implements ICacheStore)
  * @principles LSP (substitutable for Memory/Redis), SRP (file-based caching only)
@@ -8,8 +8,8 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import { dirname, join } from "node:path";
-import type { ICacheStore } from "@formwork/core/contracts";
-import type { MaybeAsync } from "@formwork/core/types";
+import type { ICacheStore } from "@carpentry/core/contracts";
+import type { MaybeAsync } from "@carpentry/core/types";
 
 interface FileCacheEntry {
   value: unknown;

@@ -1,5 +1,5 @@
 /**
- * @module @formwork/db-mongodb/MongoDBAdapter
+ * @module @carpentry/db-mongodb/MongoDBAdapter
  * @description MongoDB-backed document adapter.
  * @patterns Adapter, Strategy
  */

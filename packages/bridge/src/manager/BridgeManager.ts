@@ -1,5 +1,5 @@
 /**
- * @module @formwork/bridge
+ * @module @carpentry/bridge
  * @description BridgeManager — resolves named transport connections via the Domain Factory Manager pattern.
  * Extends {@link BaseManager} for shared driver registration, lazy resolution, and instance caching.
  *
@@ -9,8 +9,8 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase } from "@formwork/core/adapters";
-import type { ITransport } from "@formwork/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/core/adapters";
+import type { ITransport } from "@carpentry/core/contracts";
 import { InMemoryTransport } from "../transports.js";
 
 export interface BridgeTransportConfig {
@@ -25,7 +25,7 @@ export type BridgeTransportFactory = (config: BridgeTransportConfig) => ITranspo
  *
  * @example
  * ```ts
- * import { BridgeManager } from '@formwork/bridge';
+ * import { BridgeManager } from '@carpentry/bridge';
  *
  * const manager = new BridgeManager('memory', {
  *   memory: { driver: 'memory' },

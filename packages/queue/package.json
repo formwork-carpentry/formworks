@@ -1,5 +1,5 @@
 {
-  "name": "@formwork/queue",
+  "name": "@carpentry/queue",
   "version": "1.0.0-alpha.0",
   "description": "Queue manager with pluggable adapters (BullMQ, SQS, Database, Sync)",
   "type": "module",
@@ -17,11 +17,12 @@
     "lint": "biome check src/"
   },
   "dependencies": {
-    "@formwork/core": "*",
-    "@formwork/orm": "*"
+    "@carpentry/core": "workspace:*",
+    "@carpentry/orm": "workspace:*"
   },
   "license": "MIT",
   "files": [
     "dist"
-  ]
+  ],
+  "private": true
 }

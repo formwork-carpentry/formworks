@@ -1,9 +1,9 @@
 /**
- * @module @formwork/queue
+ * @module @carpentry/queue
  * @description Base error hierarchy for queue package failures.
  */
 
-import { CarpenterError } from "@formwork/core/exceptions";
+import { CarpenterError } from "@carpentry/core/exceptions";
 
 export class QueueError extends CarpenterError {
   constructor(message: string, code = "QUEUE_ERROR", context: Record<string, unknown> = {}) {

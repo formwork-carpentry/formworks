@@ -1,10 +1,10 @@
 /**
- * @module @formwork/core/config
+ * @module @carpentry/core/config
  * @description Configuration management — typed config repository, env loaders, and config resolver.
  *
  * @example
  * ```ts
- * import { Config, loadEnv, env, envRequired } from '@formwork/core/config';
+ * import { Config, loadEnv, env, envRequired } from '@carpentry/core/config';
  *
  * await loadEnv({ path: '.env' });
  * const appName = env('APP_NAME', 'Default');

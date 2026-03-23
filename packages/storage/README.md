@@ -1,4 +1,4 @@
-# @formwork/storage
+# @carpentry/storage
 
 Storage manager with pluggable adapters (Local, S3, GCS, Azure)
 
@@ -11,13 +11,13 @@ Storage manager with pluggable adapters (Local, S3, GCS, Azure)
 ## Installation
 
 ```bash
-npm install @formwork/storage
+npm install @carpentry/storage
 ```
 
 ## Quick Start
 
 ```ts
-import * as formworkstorage from '@formwork/storage';
+import * as formworkstorage from '@carpentry/storage';
 
 // Use the package API in your application modules
 ```
