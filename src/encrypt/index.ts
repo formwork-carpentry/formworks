@@ -18,7 +18,7 @@
  * ```
  */
 
-import { createCipheriv, createDecipheriv, randomBytes } from 'node:crypto';
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'node:crypto';
 import type { IEncrypter } from '../core/contracts';
 
 export type { IEncrypter } from '../core/contracts';
@@ -33,18 +33,23 @@ export interface EncryptConfig {
   key: string;
 }
 
-/** AES-256-GCM encrypter using Node.js built-in crypto. */
-export class AesEncrypter implements IEncrypter {
+/**
+ * Field-level AES-256-GCM encrypter using APP_KEY by default.
+ */
+export class FieldEncryptor implements IEncrypter {
   private readonly key: Buffer;
 
-  constructor(config: EncryptConfig) {
-    this.key = Buffer.from(config.key, 'base64');
-    if (this.key.length !== 32) {
-      throw new Error(
-        `Encryption key must be 32 bytes (256 bits) when decoded. Got ${this.key.length} bytes. ` +
-        'Generate a key with AesEncrypter.generateKey().',
-      );
+  constructor(config?: Partial<EncryptConfig>) {
+    const source = config?.key ?? process.env.APP_KEY;
+    if (!source) {
+      throw new Error('Missing APP_KEY for FieldEncryptor.');
     }
+
+    const normalized = source.startsWith('base64:') ? source.slice('base64:'.length) : source;
+    const maybeBase64 = Buffer.from(normalized, 'base64');
+    this.key = maybeBase64.length === 32
+      ? maybeBase64
+      : createHash('sha256').update(normalized, 'utf8').digest();
   }
 
   encrypt(value: string): string {
@@ -79,3 +84,6 @@ export class AesEncrypter implements IEncrypter {
     return randomBytes(32).toString('base64');
   }
 }
+
+/** Backward compatibility alias. */
+export class AesEncrypter extends FieldEncryptor {}

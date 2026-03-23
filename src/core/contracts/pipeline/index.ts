@@ -16,5 +16,7 @@ export interface IPipeline<T, R = T> {
   send(passable: T): this;
   through(pipes: (IPipe<T, R> | PipeFunction<T, R>)[]): this;
   pipe(...pipes: (IPipe<T, R> | PipeFunction<T, R>)[]): this;
+  via(method: string): this;
+  thenReturn(): Promise<R>;
   then(destination: (passable: T) => Promise<R>): Promise<R>;
 }

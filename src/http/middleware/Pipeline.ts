@@ -6,6 +6,7 @@
  */
 
 import type { IMiddleware, IRequest, IResponse, NextFunction } from "@carpentry/formworks/core/contracts";
+import { Pipeline as GenericPipeline } from "@carpentry/formworks/pipeline";
 
 export type MiddlewareFunction = (request: IRequest, next: NextFunction) => Promise<IResponse>;
 export type MiddlewareEntry = IMiddleware | MiddlewareFunction;
@@ -66,31 +67,23 @@ export class Pipeline {
    */
   // biome-ignore lint/suspicious/noThenProperty: Pipeline.then() is the intentional fluent API entry point (Laravel-style pipeline pattern)
   async then(destination: (request: IRequest) => Promise<IResponse>): Promise<IResponse> {
-    const pipeline = this.buildPipeline(destination);
-    return pipeline(this.passable);
-  }
-
-  /**
-   * Build a composed function that chains all middleware.
-   * Each middleware calls next() to invoke the next one in the chain.
-   * The last "next" is the destination handler.
-   */
-  private buildPipeline(
-    destination: (request: IRequest) => Promise<IResponse>,
-  ): (request: IRequest) => Promise<IResponse> {
-    // Start from the destination and wrap backward through middleware
-    return this.pipes.reduceRight<(request: IRequest) => Promise<IResponse>>((next, middleware) => {
-      return async (request: IRequest) => {
-        const nextFn: NextFunction = () => next(request);
-
-        if (typeof middleware === "function" && !("handle" in middleware)) {
-          // Plain function middleware
+    const normalized = this.pipes.map((middleware) => {
+      if (typeof middleware === "function") {
+        return async (request: IRequest, next: (request: IRequest) => Promise<IResponse>) => {
+          const nextFn: NextFunction = async () => next(request);
           return (middleware as MiddlewareFunction)(request, nextFn);
-        }
+        };
+      }
 
-        // Class-based middleware (IMiddleware)
+      return async (request: IRequest, next: (request: IRequest) => Promise<IResponse>) => {
+        const nextFn: NextFunction = async () => next(request);
         return (middleware as IMiddleware).handle(request, nextFn);
       };
-    }, destination);
+    });
+
+    return GenericPipeline.create<IRequest, IResponse>()
+      .send(this.passable)
+      .through(normalized)
+      .then(destination);
   }
 }

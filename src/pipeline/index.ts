@@ -1,100 +1,91 @@
 /**
  * @module @carpentry/pipeline
  * @description Generic pipeline — Chain of Responsibility pattern for ordered processing.
- *
- * Used by middleware, queue jobs, data transformers, and validation chains.
- * Each pipe receives the passable object and a `next` function to continue the chain.
- *
- * @patterns Chain of Responsibility, Composite (pipeline as a unit)
- * @principles OCP — add pipes without modifying pipeline; SRP — orchestration only
- *
- * @example
- * ```ts
- * import { Pipeline } from './';
- *
- * const result = await Pipeline.create<string>()
- *   .send('hello')
- *   .through([
- *     async (value, next) => next(value.toUpperCase()),
- *     async (value, next) => next(value + '!'),
- *   ])
- *   .then(async (value) => value);
- * // result === 'HELLO!'
- * ```
  */
 
-/** A pipe function receives the passable and a next callback. */
-export type PipeFunction<T, R = T> = (passable: T, next: (passable: T) => Promise<R>) => Promise<R>;
+import type { IContainer } from "@carpentry/formworks/core/contracts";
+import type { IPipe, PipeFunction } from "@carpentry/formworks/core/contracts/pipeline";
 
-/** A class-based pipe must implement handle(). */
-export interface IPipe<T, R = T> {
-  handle(passable: T, next: (passable: T) => Promise<R>): Promise<R>;
-}
-
-/** A pipe can be a function or a class with handle(). */
-export type PipeEntry<T, R = T> = IPipe<T, R> | PipeFunction<T, R>;
+export type { IPipe, PipeFunction };
+export type PipeEntry<TPassable, TReturn = TPassable> =
+  | IPipe<TPassable, TReturn>
+  | PipeFunction<TPassable, TReturn>;
 
 /**
- * Generic pipeline — processes a value through an ordered chain of pipes.
+ * Generic pipeline used by HTTP middleware, queue job pipelines, and data transforms.
  *
- * Unlike the HTTP-specific Pipeline in `@carpentry/http`, this is fully generic:
- * it works with any passable type, not just IRequest/IResponse.
+ * @typeParam TPassable - The value flowing through each pipe.
+ * @typeParam TReturn - The terminal return type of the pipeline.
  */
-export class Pipeline<T, R = T> {
-  private passable!: T;
-  private pipes: PipeEntry<T, R>[] = [];
+export class Pipeline<TPassable, TReturn = TPassable> {
+  private passable!: TPassable;
+  private pipes: Array<PipeEntry<TPassable, TReturn>> = [];
+  private method = "handle";
 
-  static create<T, R = T>(): Pipeline<T, R> {
-    return new Pipeline<T, R>();
+  constructor(private readonly container?: IContainer) {}
+
+  static create<TPassable, TReturn = TPassable>(): Pipeline<TPassable, TReturn> {
+    return new Pipeline<TPassable, TReturn>();
   }
 
-  /** Set the object being passed through the pipeline. */
-  send(passable: T): this {
+  send(passable: TPassable): this {
     this.passable = passable;
     return this;
   }
 
-  /** Set the pipes to pass through. */
-  through(pipes: PipeEntry<T, R>[]): this {
+  through(pipes: Array<PipeEntry<TPassable, TReturn>>): this {
     this.pipes = pipes;
     return this;
   }
 
-  /** Append additional pipes to the end. */
-  pipe(...pipes: PipeEntry<T, R>[]): this {
-    this.pipes.push(...pipes);
+  pipe(pipe: PipeEntry<TPassable, TReturn>): this {
+    this.pipes.push(pipe);
     return this;
   }
 
-  /** Execute the pipeline with a terminal handler at the end. */
-  // biome-ignore lint/suspicious/noThenProperty: Pipeline.then() is the intentional fluent API entry point
-  async then(destination: (passable: T) => Promise<R>): Promise<R> {
-    const composed = this.buildPipeline(destination);
-    return composed(this.passable);
+  via(method: string): this {
+    this.method = method;
+    return this;
   }
 
-  /** Execute the pipeline and return the passable (no terminal handler). */
-  async thenReturn(): Promise<T> {
-    let result = this.passable;
-    const identity = async (passable: T) => passable as unknown as R;
-    const composed = this.buildPipeline(identity);
-    const out = await composed(this.passable);
-    return out as unknown as T;
+  async thenReturn(): Promise<TReturn> {
+    return this.then(async (passable) => passable as unknown as TReturn);
   }
 
-  private buildPipeline(
-    destination: (passable: T) => Promise<R>,
-  ): (passable: T) => Promise<R> {
-    return this.pipes.reduceRight<(passable: T) => Promise<R>>((next, pipe) => {
-      return async (passable: T) => {
-        const nextFn = (p: T) => next(p);
+  // biome-ignore lint/suspicious/noThenProperty: Fluent Pipeline.then API is intentional.
+  async then(destination: (passable: TPassable) => TReturn | Promise<TReturn>): Promise<TReturn> {
+    const pipeline = this.pipes.reduceRight<(passable: TPassable) => Promise<TReturn>>(
+      (next, pipe) => async (passable) => this.invokePipe(pipe, passable, next),
+      async (passable) => Promise.resolve(destination(passable)),
+    );
 
-        if (typeof pipe === 'function' && !('handle' in pipe)) {
-          return (pipe as PipeFunction<T, R>)(passable, nextFn);
-        }
+    return pipeline(this.passable);
+  }
 
-        return (pipe as IPipe<T, R>).handle(passable, nextFn);
-      };
-    }, destination);
+  private async invokePipe(
+    pipe: PipeEntry<TPassable, TReturn>,
+    passable: TPassable,
+    next: (passable: TPassable) => Promise<TReturn>,
+  ): Promise<TReturn> {
+    if (typeof pipe === "function") {
+      return pipe(passable, next);
+    }
+
+    const method = (pipe as Record<string, unknown>)[this.method];
+    if (typeof method === "function") {
+      return (method as (value: TPassable, n: (value: TPassable) => Promise<TReturn>) => Promise<TReturn>)(
+        passable,
+        next,
+      );
+    }
+
+    if (typeof pipe.handle === "function") {
+      return pipe.handle(passable, next);
+    }
+
+    if (this.container) {
+      throw new Error(`Pipeline could not invoke pipe method \"${this.method}\" with the configured container.`);
+    }
+    throw new Error(`Pipeline could not invoke pipe method \"${this.method}\".`);
   }
 }
