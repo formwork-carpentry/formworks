@@ -5,9 +5,9 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { RedisCacheStore, MockRedisClient } from '../packages/cache/src/adapters/RedisCacheStore.js';
-import { BullMqAdapter, MockBullMqQueue } from '../packages/queue/src/adapters/BullMqAdapter.js';
-import { SmtpMailAdapter, MockSmtpTransport } from '../packages/mail/src/adapters/SmtpMailAdapter.js';
+import { RedisCacheStore, MockRedisClient } from '../packages/cache-redis/src/index.js';
+import { BullMqAdapter, MockBullMqQueue } from '../packages/queue-bullmq/src/index.js';
+import { SmtpMailAdapter, MockSmtpTransport } from '../packages/mail-smtp/src/index.js';
 
 // ═══════════════════════════════════════════════════════════
 // REDIS CACHE

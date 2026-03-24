@@ -33,5 +33,3 @@ export { FileCacheStore } from "./adapters/FileCacheStore.js";
 export { TaggedCache } from "./TaggedCache.js";
 export { CacheManager, setCacheManager, Cache, createCacheManager } from "./manager/index.js";
 export type { CacheStoreConfig, CacheDriverFactory as CacheStoreFactory } from "./manager/index.js";
-export { RedisCacheStore, MockRedisClient } from "./adapters/RedisCacheStore.js";
-export type { IRedisClient, RedisCacheConfig } from "./adapters/RedisCacheStore.js";

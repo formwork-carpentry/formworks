@@ -173,7 +173,7 @@ describe('edgeBotGuard', () => {
 // UNIX SOCKET TRANSPORT (CARP-073)
 // ═══════════════════════════════════════════════════════════
 
-import { UnixSocketTransport, createUnixSocketServer } from '../packages/bridge/src/unix-socket.js';
+import { UnixSocketTransport, createUnixSocketServer } from '../src/bridge/unix-socket.js';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { unlinkSync } from 'node:fs';

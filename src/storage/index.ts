@@ -35,6 +35,4 @@ export {
   createStorageManager,
 } from "./manager/index.js";
 export type { StorageDiskFactory } from "./manager/index.js";
-export { S3StorageAdapter } from "./adapters/S3StorageAdapter.js";
-export type { S3Config } from "./adapters/S3StorageAdapter.js";
 export * from "./exceptions.js";

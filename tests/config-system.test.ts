@@ -10,14 +10,14 @@ import { Config, env } from '@carpentry/core/config';
 import { loadEnv, parseEnvString, envRequired } from '@carpentry/core/config';
 import { ConfigResolver } from '@carpentry/core/config';
 import { buildDefaultConfig } from '@carpentry/core/config';
-import { DatabaseManager } from '../packages/db/src/DatabaseManager.js';
-import { SQLiteMemoryAdapter } from '../packages/db/src/index.js';
-import { CacheManager } from '../packages/cache/src/manager/CacheManager.js';
-import { QueueManager } from '../packages/queue/src/manager/QueueManager.js';
-import { MailManager } from '../packages/mail/src/manager/MailManager.js';
-import { StorageManager } from '../packages/storage/src/manager/StorageManager.js';
-import { LocalStorageAdapter } from '../packages/storage/src/adapters/LocalStorageAdapter.js';
-import { MemoryStorageAdapter } from '../packages/storage/src/adapters/MemoryStorageAdapter.js';
+import { DatabaseManager } from '../src/db/factory/index.ts';
+import { SQLiteMemoryAdapter } from '../packages/db-memory/src/index.ts';
+import { CacheManager } from '../src/cache/manager/CacheManager.ts';
+import { QueueManager } from '../src/queue/manager/QueueManager.ts';
+import { MailManager } from '../src/mail/manager/MailManager.ts';
+import { StorageManager } from '../src/storage/manager/StorageManager.ts';
+import { LocalStorageAdapter } from '../src/storage/adapters/LocalStorageAdapter.ts';
+import { MemoryStorageAdapter } from '../src/storage/adapters/MemoryStorageAdapter.ts';
 
 const TEST_DIR = '/tmp/carpenter-config-test-' + Date.now();
 

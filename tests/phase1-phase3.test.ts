@@ -9,7 +9,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 // FORM HELPERS (CARP-042)
 // ═══════════════════════════════════════════════════════════
 
-import { useForm } from '../packages/ui/src/FormHelper.js';
+import { useForm } from '../src/ui/FormHelper.js';
 
 function mockFetch(status: number, body: Record<string, unknown>): typeof fetch {
   return async () => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
@@ -127,7 +127,7 @@ describe('useForm', () => {
 // PROFILER (CARP-063)
 // ═══════════════════════════════════════════════════════════
 
-import { Profiler, ProfileCollector } from '../packages/http/src/middleware/Profiler.js';
+import { Profiler, ProfileCollector } from '../src/http/middleware/Profiler.js';
 
 describe('ProfileCollector', () => {
   it('records events', () => {

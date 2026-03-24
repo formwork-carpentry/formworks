@@ -4,11 +4,11 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { DatabaseQueueAdapter } from '../packages/queue/src/adapters/DatabaseQueueAdapter.js';
-import { HttpMailAdapter } from '../packages/mail/src/adapters/HttpMailAdapter.js';
+import { DatabaseQueueAdapter } from '../src/queue/adapters/DatabaseQueueAdapter.js';
+import { HttpMailAdapter } from '../src/mail/adapters/HttpMailAdapter.js';
 import { OtlpExporter } from '../packages/otel/src/OtlpExporter.js';
 import { Tracer, Span } from '../packages/otel/src/index.js';
-import { MockDatabaseAdapter } from '../packages/orm/src/adapters/MockDatabaseAdapter.js';
+import { MockDatabaseAdapter } from '../src/orm/adapters/MockDatabaseAdapter.js';
 
 // ═══════════════════════════════════════════════════════════
 // DATABASE QUEUE ADAPTER

@@ -18,49 +18,49 @@ import { Container } from '@carpentry/core/container';
 import { Config } from '@carpentry/core/config';
 
 // HTTP
-import { Router } from '../packages/http/src/router/Router.js';
-import { HttpKernel } from '../packages/http/src/kernel/HttpKernel.js';
-import { Request } from '../packages/http/src/request/Request.js';
-import { CarpenterResponse } from '../packages/http/src/response/Response.js';
-import { BaseController } from '../packages/http/src/controller/BaseController.js';
+import { Router } from '../src/http/router/Router.js';
+import { HttpKernel } from '../src/http/kernel/HttpKernel.js';
+import { Request } from '../src/http/request/Request.js';
+import { CarpenterResponse } from '../src/http/response/Response.js';
+import { BaseController } from '../src/http/controller/BaseController.js';
 
 // ORM
-import { QueryBuilder } from '../packages/orm/src/query/QueryBuilder.js';
-import { BaseModel } from '../packages/orm/src/model/BaseModel.js';
-import { MockDatabaseAdapter } from '../packages/orm/src/adapters/MockDatabaseAdapter.js';
+import { QueryBuilder } from '../src/orm/query/QueryBuilder.js';
+import { BaseModel } from '../src/orm/model/BaseModel.js';
+import { MockDatabaseAdapter } from '../src/orm/adapters/MockDatabaseAdapter.js';
 
 // Validation
-import { Validator } from '../packages/validation/src/validator/Validator.js';
+import { Validator } from '../src/validation/validator/Validator.js';
 
 // Cache
-import { MemoryCacheStore } from '../packages/cache/src/adapters/MemoryCacheStore.js';
+import { MemoryCacheStore } from '../src/cache/adapters/MemoryCacheStore.js';
 
 // Events
-import { EventDispatcher } from '../packages/events/src/dispatcher/EventDispatcher.js';
+import { EventDispatcher } from '../src/events/dispatcher/EventDispatcher.js';
 
 // Auth
-import { HashManager } from '../packages/auth/src/hash/HashManager.js';
-import { Gate } from '../packages/auth/src/gate/Gate.js';
-import { MemoryGuard, InMemoryUserProvider, SimpleUser } from '../packages/auth/src/guards/Guards.js';
+import { HashManager } from '../src/auth/hash/HashManager.js';
+import { Gate } from '../src/auth/gate/Gate.js';
+import { MemoryGuard, InMemoryUserProvider, SimpleUser } from '../src/auth/guards/Guards.js';
 
 // Logging
-import { Logger, ArrayChannel } from '../packages/log/src/index.js';
-import { AuditLogger, InMemoryAuditChannel } from '../packages/log/src/index.js';
+import { Logger, ArrayChannel } from '../src/log/index.js';
+import { AuditLogger, InMemoryAuditChannel } from '../src/log/index.js';
 
 // Notifications
-import { NotificationManager, BaseNotification, ArrayChannel as NotifArrayChannel } from '../packages/notifications/src/index.js';
-import type { Notifiable, MailChannelMessage, SmsChannelMessage } from '../packages/notifications/src/index.js';
+import { NotificationManager, BaseNotification, ArrayChannel as NotifArrayChannel } from '../src/notifications/index.js';
+import type { Notifiable, MailChannelMessage, SmsChannelMessage } from '../src/notifications/index.js';
 
 // Session
-import { Session, MemorySessionStore } from '../packages/session/src/index.js';
+import { Session, MemorySessionStore } from '../src/session/index.js';
 
 // i18n
-import { Translator } from '../packages/i18n/src/Translator.js';
-import { Pluralizer } from '../packages/i18n/src/pluralization/Pluralizer.js';
-import { MemoryLoader } from '../packages/i18n/src/loader/Loaders.js';
+import { Translator } from '../src/i18n/Translator.js';
+import { Pluralizer } from '../src/i18n/pluralization/Pluralizer.js';
+import { MemoryLoader } from '../src/i18n/loader/Loaders.js';
 
 // Testing
-import { TestResponse } from '../packages/testing/src/index.js';
+import { TestResponse } from '../src/testing/index.js';
 
 // ── Fixtures ──────────────────────────────────────────────
 

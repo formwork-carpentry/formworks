@@ -6,12 +6,12 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { LocalStorageAdapter } from '../packages/storage/src/adapters/LocalStorageAdapter.js';
-import { FileCacheStore } from '../packages/cache/src/adapters/FileCacheStore.js';
-import { FileSessionStore } from '../packages/session/src/FileSessionStore.js';
-import { TenantScope, TenantCacheScope, TenantStorageScope } from '../packages/tenancy/src/scope.js';
-import { MemoryCacheStore } from '../packages/cache/src/adapters/MemoryCacheStore.js';
-import type { Tenant } from '../packages/tenancy/src/types.js';
+import { LocalStorageAdapter } from '../src/storage/adapters/LocalStorageAdapter.js';
+import { FileCacheStore } from '../src/cache/adapters/FileCacheStore.js';
+import { FileSessionStore } from '../src/session/FileSessionStore.js';
+import { TenantScope, TenantCacheScope, TenantStorageScope } from '../src/tenancy/scope.js';
+import { MemoryCacheStore } from '../src/cache/adapters/MemoryCacheStore.js';
+import type { Tenant } from '../src/tenancy/types.js';
 
 const TEST_DIR = '/tmp/carpenter-test-' + Date.now();
 
