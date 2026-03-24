@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { TenantScope, TenantCacheScope, TenantStorageScope } from '../../../src/tenancy/scope.js';
-import { MemoryCacheStore } from '../../../src/cache/adapters/MemoryCacheStore.js';
-import type { Tenant } from '../../../src/tenancy/types.js';
+import { TenantScope, TenantCacheScope, TenantStorageScope } from '../../src/tenancy/scope.js';
+import { MemoryCacheStore } from '../../src/cache/adapters/MemoryCacheStore.js';
+import type { Tenant } from '../../src/tenancy/types.js';
 
-describe('tier2/adapters/TenantScope', () => {
+describe('tenancy/TenantScope', () => {
   const tenant: Tenant = {
     id: 'acme',
     name: 'Acme Corp',

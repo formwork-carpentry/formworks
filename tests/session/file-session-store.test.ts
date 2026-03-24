@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { FileSessionStore } from '../../../src/session/FileSessionStore.js';
+import { FileSessionStore } from '../../src/session/FileSessionStore.js';
 
 const TEST_DIR = `/tmp/carpenter-test-session-${Date.now()}`;
 
@@ -9,7 +9,7 @@ async function cleanup(): Promise<void> {
   await fs.rm(TEST_DIR, { recursive: true, force: true }).catch(() => {});
 }
 
-describe('tier2/adapters/FileSessionStore', () => {
+describe('session/FileSessionStore', () => {
   let store: FileSessionStore;
   const dir = join(TEST_DIR, 'sessions');
 

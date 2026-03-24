@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { FileCacheStore } from '../../../src/cache/adapters/FileCacheStore.js';
+import { FileCacheStore } from '../../src/cache/adapters/FileCacheStore.js';
 
 const TEST_DIR = `/tmp/carpenter-test-cache-${Date.now()}`;
 
@@ -9,7 +9,7 @@ async function cleanup(): Promise<void> {
   await fs.rm(TEST_DIR, { recursive: true, force: true }).catch(() => {});
 }
 
-describe('tier2/adapters/FileCacheStore', () => {
+describe('cache/FileCacheStore', () => {
   let cache: FileCacheStore;
   const dir = join(TEST_DIR, 'cache');
 

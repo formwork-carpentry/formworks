@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { OtlpExporter } from '../../../packages/otel/src/OtlpExporter.js';
-import { Tracer } from '../../../packages/otel/src/index.js';
+import { OtlpExporter } from '../src/OtlpExporter.js';
+import { Tracer } from '../src/index.js';
 
-describe('tier2/production/OtlpExporter', () => {
+describe('otel/OtlpExporter', () => {
   let exporter: OtlpExporter;
   let capturedPayloads: string[];
 

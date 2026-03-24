@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { HttpMailAdapter } from '../../../src/mail/adapters/HttpMailAdapter.js';
+import { HttpMailAdapter } from '../../src/mail/adapters/HttpMailAdapter.js';
 
 function createMockFetch(status: number, body: Record<string, unknown> = {}): typeof fetch {
   return async (_url: string | URL | Request, _init?: RequestInit) => {
@@ -10,7 +10,7 @@ function createMockFetch(status: number, body: Record<string, unknown> = {}): ty
   };
 }
 
-describe('tier2/production/HttpMailAdapter', () => {
+describe('mail/HttpMailAdapter', () => {
   it('sends via resend and records sent messages', async () => {
     const mailer = new HttpMailAdapter({
       provider: 'resend',

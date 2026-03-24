@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { LocalStorageAdapter } from '../../../src/storage/adapters/LocalStorageAdapter.js';
+import { LocalStorageAdapter } from '../../src/storage/adapters/LocalStorageAdapter.js';
 
 const TEST_DIR = `/tmp/carpenter-test-storage-${Date.now()}`;
 
@@ -9,7 +9,7 @@ async function cleanup(): Promise<void> {
   await fs.rm(TEST_DIR, { recursive: true, force: true }).catch(() => {});
 }
 
-describe('tier2/adapters/LocalStorageAdapter', () => {
+describe('storage/LocalStorageAdapter', () => {
   let storage: LocalStorageAdapter;
   const root = join(TEST_DIR, 'storage');
 

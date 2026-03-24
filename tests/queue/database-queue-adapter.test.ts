@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { DatabaseQueueAdapter } from '../../../src/queue/adapters/DatabaseQueueAdapter.js';
-import { MockDatabaseAdapter } from '../../../src/orm/adapters/MockDatabaseAdapter.js';
+import { DatabaseQueueAdapter } from '../../src/queue/adapters/DatabaseQueueAdapter.js';
+import { MockDatabaseAdapter } from '../../src/orm/adapters/MockDatabaseAdapter.js';
 
-describe('tier2/production/DatabaseQueueAdapter', () => {
+describe('queue/DatabaseQueueAdapter', () => {
   let db: MockDatabaseAdapter;
   let queue: DatabaseQueueAdapter;
 
