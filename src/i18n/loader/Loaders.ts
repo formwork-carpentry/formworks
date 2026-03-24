@@ -5,8 +5,8 @@
  * @principles LSP — all loaders substitutable; SRP — loading translations only
  */
 
-import type { ITranslationLoader } from '../../contracts';
-import type { Dictionary } from '../../core/types';
+import type { ITranslationLoader } from '@carpentry/formworks/contracts';
+import type { Dictionary } from '@carpentry/formworks/core/types';
 
 /**
  * In-memory translation loader — for testing.

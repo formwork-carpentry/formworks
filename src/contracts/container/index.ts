@@ -12,7 +12,7 @@
  * ```
  */
 
-import type { Factory, Token } from "../../types/index.js";
+import type { Factory, Token } from "@carpentry/formworks/core/types";
 
 /**
  * Responsible for registering bindings in the container.

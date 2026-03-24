@@ -13,7 +13,7 @@
  * ```
  */
 
-import type { MaybeAsync, Token } from "../../types/index.js";
+import type { MaybeAsync, Token } from "@carpentry/formworks/core/types";
 
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
 

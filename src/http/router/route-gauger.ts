@@ -3,7 +3,7 @@
  * @description Utilities for generating typed route references and route manifest files.
  */
 
-import type { HttpMethod, IRoute } from "../../contracts";
+import type { HttpMethod, IRoute } from "@carpentry/formworks/contracts";
 
 /** Supported route parameter value types for URL generation. */
 export type RouteParamValue = string | number | boolean;

@@ -6,8 +6,8 @@
  */
 
 import "reflect-metadata";
-import type { BindingDescriptor, IContainer } from "../../contracts/container/index.js";
-import { METADATA_KEYS } from "../../contracts/container/index.js";
+import type { BindingDescriptor, IContainer } from "@carpentry/formworks/contracts/container";
+import { METADATA_KEYS } from "@carpentry/formworks/contracts/container";
 import {
   BindingNotFoundError,
   CircularDependencyError,

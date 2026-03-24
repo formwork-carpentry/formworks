@@ -4,10 +4,9 @@
  * @patterns Proxy (intercepts method calls)
  */
 
+import { randomUUID } from "node:crypto";
 import { RemoteServiceError } from "./exceptions/RemoteServiceError.js";
 import type { BridgeMessage, BridgeResponse, ITransport } from "./types.js";
-
-let idCounter = 0;
 
 export interface CallOptions {
   timeout?: number;
@@ -55,7 +54,7 @@ export class RemoteService {
    */
   async call<Req, Res>(method: string, payload: Req, options?: CallOptions): Promise<Res> {
     const message: BridgeMessage<Req> = {
-      id: `msg-${++idCounter}-${Date.now().toString(36)}`,
+      id: `msg-${randomUUID()}`,
       service: this.serviceName,
       method,
       payload,

@@ -7,7 +7,7 @@
  */
 
 import "reflect-metadata";
-import { METADATA_KEYS } from "../../contracts/container/index.js";
+import { METADATA_KEYS } from "@carpentry/formworks/contracts/container";
 import type { Token } from "../types/index.js";
 
 /**

@@ -12,7 +12,7 @@
  * ```
  */
 
-import type { Dictionary } from "../../types/index.js";
+import type { Dictionary } from "@carpentry/formworks/core/types";
 
 /** @typedef {Record<string, string | number>} I18nDictionary - String key to value map */
 export type I18nDictionary<V = string> = Record<string, V>;

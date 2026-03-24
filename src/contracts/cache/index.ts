@@ -12,7 +12,7 @@
  * ```
  */
 
-import type { MaybeAsync } from "../../types/index.js";
+import type { MaybeAsync } from "@carpentry/formworks/core/types";
 
 /** @typedef {Object} ICacheStore - Cache store contract */
 export interface ICacheStore {

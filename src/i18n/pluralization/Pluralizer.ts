@@ -5,7 +5,7 @@
  * @principles SRP — pluralization logic only; OCP — add new locale rules without modifying core
  */
 
-import type { IPluralizer } from '../../contracts';
+import type { IPluralizer } from '@carpentry/formworks/contracts';
 
 /**
  * Pluralizer — picks the right segment from pipe-separated translation strings.

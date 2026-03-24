@@ -17,6 +17,7 @@
  */
 
 import { ServiceProvider } from '../core/container';
+import type { IContainer } from '../core/container';
 import { Config, ConfigResolver, buildDefaultConfig } from '../core/config';
 import {
   DatabaseInfrastructureProvider,
@@ -27,6 +28,15 @@ import {
   BridgeInfrastructureProvider,
   CoreInfrastructureProvider,
 } from './providers/index.js';
+
+interface InfrastructureRegistrar {
+  register(): void;
+}
+
+type InfrastructureProviderCtor = new (
+  app: IContainer,
+  resolver: ConfigResolver,
+) => InfrastructureRegistrar;
 
 /**
  * The master service provider for a Carpenter application.
@@ -68,17 +78,29 @@ export class InfrastructureServiceProvider extends ServiceProvider {
     this.app.instance('config', config);
     this.app.instance('config.resolver', resolver);
 
-    new DatabaseInfrastructureProvider(this.app, resolver).register();
-    new CacheInfrastructureProvider(this.app, resolver).register();
-    new QueueInfrastructureProvider(this.app, resolver).register();
-    new MailInfrastructureProvider(this.app, resolver).register();
-    new StorageInfrastructureProvider(this.app, resolver).register();
-    new BridgeInfrastructureProvider(this.app, resolver).register();
-    new CoreInfrastructureProvider(this.app, resolver).register();
+    for (const Provider of this.getInfrastructureProviderCtors()) {
+      new Provider(this.app, resolver).register();
+    }
   }
 
   boot(): void {
     // Managers are lazy — adapters created on first access
+  }
+
+  /**
+   * Provider constructor list extracted for OCP: subclasses can override this list
+   * without modifying register() orchestration.
+   */
+  protected getInfrastructureProviderCtors(): InfrastructureProviderCtor[] {
+    return [
+      DatabaseInfrastructureProvider,
+      CacheInfrastructureProvider,
+      QueueInfrastructureProvider,
+      MailInfrastructureProvider,
+      StorageInfrastructureProvider,
+      BridgeInfrastructureProvider,
+      CoreInfrastructureProvider,
+    ];
   }
 
   private resolveConfig(): Config {
