@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { CompletionProvider, KNOWN_BINDINGS, KNOWN_CONFIG_PATHS } from '@carpentry/core/plugin';
+import { CompletionProvider, KNOWN_BINDINGS, KNOWN_CONFIG_PATHS } from '@carpentry/formworks/tooling';
 
 describe('core/CompletionProvider', () => {
   let provider: CompletionProvider;

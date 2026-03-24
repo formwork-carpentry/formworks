@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { PluginManager } from '@carpentry/core/plugin';
-import type { CarpenterPlugin } from '@carpentry/core/plugin';
+import { PluginManager } from '@carpentry/formworks/tooling';
+import type { CarpenterPlugin } from '@carpentry/formworks/tooling';
 import { Container } from '@carpentry/core/container';
 
 describe('core/PluginManager', () => {
