@@ -11,12 +11,16 @@
  * ```ts
  * import { EventDispatcher } from './';
  *
+ * class UserRegistered {
+ *   constructor(public readonly id: number, public readonly email: string) {}
+ * }
+ *
  * const events = new EventDispatcher();
- * events.on('user.registered', async (payload) => {
- *   console.log('Welcome user', payload);
+ * events.on(UserRegistered, async (event) => {
+ *   console.log('Welcome user', event?.email);
  * });
  *
- * await events.dispatch('user.registered', { id: 1, email: 'a@b.com' });
+ * await events.dispatch(UserRegistered, new UserRegistered(1, 'a@b.com'));
  * ```
  *
  * @see EventDispatcher — Main typed event dispatcher

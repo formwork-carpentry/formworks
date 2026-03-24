@@ -8,7 +8,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import { dirname, join } from "node:path";
-import type { ICacheStore } from "@carpentry/formworks/core/contracts";
+import type { ICacheStore } from "@carpentry/formworks/contracts";
 import type { MaybeAsync } from "@carpentry/formworks/core/types";
 
 interface FileCacheEntry {

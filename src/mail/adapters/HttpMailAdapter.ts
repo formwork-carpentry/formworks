@@ -5,7 +5,7 @@
  * @principles LSP (substitutable for SMTP/SES), SRP (HTTP mail dispatch only)
  */
 
-import type { IMailAdapter, MailMessage } from "@carpentry/formworks/core/contracts";
+import type { IMailAdapter, MailMessage } from "@carpentry/formworks/contracts";
 
 export type HttpMailProvider = "mailgun" | "resend" | "sendgrid" | "postmark" | "custom";
 

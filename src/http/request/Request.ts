@@ -5,7 +5,7 @@
  * @principles SRP — only request data access; ISP — implements IRequest
  */
 
-import type { IRequest } from "@carpentry/formworks/core/contracts";
+import type { IRequest } from "@carpentry/formworks/contracts";
 import type { Dictionary } from "@carpentry/formworks/core/types";
 
 /**

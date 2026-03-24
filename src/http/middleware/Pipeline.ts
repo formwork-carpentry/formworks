@@ -5,7 +5,7 @@
  * @principles OCP — new middleware without modifying pipeline; SRP — pipeline orchestration only
  */
 
-import type { IMiddleware, IRequest, IResponse, NextFunction } from "@carpentry/formworks/core/contracts";
+import type { IMiddleware, IRequest, IResponse, NextFunction } from "@carpentry/formworks/contracts";
 import { Pipeline as GenericPipeline } from "@carpentry/formworks/pipeline";
 
 export type MiddlewareFunction = (request: IRequest, next: NextFunction) => Promise<IResponse>;

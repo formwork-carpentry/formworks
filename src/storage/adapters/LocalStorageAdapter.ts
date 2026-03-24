@@ -12,7 +12,7 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 
 export interface LocalStorageConfig {
   /** Root directory for file storage */

@@ -18,5 +18,5 @@
  * ```
  */
 
-export * from "./contracts/container/index.js";
+export * from "../contracts/container/index.js";
 export { Container } from "./container/Container.js";

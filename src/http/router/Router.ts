@@ -13,7 +13,7 @@ import type {
   ResolvedRoute,
   RouteGroupOptions,
   RouteHandler,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 import type { Constructor, Dictionary, Token } from "@carpentry/formworks/core/types";
 
 // ── Route Data ────────────────────────────────────────────

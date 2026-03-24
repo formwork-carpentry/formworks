@@ -5,7 +5,7 @@
  * @principles SRP — builds queries only; DIP — depends on IDatabaseAdapter interface
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult, IPaginator } from '@carpentry/formworks/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult, IPaginator } from '@carpentry/formworks/contracts';
 import type { Dictionary } from '@carpentry/formworks/core/types';
 import { compileQuery } from './sql-compiler.js';
 

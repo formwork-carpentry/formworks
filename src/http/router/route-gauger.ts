@@ -1,33 +1,71 @@
-import type { HttpMethod, IRoute } from "@carpentry/formworks/core/contracts";
+/**
+ * @module @carpentry/http/route-gauger
+ * @description Utilities for generating typed route references and route manifest files.
+ */
 
+import type { HttpMethod, IRoute } from "../../contracts";
+
+/** Supported route parameter value types for URL generation. */
 export type RouteParamValue = string | number | boolean;
+/** Runtime map of route parameter names to values. */
 export type RouteParams = Record<string, RouteParamValue>;
 
+/**
+ * Typed route reference returned by generated route modules.
+ */
 export interface RouteGaugerReference {
+  /** Logical route name, for example posts.show. */
   name: string;
+  /** HTTP verb for the route. */
   method: HttpMethod;
+  /** Canonical route pattern, including parameter placeholders. */
   path: string;
+  /** Resolved href including substituted params and query string. */
   href: string;
+  /** Alias of href used by some consumers. */
   url: string;
+  /** Parameters used to build the final URL. */
   params: RouteParams;
 }
 
+/** Internal manifest entry produced from registered routes. */
 export interface RouteGaugerEntry {
+  /** Source module file segment used for generated export grouping. */
   moduleName: string;
+  /** Export object name generated for the module. */
   exportName: string;
+  /** Method name used in the generated route reference object. */
   actionName: string;
+  /** Original route name from the router registration. */
   routeName: string;
+  /** HTTP verb registered for this route. */
   method: HttpMethod;
+  /** Raw route path pattern. */
   path: string;
+  /** Parameter keys extracted from the route path. */
   params: string[];
 }
 
+/** Generated file payload for route gauger output. */
 export interface RouteGaugerFile {
+  /** Output file name. */
   fileName: string;
+  /** Logical module name represented by the generated file. */
   moduleName: string;
+  /** TypeScript source content to write. */
   code: string;
 }
 
+/**
+ * Builds a typed route reference by resolving path params and query params.
+ *
+ * @param {string} name Route name.
+ * @param {HttpMethod} method HTTP verb.
+ * @param {string} path Route path template.
+ * @param {RouteParams} [params={}] Route params for path and query values.
+ * @returns {RouteGaugerReference} Resolved route reference.
+ * @throws {Error} When a required route parameter is missing.
+ */
 export function defineRouteGaugerReference(
   name: string,
   method: HttpMethod,
@@ -79,6 +117,12 @@ export function defineRouteGaugerReference(
   };
 }
 
+/**
+ * Converts runtime routes into an intermediate route gauger manifest.
+ *
+ * @param {IRoute[]} routes Registered routes.
+ * @returns {RouteGaugerEntry[]} Sorted manifest entries.
+ */
 export function buildRouteGauger(routes: IRoute[]): RouteGaugerEntry[] {
   return routes
     .filter((route): route is IRoute & { name: string } => typeof route.name === "string")
@@ -98,6 +142,12 @@ export function buildRouteGauger(routes: IRoute[]): RouteGaugerEntry[] {
     .sort((left, right) => left.routeName.localeCompare(right.routeName));
 }
 
+  /**
+   * Generates TypeScript file payloads for typed route helper modules.
+   *
+   * @param {IRoute[]} routes Registered routes.
+   * @returns {RouteGaugerFile[]} Generated module and index files.
+   */
 export function generateRouteGaugerFiles(routes: IRoute[]): RouteGaugerFile[] {
   const manifest = buildRouteGauger(routes);
   const grouped = new Map<string, RouteGaugerEntry[]>();

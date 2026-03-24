@@ -1,3 +1,8 @@
+/**
+ * @module @carpentry/foundation/providers
+ * @description Barrel export for infrastructure service providers.
+ */
+
 export { DatabaseInfrastructureProvider } from './DatabaseInfrastructureProvider.js';
 export { CacheInfrastructureProvider } from './CacheInfrastructureProvider.js';
 export { QueueInfrastructureProvider } from './QueueInfrastructureProvider.js';

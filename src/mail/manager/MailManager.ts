@@ -8,8 +8,8 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@carpentry/formworks/core/adapters";
-import type { IMailAdapter, MailMessage } from "@carpentry/formworks/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/formworks/adapters";
+import type { IMailAdapter, MailMessage } from "@carpentry/formworks/contracts";
 import { ArrayMailAdapter, type BaseMailable, LogMailAdapter } from "../adapters/Adapters.js";
 
 export interface MailDriverConfig {

@@ -5,7 +5,7 @@
  * @principles SRP — pluralization logic only; OCP — add new locale rules without modifying core
  */
 
-import type { IPluralizer } from '@carpentry/formworks/core/contracts';
+import type { IPluralizer } from '../../contracts';
 
 /**
  * Pluralizer — picks the right segment from pipe-separated translation strings.
@@ -87,61 +87,28 @@ const frenchForm: PluralRule = (n) => n <= 1 ? 0 : 1;
 const noPlural: PluralRule = () => 0;
 
 const slavicEast: PluralRule = (n) => {
-  /**
-   * @param {unknown} [n % 10 === 1 && n % 100 !== 11]
-   */
   if (n % 10 === 1 && n % 100 !== 11) return 0;
-  /**
-   * @param {unknown} [n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20]
-   */
   if (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) return 1;
   return 2;
 };
 
 const polish: PluralRule = (n) => {
-  /**
-   * @param {unknown} [n === 1]
-   */
   if (n === 1) return 0;
-  /**
-   * @param {unknown} [n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20]
-   */
   if (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) return 1;
   return 2;
 };
 
 const czechSlovak: PluralRule = (n) => {
-  /**
-   * @param {unknown} [n === 1]
-   */
   if (n === 1) return 0;
-  /**
-   * @param {unknown} [n >= 2 && n <= 4]
-   */
   if (n >= 2 && n <= 4) return 1;
   return 2;
 };
 
 const arabic: PluralRule = (n) => {
-  /**
-   * @param {unknown} [n === 0]
-   */
   if (n === 0) return 0;
-  /**
-   * @param {unknown} [n === 1]
-   */
   if (n === 1) return 1;
-  /**
-   * @param {unknown} [n === 2]
-   */
   if (n === 2) return 2;
-  /**
-   * @param {unknown} [n % 100 >= 3 && n % 100 <= 10]
-   */
   if (n % 100 >= 3 && n % 100 <= 10) return 3;
-  /**
-   * @param {unknown} [n % 100 >= 11 && n % 100 <= 99]
-   */
   if (n % 100 >= 11 && n % 100 <= 99) return 4;
   return 5;
 };

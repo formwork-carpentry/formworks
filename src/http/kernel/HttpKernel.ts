@@ -14,7 +14,7 @@ import type {
   IResponse,
   ResolvedRoute,
   RouteHandler,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 import { MethodNotAllowedError, NotFoundError } from "@carpentry/formworks/core/exceptions";
 import type { Token } from "@carpentry/formworks/core/types";
 import { Pipeline } from "../middleware/Pipeline.js";

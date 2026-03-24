@@ -19,9 +19,9 @@
  */
 
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'node:crypto';
-import type { IEncrypter } from '../core/contracts';
+import type { IEncrypter } from '../contracts';
 
-export type { IEncrypter } from '../core/contracts';
+export type { IEncrypter } from '../contracts';
 
 const ALGORITHM = 'aes-256-gcm';
 const IV_LENGTH = 12;

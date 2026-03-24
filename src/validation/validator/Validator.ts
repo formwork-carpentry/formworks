@@ -14,7 +14,7 @@ import type {
   IValidator,
   ValidationResult,
   ValidationRules,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 import type { Dictionary } from "@carpentry/formworks/core/types";
 
 // ── Built-in Rules ────────────────────────────────────────

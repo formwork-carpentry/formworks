@@ -5,7 +5,7 @@
  * @principles LSP — fully substitutable for Redis/File stores; SRP — caching only
  */
 
-import type { ICacheStore } from "@carpentry/formworks/core/contracts";
+import type { ICacheStore } from "@carpentry/formworks/contracts";
 import type { MaybeAsync } from "@carpentry/formworks/core/types";
 import { TaggedCache } from "../TaggedCache.js";
 

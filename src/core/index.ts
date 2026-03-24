@@ -11,14 +11,14 @@
  * - `import { CarpenterError } from './'` → `import { CarpenterError } from './exceptions'`
  *
  * **Available entry points:**
- * - `@carpentry/core/types` — Foundation types (Token, Constructor, Result)
- * - `@carpentry/core/container` — IoC Container + decorators
- * - `@carpentry/core/config` — Configuration management
- * - `@carpentry/core/application` — Application lifecycle
- * - `@carpentry/core/exceptions` — Error hierarchy
- * - `@carpentry/core/plugin` — TypeScript plugin system
- * - `@carpentry/core/decorator` — Decorators (@Injectable, @Inject, etc.)
- * - `@carpentry/core/contracts` — All framework contracts (IRequest, IResponse, IDatabaseAdapter, ICacheStore, IQueueAdapter, IMailManager, IStorageManager, IEventDispatcher, IValidator, IAuthGuard, ISession, etc.)
+ * - `@carpentry/formworks/core/types` — Foundation types (Token, Constructor, Result)
+ * - `@carpentry/formworks/core/container` — IoC Container + decorators
+ * - `@carpentry/formworks/core/config` — Configuration management
+ * - `@carpentry/formworks/core/application` — Application lifecycle
+ * - `@carpentry/formworks/core/exceptions` — Error hierarchy
+ * - `@carpentry/formworks/tooling` — TypeScript plugin and IDE tooling
+ * - `@carpentry/formworks/core/decorator` — Decorators (@Injectable, @Inject, etc.)
+ * - `@carpentry/formworks/contracts` — First-class framework contracts
  *
  * This main entry point is **empty** to force explicit, granular imports.
  * Granular imports enable better tree-shaking and clarify which dependencies you're using.

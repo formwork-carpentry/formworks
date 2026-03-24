@@ -12,6 +12,38 @@
       "import": "./dist/core/index.js",
       "types": "./dist/core/index.d.ts"
     },
+    "./core/config": {
+      "import": "./dist/core/config.js",
+      "types": "./dist/core/config.d.ts"
+    },
+    "./core/container": {
+      "import": "./dist/core/container.js",
+      "types": "./dist/core/container.d.ts"
+    },
+    "./core/exceptions": {
+      "import": "./dist/core/exceptions.js",
+      "types": "./dist/core/exceptions.d.ts"
+    },
+    "./core/types": {
+      "import": "./dist/core/types.js",
+      "types": "./dist/core/types.d.ts"
+    },
+    "./contracts": {
+      "import": "./dist/contracts/index.js",
+      "types": "./dist/contracts/index.d.ts"
+    },
+    "./contracts/*": {
+      "import": "./dist/contracts/*/index.js",
+      "types": "./dist/contracts/*/index.d.ts"
+    },
+    "./adapters": {
+      "import": "./dist/adapters/index.js",
+      "types": "./dist/adapters/index.d.ts"
+    },
+    "./tooling": {
+      "import": "./dist/tooling/index.js",
+      "types": "./dist/tooling/index.d.ts"
+    },
     "./http": {
       "import": "./dist/http/index.js",
       "types": "./dist/http/index.d.ts"

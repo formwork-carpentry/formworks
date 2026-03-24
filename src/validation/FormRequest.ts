@@ -5,7 +5,7 @@
  * @principles SRP (request validation), DIP (depends on Validator interface)
  */
 
-import type { ValidationResult, ValidationRules } from "../core/contracts";
+import type { ValidationResult, ValidationRules } from "../contracts";
 import { Validator } from "./validator/Validator.js";
 
 /**

@@ -5,7 +5,7 @@
  * @principles OCP — new abilities/policies without modifying Gate; SRP — authorization only
  */
 
-import type { GateCallback, IAuthenticatable, IGate } from "@carpentry/formworks/core/contracts";
+import type { GateCallback, IAuthenticatable, IGate } from "@carpentry/formworks/contracts";
 
 /**
  * Authorization gate: define abilities and evaluate them for a user.

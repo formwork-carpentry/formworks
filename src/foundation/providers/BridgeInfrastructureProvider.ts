@@ -1,13 +1,25 @@
+/**
+ * @module @carpentry/foundation/providers/bridge
+ * @description Registers bridge manager and default transport bindings.
+ */
+
 import type { IContainer } from '@carpentry/formworks/core/container';
 import { ConfigResolver } from '@carpentry/formworks/core/config';
 import { createBridgeManager, type BridgeManager } from '@carpentry/formworks/bridge';
 
+/**
+ * @description Service provider that wires microservice bridge transports into IoC.
+ */
 export class BridgeInfrastructureProvider {
   constructor(
     private readonly app: IContainer,
     private readonly resolver: ConfigResolver,
   ) {}
 
+  /**
+   * @description Registers bridge manager and default transport instance.
+   * @returns {void}
+   */
   register(): void {
     this.app.singleton('bridge.manager', () => {
       return createBridgeManager(

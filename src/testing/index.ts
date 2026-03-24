@@ -294,23 +294,14 @@ export async function assertThrows(
     caughtError = error as Error;
   }
 
-  /**
-   * @param {unknown} !threw
-   */
   if (!threw) {
     throw new Error("Expected function to throw, but it did not.");
   }
 
-  /**
-   * @param {unknown} expectedType && !(caughtError instanceof expectedType
-   */
   if (expectedType && caughtError && !(caughtError instanceof expectedType)) {
     throw new Error("Expected error of requested type.");
   }
 
-  /**
-   * @param {unknown} expectedMessage
-   */
   if (expectedMessage) {
     const msg = caughtError?.message ?? "";
     if (typeof expectedMessage === "string" && !msg.includes(expectedMessage)) {
@@ -332,9 +323,6 @@ export async function assertCompletesWithin(
   const start = Date.now();
   await fn();
   const elapsed = Date.now() - start;
-  /**
-   * @param {unknown} elapsed > timeoutMs
-   */
   if (elapsed > timeoutMs) {
     throw new Error(`Expected to complete within ${timeoutMs}ms, took ${elapsed}ms.`);
   }

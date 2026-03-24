@@ -5,7 +5,7 @@
  * @principles LSP — fully substitutable for any real adapter
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@carpentry/formworks/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@carpentry/formworks/contracts';
 
 /**
  * MockDatabaseAdapter — records executed queries and returns queued {@link QueryResult} rows.

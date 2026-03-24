@@ -10,7 +10,7 @@ import type {
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 import { StorageFileNotFoundError } from "../exceptions/base.js";
 
 interface StoredFile {

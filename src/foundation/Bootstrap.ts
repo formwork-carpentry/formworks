@@ -11,7 +11,7 @@ import { Container } from '../core/container';
 import { Config } from '../core/config';
 import { loadEnv } from '../core/config';
 import { buildDefaultConfig } from '../core/config';
-import { ServiceProvider } from '../core/contracts';
+import { ServiceProvider } from '../contracts';
 import { InfrastructureServiceProvider } from './InfrastructureServiceProvider.js';
 
 import type { IContainer } from '../core/container';

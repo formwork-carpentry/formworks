@@ -5,7 +5,7 @@
  * @principles LSP — all adapters substitutable; SRP — each adapter handles one transport
  */
 
-import type { IMailAdapter, MailAddress, MailMessage } from "@carpentry/formworks/core/contracts";
+import type { IMailAdapter, MailAddress, MailMessage } from "@carpentry/formworks/contracts";
 
 // ── ArrayMailAdapter — stores sent mails for testing ──────
 

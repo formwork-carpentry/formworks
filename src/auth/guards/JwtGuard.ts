@@ -10,7 +10,7 @@ import type {
   IAuthGuard,
   IAuthenticatable,
   IUserProvider,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 
 /** JWT configuration options */
 export interface JwtConfig {

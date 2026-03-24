@@ -3,8 +3,8 @@
  * @description Generic pipeline — Chain of Responsibility pattern for ordered processing.
  */
 
-import type { IContainer } from "@carpentry/formworks/core/contracts";
-import type { IPipe, PipeFunction } from "@carpentry/formworks/core/contracts/pipeline";
+import type { IContainer } from "@carpentry/formworks/contracts";
+import type { IPipe, PipeFunction } from "@carpentry/formworks/contracts/pipeline";
 
 export type { IPipe, PipeFunction };
 export type PipeEntry<TPassable, TReturn = TPassable> =

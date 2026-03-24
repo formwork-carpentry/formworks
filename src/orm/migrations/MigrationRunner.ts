@@ -5,7 +5,7 @@
  */
 
 import { Schema } from './Schema.js';
-import type { IDatabaseAdapter } from '@carpentry/formworks/core/contracts';
+import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
 
 export interface MigrationRecord {
   name: string;

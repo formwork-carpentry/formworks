@@ -5,7 +5,7 @@
  * @principles SRP — response construction only; LSP — implements IResponse
  */
 
-import type { CookieOptions, IResponse } from "@carpentry/formworks/core/contracts";
+import type { CookieOptions, IResponse } from "@carpentry/formworks/contracts";
 import type { Dictionary } from "@carpentry/formworks/core/types";
 
 /**

@@ -5,7 +5,7 @@
  * @principles SRP — event routing only; OCP — new events/listeners without modifying dispatcher
  */
 
-import type { EventListener, IEventDispatcher, IEventSubscriber } from "@carpentry/formworks/core/contracts";
+import type { EventListener, IEventDispatcher, IEventSubscriber } from "../../contracts";
 import type { Unsubscribe } from "@carpentry/formworks/core/types";
 
 /**
@@ -18,13 +18,17 @@ import type { Unsubscribe } from "@carpentry/formworks/core/types";
  *
  * @example
  * ```ts
+ * class UserRegistered {
+ *   constructor(public readonly id: number, public readonly email: string) {}
+ * }
+ *
  * const events = new EventDispatcher();
  *
- * const unsubscribe = events.on('user.registered', async (payload) => {
- *   console.log('Welcome user', payload);
+ * const unsubscribe = events.on(UserRegistered, async (event) => {
+ *   console.log('Welcome user', event?.email);
  * });
  *
- * await events.dispatch('user.registered', { id: 1, email: 'a@b.com' });
+ * await events.dispatch(UserRegistered, new UserRegistered(1, 'a@b.com'));
  * unsubscribe(); // stop listening
  * ```
  */
@@ -83,7 +87,7 @@ export class EventDispatcher implements IEventDispatcher {
    * @returns {Promise<void>}
    */
   // biome-ignore lint/complexity/noBannedTypes: event can be class reference or string name per IEventDispatcher contract
-  async emit<T = unknown>(event: string | Function, payload?: T): Promise<void> {
+  async dispatch<T = unknown>(event: string | Function, payload?: T): Promise<void> {
     const key = this.eventKey(event);
 
     // Exact match listeners
@@ -100,15 +104,17 @@ export class EventDispatcher implements IEventDispatcher {
     }
   }
 
-  /** Alias for emit() — Laravel-style dispatch(event, payload) */
+  /**
+   * @deprecated Since 1.0.0, use dispatch() instead.
+   */
   /**
    * @param {string | Function} event
    * @param {T} [payload]
    * @returns {Promise<void>}
    */
   // biome-ignore lint/complexity/noBannedTypes: event can be class reference or string name per IEventDispatcher contract
-  async dispatch<T = unknown>(event: string | Function, payload?: T): Promise<void> {
-    return this.emit(event, payload);
+  async emit<T = unknown>(event: string | Function, payload?: T): Promise<void> {
+    return this.dispatch(event, payload);
   }
 
   /**
@@ -241,21 +247,24 @@ export class EventFake implements IEventDispatcher {
     return this.realDispatcher.once(event, listener);
   }
 
-  // Emit records the event but does NOT call listeners
+  // Dispatch records the event but does NOT call listeners
   /**
    * @param {string | Function} event
    * @param {T} [payload]
    * @returns {Promise<void>}
    */
   // biome-ignore lint/complexity/noBannedTypes: event can be class reference or string name per IEventDispatcher contract
-  async emit<T = unknown>(event: string | Function, payload?: T): Promise<void> {
+  async dispatch<T = unknown>(event: string | Function, payload?: T): Promise<void> {
     const key = typeof event === "function" ? event.name : event;
     this.dispatched.push({ event: key, payload });
   }
 
+  /**
+   * @deprecated Since 1.0.0, use dispatch() instead.
+   */
   // biome-ignore lint/complexity/noBannedTypes: event can be class reference or string name per IEventDispatcher contract
-  async dispatch<T = unknown>(event: string | Function, payload?: T): Promise<void> {
-    await this.emit(event, payload);
+  async emit<T = unknown>(event: string | Function, payload?: T): Promise<void> {
+    await this.dispatch(event, payload);
   }
 
   /**

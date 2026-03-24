@@ -9,8 +9,8 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase } from "@carpentry/formworks/core/adapters";
-import type { ITransport } from "@carpentry/formworks/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/formworks/adapters";
+import type { ITransport } from "@carpentry/formworks/contracts";
 import { InMemoryTransport } from "../transports.js";
 
 export interface BridgeTransportConfig {

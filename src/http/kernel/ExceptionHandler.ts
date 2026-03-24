@@ -6,8 +6,8 @@
  *             SRP — only maps exceptions to responses
  */
 
-import type { IRequest } from "@carpentry/formworks/core/contracts";
-import type { IResponse } from "@carpentry/formworks/core/contracts";
+import type { IRequest } from "@carpentry/formworks/contracts";
+import type { IResponse } from "@carpentry/formworks/contracts";
 import {
   AuthenticationError,
   AuthorizationError,

@@ -5,8 +5,8 @@
  * @principles LSP (substitutable for SyncQueue/BullMQ), SRP (DB job persistence only)
  */
 
-import type { IDatabaseAdapter } from "@carpentry/formworks/core/contracts";
-import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/core/contracts";
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/contracts";
 import { QueryBuilder } from "@carpentry/formworks/orm";
 
 export interface DatabaseQueueConfig {

@@ -3,7 +3,7 @@
  * @description Stub IDatabaseAdapter implementations for missing native driver packages.
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '../core/contracts';
+import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '../contracts';
 import { DatabaseDriverDependencyError, DatabaseOperationError } from './exceptions/base.js';
 
 export class UnsupportedDriverAdapter implements IDatabaseAdapter {

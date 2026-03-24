@@ -4,7 +4,7 @@
  * @patterns Template Method
  */
 
-import type { IDatabaseAdapter } from '@carpentry/formworks/core/contracts';
+import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
 import type { Dictionary } from '@carpentry/formworks/core/types';
 import type { QueryBuilder } from '../query/QueryBuilder.js';
 import { BaseModel } from '../model/BaseModel.js';

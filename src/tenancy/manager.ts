@@ -58,8 +58,10 @@ export class TenancyManager {
 
   /** Resolve and initialize tenant from a request context */
   /**
-   * @param {TenantResolverContext} context
-   * @returns {Promise<Tenant | null>}
+    * Resolves a tenant slug from context and loads an active tenant into current scope.
+    *
+    * @param {TenantResolverContext} context Resolver input (request, headers, host, etc.).
+    * @returns {Promise<Tenant | null>} The active tenant, or null when none is resolved.
    */
   async initialize(context: TenantResolverContext): Promise<Tenant | null> {
     const slug = await this.resolver.resolve(context);
@@ -79,8 +81,10 @@ export class TenancyManager {
 
   /** Manually switch to a tenant (for CLI, jobs, testing) */
   /**
-   * @param {Tenant} tenant
-   * @returns {Tenant}
+    * Sets the current tenant context and emits a `switched` event.
+    *
+    * @param {Tenant} tenant Tenant to activate.
+    * @returns {Tenant} The same tenant for fluent usage.
    */
   setTenant(tenant: Tenant): Tenant {
     this.currentTenant = tenant;
@@ -115,9 +119,13 @@ export class TenancyManager {
 
   /** Run a callback in the context of a specific tenant */
   /**
-   * @param {Tenant} tenant
-   * @param {(} fn
-   * @returns {Promise<T>}
+    * Temporarily switches tenant context for the provided async callback.
+    * Restores the previous tenant when the callback finishes.
+    *
+    * @typeParam T Callback return type.
+    * @param {Tenant} tenant Tenant context to activate during execution.
+    * @param {() => Promise<T>} fn Async callback executed in tenant scope.
+    * @returns {Promise<T>} Callback result.
    */
   async run<T>(tenant: Tenant, fn: () => Promise<T>): Promise<T> {
     const previous = this.currentTenant;
@@ -138,7 +146,9 @@ export class TenancyManager {
 
   /** Register event handler */
   /**
-   * @param {TenancyEventHandler} handler
+    * Registers a tenancy lifecycle listener.
+    *
+    * @param {TenancyEventHandler} handler Listener for switched/ended notifications.
    */
   on(handler: TenancyEventHandler): void { this.handlers.push(handler); }
 

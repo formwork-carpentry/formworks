@@ -5,7 +5,7 @@
  * @principles LSP — all adapters substitutable; DIP — app dispatches via IQueueAdapter
  */
 
-import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/core/contracts";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/contracts";
 
 // ── BaseJob — Template Method ─────────────────────────────
 

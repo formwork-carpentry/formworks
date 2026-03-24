@@ -23,7 +23,7 @@
 
 import { unlinkSync as fsUnlink } from "node:fs";
 import { type Server, type Socket, createConnection, createServer } from "node:net";
-import type { BridgeMessage, BridgeResponse, ITransport } from "../core/contracts";
+import type { BridgeMessage, BridgeResponse, ITransport } from "../contracts";
 import { BridgeTimeoutError, BridgeTransportNotConnectedError } from "./exceptions/transport.js";
 
 /**

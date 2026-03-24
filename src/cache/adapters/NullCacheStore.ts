@@ -5,7 +5,7 @@
  * @principles LSP — substitutable for any ICacheStore
  */
 
-import type { ICacheStore } from "@carpentry/formworks/core/contracts";
+import type { ICacheStore } from "@carpentry/formworks/contracts";
 import type { MaybeAsync } from "@carpentry/formworks/core/types";
 
 /**

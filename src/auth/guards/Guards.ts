@@ -11,7 +11,7 @@ import type {
   IAuthenticatable,
   IHashManager,
   IUserProvider,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 
 /**
  * MemoryGuard — keeps the authenticated user in memory (for tests and simple apps).

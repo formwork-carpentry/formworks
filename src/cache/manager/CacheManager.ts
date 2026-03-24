@@ -8,8 +8,8 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@carpentry/formworks/core/adapters";
-import type { ICacheStore } from "@carpentry/formworks/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/formworks/adapters";
+import type { ICacheStore } from "@carpentry/formworks/contracts";
 import type { MaybeAsync } from "@carpentry/formworks/core/types";
 import { MemoryCacheStore } from "../adapters/MemoryCacheStore.js";
 import { NullCacheStore } from "../adapters/NullCacheStore.js";

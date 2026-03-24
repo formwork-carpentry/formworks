@@ -1,4 +1,4 @@
-import type { IDatabaseAdapter } from "@carpentry/formworks/core/contracts";
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
 
 import { DatabaseQueueAdapter } from "../adapters/DatabaseQueueAdapter.js";
 import { type QueueConnectionConfig, QueueManager } from "./QueueManager.js";

@@ -9,8 +9,8 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase, type CarpenterFactoryAdapter } from '@carpentry/formworks/core/adapters';
-import type { IDatabaseAdapter } from '@carpentry/formworks/core/contracts';
+import { CarpenterFactoryBase, type CarpenterFactoryAdapter } from '@carpentry/formworks/adapters';
+import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
 
 export interface DatabaseConnectionConfig {
   /** Driver name: 'sqlite', 'postgres', 'mysql', 'mongodb', 'memory' */

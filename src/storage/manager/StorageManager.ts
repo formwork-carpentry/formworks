@@ -8,13 +8,13 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase } from "@carpentry/formworks/core/adapters";
+import { CarpenterFactoryBase } from "@carpentry/formworks/adapters";
 import type {
   IStorageAdapter,
   StorageFile,
   StorageFileMetadata,
   StoragePutOptions,
-} from "@carpentry/formworks/core/contracts";
+} from "@carpentry/formworks/contracts";
 import { MemoryStorageAdapter } from "../adapters/MemoryStorageAdapter.js";
 import { StorageNotInitializedError } from "../exceptions/base.js";
 

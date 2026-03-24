@@ -8,8 +8,8 @@
  *             DRY — shared resolution logic via CarpenterFactoryBase
  */
 
-import { CarpenterFactoryBase } from "@carpentry/formworks/core/adapters";
-import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/core/contracts";
+import { CarpenterFactoryBase } from "@carpentry/formworks/adapters";
+import type { IQueueAdapter, QueuedJob } from "@carpentry/formworks/contracts";
 import { MemoryQueueAdapter, SyncQueueAdapter } from "../adapters/Adapters.js";
 import { QueueNotInitializedError } from "../exceptions/base.js";
 

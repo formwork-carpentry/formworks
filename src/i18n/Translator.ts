@@ -9,7 +9,7 @@ import type {
   ITranslator,
   ITranslationLoader,
   IPluralizer,
-} from '../core/contracts';
+} from '../contracts';
 import type { Dictionary } from '../core/types';
 
 /**
@@ -319,9 +319,6 @@ export function transChoice(
   replacements?: Dictionary<string | number>,
   locale?: string,
 ): string {
-  /**
-   * @param {unknown} !globalTranslator
-   */
   if (!globalTranslator) return key;
   return globalTranslator.choice(key, count, replacements, locale);
 }

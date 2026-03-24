@@ -5,7 +5,7 @@
  * @principles OCP (adds tagging without modifying stores), SRP (tag tracking only)
  */
 
-import type { ICacheStore } from "../core/contracts";
+import type { ICacheStore } from "../contracts";
 import type { MaybeAsync } from "../core/types";
 
 /**

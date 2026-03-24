@@ -44,17 +44,11 @@ export const Audit = {
 };
 
 function getLogManager(): LogManager {
-  /**
-   * @param {unknown} !globalLogManager
-   */
   if (!globalLogManager) throw new Error('LogManager not initialized.');
   return globalLogManager;
 }
 
 function getAuditLogger(): AuditLogger {
-  /**
-   * @param {unknown} !globalAuditLogger
-   */
   if (!globalAuditLogger) throw new Error('AuditLogger not initialized.');
   return globalAuditLogger;
 }

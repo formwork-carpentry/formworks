@@ -5,7 +5,7 @@
  */
 
 import { Blueprint } from './Blueprint.js';
-import type { IDatabaseAdapter, CompiledQuery } from '@carpentry/formworks/core/contracts';
+import type { IDatabaseAdapter, CompiledQuery } from '@carpentry/formworks/contracts';
 import type { ColumnDefinition, IndexDefinition } from './column-types.js';
 
 /**
