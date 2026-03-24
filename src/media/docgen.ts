@@ -107,17 +107,29 @@ export class DocumentGenerator {
 
   /** Shorthand: generate PDF. */
   pdf(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    return this.generate({ name, data, format: 'pdf', options });
+    const template: DocumentTemplate = { name, data, format: 'pdf' };
+    if (options !== undefined) {
+      template.options = options;
+    }
+    return this.generate(template);
   }
 
   /** Shorthand: generate DOCX. */
   docx(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    return this.generate({ name, data, format: 'docx', options });
+    const template: DocumentTemplate = { name, data, format: 'docx' };
+    if (options !== undefined) {
+      template.options = options;
+    }
+    return this.generate(template);
   }
 
   /** Shorthand: generate XLSX. */
   xlsx(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    return this.generate({ name, data, format: 'xlsx', options });
+    const template: DocumentTemplate = { name, data, format: 'xlsx' };
+    if (options !== undefined) {
+      template.options = options;
+    }
+    return this.generate(template);
   }
 
   /** Shorthand: generate CSV. */

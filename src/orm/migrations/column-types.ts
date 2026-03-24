@@ -86,12 +86,18 @@ export class ColumnBuilder {
    * @returns {this}
    */
   references(column: string): this {
-    this.col.references = {
-      table: this.col.references?.table ?? '',
+    const current = this.col.references;
+    const next: ForeignKeyDefinition = {
+      table: current?.table ?? '',
       column,
-      onDelete: this.col.references?.onDelete,
-      onUpdate: this.col.references?.onUpdate,
     };
+    if (current?.onDelete !== undefined) {
+      next.onDelete = current.onDelete;
+    }
+    if (current?.onUpdate !== undefined) {
+      next.onUpdate = current.onUpdate;
+    }
+    this.col.references = next;
     return this;
   }
 
@@ -102,12 +108,18 @@ export class ColumnBuilder {
    * @returns {this}
    */
   on(table: string): this {
-    this.col.references = {
+    const current = this.col.references;
+    const next: ForeignKeyDefinition = {
       table,
-      column: this.col.references?.column ?? 'id',
-      onDelete: this.col.references?.onDelete,
-      onUpdate: this.col.references?.onUpdate,
+      column: current?.column ?? 'id',
     };
+    if (current?.onDelete !== undefined) {
+      next.onDelete = current.onDelete;
+    }
+    if (current?.onUpdate !== undefined) {
+      next.onUpdate = current.onUpdate;
+    }
+    this.col.references = next;
     return this;
   }
 

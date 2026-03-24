@@ -71,7 +71,7 @@ export class RateLimitMiddleware {
     entry.timestamps = entry.timestamps.filter((t) => t > now - windowMs);
 
     if (entry.timestamps.length >= this.options.maxRequests) {
-      const oldestInWindow = entry.timestamps[0];
+      const oldestInWindow = entry.timestamps[0] ?? now;
       const retryAfter = Math.ceil((oldestInWindow + windowMs - now) / 1000);
       return this.options.onLimitExceeded?.(request, retryAfter);
     }

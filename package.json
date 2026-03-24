@@ -170,9 +170,12 @@
     "build:watch": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --coverage",
-    "lint": "biome lint src/"
+    "lint": "biome lint src/",
+    "lint:test-mirroring": "node scripts/lint-test-mirroring.mjs",
+    "lint:ci": "npm run lint && npm run lint:test-mirroring"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "@vitest/coverage-v8": "^1.6.0",
     "reflect-metadata": "^0.2.2",
     "tsup": "^8.0.0",

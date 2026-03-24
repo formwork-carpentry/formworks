@@ -114,17 +114,22 @@ export class Config implements ConfigRepository {
 
   private dotSet(obj: Dictionary, path: string, value: unknown): void {
     const parts = path.split(".");
+    if (parts.length === 0) return;
     let current: Dictionary = obj;
 
     for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
+      if (part === undefined) continue;
       if (!(part in current) || typeof current[part] !== "object" || current[part] === null) {
         current[part] = {};
       }
       current = current[part] as Dictionary;
     }
 
-    current[parts[parts.length - 1]] = value;
+    const leaf = parts[parts.length - 1];
+    if (leaf !== undefined) {
+      current[leaf] = value;
+    }
   }
 
   private deepMerge(target: Dictionary, source: Dictionary): Dictionary {

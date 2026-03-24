@@ -45,7 +45,12 @@ jobs:
         run: npm run build
 
       - name: Run tests
-        run: npm run test:all
+        run: |
+          npx vitest run --coverage=false \
+            --exclude tests/integration/** \
+            --exclude tests/real-services.test.ts \
+            --exclude tests/real-services/**/*.test.ts \
+            --exclude tests/integration/services/**/*.test.ts
 
       - name: Publish packages (dry run)
         if: github.event.inputs.dry_run == true || github.event_name != 'push'

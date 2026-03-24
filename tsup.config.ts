@@ -38,6 +38,9 @@ export default defineConfig({
   format: ["esm"],
   splitting: true,
   treeshake: true,
+  external: [
+    /^@carpentry\/.*$/,
+  ],
   dts: true,
   sourcemap: true,
   clean: true

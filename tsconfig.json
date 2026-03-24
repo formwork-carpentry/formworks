@@ -4,8 +4,11 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@carpentry/formworks": ["./src/index.ts"],
+      "@carpentry/formworks/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

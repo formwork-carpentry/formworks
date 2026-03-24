@@ -31,7 +31,11 @@ export {
   dispatch,
   createQueueManager,
 } from "./manager/index.js";
-export type { QueueDriverFactory, QueueManagerFactoryDependencies } from "./manager/index.js";
+export type {
+  QueueConnectionConfig,
+  QueueDriverFactory,
+  QueueManagerFactoryDependencies,
+} from "./manager/index.js";
 export * from "./exceptions.js";
 
 export { DatabaseQueueAdapter } from "./adapters/DatabaseQueueAdapter.js";

@@ -135,7 +135,9 @@ const builtInRules: Record<string, IValidationRule> = {
     name: "regex",
     validate: (_attr, value, params) => {
       if (value === undefined || value === null || value === "") return true;
-      return new RegExp(params[0]).test(String(value));
+      const pattern = params[0];
+      if (pattern === undefined || pattern === "") return false;
+      return new RegExp(pattern).test(String(value));
     },
     message: (attr) => `The ${attr} field format is invalid.`,
   },
@@ -286,7 +288,11 @@ export class Validator implements IValidator {
     const ruleStrings = typeof rules === "string" ? rules.split("|") : (rules as string[]);
 
     return ruleStrings.map((ruleStr) => {
-      const [name, ...paramParts] = ruleStr.split(":");
+      const [rawName, ...paramParts] = ruleStr.split(":");
+      const name = rawName?.trim();
+      if (!name) {
+        throw new Error(`Validation rule "${ruleStr}" is not defined.`);
+      }
       const params = paramParts.length > 0 ? paramParts.join(":").split(",") : [];
 
       const rule = this.customRules.get(name) ?? builtInRules[name];

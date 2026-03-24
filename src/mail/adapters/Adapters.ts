@@ -191,7 +191,11 @@ export abstract class BaseMailable {
    * @returns {this}
    */
   to(email: string, name?: string): this {
-    this.mailTo.push({ email, name });
+    const recipient: MailAddress = { email };
+    if (name !== undefined) {
+      recipient.name = name;
+    }
+    this.mailTo.push(recipient);
     return this;
   }
 
@@ -201,7 +205,11 @@ export abstract class BaseMailable {
    * @returns {this}
    */
   cc(email: string, name?: string): this {
-    this.mailCc.push({ email, name });
+    const recipient: MailAddress = { email };
+    if (name !== undefined) {
+      recipient.name = name;
+    }
+    this.mailCc.push(recipient);
     return this;
   }
 
@@ -211,7 +219,11 @@ export abstract class BaseMailable {
    * @returns {this}
    */
   bcc(email: string, name?: string): this {
-    this.mailBcc.push({ email, name });
+    const recipient: MailAddress = { email };
+    if (name !== undefined) {
+      recipient.name = name;
+    }
+    this.mailBcc.push(recipient);
     return this;
   }
 
@@ -230,20 +242,37 @@ export abstract class BaseMailable {
    * @returns {this}
    */
   replyTo(email: string, name?: string): this {
-    this.mailReplyTo = { email, name };
+    const replyAddress: MailAddress = { email };
+    if (name !== undefined) {
+      replyAddress.name = name;
+    }
+    this.mailReplyTo = replyAddress;
     return this;
   }
 
   /** Get the final mail message — calls build() and merges fluent settings */
   toMessage(): MailMessage {
     const built = this.build();
-    return {
+    const message: MailMessage = {
       ...built,
       to: this.mailTo.length > 0 ? this.mailTo : built.to,
-      cc: this.mailCc.length > 0 ? this.mailCc : built.cc,
-      bcc: this.mailBcc.length > 0 ? this.mailBcc : built.bcc,
-      subject: this.mailSubject || built.subject,
-      replyTo: this.mailReplyTo ?? built.replyTo,
     };
+    const cc = this.mailCc.length > 0 ? this.mailCc : built.cc;
+    if (cc !== undefined) {
+      message.cc = cc;
+    }
+    const bcc = this.mailBcc.length > 0 ? this.mailBcc : built.bcc;
+    if (bcc !== undefined) {
+      message.bcc = bcc;
+    }
+    const subject = this.mailSubject || built.subject;
+    if (subject !== undefined) {
+      message.subject = subject;
+    }
+    const replyTo = this.mailReplyTo ?? built.replyTo;
+    if (replyTo !== undefined) {
+      message.replyTo = replyTo;
+    }
+    return message;
   }
 }

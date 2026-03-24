@@ -88,7 +88,7 @@ export class TenancyManager {
    */
   setTenant(tenant: Tenant): Tenant {
     this.currentTenant = tenant;
-    this.emit('switched', tenant);
+    this.dispatch('switched', tenant);
     return tenant;
   }
 
@@ -114,7 +114,7 @@ export class TenancyManager {
   end(): void {
     const prev = this.currentTenant;
     this.currentTenant = null;
-    this.emit('ended', prev);
+    this.dispatch('ended', prev);
   }
 
   /** Run a callback in the context of a specific tenant */
@@ -152,7 +152,7 @@ export class TenancyManager {
    */
   on(handler: TenancyEventHandler): void { this.handlers.push(handler); }
 
-  private emit(event: 'switched' | 'ended', tenant: Tenant | null): void {
+  private dispatch(event: 'switched' | 'ended', tenant: Tenant | null): void {
     for (const h of this.handlers) h(event, tenant);
   }
 }

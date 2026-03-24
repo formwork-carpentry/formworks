@@ -59,6 +59,9 @@ npm run lint
 # Unit tests (all packages)
 npm run test:all
 
+# Enforce test/module mirroring policy
+pnpm run lint:test-mirroring
+
 # Integration tests (requires Docker)
 npm run test:integration
 

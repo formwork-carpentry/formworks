@@ -24,7 +24,65 @@ export interface AppConfig {
   env?: Dictionary<string>;
 }
 
-type AppEvent = "booting" | "booted" | "terminating" | "terminated";
+export const APP_LIFECYCLE_EVENTS = {
+  BOOTING: "booting",
+  BOOTED: "booted",
+  TERMINATING: "terminating",
+  TERMINATED: "terminated",
+} as const;
+
+type AppEvent = (typeof APP_LIFECYCLE_EVENTS)[keyof typeof APP_LIFECYCLE_EVENTS];
+
+class ProviderLifecycleRegistry {
+  private providers: ServiceProvider[] = [];
+  private deferredProviders = new Map<Token, ServiceProvider>();
+
+  registerProviders(
+    app: IContainer,
+    providerClasses: Array<new (app: IContainer) => ServiceProvider>,
+  ): void {
+    for (const ProviderClass of providerClasses) {
+      const provider = new ProviderClass(app);
+
+      if (provider.isDeferred()) {
+        for (const token of provider.provides()) {
+          this.deferredProviders.set(token, provider);
+        }
+      } else {
+        provider.register();
+      }
+
+      this.providers.push(provider);
+    }
+  }
+
+  async bootProviders(): Promise<void> {
+    for (const provider of this.providers) {
+      if (provider.isDeferred() && this.hasDeferredTokens(provider)) {
+        continue;
+      }
+      await provider.boot();
+    }
+  }
+
+  resolveDeferredProvider(token: Token): ServiceProvider | null {
+    const provider = this.deferredProviders.get(token);
+    if (!provider) {
+      return null;
+    }
+    provider.register();
+    this.deferredProviders.delete(token);
+    return provider;
+  }
+
+  hasDeferredToken(token: Token): boolean {
+    return this.deferredProviders.has(token);
+  }
+
+  private hasDeferredTokens(provider: ServiceProvider): boolean {
+    return provider.provides().some((token) => this.deferredProviders.has(token));
+  }
+}
 
 /**
  * Root IoC host: extends `Container` with config, service providers, and boot lifecycle.
@@ -41,8 +99,7 @@ export class Application extends Container {
   private static appInstance: Application | null = null;
 
   private configRepo: Config;
-  private providers: ServiceProvider[] = [];
-  private deferredProviders = new Map<Token, ServiceProvider>();
+  private readonly providerRegistry = new ProviderLifecycleRegistry();
   private bootedFlag = false;
   private eventHandlers = new Map<AppEvent, Array<() => void | Promise<void>>>();
 
@@ -104,13 +161,13 @@ export class Application extends Container {
     app.instance("env", env);
 
     // 4. Register all providers
-    await app.emitEvent("booting");
-    app.registerProviders(options.providers ?? []);
+    await app.dispatchLifecycleEvent(APP_LIFECYCLE_EVENTS.BOOTING);
+    app.providerRegistry.registerProviders(app, options.providers ?? []);
 
     // 5. Boot all providers
-    await app.bootProviders();
+    await app.providerRegistry.bootProviders();
     app.bootedFlag = true;
-    await app.emitEvent("booted");
+    await app.dispatchLifecycleEvent(APP_LIFECYCLE_EVENTS.BOOTED);
 
     return app;
   }
@@ -159,7 +216,7 @@ export class Application extends Container {
    * @param timeoutMs - Maximum time to wait for graceful shutdown (default: 5000ms)
    */
   async terminate(timeoutMs = 5000): Promise<void> {
-    await this.emitEvent("terminating");
+    await this.dispatchLifecycleEvent(APP_LIFECYCLE_EVENTS.TERMINATING);
 
     const shutdownPromise = this.destroy();
     const timeoutPromise = new Promise<void>((resolve) => {
@@ -167,7 +224,7 @@ export class Application extends Container {
     });
 
     await Promise.race([shutdownPromise, timeoutPromise]);
-    await this.emitEvent("terminated");
+    await this.dispatchLifecycleEvent(APP_LIFECYCLE_EVENTS.TERMINATED);
 
     Application.appInstance = null;
   }
@@ -177,52 +234,14 @@ export class Application extends Container {
    * If a token matches a deferred provider, register it on-demand.
    */
   override make<T>(abstract: Token<T>): T {
-    // Check if a deferred provider handles this token
-    if (!this.bound(abstract) && this.deferredProviders.has(abstract)) {
-      const provider = this.deferredProviders.get(abstract);
-      if (provider) {
-        provider.register();
-        this.deferredProviders.delete(abstract);
-      }
+    if (!this.bound(abstract) && this.providerRegistry.hasDeferredToken(abstract)) {
+      this.providerRegistry.resolveDeferredProvider(abstract);
     }
 
     return super.make<T>(abstract);
   }
 
-  // ── Internal ────────────────────────────────────────────
-
-  private registerProviders(providerClasses: (new (app: IContainer) => ServiceProvider)[]): void {
-    for (const ProviderClass of providerClasses) {
-      const provider = new ProviderClass(this);
-
-      if (provider.isDeferred()) {
-        // Deferred: register when one of its tokens is first requested
-        for (const token of provider.provides()) {
-          this.deferredProviders.set(token, provider);
-        }
-      } else {
-        provider.register();
-      }
-
-      this.providers.push(provider);
-    }
-  }
-
-  private async bootProviders(): Promise<void> {
-    for (const provider of this.providers) {
-      // Skip deferred providers that haven't been registered yet
-      if (provider.isDeferred() && this.hasDeferredTokens(provider)) {
-        continue;
-      }
-      await provider.boot();
-    }
-  }
-
-  private hasDeferredTokens(provider: ServiceProvider): boolean {
-    return provider.provides().some((token) => this.deferredProviders.has(token));
-  }
-
-  private async emitEvent(event: AppEvent): Promise<void> {
+  private async dispatchLifecycleEvent(event: AppEvent): Promise<void> {
     const handlers = this.eventHandlers.get(event) ?? [];
     for (const handler of handlers) {
       await handler();

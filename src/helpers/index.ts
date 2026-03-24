@@ -145,14 +145,20 @@ export const Arr = {
   /** Set value by dot-notation key */
   set: (obj: Record<string, unknown>, key: string, value: unknown): void => {
     const parts = key.split('.');
+    if (parts.length === 0) return;
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
-      if (!(parts[i] in current) || typeof current[parts[i]] !== 'object') {
-        current[parts[i]] = {};
+      const part = parts[i];
+      if (part === undefined) continue;
+      if (!(part in current) || typeof current[part] !== 'object') {
+        current[part] = {};
       }
-      current = current[parts[i]] as Record<string, unknown>;
+      current = current[part] as Record<string, unknown>;
     }
-    current[parts[parts.length - 1]] = value;
+    const leaf = parts[parts.length - 1];
+    if (leaf !== undefined) {
+      current[leaf] = value;
+    }
   },
 
   /** Pick specific keys from an object */
@@ -208,7 +214,12 @@ export const Arr = {
     const result = [...arr];
     for (let i = result.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [result[i], result[j]] = [result[j], result[i]];
+      const left = result[i];
+      const right = result[j];
+      if (left !== undefined && right !== undefined) {
+        result[i] = right;
+        result[j] = left;
+      }
     }
     return result;
   },
@@ -245,7 +256,7 @@ export const Arr = {
 
   /** Zip two arrays into pairs */
   zip: <A, B>(a: A[], b: B[]): [A, B][] =>
-    a.map((item, i) => [item, b[i]]),
+    a.flatMap((item, i) => (b[i] === undefined ? [] : [[item, b[i] as B]])),
 };
 
 // ══════════════════════════════════════════════════════════

@@ -69,7 +69,10 @@ export class DatabaseQueueAdapter implements IQueueAdapter {
    * @returns {Promise<string>}
    */
   async pushRaw(payload: string, queue?: string): Promise<string> {
-    const job: QueuedJob = { name: "raw", payload, queue };
+    const job: QueuedJob = { name: "raw", payload };
+    if (queue !== undefined) {
+      job.queue = queue;
+    }
     return this.insertJob(job, 0);
   }
 

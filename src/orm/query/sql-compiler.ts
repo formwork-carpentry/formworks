@@ -58,7 +58,11 @@ export function compileQuery(ast: QueryAST): CompiledQuery {
    */
   if (ast.type === 'insert' && ast.data) {
     const rows = Array.isArray(ast.data) ? ast.data : [ast.data];
-    const cols = Object.keys(rows[0]);
+    const firstRow = rows[0];
+    if (!firstRow) {
+      throw new Error(`Cannot compile insert for table "${ast.table}": no rows provided.`);
+    }
+    const cols = Object.keys(firstRow);
     const ph = rows.map((row) =>
       `(${cols.map((c) => { bindings.push(row[c]); return '?'; }).join(', ')})`
     ).join(', ');

@@ -53,7 +53,7 @@ export class UserController extends BaseController {
     }
 
     const user = await User.create(result.validated as Record<string, unknown>);
-    await this.events.emit('user.created', { userId: user.getKey(), name: body.name });
+    await this.events.dispatch('user.created', { userId: user.getKey(), name: body.name });
     await this.cache.forget('users:all');
 
     return this.created({ data: user.toJSON() });

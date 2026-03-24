@@ -5,7 +5,6 @@
  *   import { BaseModel } from '@carpentry/formworks/orm'
  */
 export * from './core';
-export * from './contracts';
 export * from './adapters';
 export * from './tooling';
 export * from './http';
@@ -25,15 +24,13 @@ export * from './bridge';
 export * from './resilience';
 export * from './scheduler';
 export * from './flags';
-export * from './notifications';
 export * from './tenancy';
 export * from './i18n';
 export * from './ui';
 export * from './helpers';
-export * from './http-client';
 export * from './media';
 export * from './encrypt';
 export * from './crypto';
 export * from './number';
-export * from './pipeline';
+// contracts/http-client/pipeline/notifications are subpath-first to avoid ambiguous root exports
 // testing and faker excluded — dev-only, use subpath imports

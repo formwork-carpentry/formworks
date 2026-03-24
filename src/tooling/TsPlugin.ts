@@ -300,7 +300,7 @@ export class CompletionProvider {
 
   /** Suggest similar items when the user makes a typo */
   private getSuggestions(input: string, items: CompletionItem[]): string {
-    const prefix = input.split(".")[0];
+    const prefix = input.split(".")[0] ?? "";
     return (
       items
         .filter((i) => i.label.startsWith(prefix))

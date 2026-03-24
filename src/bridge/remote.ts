@@ -58,10 +58,14 @@ export class RemoteService {
       service: this.serviceName,
       method,
       payload,
-      headers: options?.headers,
-      traceId: options?.traceId,
       timestamp: Date.now(),
     };
+    if (options?.headers !== undefined) {
+      message.headers = options.headers;
+    }
+    if (options?.traceId !== undefined) {
+      message.traceId = options.traceId;
+    }
 
     const timeoutMs = options?.timeout ?? 30000;
     const response = await Promise.race([

@@ -71,7 +71,7 @@ export class InfrastructureServiceProvider extends ServiceProvider {
    * Register all infrastructure bindings into the container.
    * @returns {void}
    */
-  register(): void {
+  override register(): void {
     const config = this.resolveConfig();
     const resolver = new ConfigResolver(config);
 
@@ -83,7 +83,7 @@ export class InfrastructureServiceProvider extends ServiceProvider {
     }
   }
 
-  boot(): void {
+  override boot(): void {
     // Managers are lazy — adapters created on first access
   }
 

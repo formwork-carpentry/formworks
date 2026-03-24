@@ -7,7 +7,7 @@ import type { IContainer } from '@carpentry/formworks/core/container';
 import { ConfigResolver } from '@carpentry/formworks/core/config';
 import {
   createCacheManager,
-  type CacheDriverConfig,
+  type CacheStoreConfig,
   type CacheManager,
 } from '@carpentry/formworks/cache';
 
@@ -28,7 +28,7 @@ export class CacheInfrastructureProvider {
     this.app.singleton('cache.manager', () => {
       return createCacheManager(
         this.resolver.cacheDriver(),
-        this.resolver.cacheStores() as Record<string, CacheDriverConfig>,
+        this.resolver.cacheStores() as Record<string, CacheStoreConfig>,
       );
     });
 

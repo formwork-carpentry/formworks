@@ -1,5 +1,3 @@
-import type { CarpenterFactoryAdapter } from "@carpentry/formworks/adapters";
-import type { IStorageAdapter } from "@carpentry/formworks/contracts";
 import { s3DriverFactory } from "@carpentry/storage-s3";
 
 import { LocalStorageAdapter } from "../adapters/LocalStorageAdapter.js";
@@ -18,9 +16,6 @@ export function createStorageManager(
         baseUrl: (cfg as Record<string, unknown>).url as string,
       }),
   );
-  manager.registerDriver(
-    "s3",
-    s3DriverFactory as CarpenterFactoryAdapter<StorageDiskConfig, IStorageAdapter>,
-  );
+  manager.registerDriver("s3", s3DriverFactory);
   return manager;
 }

@@ -21,13 +21,19 @@ import { Pipeline } from "../middleware/Pipeline.js";
 import { Request } from "../request/Request.js";
 import { CarpenterResponse } from "../response/Response.js";
 import type { Router } from "../router/Router.js";
-import { ExceptionHandler } from "./ExceptionHandler.js";
+import {
+  createExceptionHandler,
+  ExceptionHandler,
+  HTTP_EXCEPTION_HANDLER_TOKEN,
+} from "./ExceptionHandler.js";
 
 export interface HttpKernelOptions {
   /** Global middleware applied to every request */
   middleware?: (Token | string | IMiddleware)[];
   /** Whether to show debug info in error responses */
   debug?: boolean;
+  /** Optional injected exception handler (preferred for DI/testing) */
+  exceptionHandler?: ExceptionHandler;
 }
 
 /**
@@ -57,7 +63,22 @@ export class HttpKernel implements IHttpKernel {
     options: HttpKernelOptions = {},
   ) {
     this.globalMiddleware = options.middleware ?? [];
-    this.exceptionHandler = new ExceptionHandler(options.debug ?? false);
+    this.exceptionHandler = this.resolveExceptionHandler(options);
+  }
+
+  private resolveExceptionHandler(options: HttpKernelOptions): ExceptionHandler {
+    if (options.exceptionHandler !== undefined) {
+      this.container.instance(HTTP_EXCEPTION_HANDLER_TOKEN, options.exceptionHandler);
+      return options.exceptionHandler;
+    }
+
+    if (!this.container.bound(HTTP_EXCEPTION_HANDLER_TOKEN)) {
+      this.container.singleton(HTTP_EXCEPTION_HANDLER_TOKEN, () => {
+        return createExceptionHandler(options.debug ?? false);
+      });
+    }
+
+    return this.container.make<ExceptionHandler>(HTTP_EXCEPTION_HANDLER_TOKEN);
   }
 
   /**
@@ -183,7 +204,11 @@ export class HttpKernel implements IHttpKernel {
         controller = new (ControllerClass as new () => Record<string, Function>)();
       }
 
-      const result = await controller[methodName](request);
+      const action = controller[methodName];
+      if (typeof action !== "function") {
+        throw new Error(`Controller method "${methodName}" not found.`);
+      }
+      const result = await action.call(controller, request);
 
       // If result is already a response, return it
       if (result && typeof result === "object" && "toNative" in result) {

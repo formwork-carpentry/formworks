@@ -29,7 +29,11 @@
 
 export { ArrayMailAdapter, ArrayMailAdapter as InMemoryMailTransport, LogMailAdapter, BaseMailable } from "./adapters/Adapters.js";
 export { MailManager, setMailManager, Mail, createMailManager } from "./manager/index.js";
-export type { MailDriverFactory, MailManagerFactoryOptions } from "./manager/index.js";
+export type {
+	MailDriverConfig,
+	MailDriverFactory,
+	MailManagerFactoryOptions,
+} from "./manager/index.js";
 
 export { HttpMailAdapter } from "./adapters/HttpMailAdapter.js";
 export type { HttpMailConfig, HttpMailProvider, SendResult } from "./adapters/HttpMailAdapter.js";

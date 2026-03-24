@@ -97,8 +97,16 @@ export class ModelFactory<T extends BaseModel> {
       const model = new this.modelClass(attrs);
       models.push(model);
     }
+    if (count === 1) {
+      const single = models[0];
+      if (!single) {
+        throw new Error("Factory make expected one model but produced none.");
+      }
+      this.resetChain();
+      return single;
+    }
     this.resetChain();
-    return count === 1 ? models[0] : models;
+    return models;
   }
 
   /** Build and persist model instances to the database */
@@ -115,8 +123,16 @@ export class ModelFactory<T extends BaseModel> {
       await model.save();
       models.push(model);
     }
+    if (count === 1) {
+      const single = models[0];
+      if (!single) {
+        throw new Error("Factory create expected one model but produced none.");
+      }
+      this.resetChain();
+      return single;
+    }
     this.resetChain();
-    return count === 1 ? models[0] : models;
+    return models;
   }
 
   private resetChain(): void {

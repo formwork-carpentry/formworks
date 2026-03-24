@@ -77,8 +77,12 @@ export class TransformationPipeline {
     let current: TransformInput = input;
 
     for (const transform of this.transforms) {
+      const metadata = current.metadata;
       const output = await transform.apply(current);
-      current = { ...output, metadata: current.metadata };
+      current = { ...output };
+      if (metadata !== undefined) {
+        current.metadata = metadata;
+      }
     }
 
     return { buffer: current.buffer, mimeType: current.mimeType, fileName: current.fileName };

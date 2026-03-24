@@ -45,7 +45,11 @@ describe('EventDispatcher', () => {
     const listener = vi.fn(async () => {});
 
     events.on('legacy.event', listener);
-    await events.emit('legacy.event', { ok: true });
+    const legacyEmit = (events as unknown as {
+      emit?: (name: string, payload?: unknown) => Promise<void>;
+    })['emit'];
+    expect(typeof legacyEmit).toBe('function');
+    await legacyEmit?.call(events, 'legacy.event', { ok: true });
 
     expect(listener).toHaveBeenCalledTimes(1);
   });

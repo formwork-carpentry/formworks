@@ -124,13 +124,13 @@ export class CircuitBreaker {
       this.transitionTo("closed");
     }
     this.failureCount = 0;
-    this.emit("success");
+    this.dispatch("success");
   }
 
   private onFailure(error: Error): void {
     this.failureCount++;
     this.lastFailureTime = Date.now();
-    this.emit("failure", error);
+    this.dispatch("failure", error);
 
     if (this.state === "half-open") {
       this.transitionTo("open");
@@ -141,7 +141,9 @@ export class CircuitBreaker {
 
   private transitionTo(newState: CircuitState): void {
     this.state = newState;
-    this.emit(newState === "half-open" ? "half-open" : newState === "open" ? "open" : "close");
+    this.dispatch(
+      newState === "half-open" ? "half-open" : newState === "open" ? "open" : "close",
+    );
 
     if (newState === "closed") {
       this.failureCount = 0;
@@ -152,7 +154,7 @@ export class CircuitBreaker {
     }
   }
 
-  private emit(event: CircuitEvent, error?: Error): void {
+  private dispatch(event: CircuitEvent, error?: Error): void {
     for (const handler of this.handlers) {
       handler(event, error);
     }

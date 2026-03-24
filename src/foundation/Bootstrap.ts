@@ -60,10 +60,14 @@ export async function bootstrap(options: BootstrapOptions = {}): Promise<{
    * @param {unknown} !options.skipEnv
    */
   if (!options.skipEnv) {
-    await loadEnv({
-      path: options.envPath,
-      extraFiles: options.envFiles,
-    });
+    const envOptions: { path?: string; extraFiles?: string[] } = {};
+    if (options.envPath !== undefined) {
+      envOptions.path = options.envPath;
+    }
+    if (options.envFiles !== undefined) {
+      envOptions.extraFiles = options.envFiles;
+    }
+    await loadEnv(envOptions);
   }
 
   // 2. Build config

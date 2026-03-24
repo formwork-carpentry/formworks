@@ -73,7 +73,7 @@ export class ServiceRegistry {
   resolve(service: string): ServiceEndpoint | null {
     const eps = this.endpoints.get(service)?.filter((e) => e.healthy !== false);
     if (!eps || eps.length === 0) return null;
-    if (eps.length === 1) return eps[0];
+    if (eps.length === 1) return eps[0] ?? null;
 
     const totalWeight = eps.reduce((sum, e) => sum + (e.weight ?? 1), 0);
     let random = Math.random() * totalWeight;
@@ -81,7 +81,7 @@ export class ServiceRegistry {
       random -= ep.weight ?? 1;
       if (random <= 0) return ep;
     }
-    return eps[eps.length - 1];
+    return eps[eps.length - 1] ?? null;
   }
 
   /** Get all endpoints for a service */

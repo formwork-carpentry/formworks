@@ -238,6 +238,9 @@ export class Experiment<T = unknown> {
     public readonly name: string,
     variants: ExperimentVariant<T>[],
   ) {
+    if (variants.length === 0) {
+      throw new Error(`Experiment "${name}" must declare at least one variant.`);
+    }
     this.variants = variants;
     const totalWeight = variants.reduce((sum, v) => sum + v.weight, 0);
     if (totalWeight !== 100) {
@@ -260,6 +263,9 @@ export class Experiment<T = unknown> {
     }
     // Fallback to last variant
     const last = this.variants[this.variants.length - 1];
+    if (!last) {
+      throw new Error(`Experiment "${this.name}" has no variants configured.`);
+    }
     return { variant: last.name, value: last.value };
   }
 

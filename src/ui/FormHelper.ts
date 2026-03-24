@@ -217,13 +217,16 @@ export function useForm<T extends Record<string, unknown>>(initial: T): FormStat
 
       const fetchFn = options.fetchFn ?? globalThis.fetch;
       const body = transformFn ? transformFn(this.data) : this.data;
+      const requestInit: RequestInit = {
+        method,
+        headers: { "Content-Type": "application/json", ...options.headers },
+      };
+      if (method !== "GET") {
+        requestInit.body = JSON.stringify(body);
+      }
 
       try {
-        const response = await fetchFn(url, {
-          method,
-          headers: { "Content-Type": "application/json", ...options.headers },
-          body: method !== "GET" ? JSON.stringify(body) : undefined,
-        });
+        const response = await fetchFn(url, requestInit);
 
         const responseData: unknown = await response.json().catch(() => ({}));
 

@@ -35,19 +35,24 @@ export class Pluralizer implements IPluralizer {
     // 1. Try explicit match: {n} prefix
     for (const segment of segments) {
       const exactMatch = segment.match(/^\{(\d+)\}\s*(.*)/);
-      if (exactMatch && Number(exactMatch[1]) === count) {
-        return exactMatch[2].trim();
+      const exactCountRaw = exactMatch?.[1];
+      const exactValueRaw = exactMatch?.[2];
+      if (exactCountRaw !== undefined && exactValueRaw !== undefined && Number(exactCountRaw) === count) {
+        return exactValueRaw.trim();
       }
     }
 
     // 2. Try range match: [min,max] prefix
     for (const segment of segments) {
       const rangeMatch = segment.match(/^\[(\d+),(\d+|\*)]\s*(.*)/);
-      if (rangeMatch) {
-        const min = Number(rangeMatch[1]);
-        const max = rangeMatch[2] === '*' ? Infinity : Number(rangeMatch[2]);
+      const minRaw = rangeMatch?.[1];
+      const maxRaw = rangeMatch?.[2];
+      const rangeValueRaw = rangeMatch?.[3];
+      if (minRaw !== undefined && maxRaw !== undefined && rangeValueRaw !== undefined) {
+        const min = Number(minRaw);
+        const max = maxRaw === '*' ? Infinity : Number(maxRaw);
         if (count >= min && count <= max) {
-          return rangeMatch[3].trim();
+          return rangeValueRaw.trim();
         }
       }
     }
@@ -55,16 +60,16 @@ export class Pluralizer implements IPluralizer {
     // 3. Simple plural index (no explicit markers)
     // Strip any {n} or [n,m] prefixes that didn't match
     const cleanSegments = segments.map((s) =>
-      s.replace(/^\{\d+\}\s*/, '').replace(/^\[\d+,\d+\*?\]\s*/, '').trim()
+      s.replace(/^\{\d+\}\s*/, '').replace(/^\[\d+,(\d+|\*)\]\s*/, '').trim()
     );
 
     const index = this.getPluralIndex(count, locale);
-    if (index < cleanSegments.length) {
-      return cleanSegments[index];
+    if (index >= 0 && index < cleanSegments.length) {
+      return cleanSegments[index] ?? "";
     }
 
     // Fallback to last segment
-    return cleanSegments[cleanSegments.length - 1];
+    return cleanSegments[cleanSegments.length - 1] ?? "";
   }
 
   /**
@@ -72,8 +77,9 @@ export class Pluralizer implements IPluralizer {
    * Implements CLDR plural rules for common locales.
    */
   private getPluralIndex(count: number, locale: string): number {
-    const lang = locale.split('-')[0].split('_')[0].toLowerCase();
-    const rule = PLURAL_RULES[lang] ?? PLURAL_RULES['_default'];
+    const firstLocalePart = locale.split("-")[0] ?? "";
+    const lang = (firstLocalePart.split("_")[0] ?? "").toLowerCase();
+    const rule = PLURAL_RULES[lang] ?? PLURAL_RULES["_default"] ?? ((n: number) => (n === 1 ? 0 : 1));
     return rule(count);
   }
 }

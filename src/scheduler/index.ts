@@ -59,12 +59,27 @@ export function parseCron(expression: string): { minute: number[]; hour: number[
    */
   if (parts.length !== 5) throw new Error(`Invalid cron expression: "${expression}". Expected 5 fields.`);
 
+  const minuteField = parts[0];
+  const hourField = parts[1];
+  const dayOfMonthField = parts[2];
+  const monthField = parts[3];
+  const dayOfWeekField = parts[4];
+  if (
+    minuteField === undefined ||
+    hourField === undefined ||
+    dayOfMonthField === undefined ||
+    monthField === undefined ||
+    dayOfWeekField === undefined
+  ) {
+    throw new Error(`Invalid cron expression: "${expression}".`);
+  }
+
   return {
-    minute: parseField(parts[0], 0, 59),
-    hour: parseField(parts[1], 0, 23),
-    dayOfMonth: parseField(parts[2], 1, 31),
-    month: parseField(parts[3], 1, 12),
-    dayOfWeek: parseField(parts[4], 0, 6),
+    minute: parseField(minuteField, 0, 59),
+    hour: parseField(hourField, 0, 23),
+    dayOfMonth: parseField(dayOfMonthField, 1, 31),
+    month: parseField(monthField, 1, 12),
+    dayOfWeek: parseField(dayOfWeekField, 0, 6),
   };
 }
 
@@ -81,11 +96,15 @@ function parseField(field: string, min: number, max: number): number[] {
   for (const part of field.split(',')) {
     if (part.includes('/')) {
       const [base, stepStr] = part.split('/');
+      if (base === undefined || stepStr === undefined) continue;
       const step = parseInt(stepStr, 10);
       const start = base === '*' ? min : parseInt(base, 10);
       for (let i = start; i <= max; i += step) values.add(i);
     } else if (part.includes('-')) {
-      const [lo, hi] = part.split('-').map(Number);
+      const [loRaw, hiRaw] = part.split('-');
+      if (loRaw === undefined || hiRaw === undefined) continue;
+      const lo = Number(loRaw);
+      const hi = Number(hiRaw);
       for (let i = lo; i <= hi; i++) values.add(i);
     } else {
       values.add(parseInt(part, 10));

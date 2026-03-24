@@ -259,7 +259,10 @@ export class Translator implements ITranslator {
 
   private dotGet(obj: Dictionary<string>, path: string): string | null {
     // For flat translation files, try direct key first
-    if (path in obj) return obj[path];
+    if (path in obj) {
+      const direct = obj[path];
+      return typeof direct === "string" ? direct : null;
+    }
 
     // For nested: "welcome.title" → obj.welcome.title
     const parts = path.split('.');

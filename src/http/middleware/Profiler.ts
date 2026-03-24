@@ -63,7 +63,16 @@ export class ProfileCollector {
     durationMs: number,
     metadata?: Record<string, unknown>,
   ): void {
-    this.events.push({ type, label, durationMs, timestamp: Date.now(), metadata });
+    const event: ProfileEvent = {
+      type,
+      label,
+      durationMs,
+      timestamp: Date.now(),
+    };
+    if (metadata !== undefined) {
+      event.metadata = metadata;
+    }
+    this.events.push(event);
   }
 
   getEvents(): ProfileEvent[] {

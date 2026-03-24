@@ -195,17 +195,24 @@ export class Router implements IRouter {
       if (match) {
         const params: Dictionary<string> = {};
         compiled.paramNames?.forEach((name, i) => {
-          params[name] = match[i + 1];
+          const value = match[i + 1];
+          if (value !== undefined) {
+            params[name] = value;
+          }
         });
 
+        const resolvedRoute: IRoute = {
+          method: route.method,
+          path: route.path,
+          handler: route.handler,
+          middleware: route.middleware,
+        };
+        if (route.name !== undefined) {
+          resolvedRoute.name = route.name;
+        }
+
         return {
-          route: {
-            method: route.method,
-            path: route.path,
-            handler: route.handler,
-            name: route.name,
-            middleware: route.middleware,
-          },
+          route: resolvedRoute,
           params,
         };
       }
@@ -240,13 +247,18 @@ export class Router implements IRouter {
 
   /** Get all registered routes (for debugging / inspect) */
   getRoutes(): IRoute[] {
-    return this.routes.map((r) => ({
-      method: r.method,
-      path: r.path,
-      handler: r.handler,
-      name: r.name,
-      middleware: r.middleware,
-    }));
+    return this.routes.map((r) => {
+      const route: IRoute = {
+        method: r.method,
+        path: r.path,
+        handler: r.handler,
+        middleware: r.middleware,
+      };
+      if (r.name !== undefined) {
+        route.name = r.name;
+      }
+      return route;
+    });
   }
 
   // ── Route Model Binding ────────────────────────────────

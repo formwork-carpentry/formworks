@@ -34,5 +34,5 @@ export {
   Storage,
   createStorageManager,
 } from "./manager/index.js";
-export type { StorageDiskFactory } from "./manager/index.js";
+export type { StorageDiskConfig, StorageDiskFactory } from "./manager/index.js";
 export * from "./exceptions.js";

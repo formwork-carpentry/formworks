@@ -100,14 +100,20 @@ export class HttpMailAdapter implements IMailAdapter {
       });
 
       const data = (await response.json().catch(() => ({}))) as Record<string, unknown>;
-
-      return {
+      const result: SendResult = {
         success: response.ok,
-        messageId: (data.id ?? data.messageId ?? data.MessageID) as string | undefined,
-        error: response.ok ? undefined : JSON.stringify(data),
         provider: this.config.provider,
         statusCode: response.status,
       };
+      const messageId = (data.id ?? data.messageId ?? data.MessageID) as string | undefined;
+      if (messageId !== undefined) {
+        result.messageId = messageId;
+      }
+      if (!response.ok) {
+        result.error = JSON.stringify(data);
+      }
+
+      return result;
     } catch (error) {
       return {
         success: false,

@@ -89,7 +89,7 @@ export class CorsMiddleware {
     const opt = this.options.origin;
     if (opt === "*") return "*";
     if (typeof opt === "string") return opt;
-    if (Array.isArray(opt)) return opt.includes(requestOrigin) ? requestOrigin : opt[0];
+    if (Array.isArray(opt)) return opt.includes(requestOrigin) ? requestOrigin : (opt[0] ?? "*");
     if (typeof opt === "function") return opt(requestOrigin) ? requestOrigin : "";
     return "*";
   }

@@ -76,11 +76,14 @@ export class MockDatabaseAdapter implements IDatabaseAdapter {
    * @returns {this}
    */
   queueResult(rows: unknown[], rowCount?: number, insertId?: number | string): this {
-    this.resultQueue.push({
+    const result: QueryResult<unknown> = {
       rows: rows,
       rowCount: rowCount ?? rows.length,
-      insertId,
-    });
+    };
+    if (insertId !== undefined) {
+      result.insertId = insertId;
+    }
+    this.resultQueue.push(result);
     return this;
   }
 

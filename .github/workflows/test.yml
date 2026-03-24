@@ -38,7 +38,12 @@ jobs:
         run: npm run build
 
       - name: Run unit tests with coverage
-        run: npm run test:all
+        run: |
+          npx vitest run --coverage \
+            --exclude tests/integration/** \
+            --exclude tests/real-services.test.ts \
+            --exclude tests/real-services/**/*.test.ts \
+            --exclude tests/integration/services/**/*.test.ts
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -99,7 +104,7 @@ jobs:
         run: npm run build
 
       - name: Run integration tests
-        run: npm run test:integration:raw
+        run: npx vitest run tests/integration --coverage=false
         env:
           REDIS_URL: redis://localhost:6379
           DATABASE_URL: postgresql://formwork:formwork@localhost:5432/formwork_test

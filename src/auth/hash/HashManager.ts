@@ -6,7 +6,7 @@
  */
 
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { IHashManager } from "@carpentry/formworks/contracts";
+import type { IHashManager } from "../../contracts/index.js";
 
 /**
  * Sha256HashDriver — salted SHA-256 hashing for tests and non-production use.
@@ -46,6 +46,7 @@ export class Sha256HashDriver implements IHashManager {
     if (parts.length !== 4 || parts[1] !== "sha256") return false;
     const salt = parts[2];
     const expectedHash = parts[3];
+    if (salt === undefined || expectedHash === undefined) return false;
     const actualHash = createHash("sha256")
       .update(salt + value)
       .digest("hex");

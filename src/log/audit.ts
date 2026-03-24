@@ -250,14 +250,14 @@ export class AuditLogger {
       userId: entry.userId ?? this.defaultUserId?.() ?? null,
       action: entry.action,
       resourceType: entry.resourceType,
-      resourceId: entry.resourceId,
-      oldValues: entry.oldValues,
-      newValues: entry.newValues,
-      ipAddress: entry.ipAddress,
-      userAgent: entry.userAgent,
       timestamp: entry.timestamp ?? new Date(),
       metadata: { ...this.defaultMetadata?.(), ...entry.metadata },
     };
+    if (entry.resourceId !== undefined) full.resourceId = entry.resourceId;
+    if (entry.oldValues !== undefined) full.oldValues = entry.oldValues;
+    if (entry.newValues !== undefined) full.newValues = entry.newValues;
+    if (entry.ipAddress !== undefined) full.ipAddress = entry.ipAddress;
+    if (entry.userAgent !== undefined) full.userAgent = entry.userAgent;
 
     for (const channel of this.channels) {
       await channel.record(full);
@@ -273,7 +273,13 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async created(resourceType: string, resourceId: string | number, newValues?: Record<string, unknown>): Promise<void> {
-    await this.record({ action: 'created', resourceType, resourceId, newValues });
+    const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
+      action: 'created',
+      resourceType,
+      resourceId,
+    };
+    if (newValues !== undefined) entry.newValues = newValues;
+    await this.record(entry);
   }
 
   /**
@@ -284,7 +290,14 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async updated(resourceType: string, resourceId: string | number, oldValues?: Record<string, unknown>, newValues?: Record<string, unknown>): Promise<void> {
-    await this.record({ action: 'updated', resourceType, resourceId, oldValues, newValues });
+    const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
+      action: 'updated',
+      resourceType,
+      resourceId,
+    };
+    if (oldValues !== undefined) entry.oldValues = oldValues;
+    if (newValues !== undefined) entry.newValues = newValues;
+    await this.record(entry);
   }
 
   /**
@@ -302,7 +315,12 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async viewed(resourceType: string, resourceId?: string | number): Promise<void> {
-    await this.record({ action: 'viewed', resourceType, resourceId });
+    const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
+      action: 'viewed',
+      resourceType,
+    };
+    if (resourceId !== undefined) entry.resourceId = resourceId;
+    await this.record(entry);
   }
 
   /**
@@ -311,7 +329,13 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async login(userId: string | number, metadata?: Record<string, unknown>): Promise<void> {
-    await this.record({ userId, action: 'login', resourceType: 'session', metadata });
+    const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
+      userId,
+      action: 'login',
+      resourceType: 'session',
+    };
+    if (metadata !== undefined) entry.metadata = metadata;
+    await this.record(entry);
   }
 
   /**

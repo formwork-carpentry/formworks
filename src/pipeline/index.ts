@@ -3,8 +3,8 @@
  * @description Generic pipeline — Chain of Responsibility pattern for ordered processing.
  */
 
-import type { IContainer } from "@carpentry/formworks/contracts";
-import type { IPipe, PipeFunction } from "@carpentry/formworks/contracts/pipeline";
+import type { IContainer } from "../contracts/index.js";
+import type { IPipe, PipeFunction } from "../contracts/pipeline/index.js";
 
 export type { IPipe, PipeFunction };
 export type PipeEntry<TPassable, TReturn = TPassable> =
@@ -71,7 +71,7 @@ export class Pipeline<TPassable, TReturn = TPassable> {
       return pipe(passable, next);
     }
 
-    const method = (pipe as Record<string, unknown>)[this.method];
+    const method = (pipe as unknown as Record<string, unknown>)[this.method];
     if (typeof method === "function") {
       return (method as (value: TPassable, n: (value: TPassable) => Promise<TReturn>) => Promise<TReturn>)(
         passable,

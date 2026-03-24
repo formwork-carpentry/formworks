@@ -89,7 +89,10 @@ export class NplusOneDetector {
     if (!this.config.enabled) return;
 
     const pattern = normalizeQuery(sql);
-    const record: QueryRecord = { sql, params, pattern, timestamp: Date.now() };
+    const record: QueryRecord = { sql, pattern, timestamp: Date.now() };
+    if (params !== undefined) {
+      record.params = params;
+    }
     this.queries.push(record);
 
     const existing = this.patternCounts.get(pattern) ?? [];
@@ -122,7 +125,13 @@ export class NplusOneDetector {
    * @returns {ReadonlyArray<{sql: string, params?: unknown[]}>} Recorded queries
    */
   getQueries(): ReadonlyArray<{ sql: string; params?: unknown[] }> {
-    return this.queries.map(q => ({ sql: q.sql, params: q.params }));
+    return this.queries.map((q) => {
+      const occurrence: { sql: string; params?: unknown[] } = { sql: q.sql };
+      if (q.params !== undefined) {
+        occurrence.params = q.params;
+      }
+      return occurrence;
+    });
   }
 
   /**
@@ -135,7 +144,13 @@ export class NplusOneDetector {
         const existing = this.warnings.find(w => w.queryPattern === pattern);
         if (existing) {
           existing.count = records.length;
-          existing.occurrences = records.map(r => ({ sql: r.sql, params: r.params }));
+          existing.occurrences = records.map((r) => {
+            const occurrence: { sql: string; params?: unknown[] } = { sql: r.sql };
+            if (r.params !== undefined) {
+              occurrence.params = r.params;
+            }
+            return occurrence;
+          });
         } else {
           this.raiseWarning(pattern, records);
         }
@@ -163,7 +178,13 @@ export class NplusOneDetector {
     const warning: NplusOneWarning = {
       queryPattern: pattern,
       count: records.length,
-      occurrences: records.map(r => ({ sql: r.sql, params: r.params })),
+      occurrences: records.map((r) => {
+        const occurrence: { sql: string; params?: unknown[] } = { sql: r.sql };
+        if (r.params !== undefined) {
+          occurrence.params = r.params;
+        }
+        return occurrence;
+      }),
       suggestion,
     };
 
@@ -183,6 +204,6 @@ export class NplusOneDetector {
 
   private extractTableName(pattern: string): string | null {
     const match = pattern.match(/FROM\s+(\w+)/i);
-    return match ? match[1] : null;
+    return match?.[1] ?? null;
   }
 }

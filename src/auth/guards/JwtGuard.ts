@@ -77,9 +77,11 @@ async function verify(token: string, secret: string): Promise<boolean> {
    * @param {unknown} [parts.length !== 3]
    */
   if (parts.length !== 3) return false;
+  const signature = parts[2];
+  if (signature === undefined) return false;
   const key = await importKey(secret);
   const data = new TextEncoder().encode(`${parts[0]}.${parts[1]}`);
-  const sigBytes = Uint8Array.from(base64UrlDecode(parts[2]), (c) => c.charCodeAt(0));
+  const sigBytes = Uint8Array.from(base64UrlDecode(signature), (c) => c.charCodeAt(0));
   return crypto.subtle.verify("HMAC", key, sigBytes, data);
 }
 
@@ -126,7 +128,11 @@ export async function verifyToken(token: string, config: JwtConfig): Promise<Jwt
   if (!valid) return { valid: false, payload: null, error: "Invalid signature" };
 
   const parts = token.split(".");
-  const payload = JSON.parse(base64UrlDecode(parts[1])) as JwtPayload;
+  const payloadSegment = parts[1];
+  if (payloadSegment === undefined) {
+    return { valid: false, payload: null, error: "Invalid token" };
+  }
+  const payload = JSON.parse(base64UrlDecode(payloadSegment)) as JwtPayload;
 
   const now = Math.floor(Date.now() / 1000);
   /**

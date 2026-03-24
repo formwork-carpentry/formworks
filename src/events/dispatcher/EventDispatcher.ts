@@ -8,6 +8,8 @@
 import type { EventListener, IEventDispatcher, IEventSubscriber } from "@carpentry/formworks/contracts";
 import type { Unsubscribe } from "@carpentry/formworks/core/types";
 
+const WILDCARD_SUFFIX = ".*";
+
 /**
  * EventDispatcher — typed event dispatcher with wildcard listeners and "once" handlers.
  *
@@ -95,8 +97,8 @@ export class EventDispatcher implements IEventDispatcher {
 
     // Wildcard listeners: 'user.*' matches 'user.registered', 'user.deleted'
     for (const [pattern, entries] of this.listenerMap) {
-      if (pattern.endsWith(".*") && entries.length > 0) {
-        const prefix = pattern.slice(0, -2);
+      if (pattern.endsWith(WILDCARD_SUFFIX) && entries.length > 0) {
+        const prefix = pattern.slice(0, -WILDCARD_SUFFIX.length);
         if (key.startsWith(`${prefix}.`) || key === prefix) {
           await this.invokeEntries(pattern, entries, payload);
         }
@@ -184,12 +186,17 @@ export class EventDispatcher implements IEventDispatcher {
   ): Promise<void> {
     const toRemove: number[] = [];
     for (let i = 0; i < entries.length; i++) {
-      await entries[i].handler(payload);
-      if (entries[i].once) toRemove.push(i);
+      const entry = entries[i];
+      if (!entry) continue;
+      await entry.handler(payload);
+      if (entry.once) toRemove.push(i);
     }
     // Remove once-listeners in reverse to preserve indices
     for (let i = toRemove.length - 1; i >= 0; i--) {
-      entries.splice(toRemove[i], 1);
+      const index = toRemove[i];
+      if (index !== undefined) {
+        entries.splice(index, 1);
+      }
     }
   }
 

@@ -118,7 +118,10 @@ export class TenantMigrator {
 
       const tableNames = Object.keys(snapshot.tables);
       progress.totalTables = tableNames.length;
-      progress.totalRows = tableNames.reduce((sum, t) => sum + snapshot.tables[t].length, 0);
+      progress.totalRows = tableNames.reduce((sum, t) => {
+        const rows = snapshot.tables[t] ?? [];
+        return sum + rows.length;
+      }, 0);
 
       // 2. Validate
       progress.phase = 'validating';
@@ -177,7 +180,10 @@ export class TenantMigrator {
     this.validateSnapshot(snapshot, tenant);
 
     const tableNames = Object.keys(snapshot.tables);
-    const totalRows = tableNames.reduce((sum, t) => sum + snapshot.tables[t].length, 0);
+    const totalRows = tableNames.reduce((sum, t) => {
+      const rows = snapshot.tables[t] ?? [];
+      return sum + rows.length;
+    }, 0);
 
     return {
       tenantId: tenant.id,
@@ -197,7 +203,7 @@ export class TenantMigrator {
 
   private verifyIntegrity(source: TenantDataSnapshot, target: TenantDataSnapshot): boolean {
     for (const table of Object.keys(source.tables)) {
-      const sourceCount = source.tables[table].length;
+      const sourceCount = source.tables[table]?.length ?? 0;
       const targetCount = target.tables[table]?.length ?? 0;
       if (sourceCount !== targetCount) return false;
     }

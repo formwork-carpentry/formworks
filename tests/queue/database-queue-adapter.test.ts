@@ -1,13 +1,49 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { DatabaseQueueAdapter } from '../../src/queue/adapters/DatabaseQueueAdapter.js';
-import { MockDatabaseAdapter } from '../../src/orm/adapters/MockDatabaseAdapter.js';
+
+class QueueTestDatabaseAdapter {
+  driverName(): string {
+    return 'queue-test';
+  }
+
+  async connect(): Promise<void> {}
+  async disconnect(): Promise<void> {}
+  async beginTransaction(): Promise<void> {}
+  async commit(): Promise<void> {}
+  async rollback(): Promise<void> {}
+  async close(): Promise<void> {}
+
+  async execute<T = Record<string, unknown>>(query: {
+    type?: string;
+    sql: string;
+  }): Promise<{ rows: T[]; rowCount: number; insertId?: number | string }> {
+    if (query.type === 'aggregate' || /\bCOUNT\(/i.test(query.sql)) {
+      return { rows: [{ aggregate: 0 } as T], rowCount: 1 };
+    }
+    if (query.type === 'insert') {
+      return { rows: [], rowCount: 1, insertId: 1 };
+    }
+    if (query.type === 'select') {
+      return { rows: [], rowCount: 0 };
+    }
+    return { rows: [], rowCount: 1 };
+  }
+
+  async raw<T = Record<string, unknown>>(_sql: string, _bindings?: unknown[]): Promise<{ rows: T[]; rowCount: number; insertId?: number | string }> {
+    return { rows: [], rowCount: 0 };
+  }
+
+  async run(_sql: string, _params?: unknown[]): Promise<{ affectedRows: number; insertId?: number }> {
+    return { affectedRows: 1, insertId: 1 };
+  }
+}
 
 describe('queue/DatabaseQueueAdapter', () => {
-  let db: MockDatabaseAdapter;
+  let db: QueueTestDatabaseAdapter;
   let queue: DatabaseQueueAdapter;
 
   beforeEach(() => {
-    db = new MockDatabaseAdapter();
+    db = new QueueTestDatabaseAdapter();
     queue = new DatabaseQueueAdapter(db, { table: 'jobs' });
   });
 

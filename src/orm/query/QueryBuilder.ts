@@ -274,8 +274,8 @@ export class QueryBuilder<T = Record<string, unknown>> {
   async paginate(page: number = 1, perPage: number = 15): Promise<IPaginator<T>> {
     const countQb = this.clone();
     countQb.ast.orders = [];
-    countQb.ast.limitCount = undefined;
-    countQb.ast.offsetCount = undefined;
+    delete countQb.ast.limitCount;
+    delete countQb.ast.offsetCount;
     const total = await countQb.count();
 
     this.ast.limitCount = perPage;
@@ -339,8 +339,10 @@ export class QueryBuilder<T = Record<string, unknown>> {
       ...this.ast, type: 'aggregate',
       aggregateFunction: fn, aggregateColumn: column,
       columns: [`${fn}(${column}) as aggregate`],
-      orders: [], limitCount: undefined, offsetCount: undefined,
+      orders: [],
     };
+    delete aggAst.limitCount;
+    delete aggAst.offsetCount;
     const result = await this.adapter.execute<{ aggregate: number }>(this.compile(aggAst));
     return result.rows[0]?.aggregate ?? 0;
   }

@@ -21,6 +21,8 @@ import {
 } from "@carpentry/formworks/core/exceptions";
 import { CarpenterResponse } from "../response/Response.js";
 
+export const HTTP_EXCEPTION_HANDLER_TOKEN = "http.exceptionHandler";
+
 export type ExceptionRenderer = (error: Error, request: IRequest) => IResponse | null;
 
 /**
@@ -117,4 +119,8 @@ export class ExceptionHandler {
       500,
     );
   }
+}
+
+export function createExceptionHandler(debug = false): ExceptionHandler {
+  return new ExceptionHandler(debug);
 }
