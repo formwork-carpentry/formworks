@@ -6,7 +6,7 @@
  */
 
 import { createHash, timingSafeEqual } from "node:crypto";
-import type { IHashManager } from "../../contracts/index.js";
+import type { IHashManager } from "@carpentry/formworks/contracts";
 
 /**
  * Sha256HashDriver — salted SHA-256 hashing for tests and non-production use.
