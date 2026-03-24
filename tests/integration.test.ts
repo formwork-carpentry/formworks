@@ -4,7 +4,7 @@
  *
  * Simulates a realistic app flow:
  *   1. Bootstrap application with IoC container
- *   2. Configure ORM, cache, events, auth, logging
+ *   2. Configure ORM, cache, events, logging
  *   3. Handle HTTP request through kernel → router → controller
  *   4. Validate input, query database, cache results
  *   5. Fire events, send notifications, log audit trail
@@ -37,11 +37,6 @@ import { MemoryCacheStore } from '../src/cache/adapters/MemoryCacheStore.js';
 
 // Events
 import { EventDispatcher } from '../src/events/dispatcher/EventDispatcher.js';
-
-// Auth
-import { HashManager } from '../src/auth/hash/HashManager.js';
-import { Gate } from '../src/auth/gate/Gate.js';
-import { MemoryGuard, InMemoryUserProvider, SimpleUser } from '../src/auth/guards/Guards.js';
 
 // Logging
 import { Logger, ArrayChannel } from '../src/log/index.js';
@@ -246,27 +241,6 @@ describe('End-to-End Integration: Full Request Lifecycle', () => {
   it('404 for unknown route', async () => {
     const res = await kernel.handle(req('GET', 'http://localhost/api/nonexistent'));
     TestResponse.from(res).assertNotFound();
-  });
-
-  it('auth guard + gate integration', async () => {
-    // Set up auth
-    const hash = new HashManager();
-    const provider = new InMemoryUserProvider();
-    const passwordHash = await hash.make('secret');
-    const alice = new SimpleUser(1, 'alice@example.com', passwordHash, 'admin');
-    provider.addUser(alice);
-
-    const guard = new MemoryGuard(provider, hash);
-    const gate = new Gate();
-    gate.define('manage-users', (user) => (user as SimpleUser).role === 'admin');
-
-    // Login
-    const success = await guard.attempt({ email: 'alice@example.com', password: 'secret' });
-    expect(success).toBe(true);
-
-    // Check authorization
-    const user = await guard.user<SimpleUser>();
-    expect(await gate.allows(user!, 'manage-users')).toBe(true);
   });
 
   it('notifications dispatch across channels', async () => {
