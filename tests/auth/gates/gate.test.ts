@@ -8,7 +8,7 @@ describe('auth/gates/Gate', () => {
     const admin = new SimpleUser(1, 'admin@test.com', 'hash', 'admin');
     const member = new SimpleUser(2, 'member@test.com', 'hash', 'user');
 
-    gate.define('manage-users', (user) => (user as SimpleUser).role === 'admin');
+    gate.define('manage-users', (u: SimpleUser) => u.role === 'admin');
 
     expect(await gate.allows(admin, 'manage-users')).toBe(true);
     expect(await gate.denies(member, 'manage-users')).toBe(true);
@@ -18,8 +18,8 @@ describe('auth/gates/Gate', () => {
     const gate = new Gate();
     const root = new SimpleUser(99, 'root@test.com', 'hash', 'root');
 
-    gate.before((user) => {
-      if ((user as SimpleUser).role === 'root') return true;
+    gate.before((user: SimpleUser) => {
+      if (user.role === 'root') return true;
       return null;
     });
 

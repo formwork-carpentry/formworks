@@ -41,7 +41,9 @@ export default defineConfig({
       "packages/**/tests/**/*.test.ts"
     ],
     exclude: process.env.RUN_REAL_SERVICES ? [] : [
-      "tests/real-services.test.ts"
+      "tests/real-services.test.ts",
+      "tests/real-services/**/*.test.ts",
+      "tests/integration/services/**/*.test.ts"
     ],
     coverage: {
       provider: "v8",
