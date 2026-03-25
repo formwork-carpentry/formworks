@@ -72,3 +72,21 @@ const app = await bootstrap({
 ```
 
 By default, module auto-discovery is enabled. Set `modules.enabled = false` to disable it.
+
+## Direct Usage
+
+```ts
+import { CarpenterModuleManager } from '@carpentry/modular';
+
+const moduleManager = new CarpenterModuleManager({ modulesRoot: './Modules' });
+const discovered = await moduleManager.discover();
+await moduleManager.registerAll(app, discovered);
+```
+
+Or with the factory:
+
+```ts
+import { createModuleManager } from '@carpentry/modular';
+
+const moduleManager = createModuleManager({ modulesRoot: './Modules' });
+```

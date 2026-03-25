@@ -58,7 +58,7 @@ export interface DiscoveredModule {
   paths: ModulePathMap;
 }
 
-export interface ModularOptions {
+export interface ModuleManagerOptions {
   modulesRoot?: string;
   manifestFileName?: string;
   defaultEntryCandidates?: string[];
@@ -94,14 +94,14 @@ export function resolveModulePaths(moduleDirectory: string): ModulePathMap {
  * Module manager that discovers and loads modules from a Modules/ folder.
  *
  * @example
- * const modular = new CarpenterModular({ modulesRoot: "./Modules" });
+ * const moduleManager = new CarpenterModuleManager({ modulesRoot: "./Modules" });
  * const discovered = await modular.discover();
  * await modular.registerAll(appContainer, discovered);
  */
-export class CarpenterModular {
-  private readonly options: Required<ModularOptions>;
+export class CarpenterModuleManager {
+  private readonly options: Required<ModuleManagerOptions>;
 
-  constructor(options: ModularOptions = {}) {
+  constructor(options: ModuleManagerOptions = {}) {
     this.options = {
       modulesRoot: options.modulesRoot
         ? resolve(options.modulesRoot)
@@ -244,8 +244,8 @@ export class CarpenterModular {
 /**
  * Convenience factory for modular construction.
  */
-export function createModular(options: ModularOptions = {}): CarpenterModular {
-  return new CarpenterModular(options);
+export function createModuleManager(options: ModuleManagerOptions = {}): CarpenterModuleManager {
+  return new CarpenterModuleManager(options);
 }
 
 async function exists(pathname: string): Promise<boolean> {

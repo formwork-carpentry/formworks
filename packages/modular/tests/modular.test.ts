@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 
-import { CarpenterModular, resolveModulePaths } from "../src/index.js";
+import { CarpenterModuleManager, resolveModulePaths } from "../src/index.js";
 
 describe("@carpentry/modular", () => {
   let root: string;
@@ -33,8 +33,8 @@ describe("@carpentry/modular", () => {
       "utf8",
     );
 
-    const modular = new CarpenterModular({ modulesRoot });
-    const modules = await modular.discover();
+    const moduleManager = new CarpenterModuleManager({ modulesRoot });
+    const modules = await moduleManager.discover();
 
     expect(modules).toHaveLength(1);
     expect(modules[0]?.definition.name).toBe("Blog");
@@ -83,10 +83,10 @@ describe("@carpentry/modular", () => {
       "utf8",
     );
 
-    const modular = new CarpenterModular({ modulesRoot });
-    const modules = await modular.discover();
+    const moduleManager = new CarpenterModuleManager({ modulesRoot });
+    const modules = await moduleManager.discover();
 
-    await modular.registerAll({} as never, modules);
+    await moduleManager.registerAll({} as never, modules);
 
     const mod = await import(resolve(crmRoot, "module.js"));
     const counters = mod.counters() as Record<string, number>;
