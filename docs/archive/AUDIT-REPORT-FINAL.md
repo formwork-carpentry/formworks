@@ -1,5 +1,28 @@
 # Carpenter Framework — Final Audit Report
 
+**Navigation:**
+- [Deep Audit Report](AUDIT-REPORT.md)
+- [Security Audit](../security/SECURITY-AUDIT.md)
+- [Milestone Closure Matrix](../status/MILESTONE-CLOSURE-MATRIX.md)
+
+> **Date:** March 15, 2026  
+> **Status:** ✅ 1,280 tests · 52 test files · 36 packages · All passing
+
+## Final Stats
+
+| Metric | Value |
+|--------|-------|
+| Tests | 1,280 |
+| Test files | 52 |
+| Packages | 36 (35 + create-carpenter-app) |
+| Source files | 147 |
+| Source lines | ~15,500 |
+| Test lines | ~12,500 |
+| Total TypeScript | ~28,000 |
+| Example applications | 3 |
+
+# Carpenter Framework — Final Audit Report
+
 > **Date:** March 15, 2026  
 > **Status:** ✅ 1,280 tests · 52 test files · 36 packages · All passing
 

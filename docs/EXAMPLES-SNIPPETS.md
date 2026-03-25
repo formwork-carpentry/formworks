@@ -1,12 +1,28 @@
+
 # Example Snippets
 
-This page keeps quick, copy-paste snippets in docs while the full runnable apps stay in examples.
+> **Quick Reference:** Copy-paste snippets for common patterns. All are derived from real, smoke-tested example apps in the `examples/` directory. For full runnable code, see the corresponding app in `examples/`.
 
-The snippets below are derived from runnable example apps that are covered by smoke tests.
+---
+
+**Navigation:**
+- [HTTP API Route](#http-api-route-snippet)
+- [Database Manager](#database-manager-snippet)
+- [Queue](#queue-snippet)
+- [Mail](#mail-snippet)
+- [Storage](#storage-snippet)
+- [Realtime Collaboration](#realtime-snippet)
+- [AI Assistant](#ai-assistant-snippet)
+- [GraphQL](#graphql-snippet)
+- [Edge Runtime](#edge-runtime-snippet)
+- [Multi-Tenancy](#multi-tenancy-snippet)
+
+---
+
 
 ## HTTP API Route Snippet
 
-Source app: `examples/minimal-api/src/app.ts`
+_Source: `examples/minimal-api/src/app.ts`_
 
 ```ts
 import 'reflect-metadata';
@@ -26,9 +42,10 @@ export async function createApp() {
 }
 ```
 
+
 ## Database Manager Snippet
 
-Source app: `examples/database-example/src/app.ts`
+_Source: `examples/database-example/src/app.ts`_
 
 ```ts
 import { createDatabaseManager } from '@carpentry/db';
@@ -40,9 +57,10 @@ const dbManager = createDatabaseManager('memory', {
 const db = dbManager.connection();
 ```
 
+
 ## Queue Snippet
 
-Source app: `examples/queue-example/src/app.ts`
+_Source: `examples/queue-example/src/app.ts`_
 
 ```ts
 import { QueueManager } from '@carpentry/queue';
@@ -59,9 +77,10 @@ queue.registerDriver('memory', () => ({
 }));
 ```
 
+
 ## Mail Snippet
 
-Source app: `examples/mail-example/src/app.ts`
+_Source: `examples/mail-example/src/app.ts`_
 
 ```ts
 import { createMailManager, setMailManager, Mail } from '@carpentry/mail';
@@ -72,6 +91,7 @@ const mailManager = createMailManager('log', {
 });
 
 setMailManager(mailManager);
+// Use a test double for safe, inspectable mail testing
 const mailTestDouble = Mail.fake();
 
 await Mail.send({
@@ -83,9 +103,10 @@ await Mail.send({
 const sent = mailTestDouble.getSent();
 ```
 
+
 ## Storage Snippet
 
-Source app: `examples/storage-example/src/app.ts`
+_Source: `examples/storage-example/src/app.ts`_
 
 ```ts
 import { createStorageManager, setStorageManager, Storage } from '@carpentry/storage';
@@ -101,9 +122,10 @@ const exists = await Storage.exists('docs/hello.txt');
 const url = Storage.url('docs/hello.txt');
 ```
 
-## Realtime Snippet
 
-Source app: `examples/realtime-collab/src/app.ts`
+## Realtime Collaboration Snippet
+
+_Source: `examples/realtime-collab/src/app.ts`_
 
 ```ts
 import { CollaborativeDoc } from '@carpentry/realtime';
@@ -112,18 +134,19 @@ const doc = new CollaborativeDoc('demo');
 doc.insert(0, 'Hello', 'alice');
 doc.insert(5, ' world', 'bob');
 
-const text = doc.getText();
-// Hello world
+const text = doc.getText(); // "Hello world"
 ```
+
 
 ## AI Assistant Snippet
 
-Source app: `examples/ai-assistant/src/app.ts`
+_Source: `examples/ai-assistant/src/app.ts`_
 
 ```ts
 import { Agent, AiGuard, RagPipeline, RecursiveChunker, InMemoryRagVectorStore } from '@carpentry/ai';
 import type { IAIProvider } from '@carpentry/ai';
 
+// Test double for AI provider
 const aiTestDoubleProvider: IAIProvider = {
   getProviderName: () => 'mock',
   complete: async () => ({
@@ -145,9 +168,10 @@ const guard = new AiGuard({ detectPii: true, detectInjection: true });
 const agent = new Agent({ provider: aiTestDoubleProvider, tools: [], maxSteps: 5 });
 ```
 
+
 ## GraphQL Snippet
 
-Source app: `examples/graphql-api/src/app.ts`
+_Source: `examples/graphql-api/src/app.ts`_
 
 ```ts
 import { SchemaBuilder, ObjectType, Field, buildSchemaFromDecorators } from '@carpentry/graphql';
@@ -165,9 +189,10 @@ schema.query('users', { type: '[User]', resolve: () => [{ id: '1', name: 'Alice'
 const sdl = buildSchemaFromDecorators([User], []);
 ```
 
+
 ## Edge Runtime Snippet
 
-Source app: `examples/edge-app/src/app.ts`
+_Source: `examples/edge-app/src/app.ts`_
 
 ```ts
 import { EdgeKernel, edgeJson, edgeText, edgeCors } from '@carpentry/edge';
@@ -185,9 +210,10 @@ kernel.get('/health', async () => edgeJson({
 export { kernel };
 ```
 
+
 ## Multi-Tenancy Snippet
 
-Source app: `examples/saas/src/app.ts`
+_Source: `examples/saas/src/app.ts`_
 
 ```ts
 import { createCacheManager } from '@carpentry/cache';

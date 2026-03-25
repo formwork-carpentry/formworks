@@ -1,4 +1,9 @@
+
 # Carpenter Framework Release Checklist
+
+**Navigation:**
+- [Milestone Closure Matrix](MILESTONE-CLOSURE-MATRIX.md)
+- [Remaining Work](REMAINING-WORK.md)
 
 Last updated: March 21, 2026
 

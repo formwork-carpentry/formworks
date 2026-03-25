@@ -1,11 +1,14 @@
+
 # ADR 0001: Use npm Workspaces + Turborepo for Monorepo Management
 
+**Navigation:**
+- [Milestone Closure Matrix](../status/MILESTONE-CLOSURE-MATRIX.md)
+- [Release Checklist](../status/RELEASE-CHECKLIST.md)
+- [Remaining Work](../status/REMAINING-WORK.md)
+
 **Status:** Accepted
-
 **Date:** 2026-01-01
-
 **Authors:** Formworks Team
-
 **Deciders:** Architecture Team
 
 ## Context

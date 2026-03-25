@@ -1,4 +1,10 @@
+
 # Carpenter Framework — Security Audit Report
+
+**Navigation:**
+- [Milestone Closure Matrix](../status/MILESTONE-CLOSURE-MATRIX.md)
+- [Release Checklist](../status/RELEASE-CHECKLIST.md)
+- [Remaining Work](../status/REMAINING-WORK.md)
 
 **Audit date:** 2026-03-21
 **Auditor:** Automated + Manual review

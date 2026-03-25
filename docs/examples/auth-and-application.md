@@ -1,9 +1,16 @@
-# Auth And Application Examples
 
-- examples/api-only/src/app.ts
-- examples/blog-api/src/app.ts
-- examples/blog-app/src/app.ts
-- examples/saas/src/app.ts
-- examples/mail-example/src/app.ts
+# Auth and Application Examples
 
-These examples demonstrate authentication flows, validation, app-level bootstrapping, tenancy/auth guards, and mail integration.
+**Navigation:**
+- [API Only](../../examples/api-only/src/app.ts)
+- [Blog API](../../examples/blog-api/src/app.ts)
+- [Blog App](../../examples/blog-app/src/app.ts)
+- [SaaS](../../examples/saas/src/app.ts)
+- [Mail Example](../../examples/mail-example/src/app.ts)
+
+These examples demonstrate:
+- Authentication flows
+- Validation
+- App-level bootstrapping
+- Tenancy/auth guards
+- Mail integration

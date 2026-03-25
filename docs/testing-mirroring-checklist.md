@@ -1,4 +1,10 @@
+
 # Testing Mirroring Checklist
+
+**Navigation:**
+- [Milestone Closure Matrix](status/MILESTONE-CLOSURE-MATRIX.md)
+- [Release Checklist](status/RELEASE-CHECKLIST.md)
+- [Remaining Work](status/REMAINING-WORK.md)
 
 Use this checklist when adding or moving tests.
 

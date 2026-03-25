@@ -1,4 +1,9 @@
+
 # Carpenter Framework — Remaining Work
+
+**Navigation:**
+- [Milestone Closure Matrix](MILESTONE-CLOSURE-MATRIX.md)
+- [Release Checklist](RELEASE-CHECKLIST.md)
 
 **Last updated:** March 21, 2026
 **Current state:** 1,722+ unit tests | 474+ files | 4 working starters | 0 npm audit vulnerabilities

@@ -1,8 +1,14 @@
-# Frontend And Content Examples
 
-- examples/fullstack-react/src/app.ts
-- examples/realtime-collab/src/app.ts
-- examples/media-example/src/app.ts
-- examples/blog-app/src/app.ts
+# Frontend and Content Examples
 
-These examples demonstrate UI composition, islands rendering, realtime collaboration, and media/content workflows.
+**Navigation:**
+- [Fullstack React](../../examples/fullstack-react/src/app.ts)
+- [Realtime Collab](../../examples/realtime-collab/src/app.ts)
+- [Media Example](../../examples/media-example/src/app.ts)
+- [Blog App](../../examples/blog-app/src/app.ts)
+
+These examples demonstrate:
+- UI composition
+- Islands rendering
+- Realtime collaboration
+- Media/content workflows

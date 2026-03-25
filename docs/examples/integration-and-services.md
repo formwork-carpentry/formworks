@@ -1,9 +1,16 @@
-# Integration And Services Examples
 
-- examples/graphql-api/src/app.ts
-- examples/polyglot-timetable/src/app.ts
-- examples/ai-assistant/src/app.ts
-- examples/queue-example/src/app.ts
-- examples/mail-example/src/app.ts
+# Integration and Services Examples
 
-These examples demonstrate service integration patterns, GraphQL, bridge/RPC, AI workflows, and async messaging.
+**Navigation:**
+- [GraphQL API](../../examples/graphql-api/src/app.ts)
+- [Polyglot Timetable](../../examples/polyglot-timetable/src/app.ts)
+- [AI Assistant](../../examples/ai-assistant/src/app.ts)
+- [Queue Example](../../examples/queue-example/src/app.ts)
+- [Mail Example](../../examples/mail-example/src/app.ts)
+
+These examples demonstrate:
+- Service integration patterns
+- GraphQL
+- Bridge/RPC
+- AI workflows
+- Async messaging

@@ -1,6 +1,10 @@
 # 🪚 Carpenter Framework — SCRUM Project Plan: Part II
 
-> **Continuation of Part I** — Sprints 21–40  
+**Navigation:**
+- [Building Plan](CARPENTER-BUILDING-PLAN.md)
+- [SCRUM Plan Part 1](carpenter-framework-scrum-plan-part1.md)
+
+> **Continuation of Part I** — Sprints 21–40
 > **Focus:** Framework Superiority Analysis · Ecosystem Opportunities & Threats · Polyglot Microservices · Edge Computing · AI Integration · Observability · Multi-tenancy · GraphQL · WebTransport · Admin Panel · WASM · Feature Flags · Real-time · DX Tooling
 
 ---

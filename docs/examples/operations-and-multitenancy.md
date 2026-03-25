@@ -1,8 +1,14 @@
-# Operations And Multitenancy Examples
 
-- examples/saas/src/app.ts
-- examples/polyglot-timetable/src/app.ts
-- examples/minimal-api/src/app.ts
-- examples/queue-example/src/app.ts
+# Operations and Multitenancy Examples
 
-These examples demonstrate multitenancy, resilience, queue operations, and runtime health/operational concerns.
+**Navigation:**
+- [SaaS](../../examples/saas/src/app.ts)
+- [Polyglot Timetable](../../examples/polyglot-timetable/src/app.ts)
+- [Minimal API](../../examples/minimal-api/src/app.ts)
+- [Queue Example](../../examples/queue-example/src/app.ts)
+
+These examples demonstrate:
+- Multitenancy
+- Resilience
+- Queue operations
+- Runtime health/operational concerns
