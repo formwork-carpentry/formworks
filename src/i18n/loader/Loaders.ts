@@ -5,8 +5,8 @@
  * @principles LSP — all loaders substitutable; SRP — loading translations only
  */
 
-import type { ITranslationLoader } from '@carpentry/formworks/contracts';
-import type { Dictionary } from '@carpentry/formworks/core/types';
+import type { ITranslationLoader } from "@carpentry/formworks/contracts";
+import type { Dictionary } from "@carpentry/formworks/core/types";
 
 /**
  * In-memory translation loader — for testing.
@@ -31,7 +31,7 @@ export class MemoryLoader implements ITranslationLoader {
     if (!this.store.has(locale)) {
       this.store.set(locale, new Map());
     }
-    this.store.get(locale)!.set(namespace, translations);
+    this.store.get(locale)?.set(namespace, translations);
   }
 
   /**
@@ -75,9 +75,7 @@ export class MemoryLoader implements ITranslationLoader {
  * ```
  */
 export class ObjectLoader implements ITranslationLoader {
-  constructor(
-    private translations: Record<string, Record<string, Dictionary<string>>>,
-  ) {}
+  constructor(private translations: Record<string, Record<string, Dictionary<string>>>) {}
 
   /**
    * @param {string} locale

@@ -7,6 +7,6 @@
  * - {@link ArrayDocumentAdapter} — In-memory adapter for testing
  */
 
-export { ArrayDocumentAdapter } from './ArrayDocumentAdapter.js';
-export { CsvDocumentAdapter } from './CsvDocumentAdapter.js';
-export { HtmlDocumentAdapter } from './HtmlDocumentAdapter.js';
+export { ArrayDocumentAdapter } from "./ArrayDocumentAdapter.js";
+export { CsvDocumentAdapter } from "./CsvDocumentAdapter.js";
+export { HtmlDocumentAdapter } from "./HtmlDocumentAdapter.js";

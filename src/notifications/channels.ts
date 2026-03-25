@@ -4,7 +4,7 @@
  * @patterns Strategy
  */
 
-import type { INotificationChannel, DatabaseChannelMessage, Notifiable } from './types.js';
+import type { DatabaseChannelMessage, INotificationChannel, Notifiable } from "./types.js";
 
 /**
  * LogChannel — stores notification deliveries in an in-memory log.
@@ -31,7 +31,7 @@ import type { INotificationChannel, DatabaseChannelMessage, Notifiable } from '.
  * ```
  */
 export class LogChannel implements INotificationChannel {
-  readonly name = 'log';
+  readonly name = "log";
   private log: Array<{ notifiable: Notifiable; message: unknown }> = [];
 
   /**
@@ -43,8 +43,12 @@ export class LogChannel implements INotificationChannel {
     this.log.push({ notifiable, message });
   }
 
-  getLog() { return [...this.log]; }
-  reset() { this.log = []; }
+  getLog() {
+    return [...this.log];
+  }
+  reset() {
+    this.log = [];
+  }
 }
 
 /**
@@ -80,7 +84,9 @@ export class ArrayChannel implements INotificationChannel {
   readonly name: string;
   private sent: Array<{ notifiable: Notifiable; message: unknown; channel: string }> = [];
 
-  constructor(channelName: string = 'array') { this.name = channelName; }
+  constructor(channelName = "array") {
+    this.name = channelName;
+  }
 
   /**
    * @param {Notifiable} notifiable
@@ -91,7 +97,9 @@ export class ArrayChannel implements INotificationChannel {
     this.sent.push({ notifiable, message, channel: this.name });
   }
 
-  getSent() { return [...this.sent]; }
+  getSent() {
+    return [...this.sent];
+  }
 
   /**
    * @param {Notifiable} notifiable
@@ -113,14 +121,20 @@ export class ArrayChannel implements INotificationChannel {
    * @param {number} n
    */
   assertCount(n: number): void {
-    if (this.sent.length !== n) throw new Error(`Expected ${n} notifications on "${this.name}", got ${this.sent.length}.`);
+    if (this.sent.length !== n)
+      throw new Error(`Expected ${n} notifications on "${this.name}", got ${this.sent.length}.`);
   }
 
   assertNothingSent(): void {
-    if (this.sent.length > 0) throw new Error(`Expected no notifications on "${this.name}", but ${this.sent.length} were sent.`);
+    if (this.sent.length > 0)
+      throw new Error(
+        `Expected no notifications on "${this.name}", but ${this.sent.length} were sent.`,
+      );
   }
 
-  reset(): void { this.sent = []; }
+  reset(): void {
+    this.sent = [];
+  }
 }
 
 // ── DatabaseChannel — stores in-memory (real impl writes to DB) ──
@@ -157,8 +171,14 @@ export class ArrayChannel implements INotificationChannel {
  * ```
  */
 export class InMemoryDatabaseChannel implements INotificationChannel<DatabaseChannelMessage> {
-  readonly name = 'database';
-  private records: Array<{ notifiableId: string | null; type: string; data: Record<string, unknown>; readAt: Date | null; createdAt: Date }> = [];
+  readonly name = "database";
+  private records: Array<{
+    notifiableId: string | null;
+    type: string;
+    data: Record<string, unknown>;
+    readAt: Date | null;
+    createdAt: Date;
+  }> = [];
 
   /**
    * @param {Notifiable} notifiable
@@ -167,7 +187,7 @@ export class InMemoryDatabaseChannel implements INotificationChannel<DatabaseCha
    */
   async send(notifiable: Notifiable, message: DatabaseChannelMessage): Promise<void> {
     this.records.push({
-      notifiableId: notifiable.routeNotificationFor('database'),
+      notifiableId: notifiable.routeNotificationFor("database"),
       type: message.type,
       data: message.data,
       readAt: message.readAt ?? null,
@@ -203,8 +223,12 @@ export class InMemoryDatabaseChannel implements INotificationChannel<DatabaseCha
     }
   }
 
-  getAll() { return [...this.records]; }
-  reset(): void { this.records = []; }
+  getAll() {
+    return [...this.records];
+  }
+  reset(): void {
+    this.records = [];
+  }
 }
 
 // ── NotificationManager — routes notifications to channels ──

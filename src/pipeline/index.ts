@@ -73,10 +73,9 @@ export class Pipeline<TPassable, TReturn = TPassable> {
 
     const method = (pipe as unknown as Record<string, unknown>)[this.method];
     if (typeof method === "function") {
-      return (method as (value: TPassable, n: (value: TPassable) => Promise<TReturn>) => Promise<TReturn>)(
-        passable,
-        next,
-      );
+      return (
+        method as (value: TPassable, n: (value: TPassable) => Promise<TReturn>) => Promise<TReturn>
+      )(passable, next);
     }
 
     if (typeof pipe.handle === "function") {
@@ -84,7 +83,9 @@ export class Pipeline<TPassable, TReturn = TPassable> {
     }
 
     if (this.container) {
-      throw new Error(`Pipeline could not invoke pipe method \"${this.method}\" with the configured container.`);
+      throw new Error(
+        `Pipeline could not invoke pipe method \"${this.method}\" with the configured container.`,
+      );
     }
     throw new Error(`Pipeline could not invoke pipe method \"${this.method}\".`);
   }

@@ -39,7 +39,7 @@ export type ScheduledTaskHandler = () => Promise<void> | void;
 export interface ScheduledTask {
   name: string;
   handler: ScheduledTaskHandler;
-  expression: string;      // cron expression "* * * * *"
+  expression: string; // cron expression "* * * * *"
   timezone?: string;
   overlapping: boolean;
   description?: string;
@@ -52,12 +52,19 @@ export interface ScheduledTask {
 /**
  * @param {string} expression
  */
-export function parseCron(expression: string): { minute: number[]; hour: number[]; dayOfMonth: number[]; month: number[]; dayOfWeek: number[] } {
+export function parseCron(expression: string): {
+  minute: number[];
+  hour: number[];
+  dayOfMonth: number[];
+  month: number[];
+  dayOfWeek: number[];
+} {
   const parts = expression.trim().split(/\s+/);
   /**
    * @param {unknown} [parts.length !== 5]
    */
-  if (parts.length !== 5) throw new Error(`Invalid cron expression: "${expression}". Expected 5 fields.`);
+  if (parts.length !== 5)
+    throw new Error(`Invalid cron expression: "${expression}". Expected 5 fields.`);
 
   const minuteField = parts[0];
   const hourField = parts[1];
@@ -87,27 +94,27 @@ function parseField(field: string, min: number, max: number): number[] {
   /**
    * @param {unknown} [field === '*']
    */
-  if (field === '*') return range(min, max);
+  if (field === "*") return range(min, max);
 
   const values = new Set<number>();
   /**
    * @param {unknown} const part of field.split(','
    */
-  for (const part of field.split(',')) {
-    if (part.includes('/')) {
-      const [base, stepStr] = part.split('/');
+  for (const part of field.split(",")) {
+    if (part.includes("/")) {
+      const [base, stepStr] = part.split("/");
       if (base === undefined || stepStr === undefined) continue;
-      const step = parseInt(stepStr, 10);
-      const start = base === '*' ? min : parseInt(base, 10);
+      const step = Number.parseInt(stepStr, 10);
+      const start = base === "*" ? min : Number.parseInt(base, 10);
       for (let i = start; i <= max; i += step) values.add(i);
-    } else if (part.includes('-')) {
-      const [loRaw, hiRaw] = part.split('-');
+    } else if (part.includes("-")) {
+      const [loRaw, hiRaw] = part.split("-");
       if (loRaw === undefined || hiRaw === undefined) continue;
       const lo = Number(loRaw);
       const hi = Number(hiRaw);
       for (let i = lo; i <= hi; i++) values.add(i);
     } else {
-      values.add(parseInt(part, 10));
+      values.add(Number.parseInt(part, 10));
     }
   }
   return [...values].sort((a, b) => a - b);
@@ -151,54 +158,107 @@ export function isDue(expression: string, now: Date = new Date()): boolean {
  * `scheduler.schedule('ping', handler).everyMinute()`.
  */
 export class FrequencyBuilder {
-  private expr = '* * * * *';
+  private expr = "* * * * *";
 
   /** Raw cron expression */
   /**
    * @param {string} expression
    * @returns {this}
    */
-  cron(expression: string): this { this.expr = expression; return this; }
+  cron(expression: string): this {
+    this.expr = expression;
+    return this;
+  }
 
-  everyMinute(): this { this.expr = '* * * * *'; return this; }
-  everyFiveMinutes(): this { this.expr = '*/5 * * * *'; return this; }
-  everyTenMinutes(): this { this.expr = '*/10 * * * *'; return this; }
-  everyFifteenMinutes(): this { this.expr = '*/15 * * * *'; return this; }
-  everyThirtyMinutes(): this { this.expr = '*/30 * * * *'; return this; }
-  hourly(): this { this.expr = '0 * * * *'; return this; }
+  everyMinute(): this {
+    this.expr = "* * * * *";
+    return this;
+  }
+  everyFiveMinutes(): this {
+    this.expr = "*/5 * * * *";
+    return this;
+  }
+  everyTenMinutes(): this {
+    this.expr = "*/10 * * * *";
+    return this;
+  }
+  everyFifteenMinutes(): this {
+    this.expr = "*/15 * * * *";
+    return this;
+  }
+  everyThirtyMinutes(): this {
+    this.expr = "*/30 * * * *";
+    return this;
+  }
+  hourly(): this {
+    this.expr = "0 * * * *";
+    return this;
+  }
   /**
    * @param {number} minute
    * @returns {this}
    */
-  hourlyAt(minute: number): this { this.expr = `${minute} * * * *`; return this; }
-  daily(): this { this.expr = '0 0 * * *'; return this; }
+  hourlyAt(minute: number): this {
+    this.expr = `${minute} * * * *`;
+    return this;
+  }
+  daily(): this {
+    this.expr = "0 0 * * *";
+    return this;
+  }
   /**
    * @param {number} hour
    * @param {number} [minute]
    * @returns {this}
    */
-  dailyAt(hour: number, minute: number = 0): this { this.expr = `${minute} ${hour} * * *`; return this; }
-  weekly(): this { this.expr = '0 0 * * 0'; return this; }
+  dailyAt(hour: number, minute = 0): this {
+    this.expr = `${minute} ${hour} * * *`;
+    return this;
+  }
+  weekly(): this {
+    this.expr = "0 0 * * 0";
+    return this;
+  }
   /**
    * @param {number} day
    * @param {number} [hour]
    * @param {number} [minute]
    * @returns {this}
    */
-  weeklyOn(day: number, hour: number = 0, minute: number = 0): this { this.expr = `${minute} ${hour} * * ${day}`; return this; }
-  monthly(): this { this.expr = '0 0 1 * *'; return this; }
+  weeklyOn(day: number, hour = 0, minute = 0): this {
+    this.expr = `${minute} ${hour} * * ${day}`;
+    return this;
+  }
+  monthly(): this {
+    this.expr = "0 0 1 * *";
+    return this;
+  }
   /**
    * @param {number} day
    * @param {number} [hour]
    * @param {number} [minute]
    * @returns {this}
    */
-  monthlyOn(day: number, hour: number = 0, minute: number = 0): this { this.expr = `${minute} ${hour} ${day} * *`; return this; }
-  yearly(): this { this.expr = '0 0 1 1 *'; return this; }
-  weekdays(): this { this.expr = '0 0 * * 1-5'; return this; }
-  weekends(): this { this.expr = '0 0 * * 0,6'; return this; }
+  monthlyOn(day: number, hour = 0, minute = 0): this {
+    this.expr = `${minute} ${hour} ${day} * *`;
+    return this;
+  }
+  yearly(): this {
+    this.expr = "0 0 1 1 *";
+    return this;
+  }
+  weekdays(): this {
+    this.expr = "0 0 * * 1-5";
+    return this;
+  }
+  weekends(): this {
+    this.expr = "0 0 * * 0,6";
+    return this;
+  }
 
-  getExpression(): string { return this.expr; }
+  getExpression(): string {
+    return this.expr;
+  }
 }
 
 // ── Scheduler ─────────────────────────────────────────────
@@ -237,8 +297,11 @@ export class Scheduler {
    */
   schedule(name: string, handler: ScheduledTaskHandler): TaskBuilder {
     const task: ScheduledTask = {
-      name, handler, expression: '* * * * *',
-      overlapping: false, enabled: true,
+      name,
+      handler,
+      expression: "* * * * *",
+      overlapping: false,
+      enabled: true,
     };
     this.tasks.push(task);
     return new TaskBuilder(task);
@@ -258,9 +321,12 @@ export class Scheduler {
    * @param {Date} [now]
    * @returns {Promise<Array<}
    */
-  async runDue(now: Date = new Date()): Promise<Array<{ task: string; success: boolean; durationMs: number; error?: string }>> {
+  async runDue(
+    now: Date = new Date(),
+  ): Promise<Array<{ task: string; success: boolean; durationMs: number; error?: string }>> {
     const due = this.dueAt(now);
-    const results: Array<{ task: string; success: boolean; durationMs: number; error?: string }> = [];
+    const results: Array<{ task: string; success: boolean; durationMs: number; error?: string }> =
+      [];
 
     for (const task of due) {
       if (!task.overlapping && this.running.has(task.name)) continue;
@@ -297,8 +363,12 @@ export class Scheduler {
     task.lastRanAt = new Date();
   }
 
-  getTasks(): ScheduledTask[] { return [...this.tasks]; }
-  getHistory(): typeof this.history { return [...this.history]; }
+  getTasks(): ScheduledTask[] {
+    return [...this.tasks];
+  }
+  getHistory(): typeof this.history {
+    return [...this.history];
+  }
 
   /**
    * @param {string} name
@@ -323,7 +393,11 @@ export class Scheduler {
     if (count !== times) throw new Error(`Expected "${name}" to run ${times} times, ran ${count}.`);
   }
 
-  reset(): void { this.tasks = []; this.running.clear(); this.history = []; }
+  reset(): void {
+    this.tasks = [];
+    this.running.clear();
+    this.history = [];
+  }
 }
 
 class TaskBuilder {
@@ -334,42 +408,113 @@ class TaskBuilder {
    * @param {string} expr
    * @returns {this}
    */
-  cron(expr: string): this { this.task.expression = expr; return this; }
-  everyMinute(): this { this.frequency.everyMinute(); this.task.expression = this.frequency.getExpression(); return this; }
-  everyFiveMinutes(): this { this.frequency.everyFiveMinutes(); this.task.expression = this.frequency.getExpression(); return this; }
-  everyTenMinutes(): this { this.frequency.everyTenMinutes(); this.task.expression = this.frequency.getExpression(); return this; }
-  everyFifteenMinutes(): this { this.frequency.everyFifteenMinutes(); this.task.expression = this.frequency.getExpression(); return this; }
-  hourly(): this { this.frequency.hourly(); this.task.expression = this.frequency.getExpression(); return this; }
+  cron(expr: string): this {
+    this.task.expression = expr;
+    return this;
+  }
+  everyMinute(): this {
+    this.frequency.everyMinute();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  everyFiveMinutes(): this {
+    this.frequency.everyFiveMinutes();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  everyTenMinutes(): this {
+    this.frequency.everyTenMinutes();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  everyFifteenMinutes(): this {
+    this.frequency.everyFifteenMinutes();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  hourly(): this {
+    this.frequency.hourly();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
   /**
    * @param {number} m
    * @returns {this}
    */
-  hourlyAt(m: number): this { this.frequency.hourlyAt(m); this.task.expression = this.frequency.getExpression(); return this; }
-  daily(): this { this.frequency.daily(); this.task.expression = this.frequency.getExpression(); return this; }
+  hourlyAt(m: number): this {
+    this.frequency.hourlyAt(m);
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  daily(): this {
+    this.frequency.daily();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
   /**
    * @param {number} h
    * @param {number} [m]
    * @returns {this}
    */
-  dailyAt(h: number, m?: number): this { this.frequency.dailyAt(h, m); this.task.expression = this.frequency.getExpression(); return this; }
-  weekly(): this { this.frequency.weekly(); this.task.expression = this.frequency.getExpression(); return this; }
+  dailyAt(h: number, m?: number): this {
+    this.frequency.dailyAt(h, m);
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  weekly(): this {
+    this.frequency.weekly();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
   /**
    * @param {number} d
    * @param {number} [h]
    * @param {number} [m]
    * @returns {this}
    */
-  weeklyOn(d: number, h?: number, m?: number): this { this.frequency.weeklyOn(d, h, m); this.task.expression = this.frequency.getExpression(); return this; }
-  monthly(): this { this.frequency.monthly(); this.task.expression = this.frequency.getExpression(); return this; }
-  yearly(): this { this.frequency.yearly(); this.task.expression = this.frequency.getExpression(); return this; }
-  weekdays(): this { this.frequency.weekdays(); this.task.expression = this.frequency.getExpression(); return this; }
-  weekends(): this { this.frequency.weekends(); this.task.expression = this.frequency.getExpression(); return this; }
-  withoutOverlapping(): this { this.task.overlapping = false; return this; }
-  allowOverlapping(): this { this.task.overlapping = true; return this; }
+  weeklyOn(d: number, h?: number, m?: number): this {
+    this.frequency.weeklyOn(d, h, m);
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  monthly(): this {
+    this.frequency.monthly();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  yearly(): this {
+    this.frequency.yearly();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  weekdays(): this {
+    this.frequency.weekdays();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  weekends(): this {
+    this.frequency.weekends();
+    this.task.expression = this.frequency.getExpression();
+    return this;
+  }
+  withoutOverlapping(): this {
+    this.task.overlapping = false;
+    return this;
+  }
+  allowOverlapping(): this {
+    this.task.overlapping = true;
+    return this;
+  }
   /**
    * @param {string} desc
    * @returns {this}
    */
-  description(desc: string): this { this.task.description = desc; return this; }
-  disable(): this { this.task.enabled = false; return this; }
+  description(desc: string): this {
+    this.task.description = desc;
+    return this;
+  }
+  disable(): this {
+    this.task.enabled = false;
+    return this;
+  }
 }

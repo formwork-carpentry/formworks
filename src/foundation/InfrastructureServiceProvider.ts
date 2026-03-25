@@ -16,18 +16,18 @@
  *             DRY (shared BaseManager), Convention over Configuration
  */
 
-import { ServiceProvider } from '../core/container';
-import type { IContainer } from '../core/container';
-import { Config, ConfigResolver, buildDefaultConfig } from '../core/config';
+import { Config, ConfigResolver, buildDefaultConfig } from "../core/config";
+import { ServiceProvider } from "../core/container";
+import type { IContainer } from "../core/container";
 import {
-  DatabaseInfrastructureProvider,
-  CacheInfrastructureProvider,
-  QueueInfrastructureProvider,
-  MailInfrastructureProvider,
-  StorageInfrastructureProvider,
   BridgeInfrastructureProvider,
+  CacheInfrastructureProvider,
   CoreInfrastructureProvider,
-} from './providers/index.js';
+  DatabaseInfrastructureProvider,
+  MailInfrastructureProvider,
+  QueueInfrastructureProvider,
+  StorageInfrastructureProvider,
+} from "./providers/index.js";
 
 interface InfrastructureRegistrar {
   register(): void;
@@ -75,8 +75,8 @@ export class InfrastructureServiceProvider extends ServiceProvider {
     const config = this.resolveConfig();
     const resolver = new ConfigResolver(config);
 
-    this.app.instance('config', config);
-    this.app.instance('config.resolver', resolver);
+    this.app.instance("config", config);
+    this.app.instance("config.resolver", resolver);
 
     for (const Provider of this.getInfrastructureProviderCtors()) {
       new Provider(this.app, resolver).register();
@@ -105,7 +105,7 @@ export class InfrastructureServiceProvider extends ServiceProvider {
 
   private resolveConfig(): Config {
     try {
-      return this.app.make<Config>('config');
+      return this.app.make<Config>("config");
     } catch {
       return new Config(buildDefaultConfig());
     }

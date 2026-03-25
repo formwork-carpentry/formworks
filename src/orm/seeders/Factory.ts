@@ -5,9 +5,9 @@
  * @principles SRP — factory builds models, seeder orchestrates; OCP — states extend without modifying
  */
 
-import { BaseModel } from '../model/BaseModel.js';
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import { createFaker, type FakerManager, type FakerSeed } from '@carpentry/formworks/faker';
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import { type FakerManager, type FakerSeed, createFaker } from "@carpentry/formworks/faker";
+import type { BaseModel } from "../model/BaseModel.js";
 
 type FactoryDefinition = (faker?: FakerManager) => Dictionary;
 
@@ -28,7 +28,7 @@ type FactoryDefinition = (faker?: FakerManager) => Dictionary;
 export class ModelFactory<T extends BaseModel> {
   private modelClass: (new (attrs?: Dictionary) => T) & typeof BaseModel;
   private stateOverrides: Dictionary = {};
-  private countN: number = 1;
+  private countN = 1;
   private definitionFn: FactoryDefinition;
   private states = new Map<string, () => Dictionary>();
   private faker: FakerManager = createFaker();

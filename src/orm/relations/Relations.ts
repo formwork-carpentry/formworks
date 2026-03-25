@@ -7,16 +7,16 @@
  *             DIP — relations use QueryBuilder, not raw SQL
  */
 
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import { QueryBuilder } from '../query/QueryBuilder.js';
-import { BaseModel } from '../model/BaseModel.js';
-import { BaseRelation } from './BaseRelation.js';
-import type { ModelClass, RelationHolder } from './BaseRelation.js';
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import type { BaseModel } from "../model/BaseModel.js";
+import { QueryBuilder } from "../query/QueryBuilder.js";
+import { BaseRelation } from "./BaseRelation.js";
+import type { ModelClass, RelationHolder } from "./BaseRelation.js";
 
 // Re-export so existing imports still work
-export { BaseRelation } from './BaseRelation.js';
-export type { ModelClass, RelationHolder } from './BaseRelation.js';
-export { BelongsToMany } from './BelongsToMany.js';
+export { BaseRelation } from "./BaseRelation.js";
+export type { ModelClass, RelationHolder } from "./BaseRelation.js";
+export { BelongsToMany } from "./BelongsToMany.js";
 
 // ── HasOne ────────────────────────────────────────────────
 
@@ -35,7 +35,7 @@ export class HasOne<T extends BaseModel = BaseModel> extends BaseRelation<T> {
   constructor(
     relatedClass: ModelClass<T>,
     private foreignKey: string,
-    private localKey: string = 'id',
+    private localKey = "id",
   ) {
     super(relatedClass);
   }
@@ -45,8 +45,10 @@ export class HasOne<T extends BaseModel = BaseModel> extends BaseRelation<T> {
    * @returns {QueryBuilder<Dictionary>}
    */
   getQuery(parent: BaseModel): QueryBuilder<Dictionary> {
-    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table)
-      .where(this.foreignKey, parent.getAttribute(this.localKey));
+    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table).where(
+      this.foreignKey,
+      parent.getAttribute(this.localKey),
+    );
   }
 
   /**
@@ -79,7 +81,9 @@ export class HasOne<T extends BaseModel = BaseModel> extends BaseRelation<T> {
     for (const parent of parents) {
       const key = parent.getAttribute(this.localKey);
       const row = map.get(key);
-      (parent as unknown as RelationHolder)[`_rel_${relationName}`] = row ? this.hydrate(row) : null;
+      (parent as unknown as RelationHolder)[`_rel_${relationName}`] = row
+        ? this.hydrate(row)
+        : null;
     }
   }
 }
@@ -93,7 +97,7 @@ export class HasMany<T extends BaseModel = BaseModel> extends BaseRelation<T> {
   constructor(
     relatedClass: ModelClass<T>,
     private foreignKey: string,
-    private localKey: string = 'id',
+    private localKey = "id",
   ) {
     super(relatedClass);
   }
@@ -103,8 +107,10 @@ export class HasMany<T extends BaseModel = BaseModel> extends BaseRelation<T> {
    * @returns {QueryBuilder<Dictionary>}
    */
   getQuery(parent: BaseModel): QueryBuilder<Dictionary> {
-    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table)
-      .where(this.foreignKey, parent.getAttribute(this.localKey));
+    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table).where(
+      this.foreignKey,
+      parent.getAttribute(this.localKey),
+    );
   }
 
   /**
@@ -133,7 +139,7 @@ export class HasMany<T extends BaseModel = BaseModel> extends BaseRelation<T> {
     for (const row of rows) {
       const fk = row[this.foreignKey];
       if (!grouped.has(fk)) grouped.set(fk, []);
-      grouped.get(fk)!.push(row);
+      grouped.get(fk)?.push(row);
     }
 
     for (const parent of parents) {
@@ -161,7 +167,7 @@ export class BelongsTo<T extends BaseModel = BaseModel> extends BaseRelation<T> 
   constructor(
     relatedClass: ModelClass<T>,
     private foreignKey: string,
-    private ownerKey: string = 'id',
+    private ownerKey = "id",
   ) {
     super(relatedClass);
   }
@@ -171,8 +177,10 @@ export class BelongsTo<T extends BaseModel = BaseModel> extends BaseRelation<T> 
    * @returns {QueryBuilder<Dictionary>}
    */
   getQuery(parent: BaseModel): QueryBuilder<Dictionary> {
-    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table)
-      .where(this.ownerKey, parent.getAttribute(this.foreignKey));
+    return new QueryBuilder<Dictionary>(this.adapter, this.relatedClass.table).where(
+      this.ownerKey,
+      parent.getAttribute(this.foreignKey),
+    );
   }
 
   /**
@@ -211,7 +219,9 @@ export class BelongsTo<T extends BaseModel = BaseModel> extends BaseRelation<T> 
     for (const parent of parents) {
       const fk = parent.getAttribute(this.foreignKey);
       const row = map.get(fk);
-      (parent as unknown as RelationHolder)[`_rel_${relationName}`] = row ? this.hydrate(row) : null;
+      (parent as unknown as RelationHolder)[`_rel_${relationName}`] = row
+        ? this.hydrate(row)
+        : null;
     }
   }
 }
@@ -249,6 +259,3 @@ export function getRelation<R>(model: BaseModel, name: string): R {
    */
   return (model as unknown as RelationHolder)[`_rel_${name}`] as R;
 }
-
-
-

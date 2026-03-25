@@ -5,7 +5,7 @@
  * @principles LSP — fully substitutable for any real adapter
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult } from '@carpentry/formworks/contracts';
+import type { CompiledQuery, IDatabaseAdapter, QueryResult } from "@carpentry/formworks/contracts";
 
 /**
  * MockDatabaseAdapter — records executed queries and returns queued {@link QueryResult} rows.
@@ -30,7 +30,9 @@ export class MockDatabaseAdapter implements IDatabaseAdapter {
   /** Default result if queue is empty */
   private defaultResult: QueryResult<unknown> = { rows: [], rowCount: 0 };
 
-  driverName(): string { return 'mock'; }
+  driverName(): string {
+    return "mock";
+  }
   async connect(): Promise<void> {}
   async disconnect(): Promise<void> {}
   async beginTransaction(): Promise<void> {}
@@ -63,7 +65,7 @@ export class MockDatabaseAdapter implements IDatabaseAdapter {
    * @returns {Promise<QueryResult<T>>}
    */
   async raw<T>(sql: string, bindings: unknown[] = []): Promise<QueryResult<T>> {
-    return this.execute<T>({ sql, bindings, type: 'raw' });
+    return this.execute<T>({ sql, bindings, type: "raw" });
   }
 
   // ── Test helpers ────────────────────────────────────────
@@ -93,7 +95,7 @@ export class MockDatabaseAdapter implements IDatabaseAdapter {
    * @param {number} [rowCount]
    * @returns {this}
    */
-  setDefaultResult(rows: unknown[] = [], rowCount: number = 0): this {
+  setDefaultResult(rows: unknown[] = [], rowCount = 0): this {
     this.defaultResult = { rows: rows, rowCount };
     return this;
   }
@@ -110,9 +112,9 @@ export class MockDatabaseAdapter implements IDatabaseAdapter {
   assertExecuted(sqlFragment: string): void {
     const found = this.executedQueries.some((q) => q.sql.includes(sqlFragment));
     if (!found) {
-      const executed = this.executedQueries.map((q) => q.sql).join('\n  ');
+      const executed = this.executedQueries.map((q) => q.sql).join("\n  ");
       throw new Error(
-        `Expected query containing "${sqlFragment}" but none found.\nExecuted:\n  ${executed || '(none)'}`,
+        `Expected query containing "${sqlFragment}" but none found.\nExecuted:\n  ${executed || "(none)"}`,
       );
     }
   }

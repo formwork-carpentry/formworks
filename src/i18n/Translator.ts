@@ -5,12 +5,8 @@
  * @principles SRP — translates strings only; DIP — depends on ITranslationLoader interface
  */
 
-import type {
-  ITranslator,
-  ITranslationLoader,
-  IPluralizer,
-} from '../contracts';
-import type { Dictionary } from '../core/types';
+import type { IPluralizer, ITranslationLoader, ITranslator } from "../contracts";
+import type { Dictionary } from "../core/types";
 
 /**
  * Translator resolves translation keys into localized strings.
@@ -54,8 +50,8 @@ export class Translator implements ITranslator {
   constructor(
     loader: ITranslationLoader,
     pluralizer: IPluralizer,
-    locale: string = 'en',
-    fallbackLocale: string = 'en',
+    locale = "en",
+    fallbackLocale = "en",
   ) {
     this.loader = loader;
     this.pluralizer = pluralizer;
@@ -97,7 +93,12 @@ export class Translator implements ITranslator {
    * @param {string} [locale]
    * @returns {string}
    */
-  choice(key: string, count: number, replacements?: Dictionary<string | number>, locale?: string): string {
+  choice(
+    key: string,
+    count: number,
+    replacements?: Dictionary<string | number>,
+    locale?: string,
+  ): string {
     const resolvedLocale = locale ?? this.locale;
     let line = this.resolve(key, resolvedLocale);
 
@@ -175,7 +176,8 @@ export class Translator implements ITranslator {
     if (!this.loaded.has(locale)) {
       this.loaded.set(locale, new Map());
     }
-    const localeMap = this.loaded.get(locale)!;
+    const localeMap = this.loaded.get(locale);
+    if (!localeMap) return;
     const existing = localeMap.get(namespace) ?? {};
     localeMap.set(namespace, { ...existing, ...translations });
   }
@@ -187,7 +189,7 @@ export class Translator implements ITranslator {
    * First segment is the namespace (file), rest is the nested key path.
    */
   private resolve(key: string, locale: string): string | null {
-    const dotIndex = key.indexOf('.');
+    const dotIndex = key.indexOf(".");
     if (dotIndex === -1) return null;
 
     const namespace = key.substring(0, dotIndex);
@@ -228,7 +230,7 @@ export class Translator implements ITranslator {
       this.loaded.set(locale, new Map());
     }
     const translations = await this.loader.load(locale, namespace);
-    this.loaded.get(locale)!.set(namespace, translations);
+    this.loaded.get(locale)?.set(namespace, translations);
   }
 
   /** Pre-load all namespaces for a locale */
@@ -251,8 +253,8 @@ export class Translator implements ITranslator {
     let result = line;
     for (const [key, value] of Object.entries(replacements)) {
       // Replace :key (Laravel style) and {key} (ICU style)
-      result = result.replace(new RegExp(`:${key}`, 'g'), String(value));
-      result = result.replace(new RegExp(`\\{${key}\\}`, 'g'), String(value));
+      result = result.replace(new RegExp(`:${key}`, "g"), String(value));
+      result = result.replace(new RegExp(`\\{${key}\\}`, "g"), String(value));
     }
     return result;
   }
@@ -265,15 +267,15 @@ export class Translator implements ITranslator {
     }
 
     // For nested: "welcome.title" → obj.welcome.title
-    const parts = path.split('.');
+    const parts = path.split(".");
     let current: unknown = obj;
     for (const part of parts) {
-      if (current === null || current === undefined || typeof current !== 'object') {
+      if (current === null || current === undefined || typeof current !== "object") {
         return null;
       }
       current = (current as Dictionary)[part];
     }
-    return typeof current === 'string' ? current : null;
+    return typeof current === "string" ? current : null;
   }
 }
 
@@ -297,7 +299,11 @@ export function setGlobalTranslator(translator: ITranslator): void {
  * __('messages.welcome', { name: 'Alice' })  // "Hello, Alice!"
  * ```
  */
-export function __(key: string, replacements?: Dictionary<string | number>, locale?: string): string {
+export function __(
+  key: string,
+  replacements?: Dictionary<string | number>,
+  locale?: string,
+): string {
   if (!globalTranslator) return key;
   return globalTranslator.get(key, replacements, locale);
 }

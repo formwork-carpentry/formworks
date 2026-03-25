@@ -33,6 +33,6 @@
  * @see BaseNotification — Notification payload + channel declarations
  */
 
-export * from './types.js';
-export * from './channels.js';
-export * from './manager.js';
+export * from "./types.js";
+export * from "./channels.js";
+export * from "./manager.js";

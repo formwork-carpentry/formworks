@@ -5,13 +5,24 @@
  * @principles SRP — builds queries only; DIP — depends on IDatabaseAdapter interface
  */
 
-import type { IDatabaseAdapter, CompiledQuery, QueryResult, IPaginator } from '@carpentry/formworks/contracts';
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import { compileQuery } from './sql-compiler.js';
+import type {
+  CompiledQuery,
+  IDatabaseAdapter,
+  IPaginator,
+  QueryResult,
+} from "@carpentry/formworks/contracts";
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import { compileQuery } from "./sql-compiler.js";
 
 // Re-export types so existing imports don't break
-export type { WhereClause, OrderByClause, JoinClause, QueryAST, CompiledQuery as CompiledQueryResult } from './sql-compiler.js';
-import type { QueryAST } from './sql-compiler.js';
+export type {
+  WhereClause,
+  OrderByClause,
+  JoinClause,
+  QueryAST,
+  CompiledQuery as CompiledQueryResult,
+} from "./sql-compiler.js";
+import type { QueryAST } from "./sql-compiler.js";
 
 /**
  * Fluent query builder that produces a query AST consumed by database adapters.
@@ -38,8 +49,14 @@ export class QueryBuilder<T = Record<string, unknown>> {
   constructor(adapter: IDatabaseAdapter, table: string) {
     this.adapter = adapter;
     this.ast = {
-      type: 'select', table, columns: ['*'],
-      wheres: [], orders: [], joins: [], groupBys: [], havings: [],
+      type: "select",
+      table,
+      columns: ["*"],
+      wheres: [],
+      orders: [],
+      joins: [],
+      groupBys: [],
+      havings: [],
       distinct: false,
     };
   }
@@ -49,7 +66,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   select(...columns: string[]): this {
-    this.ast.columns = columns.length > 0 ? columns : ['*'];
+    this.ast.columns = columns.length > 0 ? columns : ["*"];
     return this;
   }
 
@@ -58,8 +75,8 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @example qb.selectRaw('COUNT(comments.id) as comments_count')
    */
   selectRaw(expression: string): this {
-    if (this.ast.columns.length === 1 && this.ast.columns[0] === '*') {
-      this.ast.columns = [this.ast.table + '.*', expression];
+    if (this.ast.columns.length === 1 && this.ast.columns[0] === "*") {
+      this.ast.columns = [`${this.ast.table}.*`, expression];
     } else {
       this.ast.columns.push(expression);
     }
@@ -81,12 +98,15 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * // SELECT posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as comments_count
    * ```
    */
-  withCount(relation: string, relatedTable: string, foreignKey: string, localKey = 'id'): this {
+  withCount(relation: string, relatedTable: string, foreignKey: string, localKey = "id"): this {
     const subselect = `(SELECT COUNT(*) FROM ${relatedTable} WHERE ${relatedTable}.${foreignKey} = ${this.ast.table}.${localKey}) as ${relation}_count`;
     return this.selectRaw(subselect);
   }
 
-  distinct(): this { this.ast.distinct = true; return this; }
+  distinct(): this {
+    this.ast.distinct = true;
+    return this;
+  }
 
   /**
    * @param {string} column
@@ -96,9 +116,9 @@ export class QueryBuilder<T = Record<string, unknown>> {
    */
   where(column: string, opOrVal: unknown, value?: unknown): this {
     if (value === undefined) {
-      this.ast.wheres.push({ column, operator: '=', value: opOrVal, boolean: 'and' });
+      this.ast.wheres.push({ column, operator: "=", value: opOrVal, boolean: "and" });
     } else {
-      this.ast.wheres.push({ column, operator: opOrVal as string, value, boolean: 'and' });
+      this.ast.wheres.push({ column, operator: opOrVal as string, value, boolean: "and" });
     }
     return this;
   }
@@ -111,9 +131,9 @@ export class QueryBuilder<T = Record<string, unknown>> {
    */
   orWhere(column: string, opOrVal: unknown, value?: unknown): this {
     if (value === undefined) {
-      this.ast.wheres.push({ column, operator: '=', value: opOrVal, boolean: 'or' });
+      this.ast.wheres.push({ column, operator: "=", value: opOrVal, boolean: "or" });
     } else {
-      this.ast.wheres.push({ column, operator: opOrVal as string, value, boolean: 'or' });
+      this.ast.wheres.push({ column, operator: opOrVal as string, value, boolean: "or" });
     }
     return this;
   }
@@ -124,7 +144,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   whereIn(column: string, values: unknown[]): this {
-    this.ast.wheres.push({ column, operator: 'IN', value: values, boolean: 'and' });
+    this.ast.wheres.push({ column, operator: "IN", value: values, boolean: "and" });
     return this;
   }
 
@@ -133,7 +153,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   whereNull(column: string): this {
-    this.ast.wheres.push({ column, operator: 'IS NULL', value: null, boolean: 'and' });
+    this.ast.wheres.push({ column, operator: "IS NULL", value: null, boolean: "and" });
     return this;
   }
 
@@ -142,7 +162,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   whereNotNull(column: string): this {
-    this.ast.wheres.push({ column, operator: 'IS NOT NULL', value: null, boolean: 'and' });
+    this.ast.wheres.push({ column, operator: "IS NOT NULL", value: null, boolean: "and" });
     return this;
   }
 
@@ -153,7 +173,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   whereBetween(column: string, range: [unknown, unknown]): this {
-    this.ast.wheres.push({ column, operator: 'BETWEEN', value: range, boolean: 'and' });
+    this.ast.wheres.push({ column, operator: "BETWEEN", value: range, boolean: "and" });
     return this;
   }
 
@@ -165,7 +185,13 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   join(table: string, local: string, op: string, foreign: string): this {
-    this.ast.joins.push({ table, localKey: local, operator: op, foreignKey: foreign, type: 'inner' });
+    this.ast.joins.push({
+      table,
+      localKey: local,
+      operator: op,
+      foreignKey: foreign,
+      type: "inner",
+    });
     return this;
   }
 
@@ -177,7 +203,13 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   leftJoin(table: string, local: string, op: string, foreign: string): this {
-    this.ast.joins.push({ table, localKey: local, operator: op, foreignKey: foreign, type: 'left' });
+    this.ast.joins.push({
+      table,
+      localKey: local,
+      operator: op,
+      foreignKey: foreign,
+      type: "left",
+    });
     return this;
   }
 
@@ -186,7 +218,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @param {'asc' | 'desc'} [direction]
    * @returns {this}
    */
-  orderBy(column: string, direction: 'asc' | 'desc' = 'asc'): this {
+  orderBy(column: string, direction: "asc" | "desc" = "asc"): this {
     this.ast.orders.push({ column, direction });
     return this;
   }
@@ -195,7 +227,10 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @param {string[]} ...columns
    * @returns {this}
    */
-  groupBy(...columns: string[]): this { this.ast.groupBys.push(...columns); return this; }
+  groupBy(...columns: string[]): this {
+    this.ast.groupBys.push(...columns);
+    return this;
+  }
 
   /**
    * @param {string} column
@@ -204,7 +239,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {this}
    */
   having(column: string, operator: string, value: unknown): this {
-    this.ast.havings.push({ column, operator, value, boolean: 'and' });
+    this.ast.havings.push({ column, operator, value, boolean: "and" });
     return this;
   }
 
@@ -212,17 +247,23 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @param {number} count
    * @returns {this}
    */
-  limit(count: number): this { this.ast.limitCount = count; return this; }
+  limit(count: number): this {
+    this.ast.limitCount = count;
+    return this;
+  }
   /**
    * @param {number} count
    * @returns {this}
    */
-  offset(count: number): this { this.ast.offsetCount = count; return this; }
+  offset(count: number): this {
+    this.ast.offsetCount = count;
+    return this;
+  }
 
   // ── Terminal operations ─────────────────────────────────
 
   async get(): Promise<T[]> {
-    this.ast.type = 'select';
+    this.ast.type = "select";
     const compiled = this.compile(this.ast);
     const result = await this.adapter.execute<T>(compiled);
     return result.rows;
@@ -244,34 +285,44 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @param {string} [column]
    * @returns {Promise<number>}
    */
-  async count(column: string = '*'): Promise<number> { return this.aggregate('COUNT', column); }
+  async count(column = "*"): Promise<number> {
+    return this.aggregate("COUNT", column);
+  }
   /**
    * @param {string} column
    * @returns {Promise<number>}
    */
-  async sum(column: string): Promise<number> { return this.aggregate('SUM', column); }
+  async sum(column: string): Promise<number> {
+    return this.aggregate("SUM", column);
+  }
   /**
    * @param {string} column
    * @returns {Promise<number>}
    */
-  async avg(column: string): Promise<number> { return this.aggregate('AVG', column); }
+  async avg(column: string): Promise<number> {
+    return this.aggregate("AVG", column);
+  }
   /**
    * @param {string} column
    * @returns {Promise<number>}
    */
-  async min(column: string): Promise<number> { return this.aggregate('MIN', column); }
+  async min(column: string): Promise<number> {
+    return this.aggregate("MIN", column);
+  }
   /**
    * @param {string} column
    * @returns {Promise<number>}
    */
-  async max(column: string): Promise<number> { return this.aggregate('MAX', column); }
+  async max(column: string): Promise<number> {
+    return this.aggregate("MAX", column);
+  }
 
   /**
    * @param {number} [page]
    * @param {number} [perPage]
    * @returns {Promise<IPaginator<T>>}
    */
-  async paginate(page: number = 1, perPage: number = 15): Promise<IPaginator<T>> {
+  async paginate(page = 1, perPage = 15): Promise<IPaginator<T>> {
     const countQb = this.clone();
     countQb.ast.orders = [];
     delete countQb.ast.limitCount;
@@ -310,7 +361,7 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {Promise<QueryResult>}
    */
   async insert(data: Dictionary | Dictionary[]): Promise<QueryResult> {
-    return this.adapter.execute(this.compile({ ...this.ast, type: 'insert', data }));
+    return this.adapter.execute(this.compile({ ...this.ast, type: "insert", data }));
   }
 
   /**
@@ -318,26 +369,32 @@ export class QueryBuilder<T = Record<string, unknown>> {
    * @returns {Promise<number>}
    */
   async update(data: Dictionary): Promise<number> {
-    const r = await this.adapter.execute(this.compile({ ...this.ast, type: 'update', data }));
+    const r = await this.adapter.execute(this.compile({ ...this.ast, type: "update", data }));
     return r.rowCount;
   }
 
   async delete(): Promise<number> {
-    const r = await this.adapter.execute(this.compile({ ...this.ast, type: 'delete' }));
+    const r = await this.adapter.execute(this.compile({ ...this.ast, type: "delete" }));
     return r.rowCount;
   }
 
   /** Expose AST for testing and adapter inspection */
-  getAST(): Readonly<QueryAST> { return { ...this.ast }; }
+  getAST(): Readonly<QueryAST> {
+    return { ...this.ast };
+  }
 
-  toCompiledQuery(): CompiledQuery { return this.compile(this.ast); }
+  toCompiledQuery(): CompiledQuery {
+    return this.compile(this.ast);
+  }
 
   // ── Internal ────────────────────────────────────────────
 
   private async aggregate(fn: string, column: string): Promise<number> {
     const aggAst: QueryAST = {
-      ...this.ast, type: 'aggregate',
-      aggregateFunction: fn, aggregateColumn: column,
+      ...this.ast,
+      type: "aggregate",
+      aggregateFunction: fn,
+      aggregateColumn: column,
       columns: [`${fn}(${column}) as aggregate`],
       orders: [],
     };

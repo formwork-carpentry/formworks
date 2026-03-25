@@ -5,7 +5,7 @@
  * @principles SRP (scoping only), OCP (works with any adapter via wrapping)
  */
 
-import type { Tenant } from './types.js';
+import type { Tenant } from "./types.js";
 
 // ── Tenant-Scoped Query Modifier ──────────────────────────
 
@@ -22,7 +22,7 @@ import type { Tenant } from './types.js';
 export class TenantScope {
   constructor(
     private readonly tenant: Tenant,
-    private readonly column: string = 'tenant_id',
+    private readonly column: string = "tenant_id",
   ) {}
 
   /**

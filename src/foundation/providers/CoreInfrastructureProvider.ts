@@ -3,11 +3,11 @@
  * @description Registers core singleton services such as logger, events, and validator.
  */
 
-import type { IContainer } from '@carpentry/formworks/core/container';
-import { ConfigResolver } from '@carpentry/formworks/core/config';
-import { LogManager } from '@carpentry/formworks/log';
-import { EventDispatcher } from '@carpentry/formworks/events';
-import { Validator } from '@carpentry/formworks/validation';
+import type { ConfigResolver } from "@carpentry/formworks/core/config";
+import type { IContainer } from "@carpentry/formworks/core/container";
+import { EventDispatcher } from "@carpentry/formworks/events";
+import { LogManager } from "@carpentry/formworks/log";
+import { Validator } from "@carpentry/formworks/validation";
 
 /**
  * @description Service provider that wires core framework services into the IoC container.
@@ -30,8 +30,8 @@ export class CoreInfrastructureProvider {
    * @returns {void}
    */
   register(): void {
-    this.app.singleton('logger', () => new LogManager(this.resolver.logChannel()));
-    this.app.singleton('events', () => new EventDispatcher());
-    this.app.singleton('validator', () => new Validator());
+    this.app.singleton("logger", () => new LogManager(this.resolver.logChannel()));
+    this.app.singleton("events", () => new EventDispatcher());
+    this.app.singleton("validator", () => new Validator());
   }
 }

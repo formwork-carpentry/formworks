@@ -108,11 +108,11 @@ export class TransformationPipeline {
  * ```
  */
 export class RenameTransformation implements Transformation {
-  name = 'rename';
+  name = "rename";
   constructor(private newExtension: string) {}
 
   async apply(input: TransformInput): Promise<TransformOutput> {
-    const baseName = input.fileName.replace(/\.[^.]+$/, '');
+    const baseName = input.fileName.replace(/\.[^.]+$/, "");
     return { ...input, fileName: `${baseName}.${this.newExtension}` };
   }
 }
@@ -125,7 +125,9 @@ export class PassthroughTransformation implements Transformation {
   name: string;
   applied = false;
 
-  constructor(name: string = 'passthrough') { this.name = name; }
+  constructor(name = "passthrough") {
+    this.name = name;
+  }
 
   async apply(input: TransformInput): Promise<TransformOutput> {
     this.applied = true;

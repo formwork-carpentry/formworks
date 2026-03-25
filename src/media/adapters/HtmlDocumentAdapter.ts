@@ -4,7 +4,12 @@
  * @patterns Strategy (format-specific generation)
  */
 
-import type { DocumentFormat, DocumentTemplate, GeneratedDocument, IDocumentAdapter } from '../docgen.js';
+import type {
+  DocumentFormat,
+  DocumentTemplate,
+  GeneratedDocument,
+  IDocumentAdapter,
+} from "../docgen.js";
 
 /**
  * Generates HTML documents. Register custom templates via `registerTemplate`, or
@@ -25,7 +30,7 @@ import type { DocumentFormat, DocumentTemplate, GeneratedDocument, IDocumentAdap
  * ```
  */
 export class HtmlDocumentAdapter implements IDocumentAdapter {
-  readonly format: DocumentFormat = 'html';
+  readonly format: DocumentFormat = "html";
   private templateFns = new Map<string, (data: Record<string, unknown>) => string>();
 
   /**
@@ -51,10 +56,10 @@ export class HtmlDocumentAdapter implements IDocumentAdapter {
       : `<html><body><pre>${JSON.stringify(template.data, null, 2)}</pre></body></html>`;
 
     return {
-      buffer: Buffer.from(html, 'utf-8'),
-      mimeType: 'text/html',
+      buffer: Buffer.from(html, "utf-8"),
+      mimeType: "text/html",
       fileName: `${template.name}.html`,
-      format: 'html',
+      format: "html",
     };
   }
 }

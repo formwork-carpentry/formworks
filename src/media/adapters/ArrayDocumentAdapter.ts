@@ -4,7 +4,12 @@
  * @patterns Strategy, Test Double
  */
 
-import type { DocumentFormat, DocumentTemplate, GeneratedDocument, IDocumentAdapter } from '../docgen.js';
+import type {
+  DocumentFormat,
+  DocumentTemplate,
+  GeneratedDocument,
+  IDocumentAdapter,
+} from "../docgen.js";
 
 /**
  * In-memory adapter that records generated documents as JSON payloads. Use for
@@ -41,18 +46,18 @@ export class ArrayDocumentAdapter implements IDocumentAdapter {
    */
   async generate(template: DocumentTemplate): Promise<GeneratedDocument> {
     const mimeMap: Record<DocumentFormat, string> = {
-      pdf: 'application/pdf',
-      docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      csv: 'text/csv',
-      html: 'text/html',
-      png: 'image/png',
-      svg: 'image/svg+xml',
+      pdf: "application/pdf",
+      docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      csv: "text/csv",
+      html: "text/html",
+      png: "image/png",
+      svg: "image/svg+xml",
     };
 
     const document: GeneratedDocument = {
       buffer: Buffer.from(JSON.stringify({ template: template.name, data: template.data })),
-      mimeType: mimeMap[this.format] ?? 'application/octet-stream',
+      mimeType: mimeMap[this.format] ?? "application/octet-stream",
       fileName: `${template.name}.${this.format}`,
       format: this.format,
       metadata: { generatedAt: new Date().toISOString(), options: template.options },

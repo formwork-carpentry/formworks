@@ -4,8 +4,8 @@
  * @patterns Builder
  */
 
-import { ColumnBuilder } from './column-types.js';
-import type { ColumnDefinition, ColumnType, IndexDefinition } from './column-types.js';
+import { ColumnBuilder } from "./column-types.js";
+import type { ColumnDefinition, ColumnType, IndexDefinition } from "./column-types.js";
 
 /**
  * Blueprint — fluent column/constraint definition for one table in a migration.
@@ -25,7 +25,7 @@ export class Blueprint {
   public tableName: string;
   public columns: ColumnDefinition[] = [];
   public indexes: IndexDefinition[] = [];
-  public operation: 'create' | 'alter' | 'drop' = 'create';
+  public operation: "create" | "alter" | "drop" = "create";
 
   constructor(table: string) {
     this.tableName = table;
@@ -37,16 +37,16 @@ export class Blueprint {
    * @param {string} [name]
    * @returns {ColumnBuilder}
    */
-  id(name: string = 'id'): ColumnBuilder {
-    return this.addColumn(name, 'id', { primaryKey: true, autoIncrement: true });
+  id(name = "id"): ColumnBuilder {
+    return this.addColumn(name, "id", { primaryKey: true, autoIncrement: true });
   }
 
   /**
    * @param {string} [name]
    * @returns {ColumnBuilder}
    */
-  uuid(name: string = 'id'): ColumnBuilder {
-    return this.addColumn(name, 'uuid', { primaryKey: true });
+  uuid(name = "id"): ColumnBuilder {
+    return this.addColumn(name, "uuid", { primaryKey: true });
   }
 
   /**
@@ -54,8 +54,8 @@ export class Blueprint {
    * @param {number} [length]
    * @returns {ColumnBuilder}
    */
-  string(name: string, length: number = 255): ColumnBuilder {
-    return this.addColumn(name, 'string', { length });
+  string(name: string, length = 255): ColumnBuilder {
+    return this.addColumn(name, "string", { length });
   }
 
   /**
@@ -64,7 +64,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   enum(name: string, values: string[]): ColumnBuilder {
-    return this.addColumn(name, 'enum', { enumValues: [...values] });
+    return this.addColumn(name, "enum", { enumValues: [...values] });
   }
 
   /**
@@ -72,7 +72,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   text(name: string): ColumnBuilder {
-    return this.addColumn(name, 'text');
+    return this.addColumn(name, "text");
   }
 
   /**
@@ -80,7 +80,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   integer(name: string): ColumnBuilder {
-    return this.addColumn(name, 'integer');
+    return this.addColumn(name, "integer");
   }
 
   /**
@@ -88,7 +88,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   bigInteger(name: string): ColumnBuilder {
-    return this.addColumn(name, 'bigInteger');
+    return this.addColumn(name, "bigInteger");
   }
 
   /**
@@ -96,7 +96,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   float(name: string): ColumnBuilder {
-    return this.addColumn(name, 'float');
+    return this.addColumn(name, "float");
   }
 
   /**
@@ -105,8 +105,8 @@ export class Blueprint {
    * @param {number} [scale]
    * @returns {ColumnBuilder}
    */
-  decimal(name: string, precision: number = 8, scale: number = 2): ColumnBuilder {
-    return this.addColumn(name, 'decimal', { precision, scale });
+  decimal(name: string, precision = 8, scale = 2): ColumnBuilder {
+    return this.addColumn(name, "decimal", { precision, scale });
   }
 
   /**
@@ -114,7 +114,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   boolean(name: string): ColumnBuilder {
-    return this.addColumn(name, 'boolean');
+    return this.addColumn(name, "boolean");
   }
 
   /**
@@ -122,7 +122,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   date(name: string): ColumnBuilder {
-    return this.addColumn(name, 'date');
+    return this.addColumn(name, "date");
   }
 
   /**
@@ -130,7 +130,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   datetime(name: string): ColumnBuilder {
-    return this.addColumn(name, 'datetime');
+    return this.addColumn(name, "datetime");
   }
 
   /**
@@ -138,7 +138,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   timestamp(name: string): ColumnBuilder {
-    return this.addColumn(name, 'timestamp');
+    return this.addColumn(name, "timestamp");
   }
 
   /**
@@ -146,7 +146,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   json(name: string): ColumnBuilder {
-    return this.addColumn(name, 'json');
+    return this.addColumn(name, "json");
   }
 
   /**
@@ -154,7 +154,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   binary(name: string): ColumnBuilder {
-    return this.addColumn(name, 'binary');
+    return this.addColumn(name, "binary");
   }
 
   /** Foreign key column: creates bigInteger + constraint */
@@ -163,7 +163,7 @@ export class Blueprint {
    * @returns {ColumnBuilder}
    */
   foreignId(name: string): ColumnBuilder {
-    return this.addColumn(name, 'bigInteger', { unsigned: true });
+    return this.addColumn(name, "bigInteger", { unsigned: true });
   }
 
   /**
@@ -181,7 +181,7 @@ export class Blueprint {
       return new ColumnBuilder(existing);
     }
 
-    return this.addColumn(name, 'bigInteger', { unsigned: true });
+    return this.addColumn(name, "bigInteger", { unsigned: true });
   }
 
   /**
@@ -193,7 +193,7 @@ export class Blueprint {
   index(columns: string[], name?: string): void {
     this.indexes.push({
       columns: [...columns],
-      name: name ?? `${this.tableName}_${columns.join('_')}_index`,
+      name: name ?? `${this.tableName}_${columns.join("_")}_index`,
     });
   }
 
@@ -201,8 +201,8 @@ export class Blueprint {
 
   /** Add created_at + updated_at timestamp columns */
   timestamps(): void {
-    this.timestamp('created_at').nullable();
-    this.timestamp('updated_at').nullable();
+    this.timestamp("created_at").nullable();
+    this.timestamp("updated_at").nullable();
   }
 
   /** Add created_by + updated_by userstamp columns (foreign key to users table) */
@@ -210,7 +210,7 @@ export class Blueprint {
    * @param {string} [createdBy]
    * @param {string} [updatedBy]
    */
-  userstamps(createdBy: string = 'created_by', updatedBy: string = 'updated_by'): void {
+  userstamps(createdBy = "created_by", updatedBy = "updated_by"): void {
     this.bigInteger(createdBy).nullable();
     this.bigInteger(updatedBy).nullable();
   }
@@ -219,13 +219,17 @@ export class Blueprint {
   /**
    * @param {string} [column]
    */
-  softDeletes(column: string = 'deleted_at'): void {
+  softDeletes(column = "deleted_at"): void {
     this.timestamp(column).nullable();
   }
 
   // ── Internal ────────────────────────────────────────────
 
-  private addColumn(name: string, type: ColumnType, overrides: Partial<ColumnDefinition> = {}): ColumnBuilder {
+  private addColumn(
+    name: string,
+    type: ColumnType,
+    overrides: Partial<ColumnDefinition> = {},
+  ): ColumnBuilder {
     const col: ColumnDefinition = {
       name,
       type,

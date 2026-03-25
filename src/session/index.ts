@@ -30,7 +30,7 @@
  * ```
  */
 
-import { randomBytes, timingSafeEqual } from 'crypto';
+import { randomBytes, timingSafeEqual } from "node:crypto";
 
 // ── Session Store Interface ───────────────────────────────
 
@@ -132,22 +132,28 @@ export class MemorySessionStore implements ISessionStore {
     return this.data.has(key);
   }
 
-  getId(): string { return this.sessionId; }
+  getId(): string {
+    return this.sessionId;
+  }
 
   /**
    * @param {string} id
    */
-  setId(id: string): void { this.sessionId = id; }
+  setId(id: string): void {
+    this.sessionId = id;
+  }
 
   async save(): Promise<void> {
     // In-memory — nothing to persist. Real stores write to Redis/DB/file here.
   }
 
   /** Get raw data size (for testing) */
-  size(): number { return this.data.size; }
+  size(): number {
+    return this.data.size;
+  }
 
   private generateId(): string {
-    return randomBytes(20).toString('hex');
+    return randomBytes(20).toString("hex");
   }
 }
 
@@ -193,7 +199,7 @@ export class Session {
     this.started = true;
 
     // Load previous flash keys
-    const prevFlash = await this.store.get<string[]>('_flash_keys');
+    const prevFlash = await this.store.get<string[]>("_flash_keys");
     if (prevFlash) {
       for (const key of prevFlash) this.flashKeys.add(key);
     }
@@ -291,7 +297,7 @@ export class Session {
    * @returns {Promise<void>}
    */
   async flashInput(input: Record<string, unknown>): Promise<void> {
-    await this.flash('_old_input', input);
+    await this.flash("_old_input", input);
   }
 
   /** Get old input from the previous request */
@@ -301,7 +307,7 @@ export class Session {
    * @returns {Promise<T | null>}
    */
   async old<T = unknown>(key: string, defaultValue?: T): Promise<T | null> {
-    const input = await this.store.get<Record<string, unknown>>('_old_input');
+    const input = await this.store.get<Record<string, unknown>>("_old_input");
     const value = input?.[key];
     if (value !== undefined && value !== null) return value as T;
     return defaultValue !== undefined ? defaultValue : null;
@@ -313,7 +319,7 @@ export class Session {
    * @returns {Promise<boolean>}
    */
   async hasOldInput(key: string): Promise<boolean> {
-    const input = await this.store.get<Record<string, unknown>>('_old_input');
+    const input = await this.store.get<Record<string, unknown>>("_old_input");
     return input !== null && key in input;
   }
 
@@ -321,18 +327,18 @@ export class Session {
 
   /** Get or generate the CSRF token */
   async token(): Promise<string> {
-    let token = await this.store.get<string>('_csrf_token');
+    let token = await this.store.get<string>("_csrf_token");
     if (!token) {
-      token = randomBytes(32).toString('hex');
-      await this.store.put('_csrf_token', token);
+      token = randomBytes(32).toString("hex");
+      await this.store.put("_csrf_token", token);
     }
     return token;
   }
 
   /** Regenerate the CSRF token */
   async regenerateToken(): Promise<string> {
-    const token = randomBytes(32).toString('hex');
-    await this.store.put('_csrf_token', token);
+    const token = randomBytes(32).toString("hex");
+    await this.store.put("_csrf_token", token);
     return token;
   }
 
@@ -342,7 +348,7 @@ export class Session {
    * @returns {Promise<boolean>}
    */
   async verifyToken(token: string): Promise<boolean> {
-    const sessionToken = await this.store.get<string>('_csrf_token');
+    const sessionToken = await this.store.get<string>("_csrf_token");
     if (sessionToken === null) return false;
     const a = Buffer.from(sessionToken);
     const b = Buffer.from(token);
@@ -353,11 +359,13 @@ export class Session {
   // ── Session ID ──────────────────────────────────────────
 
   /** Get the session ID */
-  getId(): string { return this.store.getId(); }
+  getId(): string {
+    return this.store.getId();
+  }
 
   /** Regenerate the session ID (after login for security) */
   async regenerate(): Promise<string> {
-    const newId = randomBytes(20).toString('hex');
+    const newId = randomBytes(20).toString("hex");
     this.store.setId(newId);
     return newId;
   }
@@ -375,16 +383,18 @@ export class Session {
 
     // Store new flash keys for next request
     if (this.newFlashKeys.size > 0) {
-      await this.store.put('_flash_keys', [...this.newFlashKeys]);
+      await this.store.put("_flash_keys", [...this.newFlashKeys]);
     } else {
-      await this.store.forget('_flash_keys');
+      await this.store.forget("_flash_keys");
     }
 
     await this.store.save();
   }
 
   /** Get the underlying store (for testing) */
-  getStore(): ISessionStore { return this.store; }
+  getStore(): ISessionStore {
+    return this.store;
+  }
 }
 
 // ── SessionManager — resolves session stores ──────────────
@@ -414,9 +424,9 @@ export class SessionManager {
   private factories = new Map<string, SessionStoreFactory>();
   private defaultDriver: string;
 
-  constructor(defaultDriver: string = 'memory') {
+  constructor(defaultDriver = "memory") {
     this.defaultDriver = defaultDriver;
-    this.registerDriver('memory', () => new MemorySessionStore());
+    this.registerDriver("memory", () => new MemorySessionStore());
   }
 
   /**
@@ -442,7 +452,9 @@ export class SessionManager {
     return new Session(factory(config));
   }
 
-  getDefaultDriver(): string { return this.defaultDriver; }
+  getDefaultDriver(): string {
+    return this.defaultDriver;
+  }
 }
 
 // ── Session Store: Stores keyed by session ID (for multi-session testing) ──
@@ -473,7 +485,9 @@ export class SessionStoreRegistry {
     if (!this.stores.has(sessionId)) {
       this.stores.set(sessionId, new MemorySessionStore(sessionId));
     }
-    return this.stores.get(sessionId)!;
+    const store = this.stores.get(sessionId);
+    if (!store) throw new Error(`Session store not found for ${sessionId}`);
+    return store;
   }
 
   /** Destroy a session */
@@ -491,7 +505,9 @@ export class SessionStoreRegistry {
   }
 
   /** Clear all sessions */
-  clear(): void { this.stores.clear(); }
+  clear(): void {
+    this.stores.clear();
+  }
 }
 
-export { FileSessionStore } from './FileSessionStore.js';
+export { FileSessionStore } from "./FileSessionStore.js";

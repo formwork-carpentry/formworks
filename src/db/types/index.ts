@@ -4,13 +4,13 @@
  */
 
 export type CompiledQueryType =
-  | 'schema'
-  | 'insert'
-  | 'select'
-  | 'update'
-  | 'delete'
-  | 'raw'
-  | 'aggregate';
+  | "schema"
+  | "insert"
+  | "select"
+  | "update"
+  | "delete"
+  | "raw"
+  | "aggregate";
 
 export interface CompiledQuery {
   sql: string;

@@ -5,4 +5,4 @@
  * @see {@link module:@carpentry/media}
  */
 
-export * from './adapters/index.js';
+export * from "./adapters/index.js";

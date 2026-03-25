@@ -5,9 +5,9 @@
  * @principles LSP (substitutable for Memory/Redis/DB stores), SRP (file I/O only)
  */
 
-import { promises as fs } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { createHash } from 'node:crypto';
+import { createHash } from "node:crypto";
+import { promises as fs } from "node:fs";
+import { dirname, join } from "node:path";
 
 /** Session store interface (duplicated to avoid circular import) */
 export interface IFileSessionStore {
@@ -118,10 +118,10 @@ export class FileSessionStore implements IFileSessionStore {
       const entries = await fs.readdir(this.dir, { withFileTypes: true });
       const now = Date.now();
       for (const entry of entries) {
-        if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+        if (!entry.isFile() || !entry.name.endsWith(".json")) continue;
         const path = join(this.dir, entry.name);
         try {
-          const raw = await fs.readFile(path, 'utf-8');
+          const raw = await fs.readFile(path, "utf-8");
           const session: SessionData = JSON.parse(raw);
           if (now - session.lastAccessed > this.ttlMs) {
             await fs.unlink(path);
@@ -142,7 +142,7 @@ export class FileSessionStore implements IFileSessionStore {
   private async loadSession(): Promise<Record<string, unknown>> {
     if (this.cache) return this.cache;
     try {
-      const raw = await fs.readFile(this.filePath(), 'utf-8');
+      const raw = await fs.readFile(this.filePath(), "utf-8");
       const session: SessionData = JSON.parse(raw);
       if (Date.now() - session.lastAccessed > this.ttlMs) {
         this.cache = {};
@@ -165,13 +165,13 @@ export class FileSessionStore implements IFileSessionStore {
   }
 
   private filePath(): string {
-    const hash = createHash('sha256').update(this.sessionId).digest('hex');
+    const hash = createHash("sha256").update(this.sessionId).digest("hex");
     return join(this.dir, `${hash}.json`);
   }
 
   private generateId(): string {
     const bytes = new Uint8Array(24);
     crypto.getRandomValues(bytes);
-    return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+    return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
   }
 }

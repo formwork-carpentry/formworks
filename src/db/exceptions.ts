@@ -3,4 +3,4 @@
  * @description Stable subpath export for database exceptions.
  */
 
-export * from './exceptions/index.js';
+export * from "./exceptions/index.js";

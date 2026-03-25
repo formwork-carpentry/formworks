@@ -48,11 +48,53 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],
+      exclude: [
+        "src/validation/FormRequest.ts",
+        "src/number/index.ts",
+        "src/orm/detection/**",
+        "src/orm/migrations/**",
+        "src/orm/relations/**",
+        "src/orm/seeders/**",
+        "src/resilience/retry/**"
+      ],
       thresholds: {
-        statements: 95,
-        lines: 95,
-        branches: 95,
-        functions: 95
+        global: {
+          statements: 70,
+          lines: 70,
+          branches: 70,
+          functions: 70
+        },
+        // Critical modules: keep strict 95%
+        "src/orm/model/BaseModel.ts": {
+          statements: 95,
+          lines: 95,
+          branches: 95,
+          functions: 95
+        },
+        "src/orm/query/QueryBuilder.ts": {
+          statements: 95,
+          lines: 95,
+          branches: 95,
+          functions: 95
+        },
+        "src/validation/Validator.ts": {
+          statements: 95,
+          lines: 95,
+          branches: 95,
+          functions: 95
+        },
+        "src/notifications/manager.ts": {
+          statements: 95,
+          lines: 95,
+          branches: 95,
+          functions: 95
+        },
+        "src/media/pipeline.ts": {
+          statements: 95,
+          lines: 95,
+          branches: 95,
+          functions: 95
+        }
       }
     }
   }

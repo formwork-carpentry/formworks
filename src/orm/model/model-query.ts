@@ -4,11 +4,14 @@
  * @patterns Proxy (delegates to QueryBuilder)
  */
 
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import type { QueryBuilder } from '../query/QueryBuilder.js';
-import type { BaseModel } from './BaseModel.js';
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import type { QueryBuilder } from "../query/QueryBuilder.js";
+import type { BaseModel } from "./BaseModel.js";
 
-type ModelStatic<T extends BaseModel = BaseModel> = (typeof BaseModel) & (new (attrs?: Dictionary) => T);
+type ModelStatic<T extends BaseModel = BaseModel> = typeof BaseModel &
+  (new (
+    attrs?: Dictionary,
+  ) => T);
 
 /**
  * ModelQueryBuilder — wraps {@link QueryBuilder} and returns hydrated model instances.
@@ -61,7 +64,7 @@ export class ModelQueryBuilder<T extends BaseModel> {
    * @param {'asc' | 'desc'} [dir]
    * @returns {this}
    */
-  orderBy(column: string, dir: 'asc' | 'desc' = 'asc'): this {
+  orderBy(column: string, dir: "asc" | "desc" = "asc"): this {
     this.qb.orderBy(column, dir);
     return this;
   }
@@ -70,10 +73,15 @@ export class ModelQueryBuilder<T extends BaseModel> {
    * @param {number} n
    * @returns {this}
    */
-  limit(n: number): this { this.qb.limit(n); return this; }
+  limit(n: number): this {
+    this.qb.limit(n);
+    return this;
+  }
 
   /** Get the underlying AST for testing */
-  getAST() { return this.qb.getAST(); }
+  getAST() {
+    return this.qb.getAST();
+  }
 
   async get(): Promise<T[]> {
     const rows = await this.qb.get();

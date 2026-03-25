@@ -4,11 +4,11 @@
  */
 
 import {
-  DatabaseManager,
-  createDatabaseManager,
   type DatabaseConnectionConfig,
   type DatabaseDriverFactory,
-} from '../adapters/index.js';
+  DatabaseManager,
+  createDatabaseManager,
+} from "../adapters/index.js";
 
 export {
   DatabaseManager,

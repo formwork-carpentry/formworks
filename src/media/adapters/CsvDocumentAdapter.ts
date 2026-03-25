@@ -4,7 +4,12 @@
  * @patterns Strategy (format-specific generation)
  */
 
-import type { DocumentFormat, DocumentTemplate, GeneratedDocument, IDocumentAdapter } from '../docgen.js';
+import type {
+  DocumentFormat,
+  DocumentTemplate,
+  GeneratedDocument,
+  IDocumentAdapter,
+} from "../docgen.js";
 
 /**
  * Generates CSV documents from template data. Expects `data.rows` (array of objects)
@@ -28,7 +33,7 @@ import type { DocumentFormat, DocumentTemplate, GeneratedDocument, IDocumentAdap
  * ```
  */
 export class CsvDocumentAdapter implements IDocumentAdapter {
-  readonly format: DocumentFormat = 'csv';
+  readonly format: DocumentFormat = "csv";
 
   /**
    * @param template - Must include `data.rows` (array of objects). `data.headers` optional.
@@ -38,31 +43,33 @@ export class CsvDocumentAdapter implements IDocumentAdapter {
    * @see {@link DocumentGenerator} — Register and use this adapter
    */
   async generate(template: DocumentTemplate): Promise<GeneratedDocument> {
-    const rows = template.data['rows'] as Record<string, unknown>[] | undefined;
-    const headers = template.data['headers'] as string[] | undefined;
+    const rows = template.data.rows as Record<string, unknown>[] | undefined;
+    const headers = template.data.headers as string[] | undefined;
 
     if (!rows || !Array.isArray(rows)) {
-      throw new Error('CSV template requires data.rows (array of objects).');
+      throw new Error("CSV template requires data.rows (array of objects).");
     }
 
     const columns = headers ?? Object.keys(rows[0] ?? {});
     const lines = [
-      columns.join(','),
+      columns.join(","),
       ...rows.map((row) =>
-        columns.map((column) => {
-          const value = String(row[column] ?? '');
-          return value.includes(',') || value.includes('"') || value.includes('\n')
-            ? `"${value.replace(/"/g, '""')}"`
-            : value;
-        }).join(',')
+        columns
+          .map((column) => {
+            const value = String(row[column] ?? "");
+            return value.includes(",") || value.includes('"') || value.includes("\n")
+              ? `"${value.replace(/"/g, '""')}"`
+              : value;
+          })
+          .join(","),
       ),
     ];
 
     return {
-      buffer: Buffer.from(lines.join('\n'), 'utf-8'),
-      mimeType: 'text/csv',
+      buffer: Buffer.from(lines.join("\n"), "utf-8"),
+      mimeType: "text/csv",
       fileName: `${template.name}.csv`,
-      format: 'csv',
+      format: "csv",
     };
   }
 }

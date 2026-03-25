@@ -5,13 +5,21 @@
  * @principles SRP (only audit logging)
  */
 
-import { Logger } from './Logger.js';
+import type { Logger } from "./Logger.js";
 
 export type AuditAction =
-  | 'created' | 'updated' | 'deleted' | 'restored'
-  | 'viewed' | 'exported' | 'imported'
-  | 'login' | 'logout' | 'failed_login'
-  | 'permission_granted' | 'permission_denied'
+  | "created"
+  | "updated"
+  | "deleted"
+  | "restored"
+  | "viewed"
+  | "exported"
+  | "imported"
+  | "login"
+  | "logout"
+  | "failed_login"
+  | "permission_granted"
+  | "permission_denied"
   | string; // extensible
 
 export interface AuditEntry {
@@ -68,7 +76,7 @@ export interface IAuditChannel {
  * ```
  */
 export class InMemoryAuditChannel implements IAuditChannel {
-  readonly name = 'memory';
+  readonly name = "memory";
   private entries: AuditEntry[] = [];
 
   /**
@@ -78,8 +86,12 @@ export class InMemoryAuditChannel implements IAuditChannel {
     this.entries.push({ ...entry });
   }
 
-  all(): AuditEntry[] { return [...this.entries]; }
-  count(): number { return this.entries.length; }
+  all(): AuditEntry[] {
+    return [...this.entries];
+  }
+  count(): number {
+    return this.entries.length;
+  }
 
   /**
    * @param {string | number} userId
@@ -95,8 +107,8 @@ export class InMemoryAuditChannel implements IAuditChannel {
    * @returns {AuditEntry[]}
    */
   forResource(type: string, id?: string | number): AuditEntry[] {
-    return this.entries.filter((e) =>
-      e.resourceType === type && (id === undefined || e.resourceId === id)
+    return this.entries.filter(
+      (e) => e.resourceType === type && (id === undefined || e.resourceId === id),
     );
   }
 
@@ -127,11 +139,13 @@ export class InMemoryAuditChannel implements IAuditChannel {
    * @param {string} [resourceType]
    */
   assertRecorded(action: AuditAction, resourceType?: string): void {
-    const matches = this.entries.filter((e) =>
-      e.action === action && (resourceType === undefined || e.resourceType === resourceType)
+    const matches = this.entries.filter(
+      (e) => e.action === action && (resourceType === undefined || e.resourceType === resourceType),
     );
     if (matches.length === 0) {
-      throw new Error(`Expected audit entry for action "${action}"${resourceType ? ` on "${resourceType}"` : ''}, but none found.`);
+      throw new Error(
+        `Expected audit entry for action "${action}"${resourceType ? ` on "${resourceType}"` : ""}, but none found.`,
+      );
     }
   }
 
@@ -140,11 +154,13 @@ export class InMemoryAuditChannel implements IAuditChannel {
    * @param {string} [resourceType]
    */
   assertNotRecorded(action: AuditAction, resourceType?: string): void {
-    const matches = this.entries.filter((e) =>
-      e.action === action && (resourceType === undefined || e.resourceType === resourceType)
+    const matches = this.entries.filter(
+      (e) => e.action === action && (resourceType === undefined || e.resourceType === resourceType),
     );
     if (matches.length > 0) {
-      throw new Error(`Expected NO audit for "${action}"${resourceType ? ` on "${resourceType}"` : ''}, but ${matches.length} found.`);
+      throw new Error(
+        `Expected NO audit for "${action}"${resourceType ? ` on "${resourceType}"` : ""}, but ${matches.length} found.`,
+      );
     }
   }
 
@@ -154,7 +170,8 @@ export class InMemoryAuditChannel implements IAuditChannel {
    */
   assertUserActed(userId: string | number, action: AuditAction): void {
     const matches = this.entries.filter((e) => e.userId === userId && e.action === action);
-    if (matches.length === 0) throw new Error(`Expected user "${userId}" to have performed "${action}", but none found.`);
+    if (matches.length === 0)
+      throw new Error(`Expected user "${userId}" to have performed "${action}", but none found.`);
   }
 
   /**
@@ -163,16 +180,22 @@ export class InMemoryAuditChannel implements IAuditChannel {
    * @param {string} field
    */
   assertChanges(resourceType: string, resourceId: string | number, field: string): void {
-    const matches = this.entries.filter((e) =>
-      e.resourceType === resourceType && e.resourceId === resourceId &&
-      (e.oldValues?.[field] !== undefined || e.newValues?.[field] !== undefined)
+    const matches = this.entries.filter(
+      (e) =>
+        e.resourceType === resourceType &&
+        e.resourceId === resourceId &&
+        (e.oldValues?.[field] !== undefined || e.newValues?.[field] !== undefined),
     );
     if (matches.length === 0) {
-      throw new Error(`Expected audit entry with changes to "${field}" on ${resourceType}#${resourceId}, but none found.`);
+      throw new Error(
+        `Expected audit entry with changes to "${field}" on ${resourceType}#${resourceId}, but none found.`,
+      );
     }
   }
 
-  reset(): void { this.entries = []; }
+  reset(): void {
+    this.entries = [];
+  }
 }
 
 // ── LogAuditChannel — writes audit entries to the app logger ──
@@ -183,23 +206,26 @@ export class InMemoryAuditChannel implements IAuditChannel {
  * Each audit record is written as a structured log entry (action, resource, old/new values).
  */
 export class LogAuditChannel implements IAuditChannel {
-  readonly name = 'log';
+  readonly name = "log";
   constructor(private logger: Logger) {}
 
   /**
    * @param {AuditEntry} entry
    */
   record(entry: AuditEntry): void {
-    this.logger.info(`AUDIT: ${entry.action} on ${entry.resourceType}${entry.resourceId ? `#${entry.resourceId}` : ''}`, {
-      userId: entry.userId,
-      action: entry.action,
-      resourceType: entry.resourceType,
-      resourceId: entry.resourceId,
-      oldValues: entry.oldValues,
-      newValues: entry.newValues,
-      ip: entry.ipAddress,
-      ...entry.metadata,
-    });
+    this.logger.info(
+      `AUDIT: ${entry.action} on ${entry.resourceType}${entry.resourceId ? `#${entry.resourceId}` : ""}`,
+      {
+        userId: entry.userId,
+        action: entry.action,
+        resourceType: entry.resourceType,
+        resourceId: entry.resourceId,
+        oldValues: entry.oldValues,
+        newValues: entry.newValues,
+        ip: entry.ipAddress,
+        ...entry.metadata,
+      },
+    );
   }
 }
 
@@ -245,7 +271,9 @@ export class AuditLogger {
    * @param {Object} entry
    * @returns {Promise<void>}
    */
-  async record(entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string }): Promise<void> {
+  async record(
+    entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string },
+  ): Promise<void> {
     const full: AuditEntry = {
       userId: entry.userId ?? this.defaultUserId?.() ?? null,
       action: entry.action,
@@ -272,9 +300,13 @@ export class AuditLogger {
    * @param {Object} [newValues]
    * @returns {Promise<void>}
    */
-  async created(resourceType: string, resourceId: string | number, newValues?: Record<string, unknown>): Promise<void> {
+  async created(
+    resourceType: string,
+    resourceId: string | number,
+    newValues?: Record<string, unknown>,
+  ): Promise<void> {
     const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
-      action: 'created',
+      action: "created",
       resourceType,
       resourceId,
     };
@@ -289,9 +321,14 @@ export class AuditLogger {
    * @param {Object} [newValues]
    * @returns {Promise<void>}
    */
-  async updated(resourceType: string, resourceId: string | number, oldValues?: Record<string, unknown>, newValues?: Record<string, unknown>): Promise<void> {
+  async updated(
+    resourceType: string,
+    resourceId: string | number,
+    oldValues?: Record<string, unknown>,
+    newValues?: Record<string, unknown>,
+  ): Promise<void> {
     const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
-      action: 'updated',
+      action: "updated",
       resourceType,
       resourceId,
     };
@@ -306,7 +343,7 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async deleted(resourceType: string, resourceId: string | number): Promise<void> {
-    await this.record({ action: 'deleted', resourceType, resourceId });
+    await this.record({ action: "deleted", resourceType, resourceId });
   }
 
   /**
@@ -316,7 +353,7 @@ export class AuditLogger {
    */
   async viewed(resourceType: string, resourceId?: string | number): Promise<void> {
     const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
-      action: 'viewed',
+      action: "viewed",
       resourceType,
     };
     if (resourceId !== undefined) entry.resourceId = resourceId;
@@ -331,8 +368,8 @@ export class AuditLogger {
   async login(userId: string | number, metadata?: Record<string, unknown>): Promise<void> {
     const entry: Partial<AuditEntry> & { action: AuditAction; resourceType: string } = {
       userId,
-      action: 'login',
-      resourceType: 'session',
+      action: "login",
+      resourceType: "session",
     };
     if (metadata !== undefined) entry.metadata = metadata;
     await this.record(entry);
@@ -343,7 +380,7 @@ export class AuditLogger {
    * @returns {Promise<void>}
    */
   async logout(userId: string | number): Promise<void> {
-    await this.record({ userId, action: 'logout', resourceType: 'session' });
+    await this.record({ userId, action: "logout", resourceType: "session" });
   }
 
   /**
@@ -351,12 +388,22 @@ export class AuditLogger {
    * @param {Object} [metadata]
    * @returns {Promise<void>}
    */
-  async failedLogin(credentials: Record<string, unknown>, metadata?: Record<string, unknown>): Promise<void> {
-    await this.record({ userId: null, action: 'failed_login', resourceType: 'session', metadata: { ...metadata, credentials } });
+  async failedLogin(
+    credentials: Record<string, unknown>,
+    metadata?: Record<string, unknown>,
+  ): Promise<void> {
+    await this.record({
+      userId: null,
+      action: "failed_login",
+      resourceType: "session",
+      metadata: { ...metadata, credentials },
+    });
   }
 
   /** Get audit channels (for testing) */
-  getChannels(): IAuditChannel[] { return [...this.channels]; }
+  getChannels(): IAuditChannel[] {
+    return [...this.channels];
+  }
 }
 
 // ── Facade ────────────────────────────────────────────────

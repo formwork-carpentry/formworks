@@ -5,7 +5,7 @@
  * @principles SRP (only logging), DIP (depends on ILogChannel interface)
  */
 
-import type { LogLevel, LogEntry, ILogChannel } from './types.js';
+import type { ILogChannel, LogEntry, LogLevel } from "./types.js";
 
 // ── Logger — the main application logger ──────────────────
 
@@ -38,42 +38,58 @@ export class Logger {
    * @param {string} message
    * @param {Object} [context]
    */
-  emergency(message: string, context: Record<string, unknown> = {}): void { this.log('emergency', message, context); }
+  emergency(message: string, context: Record<string, unknown> = {}): void {
+    this.log("emergency", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  alert(message: string, context: Record<string, unknown> = {}): void { this.log('alert', message, context); }
+  alert(message: string, context: Record<string, unknown> = {}): void {
+    this.log("alert", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  critical(message: string, context: Record<string, unknown> = {}): void { this.log('critical', message, context); }
+  critical(message: string, context: Record<string, unknown> = {}): void {
+    this.log("critical", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  error(message: string, context: Record<string, unknown> = {}): void { this.log('error', message, context); }
+  error(message: string, context: Record<string, unknown> = {}): void {
+    this.log("error", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  warning(message: string, context: Record<string, unknown> = {}): void { this.log('warning', message, context); }
+  warning(message: string, context: Record<string, unknown> = {}): void {
+    this.log("warning", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  notice(message: string, context: Record<string, unknown> = {}): void { this.log('notice', message, context); }
+  notice(message: string, context: Record<string, unknown> = {}): void {
+    this.log("notice", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  info(message: string, context: Record<string, unknown> = {}): void { this.log('info', message, context); }
+  info(message: string, context: Record<string, unknown> = {}): void {
+    this.log("info", message, context);
+  }
   /**
    * @param {string} message
    * @param {Object} [context]
    */
-  debug(message: string, context: Record<string, unknown> = {}): void { this.log('debug', message, context); }
+  debug(message: string, context: Record<string, unknown> = {}): void {
+    this.log("debug", message, context);
+  }
 
   /** Log with explicit level */
   /**
@@ -102,5 +118,7 @@ export class Logger {
   }
 
   /** Get the underlying channel */
-  getChannel(): ILogChannel { return this.channel; }
+  getChannel(): ILogChannel {
+    return this.channel;
+  }
 }

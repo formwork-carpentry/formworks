@@ -22,11 +22,25 @@
 
 // ── Log Levels (RFC 5424 / PSR-3) ────────────────────────
 
-export type LogLevel = 'emergency' | 'alert' | 'critical' | 'error' | 'warning' | 'notice' | 'info' | 'debug';
+export type LogLevel =
+  | "emergency"
+  | "alert"
+  | "critical"
+  | "error"
+  | "warning"
+  | "notice"
+  | "info"
+  | "debug";
 
 export const LOG_LEVEL_SEVERITY: Record<LogLevel, number> = {
-  emergency: 0, alert: 1, critical: 2, error: 3,
-  warning: 4, notice: 5, info: 6, debug: 7,
+  emergency: 0,
+  alert: 1,
+  critical: 2,
+  error: 3,
+  warning: 4,
+  notice: 5,
+  info: 6,
+  debug: 7,
 };
 
 // ── Log Entry ─────────────────────────────────────────────

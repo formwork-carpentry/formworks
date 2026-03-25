@@ -5,7 +5,6 @@
  * @principles SRP — orchestrates lifecycle only; DIP — depends on IContainer, IRouter interfaces
  */
 
-import type { IContainer } from "@carpentry/formworks/core/container";
 import type {
   HttpMethod,
   IHttpKernel,
@@ -15,6 +14,7 @@ import type {
   ResolvedRoute,
   RouteHandler,
 } from "@carpentry/formworks/contracts";
+import type { IContainer } from "@carpentry/formworks/core/container";
 import { MethodNotAllowedError, NotFoundError } from "@carpentry/formworks/core/exceptions";
 import type { Token } from "@carpentry/formworks/core/types";
 import { Pipeline } from "../middleware/Pipeline.js";
@@ -22,9 +22,9 @@ import { Request } from "../request/Request.js";
 import { CarpenterResponse } from "../response/Response.js";
 import type { Router } from "../router/Router.js";
 import {
-  createExceptionHandler,
-  ExceptionHandler,
+  type ExceptionHandler,
   HTTP_EXCEPTION_HANDLER_TOKEN,
+  createExceptionHandler,
 } from "./ExceptionHandler.js";
 
 export interface HttpKernelOptions {

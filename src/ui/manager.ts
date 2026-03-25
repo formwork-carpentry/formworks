@@ -26,7 +26,7 @@ export class UIManager {
   /** Set shared data (available on every page — auth user, flash messages, etc.) */
   /**
    * @param {string} key
-    * @param {unknown | (() => unknown)} value
+   * @param {unknown | (() => unknown)} value
    * @returns {this}
    */
   share(key: string, value: unknown | (() => unknown)): this {

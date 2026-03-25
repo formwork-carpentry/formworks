@@ -5,11 +5,11 @@
  * @principles SRP (only many-to-many logic)
  */
 
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import { QueryBuilder } from '../query/QueryBuilder.js';
-import { BaseModel } from '../model/BaseModel.js';
-import { BaseRelation } from './BaseRelation.js';
-import type { ModelClass, RelationHolder } from './BaseRelation.js';
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import type { BaseModel } from "../model/BaseModel.js";
+import { QueryBuilder } from "../query/QueryBuilder.js";
+import { BaseRelation } from "./BaseRelation.js";
+import type { ModelClass, RelationHolder } from "./BaseRelation.js";
 
 /**
  * BelongsToMany — many-to-many via a pivot table.
@@ -28,8 +28,8 @@ export class BelongsToMany<T extends BaseModel = BaseModel> extends BaseRelation
     private pivotTable: string,
     private foreignPivotKey: string,
     private relatedPivotKey: string,
-    private parentKey: string = 'id',
-    private relatedKey: string = 'id',
+    private parentKey = "id",
+    private relatedKey = "id",
   ) {
     super(relatedClass);
   }
@@ -41,7 +41,12 @@ export class BelongsToMany<T extends BaseModel = BaseModel> extends BaseRelation
   getQuery(parent: BaseModel): QueryBuilder<Dictionary> {
     const relatedTable = this.relatedClass.table;
     return new QueryBuilder<Dictionary>(this.adapter, relatedTable)
-      .join(this.pivotTable, `${relatedTable}.${this.relatedKey}`, '=', `${this.pivotTable}.${this.relatedPivotKey}`)
+      .join(
+        this.pivotTable,
+        `${relatedTable}.${this.relatedKey}`,
+        "=",
+        `${this.pivotTable}.${this.relatedPivotKey}`,
+      )
       .where(`${this.pivotTable}.${this.foreignPivotKey}`, parent.getAttribute(this.parentKey));
   }
 
@@ -66,15 +71,20 @@ export class BelongsToMany<T extends BaseModel = BaseModel> extends BaseRelation
     const relatedTable = this.relatedClass.table;
     const rows = await new QueryBuilder<Dictionary>(this.adapter, relatedTable)
       .select(`${relatedTable}.*`, `${this.pivotTable}.${this.foreignPivotKey} as _pivot_fk`)
-      .join(this.pivotTable, `${relatedTable}.${this.relatedKey}`, '=', `${this.pivotTable}.${this.relatedPivotKey}`)
+      .join(
+        this.pivotTable,
+        `${relatedTable}.${this.relatedKey}`,
+        "=",
+        `${this.pivotTable}.${this.relatedPivotKey}`,
+      )
       .whereIn(`${this.pivotTable}.${this.foreignPivotKey}`, keys)
       .get();
 
     const grouped = new Map<unknown, Dictionary[]>();
     for (const row of rows) {
-      const fk = row['_pivot_fk'];
+      const fk = row._pivot_fk;
       if (!grouped.has(fk)) grouped.set(fk, []);
-      grouped.get(fk)!.push(row);
+      grouped.get(fk)?.push(row);
     }
 
     for (const parent of parents) {
@@ -90,7 +100,11 @@ export class BelongsToMany<T extends BaseModel = BaseModel> extends BaseRelation
    * @param {(string | number} ids
    * @returns {Promise<void>}
    */
-  async attach(parent: BaseModel, ids: (string | number)[], pivotData: Dictionary = {}): Promise<void> {
+  async attach(
+    parent: BaseModel,
+    ids: (string | number)[],
+    pivotData: Dictionary = {},
+  ): Promise<void> {
     const parentKey = parent.getAttribute(this.parentKey);
     const rows = ids.map((id) => ({
       [this.foreignPivotKey]: parentKey,
@@ -107,8 +121,10 @@ export class BelongsToMany<T extends BaseModel = BaseModel> extends BaseRelation
    * @returns {Promise<void>}
    */
   async detach(parent: BaseModel, ids?: (string | number)[]): Promise<void> {
-    const qb = new QueryBuilder(this.adapter, this.pivotTable)
-      .where(this.foreignPivotKey, parent.getAttribute(this.parentKey));
+    const qb = new QueryBuilder(this.adapter, this.pivotTable).where(
+      this.foreignPivotKey,
+      parent.getAttribute(this.parentKey),
+    );
     if (ids && ids.length > 0) qb.whereIn(this.relatedPivotKey, ids);
     await qb.delete();
   }

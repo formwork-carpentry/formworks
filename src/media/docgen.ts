@@ -4,7 +4,7 @@
  * @patterns Abstract Factory, Strategy
  */
 
-export type DocumentFormat = 'pdf' | 'docx' | 'xlsx' | 'csv' | 'html' | 'png' | 'svg';
+export type DocumentFormat = "pdf" | "docx" | "xlsx" | "csv" | "html" | "png" | "svg";
 
 /**
  * Pluggable adapter that generates documents in a specific format.
@@ -25,8 +25,8 @@ export interface DocumentTemplate {
 
 /** Layout options for PDF/DOCX generation. */
 export interface DocumentOptions {
-  pageSize?: 'A4' | 'letter' | 'A3' | 'legal';
-  orientation?: 'portrait' | 'landscape';
+  pageSize?: "A4" | "letter" | "A3" | "legal";
+  orientation?: "portrait" | "landscape";
   margins?: { top?: number; right?: number; bottom?: number; left?: number };
   header?: string;
   footer?: string;
@@ -96,8 +96,10 @@ export class DocumentGenerator {
   async generate(template: DocumentTemplate): Promise<GeneratedDocument> {
     const adapter = this.adapters.get(template.format);
     if (!adapter) {
-      const available = [...this.adapters.keys()].join(', ');
-      throw new Error(`No adapter for format "${template.format}". Available: ${available || 'none'}`);
+      const available = [...this.adapters.keys()].join(", ");
+      throw new Error(
+        `No adapter for format "${template.format}". Available: ${available || "none"}`,
+      );
     }
 
     const doc = await adapter.generate(template);
@@ -106,8 +108,12 @@ export class DocumentGenerator {
   }
 
   /** Shorthand: generate PDF. */
-  pdf(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    const template: DocumentTemplate = { name, data, format: 'pdf' };
+  pdf(
+    name: string,
+    data: Record<string, unknown>,
+    options?: DocumentOptions,
+  ): Promise<GeneratedDocument> {
+    const template: DocumentTemplate = { name, data, format: "pdf" };
     if (options !== undefined) {
       template.options = options;
     }
@@ -115,8 +121,12 @@ export class DocumentGenerator {
   }
 
   /** Shorthand: generate DOCX. */
-  docx(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    const template: DocumentTemplate = { name, data, format: 'docx' };
+  docx(
+    name: string,
+    data: Record<string, unknown>,
+    options?: DocumentOptions,
+  ): Promise<GeneratedDocument> {
+    const template: DocumentTemplate = { name, data, format: "docx" };
     if (options !== undefined) {
       template.options = options;
     }
@@ -124,8 +134,12 @@ export class DocumentGenerator {
   }
 
   /** Shorthand: generate XLSX. */
-  xlsx(name: string, data: Record<string, unknown>, options?: DocumentOptions): Promise<GeneratedDocument> {
-    const template: DocumentTemplate = { name, data, format: 'xlsx' };
+  xlsx(
+    name: string,
+    data: Record<string, unknown>,
+    options?: DocumentOptions,
+  ): Promise<GeneratedDocument> {
+    const template: DocumentTemplate = { name, data, format: "xlsx" };
     if (options !== undefined) {
       template.options = options;
     }
@@ -134,12 +148,16 @@ export class DocumentGenerator {
 
   /** Shorthand: generate CSV. */
   csv(name: string, data: Record<string, unknown>): Promise<GeneratedDocument> {
-    return this.generate({ name, data, format: 'csv' });
+    return this.generate({ name, data, format: "csv" });
   }
 
   /** Get all generated documents (for testing). */
-  getGenerated(): GeneratedDocument[] { return [...this.generated]; }
+  getGenerated(): GeneratedDocument[] {
+    return [...this.generated];
+  }
 
   /** Clear generated history (for testing). */
-  resetGenerated(): void { this.generated = []; }
+  resetGenerated(): void {
+    this.generated = [];
+  }
 }

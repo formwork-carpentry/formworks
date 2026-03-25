@@ -4,8 +4,8 @@
  * @patterns Strategy (migration strategies), Observer (progress events)
  */
 
-import type { Tenant, IsolationStrategy } from './types.js';
-import type { ITenantStore } from './store.js';
+import type { ITenantStore } from "./store.js";
+import type { IsolationStrategy, Tenant } from "./types.js";
 
 // ── Tenant Migration — move between isolation strategies ──
 
@@ -26,7 +26,11 @@ export interface TenantDataImporter {
    * @param {IsolationStrategy} targetStrategy
    * @returns {Promise<void>}
    */
-  import(tenant: Tenant, snapshot: TenantDataSnapshot, targetStrategy: IsolationStrategy): Promise<void>;
+  import(
+    tenant: Tenant,
+    snapshot: TenantDataSnapshot,
+    targetStrategy: IsolationStrategy,
+  ): Promise<void>;
 }
 
 export interface TenantDataSnapshot {
@@ -37,7 +41,15 @@ export interface TenantDataSnapshot {
   metadata?: Record<string, unknown>;
 }
 
-export type MigrationPhase = 'exporting' | 'validating' | 'importing' | 'verifying' | 'switching' | 'complete' | 'failed' | 'rolled-back';
+export type MigrationPhase =
+  | "exporting"
+  | "validating"
+  | "importing"
+  | "verifying"
+  | "switching"
+  | "complete"
+  | "failed"
+  | "rolled-back";
 
 export interface MigrationProgress {
   tenantId: string | number;
@@ -101,7 +113,7 @@ export class TenantMigrator {
   ): Promise<MigrationResult> {
     const progress: MigrationProgress = {
       tenantId: tenant.id,
-      phase: 'exporting',
+      phase: "exporting",
       fromStrategy: from,
       toStrategy: to,
       tablesProcessed: 0,
@@ -124,12 +136,12 @@ export class TenantMigrator {
       }, 0);
 
       // 2. Validate
-      progress.phase = 'validating';
+      progress.phase = "validating";
       this.emitProgress(progress);
       this.validateSnapshot(snapshot, tenant);
 
       // 3. Import
-      progress.phase = 'importing';
+      progress.phase = "importing";
       this.emitProgress(progress);
       await this.importer.import(tenant, snapshot, to);
 
@@ -137,31 +149,34 @@ export class TenantMigrator {
       progress.rowsProcessed = progress.totalRows;
 
       // 4. Verify
-      progress.phase = 'verifying';
+      progress.phase = "verifying";
       this.emitProgress(progress);
-      const verifySnapshot = await this.exporter.export({ ...tenant, config: { ...tenant.config, isolation: to } });
+      const verifySnapshot = await this.exporter.export({
+        ...tenant,
+        config: { ...tenant.config, isolation: to },
+      });
       const valid = this.verifyIntegrity(snapshot, verifySnapshot);
 
       if (!valid) {
-        progress.phase = 'rolled-back';
-        progress.error = 'Verification failed: row count mismatch after import.';
+        progress.phase = "rolled-back";
+        progress.error = "Verification failed: row count mismatch after import.";
         this.emitProgress(progress);
         return { success: false, error: progress.error, snapshot };
       }
 
       // 5. Switch tenant config
-      progress.phase = 'switching';
+      progress.phase = "switching";
       this.emitProgress(progress);
       await this.store.update(tenant.id, {
         config: { ...tenant.config, isolation: to },
       });
 
-      progress.phase = 'complete';
+      progress.phase = "complete";
       this.emitProgress(progress);
 
       return { success: true, snapshot };
     } catch (error) {
-      progress.phase = 'failed';
+      progress.phase = "failed";
       progress.error = (error as Error).message;
       this.emitProgress(progress);
       return { success: false, error: progress.error };
@@ -175,7 +190,11 @@ export class TenantMigrator {
    * @param {IsolationStrategy} to
    * @returns {Promise<DryRunResult>}
    */
-  async dryRun(tenant: Tenant, from: IsolationStrategy, to: IsolationStrategy): Promise<DryRunResult> {
+  async dryRun(
+    tenant: Tenant,
+    from: IsolationStrategy,
+    to: IsolationStrategy,
+  ): Promise<DryRunResult> {
     const snapshot = await this.exporter.export(tenant);
     this.validateSnapshot(snapshot, tenant);
 
@@ -187,7 +206,8 @@ export class TenantMigrator {
 
     return {
       tenantId: tenant.id,
-      from, to,
+      from,
+      to,
       tables: tableNames.length,
       rows: totalRows,
       estimatedBytes: JSON.stringify(snapshot).length,
@@ -197,7 +217,9 @@ export class TenantMigrator {
 
   private validateSnapshot(snapshot: TenantDataSnapshot, tenant: Tenant): void {
     if (snapshot.tenantId !== tenant.id) {
-      throw new Error(`Snapshot tenant ID "${snapshot.tenantId}" does not match tenant "${tenant.id}".`);
+      throw new Error(
+        `Snapshot tenant ID "${snapshot.tenantId}" does not match tenant "${tenant.id}".`,
+      );
     }
   }
 
@@ -265,7 +287,7 @@ export class InMemoryTenantExporter implements TenantDataExporter {
     return {
       tenantId: tenant.id,
       exportedAt: new Date(),
-      sourceStrategy: (tenant.config?.['isolation'] as IsolationStrategy) ?? 'row',
+      sourceStrategy: (tenant.config?.isolation as IsolationStrategy) ?? "row",
       tables: this.data.get(tenant.id) ?? {},
     };
   }
@@ -283,7 +305,11 @@ export class InMemoryTenantExporter implements TenantDataExporter {
  * @see TenantMigrator
  */
 export class InMemoryTenantImporter implements TenantDataImporter {
-  private imported: Array<{ tenant: Tenant; snapshot: TenantDataSnapshot; targetStrategy: IsolationStrategy }> = [];
+  private imported: Array<{
+    tenant: Tenant;
+    snapshot: TenantDataSnapshot;
+    targetStrategy: IsolationStrategy;
+  }> = [];
 
   /**
    * @param {Tenant} tenant
@@ -291,11 +317,17 @@ export class InMemoryTenantImporter implements TenantDataImporter {
    * @param {IsolationStrategy} targetStrategy
    * @returns {Promise<void>}
    */
-  async import(tenant: Tenant, snapshot: TenantDataSnapshot, targetStrategy: IsolationStrategy): Promise<void> {
+  async import(
+    tenant: Tenant,
+    snapshot: TenantDataSnapshot,
+    targetStrategy: IsolationStrategy,
+  ): Promise<void> {
     this.imported.push({ tenant, snapshot, targetStrategy });
   }
 
-  getImported() { return [...this.imported]; }
+  getImported() {
+    return [...this.imported];
+  }
 
   /**
    * @param {string | number} tenantId
@@ -311,9 +343,13 @@ export class InMemoryTenantImporter implements TenantDataImporter {
    * @param {IsolationStrategy} strategy
    */
   assertImportedTo(tenantId: string | number, strategy: IsolationStrategy): void {
-    const match = this.imported.find((i) => i.tenant.id === tenantId && i.targetStrategy === strategy);
+    const match = this.imported.find(
+      (i) => i.tenant.id === tenantId && i.targetStrategy === strategy,
+    );
     if (!match) throw new Error(`No import for tenant "${tenantId}" to strategy "${strategy}".`);
   }
 
-  reset(): void { this.imported = []; }
+  reset(): void {
+    this.imported = [];
+  }
 }

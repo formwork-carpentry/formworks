@@ -4,12 +4,15 @@
  * @patterns Template Method
  */
 
-import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import type { QueryBuilder } from '../query/QueryBuilder.js';
-import { BaseModel } from '../model/BaseModel.js';
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import type { BaseModel } from "../model/BaseModel.js";
+import type { QueryBuilder } from "../query/QueryBuilder.js";
 
-export type ModelClass<T extends BaseModel = BaseModel> = (typeof BaseModel) & (new (attrs?: Dictionary) => T);
+export type ModelClass<T extends BaseModel = BaseModel> = typeof BaseModel &
+  (new (
+    attrs?: Dictionary,
+  ) => T);
 
 export interface RelationHolder {
   [key: `_rel_${string}`]: unknown;

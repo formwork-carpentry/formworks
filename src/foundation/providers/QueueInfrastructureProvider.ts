@@ -3,14 +3,14 @@
  * @description Registers queue manager and default queue connection bindings.
  */
 
-import type { IContainer } from '@carpentry/formworks/core/container';
-import { ConfigResolver } from '@carpentry/formworks/core/config';
-import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import type { ConfigResolver } from "@carpentry/formworks/core/config";
+import type { IContainer } from "@carpentry/formworks/core/container";
 import {
-  createQueueManager,
   type QueueConnectionConfig,
   type QueueManager,
-} from '@carpentry/formworks/queue';
+  createQueueManager,
+} from "@carpentry/formworks/queue";
 
 /**
  * @description Service provider that wires queue services and database-backed queue dependencies.
@@ -26,18 +26,16 @@ export class QueueInfrastructureProvider {
    * @returns {void}
    */
   register(): void {
-    this.app.singleton('queue.manager', () => {
+    this.app.singleton("queue.manager", () => {
       return createQueueManager(
         this.resolver.queueConnection(),
         this.resolver.queueConnections() as Record<string, QueueConnectionConfig>,
         {
-          resolveDatabaseAdapter: () => this.app.make('db') as IDatabaseAdapter,
+          resolveDatabaseAdapter: () => this.app.make("db") as IDatabaseAdapter,
         },
       );
     });
 
-    this.app.singleton('queue', (c) =>
-      (c.make('queue.manager') as QueueManager).connection(),
-    );
+    this.app.singleton("queue", (c) => (c.make("queue.manager") as QueueManager).connection());
   }
 }

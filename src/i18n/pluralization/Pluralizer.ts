@@ -5,7 +5,7 @@
  * @principles SRP — pluralization logic only; OCP — add new locale rules without modifying core
  */
 
-import type { IPluralizer } from '@carpentry/formworks/contracts';
+import type { IPluralizer } from "@carpentry/formworks/contracts";
 
 /**
  * Pluralizer — picks the right segment from pipe-separated translation strings.
@@ -30,14 +30,18 @@ export class Pluralizer implements IPluralizer {
    *   "one|few|many|other"                      — multi-form (Slavic etc.)
    */
   choose(line: string, count: number, locale: string): string {
-    const segments = line.split('|');
+    const segments = line.split("|");
 
     // 1. Try explicit match: {n} prefix
     for (const segment of segments) {
       const exactMatch = segment.match(/^\{(\d+)\}\s*(.*)/);
       const exactCountRaw = exactMatch?.[1];
       const exactValueRaw = exactMatch?.[2];
-      if (exactCountRaw !== undefined && exactValueRaw !== undefined && Number(exactCountRaw) === count) {
+      if (
+        exactCountRaw !== undefined &&
+        exactValueRaw !== undefined &&
+        Number(exactCountRaw) === count
+      ) {
         return exactValueRaw.trim();
       }
     }
@@ -50,7 +54,7 @@ export class Pluralizer implements IPluralizer {
       const rangeValueRaw = rangeMatch?.[3];
       if (minRaw !== undefined && maxRaw !== undefined && rangeValueRaw !== undefined) {
         const min = Number(minRaw);
-        const max = maxRaw === '*' ? Infinity : Number(maxRaw);
+        const max = maxRaw === "*" ? Number.POSITIVE_INFINITY : Number(maxRaw);
         if (count >= min && count <= max) {
           return rangeValueRaw.trim();
         }
@@ -60,7 +64,10 @@ export class Pluralizer implements IPluralizer {
     // 3. Simple plural index (no explicit markers)
     // Strip any {n} or [n,m] prefixes that didn't match
     const cleanSegments = segments.map((s) =>
-      s.replace(/^\{\d+\}\s*/, '').replace(/^\[\d+,(\d+|\*)\]\s*/, '').trim()
+      s
+        .replace(/^\{\d+\}\s*/, "")
+        .replace(/^\[\d+,(\d+|\*)\]\s*/, "")
+        .trim(),
     );
 
     const index = this.getPluralIndex(count, locale);
@@ -79,7 +86,7 @@ export class Pluralizer implements IPluralizer {
   private getPluralIndex(count: number, locale: string): number {
     const firstLocalePart = locale.split("-")[0] ?? "";
     const lang = (firstLocalePart.split("_")[0] ?? "").toLowerCase();
-    const rule = PLURAL_RULES[lang] ?? PLURAL_RULES["_default"] ?? ((n: number) => (n === 1 ? 0 : 1));
+    const rule = PLURAL_RULES[lang] ?? PLURAL_RULES._default ?? ((n: number) => (n === 1 ? 0 : 1));
     return rule(count);
   }
 }
@@ -88,8 +95,8 @@ export class Pluralizer implements IPluralizer {
 
 type PluralRule = (n: number) => number;
 
-const twoForm: PluralRule = (n) => n === 1 ? 0 : 1;
-const frenchForm: PluralRule = (n) => n <= 1 ? 0 : 1;
+const twoForm: PluralRule = (n) => (n === 1 ? 0 : 1);
+const frenchForm: PluralRule = (n) => (n <= 1 ? 0 : 1);
 const noPlural: PluralRule = () => 0;
 
 const slavicEast: PluralRule = (n) => {
@@ -120,11 +127,46 @@ const arabic: PluralRule = (n) => {
 };
 
 const PLURAL_RULES: Record<string, PluralRule> = Object.fromEntries([
-  ...['en','de','nl','sv','da','no','nb','nn','fi','es','pt','it','el','bg','hu','tr','ka',
-      'he','hi','bn','ta','te','mr','sw','yo','ig','ha','zu','xh','am','ee','tw'].map(l => [l, twoForm]),
-  ...['fr','ff'].map(l => [l, frenchForm]),
-  ...['ru','uk','sr','hr','bs'].map(l => [l, slavicEast]),
-  ['pl', polish], ['cs', czechSlovak], ['sk', czechSlovak], ['ar', arabic],
-  ...['ja','zh','ko','vi','th','lo','my','km'].map(l => [l, noPlural]),
-  ['_default', twoForm],
+  ...[
+    "en",
+    "de",
+    "nl",
+    "sv",
+    "da",
+    "no",
+    "nb",
+    "nn",
+    "fi",
+    "es",
+    "pt",
+    "it",
+    "el",
+    "bg",
+    "hu",
+    "tr",
+    "ka",
+    "he",
+    "hi",
+    "bn",
+    "ta",
+    "te",
+    "mr",
+    "sw",
+    "yo",
+    "ig",
+    "ha",
+    "zu",
+    "xh",
+    "am",
+    "ee",
+    "tw",
+  ].map((l) => [l, twoForm]),
+  ...["fr", "ff"].map((l) => [l, frenchForm]),
+  ...["ru", "uk", "sr", "hr", "bs"].map((l) => [l, slavicEast]),
+  ["pl", polish],
+  ["cs", czechSlovak],
+  ["sk", czechSlovak],
+  ["ar", arabic],
+  ...["ja", "zh", "ko", "vi", "th", "lo", "my", "km"].map((l) => [l, noPlural]),
+  ["_default", twoForm],
 ]);

@@ -21,9 +21,9 @@
  * For testing, you can use `ArrayChannel` and/or the `fake()` helpers on managers.
  */
 
-export * from './types.js';
-export * from './channels.js';
-export * from './Logger.js';
-export * from './LogManager.js';
-export * from './audit.js';
-export * from './facades.js';
+export * from "./types.js";
+export * from "./channels.js";
+export * from "./Logger.js";
+export * from "./LogManager.js";
+export * from "./audit.js";
+export * from "./facades.js";

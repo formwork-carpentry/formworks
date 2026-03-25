@@ -11,8 +11,6 @@
  * @principles SRP — schema management only; DIP — compiles via IDatabaseAdapter
  */
 
-
-
 // ── Column Definition ─────────────────────────────────────
 
 export interface ColumnDefinition {
@@ -35,8 +33,8 @@ export interface ColumnDefinition {
 export interface ForeignKeyDefinition {
   table: string;
   column: string;
-  onDelete?: 'cascade' | 'restrict' | 'set null' | 'no action';
-  onUpdate?: 'cascade' | 'restrict' | 'set null' | 'no action';
+  onDelete?: "cascade" | "restrict" | "set null" | "no action";
+  onUpdate?: "cascade" | "restrict" | "set null" | "no action";
 }
 
 export interface IndexDefinition {
@@ -45,9 +43,21 @@ export interface IndexDefinition {
 }
 
 export type ColumnType =
-  | 'id' | 'uuid' | 'string' | 'text' | 'integer' | 'bigInteger'
-  | 'float' | 'decimal' | 'boolean' | 'date' | 'datetime' | 'timestamp'
-  | 'json' | 'binary' | 'enum';
+  | "id"
+  | "uuid"
+  | "string"
+  | "text"
+  | "integer"
+  | "bigInteger"
+  | "float"
+  | "decimal"
+  | "boolean"
+  | "date"
+  | "datetime"
+  | "timestamp"
+  | "json"
+  | "binary"
+  | "enum";
 
 // ── Column Builder (fluent modifiers) ─────────────────────
 
@@ -65,16 +75,34 @@ export type ColumnType =
 export class ColumnBuilder {
   constructor(private col: ColumnDefinition) {}
 
-  nullable(): this { this.col.nullable = true; return this; }
+  nullable(): this {
+    this.col.nullable = true;
+    return this;
+  }
   /**
    * @param {unknown} value
    * @returns {this}
    */
-  default(value: unknown): this { this.col.defaultValue = value; return this; }
-  unique(): this { this.col.unique = true; return this; }
-  index(): this { this.col.index = true; return this; }
-  unsigned(): this { this.col.unsigned = true; return this; }
-  primary(): this { this.col.primaryKey = true; return this; }
+  default(value: unknown): this {
+    this.col.defaultValue = value;
+    return this;
+  }
+  unique(): this {
+    this.col.unique = true;
+    return this;
+  }
+  index(): this {
+    this.col.index = true;
+    return this;
+  }
+  unsigned(): this {
+    this.col.unsigned = true;
+    return this;
+  }
+  primary(): this {
+    this.col.primaryKey = true;
+    return this;
+  }
 
   /**
    * Mark this column as referencing a target column.
@@ -88,7 +116,7 @@ export class ColumnBuilder {
   references(column: string): this {
     const current = this.col.references;
     const next: ForeignKeyDefinition = {
-      table: current?.table ?? '',
+      table: current?.table ?? "",
       column,
     };
     if (current?.onDelete !== undefined) {
@@ -111,7 +139,7 @@ export class ColumnBuilder {
     const current = this.col.references;
     const next: ForeignKeyDefinition = {
       table,
-      column: current?.column ?? 'id',
+      column: current?.column ?? "id",
     };
     if (current?.onDelete !== undefined) {
       next.onDelete = current.onDelete;
@@ -131,9 +159,9 @@ export class ColumnBuilder {
    */
   constrained(table?: string, column?: string): this {
     // Infer table from column name: user_id → users
-    const inferredTable = table ?? this.col.name.replace(/_id$/, '') + 's';
-    const inferredCol = column ?? 'id';
-    this.references(inferredCol).on(inferredTable).onDelete('cascade');
+    const inferredTable = table ?? `${this.col.name.replace(/_id$/, "")}s`;
+    const inferredCol = column ?? "id";
+    this.references(inferredCol).on(inferredTable).onDelete("cascade");
     return this;
   }
 
@@ -141,7 +169,7 @@ export class ColumnBuilder {
    * @param {'cascade' | 'restrict' | 'set null' | 'no action'} action
    * @returns {this}
    */
-  onDelete(action: 'cascade' | 'restrict' | 'set null' | 'no action'): this {
+  onDelete(action: "cascade" | "restrict" | "set null" | "no action"): this {
     if (this.col.references) this.col.references.onDelete = action;
     return this;
   }
@@ -150,7 +178,7 @@ export class ColumnBuilder {
    * @param {'cascade' | 'restrict' | 'set null' | 'no action'} action
    * @returns {this}
    */
-  onUpdate(action: 'cascade' | 'restrict' | 'set null' | 'no action'): this {
+  onUpdate(action: "cascade" | "restrict" | "set null" | "no action"): this {
     if (this.col.references) this.col.references.onUpdate = action;
     return this;
   }

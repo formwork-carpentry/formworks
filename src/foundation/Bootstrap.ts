@@ -7,15 +7,15 @@
  * @principles Convention over Configuration, DIP
  */
 
-import { Container } from '../core/container';
-import { Config } from '../core/config';
-import { loadEnv } from '../core/config';
-import { buildDefaultConfig } from '../core/config';
-import { ServiceProvider } from '../contracts';
-import { InfrastructureServiceProvider } from './InfrastructureServiceProvider.js';
+import type { ServiceProvider } from "../contracts";
+import { Config } from "../core/config";
+import { loadEnv } from "../core/config";
+import { buildDefaultConfig } from "../core/config";
+import { Container } from "../core/container";
+import { InfrastructureServiceProvider } from "./InfrastructureServiceProvider.js";
 
-import type { IContainer } from '../core/container';
-import type { Dictionary } from '../core/types';
+import type { IContainer } from "../core/container";
+import type { Dictionary } from "../core/types";
 
 export interface BootstrapOptions {
   /** Path to .env file (default: process.cwd() + '/.env') */
@@ -82,7 +82,7 @@ export async function bootstrap(options: BootstrapOptions = {}): Promise<{
 
   // 3. Create container and bind config
   const container = new Container();
-  container.instance('config', config);
+  container.instance("config", config);
 
   // 4. Register infrastructure
   const infraProvider = new InfrastructureServiceProvider(container);
@@ -91,8 +91,8 @@ export async function bootstrap(options: BootstrapOptions = {}): Promise<{
 
   // 5. Wire ORM adapter so BaseModel.create/query/find work
   try {
-    const { BaseModel } = await import('../orm');
-    BaseModel.adapter = container.make('db');
+    const { BaseModel } = await import("../orm");
+    BaseModel.adapter = container.make("db");
   } catch {
     // ORM package may not be installed — skip silently
   }

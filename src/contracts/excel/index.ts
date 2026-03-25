@@ -3,7 +3,7 @@
  * @description Spreadsheet generation and parsing contract.
  */
 
-export type SpreadsheetFormat = 'xlsx' | 'csv' | 'tsv';
+export type SpreadsheetFormat = "xlsx" | "csv" | "tsv";
 
 export interface SheetData {
   name: string;

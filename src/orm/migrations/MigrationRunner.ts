@@ -4,8 +4,8 @@
  * @patterns Command (each migration is a command)
  */
 
-import { Schema } from './Schema.js';
-import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import { Schema } from "./Schema.js";
 
 export interface MigrationRecord {
   name: string;
@@ -107,16 +107,20 @@ export class MigrationRunner {
       const migration = migrations.find((m) => m.name === name);
       if (migration) await migration.down(this.schema);
     }
-    await this.adapter.execute({ sql: 'DELETE FROM carpenter_migrations', bindings: [], type: 'raw' });
+    await this.adapter.execute({
+      sql: "DELETE FROM carpenter_migrations",
+      bindings: [],
+      type: "raw",
+    });
     return this.migrate(migrations);
   }
 
   /** Get list of already-run migration names */
   async getRanMigrations(): Promise<string[]> {
     const result = await this.adapter.execute<MigrationRecord>({
-      sql: 'SELECT name FROM carpenter_migrations ORDER BY batch, name',
+      sql: "SELECT name FROM carpenter_migrations ORDER BY batch, name",
       bindings: [],
-      type: 'select',
+      type: "select",
     });
     return result.rows.map((r) => r.name);
   }
@@ -125,51 +129,51 @@ export class MigrationRunner {
 
   private async ensureMigrationsTable(): Promise<void> {
     await this.adapter.execute({
-      sql: 'CREATE TABLE IF NOT EXISTS carpenter_migrations (name VARCHAR(255) NOT NULL, batch INTEGER NOT NULL)',
+      sql: "CREATE TABLE IF NOT EXISTS carpenter_migrations (name VARCHAR(255) NOT NULL, batch INTEGER NOT NULL)",
       bindings: [],
-      type: 'schema',
+      type: "schema",
     });
   }
 
   private async getNextBatch(): Promise<number> {
     const result = await this.adapter.execute<{ max_batch: number }>({
-      sql: 'SELECT COALESCE(MAX(batch), 0) as max_batch FROM carpenter_migrations',
+      sql: "SELECT COALESCE(MAX(batch), 0) as max_batch FROM carpenter_migrations",
       bindings: [],
-      type: 'select',
+      type: "select",
     });
     return (result.rows[0]?.max_batch ?? 0) + 1;
   }
 
   private async getLastBatch(): Promise<MigrationRecord[]> {
     const batchResult = await this.adapter.execute<{ max_batch: number }>({
-      sql: 'SELECT COALESCE(MAX(batch), 0) as max_batch FROM carpenter_migrations',
+      sql: "SELECT COALESCE(MAX(batch), 0) as max_batch FROM carpenter_migrations",
       bindings: [],
-      type: 'select',
+      type: "select",
     });
     const batch = batchResult.rows[0]?.max_batch ?? 0;
     if (batch === 0) return [];
 
     const result = await this.adapter.execute<MigrationRecord>({
-      sql: 'SELECT name, batch FROM carpenter_migrations WHERE batch = ? ORDER BY name',
+      sql: "SELECT name, batch FROM carpenter_migrations WHERE batch = ? ORDER BY name",
       bindings: [batch],
-      type: 'select',
+      type: "select",
     });
     return result.rows;
   }
 
   private async recordMigration(name: string, batch: number): Promise<void> {
     await this.adapter.execute({
-      sql: 'INSERT INTO carpenter_migrations (name, batch) VALUES (?, ?)',
+      sql: "INSERT INTO carpenter_migrations (name, batch) VALUES (?, ?)",
       bindings: [name, batch],
-      type: 'insert',
+      type: "insert",
     });
   }
 
   private async removeMigration(name: string): Promise<void> {
     await this.adapter.execute({
-      sql: 'DELETE FROM carpenter_migrations WHERE name = ?',
+      sql: "DELETE FROM carpenter_migrations WHERE name = ?",
       bindings: [name],
-      type: 'delete',
+      type: "delete",
     });
   }
 }

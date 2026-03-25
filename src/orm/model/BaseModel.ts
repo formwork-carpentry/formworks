@@ -7,18 +7,21 @@
  *             DIP — depends on IDatabaseAdapter, never on concrete DB driver
  */
 
-import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
-import type { Dictionary } from '@carpentry/formworks/core/types';
-import { QueryBuilder } from '../query/QueryBuilder.js';
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import type { Dictionary } from "@carpentry/formworks/core/types";
+import { QueryBuilder } from "../query/QueryBuilder.js";
 
 // Re-export extracted types so existing imports don't break
-export type { ModelEvent, ModelEventHandler, CastType } from './model-types.js';
-export { ModelQueryBuilder } from './model-query.js';
+export type { ModelEvent, ModelEventHandler, CastType } from "./model-types.js";
+export { ModelQueryBuilder } from "./model-query.js";
 
-import type { ModelEvent, ModelEventHandler, CastType } from './model-types.js';
-import { ModelQueryBuilder } from './model-query.js';
+import { ModelQueryBuilder } from "./model-query.js";
+import type { CastType, ModelEvent, ModelEventHandler } from "./model-types.js";
 
-type ModelStatic<T extends BaseModel = BaseModel> = (typeof BaseModel) & (new (attrs?: Dictionary) => T);
+type ModelStatic<T extends BaseModel = BaseModel> = typeof BaseModel &
+  (new (
+    attrs?: Dictionary,
+  ) => T);
 
 // ── BaseModel ─────────────────────────────────────────────
 
@@ -50,31 +53,31 @@ export class BaseModel {
   // ── Static Configuration (overridden per model) ─────────
 
   /** Database table name */
-  static table: string = '';
+  static table = "";
   /** Primary key column */
-  static primaryKey: string = 'id';
+  static primaryKey = "id";
   /** Enable auto timestamps (created_at, updated_at) */
-  static timestamps: boolean = true;
+  static timestamps = true;
   /** Enable auto userstamps (created_by, updated_by) — tracks WHO changed a record */
-  static userstamps: boolean = false;
+  static userstamps = false;
   /** Enable soft deletes */
-  static softDeletes: boolean = false;
+  static softDeletes = false;
   /** Mass-assignable attributes (empty = use guarded) */
   static fillable: string[] = [];
   /** Non-mass-assignable attributes */
-  static guarded: string[] = ['id'];
+  static guarded: string[] = ["id"];
   /** Attribute casts */
   static casts: Record<string, CastType> = {};
   /** Created-at column name */
-  static createdAtColumn: string = 'created_at';
+  static createdAtColumn = "created_at";
   /** Updated-at column name */
-  static updatedAtColumn: string = 'updated_at';
+  static updatedAtColumn = "updated_at";
   /** Deleted-at column name (soft deletes) */
-  static deletedAtColumn: string = 'deleted_at';
+  static deletedAtColumn = "deleted_at";
   /** Created-by column name (userstamps) */
-  static createdByColumn: string = 'created_by';
+  static createdByColumn = "created_by";
   /** Updated-by column name (userstamps) */
-  static updatedByColumn: string = 'updated_by';
+  static updatedByColumn = "updated_by";
 
   /** Database adapter — set once at boot by the ORM service provider */
   static adapter: IDatabaseAdapter;
@@ -101,7 +104,7 @@ export class BaseModel {
   /** Original values from last sync (Memento pattern) */
   protected original: Dictionary = {};
   /** Whether this model exists in the database */
-  protected existsInDb: boolean = false;
+  protected existsInDb = false;
 
   constructor(attributes: Dictionary = {}) {
     this.fill(attributes);
@@ -120,14 +123,20 @@ export class BaseModel {
   }
 
   /** Find a model by primary key */
-  static async find<T extends BaseModel>(this: ModelStatic<T>, id: string | number): Promise<T | null> {
+  static async find<T extends BaseModel>(
+    this: ModelStatic<T>,
+    id: string | number,
+  ): Promise<T | null> {
     const row = await this.query().where(this.primaryKey, id).first();
     if (!row) return null;
     return this.hydrate(row);
   }
 
   /** Find a model by primary key or throw */
-  static async findOrFail<T extends BaseModel>(this: ModelStatic<T>, id: string | number): Promise<T> {
+  static async findOrFail<T extends BaseModel>(
+    this: ModelStatic<T>,
+    id: string | number,
+  ): Promise<T> {
     const model = await this.find(id);
     if (!model) {
       throw new Error(`${this.name} with ${this.primaryKey} "${id}" not found.`);
@@ -159,7 +168,10 @@ export class BaseModel {
   }
 
   /** Create and persist a new model in one step */
-  static async create<T extends BaseModel>(this: ModelStatic<T>, attributes: Dictionary): Promise<T> {
+  static async create<T extends BaseModel>(
+    this: ModelStatic<T>,
+    attributes: Dictionary,
+  ): Promise<T> {
     const model = new this(attributes) as T;
     await model.save();
     return model;
@@ -180,7 +192,7 @@ export class BaseModel {
   async save(): Promise<void> {
     const ctor = this.constructor as typeof BaseModel;
 
-    if (await this.fireEvent('saving') === false) return;
+    if ((await this.fireEvent("saving")) === false) return;
 
     if (this.existsInDb) {
       await this.performUpdate(ctor);
@@ -188,7 +200,7 @@ export class BaseModel {
       await this.performInsert(ctor);
     }
 
-    await this.fireEvent('saved');
+    await this.fireEvent("saved");
     this.syncOriginal();
   }
 
@@ -205,7 +217,7 @@ export class BaseModel {
   /** Delete the model (or soft-delete if enabled) */
   async delete(): Promise<void> {
     const ctor = this.constructor as typeof BaseModel;
-    if (await this.fireEvent('deleting') === false) return;
+    if ((await this.fireEvent("deleting")) === false) return;
 
     if (ctor.softDeletes) {
       const now = new Date().toISOString();
@@ -220,21 +232,21 @@ export class BaseModel {
       this.existsInDb = false;
     }
 
-    await this.fireEvent('deleted');
+    await this.fireEvent("deleted");
   }
 
   /** Restore a soft-deleted model */
   async restore(): Promise<void> {
     const ctor = this.constructor as typeof BaseModel;
     if (!ctor.softDeletes) throw new Error(`${ctor.name} does not use soft deletes.`);
-    if (await this.fireEvent('restoring') === false) return;
+    if ((await this.fireEvent("restoring")) === false) return;
 
     this.attributes[ctor.deletedAtColumn] = null;
     await new QueryBuilder(ctor.adapter, ctor.table)
       .where(ctor.primaryKey, this.getKey())
       .update({ [ctor.deletedAtColumn]: null });
 
-    await this.fireEvent('restored');
+    await this.fireEvent("restored");
     this.syncOriginal();
   }
 
@@ -313,9 +325,7 @@ export class BaseModel {
     if (attribute) {
       return this.attributes[attribute] !== this.original[attribute];
     }
-    return Object.keys(this.attributes).some(
-      (key) => this.attributes[key] !== this.original[key],
-    );
+    return Object.keys(this.attributes).some((key) => this.attributes[key] !== this.original[key]);
   }
 
   /** Get original value(s) before modification */
@@ -374,11 +384,11 @@ export class BaseModel {
   // ── Model Events (Observer Pattern) ─────────────────────
 
   static on<T extends BaseModel>(event: ModelEvent, handler: ModelEventHandler<T>): void {
-    const key = `${this.name}:${event}`;
-    if (!this.eventHandlers.has(key)) {
-      this.eventHandlers.set(key, []);
+    const key = `${BaseModel.name}:${event}`;
+    if (!BaseModel.eventHandlers.has(key)) {
+      BaseModel.eventHandlers.set(key, []);
     }
-    this.eventHandlers.get(key)!.push(handler as ModelEventHandler);
+    BaseModel.eventHandlers.get(key)?.push(handler as ModelEventHandler);
   }
 
   protected async fireEvent(event: ModelEvent): Promise<boolean> {
@@ -394,13 +404,13 @@ export class BaseModel {
 
   /** Clear all event handlers (for testing) */
   static clearEvents(): void {
-    this.eventHandlers.clear();
+    BaseModel.eventHandlers.clear();
   }
 
   // ── Internal Persistence ────────────────────────────────
 
   private async performInsert(ctor: typeof BaseModel): Promise<void> {
-    if (await this.fireEvent('creating') === false) return;
+    if ((await this.fireEvent("creating")) === false) return;
 
     if (ctor.timestamps) {
       const now = new Date().toISOString();
@@ -427,14 +437,14 @@ export class BaseModel {
     }
 
     this.existsInDb = true;
-    await this.fireEvent('created');
+    await this.fireEvent("created");
   }
 
   private async performUpdate(ctor: typeof BaseModel): Promise<void> {
     const dirty = this.getDirty();
     if (Object.keys(dirty).length === 0) return; // Nothing changed
 
-    if (await this.fireEvent('updating') === false) return;
+    if ((await this.fireEvent("updating")) === false) return;
 
     if (ctor.timestamps) {
       dirty[ctor.updatedAtColumn] = new Date().toISOString();
@@ -451,7 +461,7 @@ export class BaseModel {
       .where(ctor.primaryKey, this.getKey())
       .update(dirty);
 
-    await this.fireEvent('updated');
+    await this.fireEvent("updated");
   }
 
   private syncOriginal(): void {
@@ -460,12 +470,18 @@ export class BaseModel {
 
   private castValue(value: unknown, type: CastType): unknown {
     switch (type) {
-      case 'string': return String(value);
-      case 'number': return Number(value);
-      case 'boolean': return Boolean(value);
-      case 'date': return new Date(value as string | number);
-      case 'json': return typeof value === 'string' ? JSON.parse(value) : value;
-      default: return value;
+      case "string":
+        return String(value);
+      case "number":
+        return Number(value);
+      case "boolean":
+        return Boolean(value);
+      case "date":
+        return new Date(value as string | number);
+      case "json":
+        return typeof value === "string" ? JSON.parse(value) : value;
+      default:
+        return value;
     }
   }
 }

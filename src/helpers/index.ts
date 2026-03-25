@@ -26,20 +26,16 @@
 
 export const Str = {
   /** "hello_world" → "helloWorld" */
-  camel: (s: string): string =>
-    s.replace(/[-_](\w)/g, (_, c) => c.toUpperCase()),
+  camel: (s: string): string => s.replace(/[-_](\w)/g, (_, c) => c.toUpperCase()),
 
   /** "helloWorld" → "hello_world" */
-  snake: (s: string): string =>
-    s.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`).replace(/^_/, ''),
+  snake: (s: string): string => s.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`).replace(/^_/, ""),
 
   /** "helloWorld" → "hello-world" */
-  kebab: (s: string): string =>
-    Str.snake(s).replace(/_/g, '-'),
+  kebab: (s: string): string => Str.snake(s).replace(/_/g, "-"),
 
   /** "hello world" → "Hello World" */
-  title: (s: string): string =>
-    s.replace(/\b\w/g, (c) => c.toUpperCase()),
+  title: (s: string): string => s.replace(/\b\w/g, (c) => c.toUpperCase()),
 
   /** "hello_world" → "HelloWorld" */
   pascal: (s: string): string => {
@@ -49,44 +45,57 @@ export const Str = {
 
   /** "User" → "users" */
   plural: (s: string): string => {
-    if (s.endsWith('y') && !/[aeiou]y$/i.test(s)) return s.slice(0, -1) + 'ies';
-    if (s.endsWith('s') || s.endsWith('x') || s.endsWith('ch') || s.endsWith('sh')) return s + 'es';
-    return s + 's';
+    if (s.endsWith("y") && !/[aeiou]y$/i.test(s)) return `${s.slice(0, -1)}ies`;
+    if (s.endsWith("s") || s.endsWith("x") || s.endsWith("ch") || s.endsWith("sh")) return `${s}es`;
+    return `${s}s`;
   },
 
   /** "users" → "user" (simple) */
   singular: (s: string): string => {
-    if (s.endsWith('ies')) return s.slice(0, -3) + 'y';
-    if (s.endsWith('ses') || s.endsWith('xes') || s.endsWith('ches') || s.endsWith('shes')) return s.slice(0, -2);
-    if (s.endsWith('s') && !s.endsWith('ss')) return s.slice(0, -1);
+    if (s.endsWith("ies")) return `${s.slice(0, -3)}y`;
+    if (s.endsWith("ses") || s.endsWith("xes") || s.endsWith("ches") || s.endsWith("shes"))
+      return s.slice(0, -2);
+    if (s.endsWith("s") && !s.endsWith("ss")) return s.slice(0, -1);
     return s;
   },
 
   /** "hello-world" → "Hello world" */
   headline: (s: string): string => {
-    const words = s.replace(/[-_]/g, ' ').replace(/([A-Z])/g, ' $1').trim().split(/\s+/);
-    return words.map((w, i) => i === 0 ? w.charAt(0).toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase()).join(' ');
+    const words = s
+      .replace(/[-_]/g, " ")
+      .replace(/([A-Z])/g, " $1")
+      .trim()
+      .split(/\s+/);
+    return words
+      .map((w, i) =>
+        i === 0 ? w.charAt(0).toUpperCase() + w.slice(1).toLowerCase() : w.toLowerCase(),
+      )
+      .join(" ");
   },
 
   /** Generate a URL-safe slug */
-  slug: (s: string, separator: string = '-'): string =>
-    s.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, separator).replace(new RegExp(`^${separator}+|${separator}+$`, 'g'), ''),
+  slug: (s: string, separator = "-"): string =>
+    s
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_]+/g, separator)
+      .replace(new RegExp(`^${separator}+|${separator}+$`, "g"), ""),
 
   /** Truncate with ellipsis */
-  limit: (s: string, length: number, end: string = '...'): string =>
+  limit: (s: string, length: number, end = "..."): string =>
     s.length <= length ? s : s.slice(0, length - end.length) + end,
 
   /** "Hello :name, you have :count items" → "Hello Alice, you have 3 items" */
   replace: (s: string, replacements: Record<string, string | number>): string => {
     let result = s;
     for (const [key, val] of Object.entries(replacements)) {
-      result = result.replace(new RegExp(`:${key}`, 'g'), String(val));
+      result = result.replace(new RegExp(`:${key}`, "g"), String(val));
     }
     return result;
   },
 
   /** Check if string contains substring (case-insensitive option) */
-  contains: (haystack: string, needle: string, ignoreCase: boolean = false): boolean =>
+  contains: (haystack: string, needle: string, ignoreCase = false): boolean =>
     ignoreCase ? haystack.toLowerCase().includes(needle.toLowerCase()) : haystack.includes(needle),
 
   /** "hello" → true, "" → false, "  " → false */
@@ -94,10 +103,11 @@ export const Str = {
     s !== null && s !== undefined && s.trim().length > 0,
 
   /** Generate random string */
-  random: (length: number = 16): string => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+  random: (length = 16): string => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++)
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
     return result;
   },
 
@@ -105,7 +115,7 @@ export const Str = {
   hash: (s: string): string => {
     let hash = 0;
     for (let i = 0; i < s.length; i++) {
-      hash = ((hash << 5) - hash) + s.charCodeAt(i);
+      hash = (hash << 5) - hash + s.charCodeAt(i);
       hash = hash & hash;
     }
     return Math.abs(hash).toString(36);
@@ -113,15 +123,18 @@ export const Str = {
 
   /** "fooBarBaz" → ["foo", "Bar", "Baz"] */
   words: (s: string): string[] =>
-    s.replace(/[-_]/g, ' ').split(/(?=[A-Z])|\s+/).filter(Boolean),
+    s
+      .replace(/[-_]/g, " ")
+      .split(/(?=[A-Z])|\s+/)
+      .filter(Boolean),
 
   /** Mask part of a string: "alice@example.com" → "ali***@example.com" */
-  mask: (s: string, start: number, length: number, char: string = '*'): string =>
+  mask: (s: string, start: number, length: number, char = "*"): string =>
     s.slice(0, start) + char.repeat(Math.min(length, s.length - start)) + s.slice(start + length),
 
   /** Check if string matches a pattern with * wildcard */
   is: (pattern: string, value: string): boolean => {
-    const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
+    const regex = new RegExp(`^${pattern.replace(/\*/g, ".*")}$`);
     return regex.test(value);
   },
 };
@@ -133,10 +146,11 @@ export const Str = {
 export const Arr = {
   /** Get value by dot-notation key */
   get: <T = unknown>(obj: Record<string, unknown>, key: string, defaultValue?: T): T => {
-    const parts = key.split('.');
+    const parts = key.split(".");
     let current: unknown = obj;
     for (const part of parts) {
-      if (current === null || current === undefined || typeof current !== 'object') return (defaultValue as T);
+      if (current === null || current === undefined || typeof current !== "object")
+        return defaultValue as T;
       current = (current as Record<string, unknown>)[part];
     }
     return (current as T) ?? (defaultValue as T);
@@ -144,13 +158,13 @@ export const Arr = {
 
   /** Set value by dot-notation key */
   set: (obj: Record<string, unknown>, key: string, value: unknown): void => {
-    const parts = key.split('.');
+    const parts = key.split(".");
     if (parts.length === 0) return;
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
       if (part === undefined) continue;
-      if (!(part in current) || typeof current[part] !== 'object') {
+      if (!(part in current) || typeof current[part] !== "object") {
         current[part] = {};
       }
       current = current[part] as Record<string, unknown>;
@@ -179,7 +193,10 @@ export const Arr = {
 
   /** Flatten a nested array */
   flatten: <T>(arr: (T | T[])[]): T[] =>
-    arr.reduce<T[]>((acc, item) => acc.concat(Array.isArray(item) ? Arr.flatten(item as (T | T[])[]) : [item]), []),
+    arr.reduce<T[]>(
+      (acc, item) => acc.concat(Array.isArray(item) ? Arr.flatten(item as (T | T[])[]) : [item]),
+      [],
+    ),
 
   /** Get unique values */
   unique: <T>(arr: T[]): T[] => [...new Set(arr)],
@@ -188,7 +205,10 @@ export const Arr = {
   groupBy: <T>(arr: T[], keyFn: ((item: T) => string) | string): Record<string, T[]> => {
     const result: Record<string, T[]> = {};
     for (const item of arr) {
-      const key = typeof keyFn === 'function' ? keyFn(item) : String((item as Record<string, unknown>)[keyFn]);
+      const key =
+        typeof keyFn === "function"
+          ? keyFn(item)
+          : String((item as Record<string, unknown>)[keyFn]);
       if (!result[key]) result[key] = [];
       result[key].push(item);
     }
@@ -229,11 +249,12 @@ export const Arr = {
     arr.reduce((acc, item) => acc + (fn ? fn(item) : Number(item)), 0),
 
   /** Sort by key (returns new array) */
-  sortBy: <T>(arr: T[], key: string, dir: 'asc' | 'desc' = 'asc'): T[] =>
+  sortBy: <T>(arr: T[], key: string, dir: "asc" | "desc" = "asc"): T[] =>
     [...arr].sort((a, b) => {
-      const av = (a as Record<string, unknown>)[key] as string | number, bv = (b as Record<string, unknown>)[key] as string | number;
+      const av = (a as Record<string, unknown>)[key] as string | number;
+      const bv = (b as Record<string, unknown>)[key] as string | number;
       const cmp = av < bv ? -1 : av > bv ? 1 : 0;
-      return dir === 'asc' ? cmp : -cmp;
+      return dir === "asc" ? cmp : -cmp;
     }),
 
   /** Pluck a single field from array of objects */
@@ -249,7 +270,8 @@ export const Arr = {
 
   /** Partition into [matching, non-matching] */
   partition: <T>(arr: T[], predicate: (item: T) => boolean): [T[], T[]] => {
-    const yes: T[] = [], no: T[] = [];
+    const yes: T[] = [];
+    const no: T[] = [];
     for (const item of arr) (predicate(item) ? yes : no).push(item);
     return [yes, no];
   },
@@ -275,56 +297,80 @@ export const Arr = {
 export class Collection<T> {
   constructor(private items: T[]) {}
 
-  static of<T>(items: T[]): Collection<T> { return new Collection(items); }
+  static of<T>(items: T[]): Collection<T> {
+    return new Collection(items);
+  }
 
   /**
    * @param {(item: T, index: number} fn
    * @returns {Collection<U>}
    */
-  map<U>(fn: (item: T, index: number) => U): Collection<U> { return new Collection(this.items.map(fn)); }
+  map<U>(fn: (item: T, index: number) => U): Collection<U> {
+    return new Collection(this.items.map(fn));
+  }
   /**
    * @param {(item: T} fn
    * @returns {Collection<T>}
    */
-  filter(fn: (item: T) => boolean): Collection<T> { return new Collection(this.items.filter(fn)); }
+  filter(fn: (item: T) => boolean): Collection<T> {
+    return new Collection(this.items.filter(fn));
+  }
   /**
    * @param {(item: T} fn
    * @returns {Collection<T>}
    */
-  reject(fn: (item: T) => boolean): Collection<T> { return this.filter((item) => !fn(item)); }
+  reject(fn: (item: T) => boolean): Collection<T> {
+    return this.filter((item) => !fn(item));
+  }
   /**
    * @param {(item: T} fn
    * @returns {Collection<U>}
    */
-  flatMap<U>(fn: (item: T) => U[]): Collection<U> { return new Collection(this.items.flatMap(fn)); }
+  flatMap<U>(fn: (item: T) => U[]): Collection<U> {
+    return new Collection(this.items.flatMap(fn));
+  }
   /**
    * @param {string} key
    * @param {'asc' | 'desc'} [dir]
    * @returns {Collection<T>}
    */
-  sortBy(key: string, dir: 'asc' | 'desc' = 'asc'): Collection<T> { return new Collection(Arr.sortBy(this.items, key, dir)); }
+  sortBy(key: string, dir: "asc" | "desc" = "asc"): Collection<T> {
+    return new Collection(Arr.sortBy(this.items, key, dir));
+  }
   /**
    * @param {string | ((item: T} key
    * @returns {Record<string, T[]>}
    */
-  groupBy(key: string | ((item: T) => string)): Record<string, T[]> { return Arr.groupBy(this.items, key); }
+  groupBy(key: string | ((item: T) => string)): Record<string, T[]> {
+    return Arr.groupBy(this.items, key);
+  }
   /**
    * @param {string} key
    * @returns {Record<string, T>}
    */
-  keyBy(key: string): Record<string, T> { return Arr.keyBy(this.items, key); }
+  keyBy(key: string): Record<string, T> {
+    return Arr.keyBy(this.items, key);
+  }
   /**
    * @param {string} key
    * @returns {Collection<unknown>}
    */
-  pluck(key: string): Collection<unknown> { return new Collection(Arr.pluck(this.items, key)); }
+  pluck(key: string): Collection<unknown> {
+    return new Collection(Arr.pluck(this.items, key));
+  }
   /**
    * @param {number} size
    * @returns {Collection<T[]>}
    */
-  chunk(size: number): Collection<T[]> { return new Collection(Arr.chunk(this.items, size)); }
-  unique(): Collection<T> { return new Collection(Arr.unique(this.items)); }
-  flatten(): Collection<unknown> { return new Collection(Arr.flatten(this.items as unknown as (unknown | unknown[])[])); }
+  chunk(size: number): Collection<T[]> {
+    return new Collection(Arr.chunk(this.items, size));
+  }
+  unique(): Collection<T> {
+    return new Collection(Arr.unique(this.items));
+  }
+  flatten(): Collection<unknown> {
+    return new Collection(Arr.flatten(this.items as unknown as (unknown | unknown[])[]));
+  }
   /**
    * @param {(item: T} fn
    * @returns {[Collection<T>, Collection<T>]}
@@ -338,23 +384,35 @@ export class Collection<T> {
    * @param {(item: T} [predicate]
    * @returns {T | undefined}
    */
-  first(predicate?: (item: T) => boolean): T | undefined { return Arr.first(this.items, predicate); }
-  last(): T | undefined { return Arr.last(this.items); }
-  count(): number { return this.items.length; }
-  isEmpty(): boolean { return this.items.length === 0; }
-  isNotEmpty(): boolean { return this.items.length > 0; }
+  first(predicate?: (item: T) => boolean): T | undefined {
+    return Arr.first(this.items, predicate);
+  }
+  last(): T | undefined {
+    return Arr.last(this.items);
+  }
+  count(): number {
+    return this.items.length;
+  }
+  isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+  isNotEmpty(): boolean {
+    return this.items.length > 0;
+  }
   /**
    * @param {(item: T} [fn]
    * @returns {number}
    */
-  sum(fn?: (item: T) => number): number { return Arr.sum(this.items, fn); }
+  sum(fn?: (item: T) => number): number {
+    return Arr.sum(this.items, fn);
+  }
 
   /**
    * @param {((item: T} predicate
    * @returns {boolean}
    */
   contains(predicate: ((item: T) => boolean) | T): boolean {
-    return typeof predicate === 'function'
+    return typeof predicate === "function"
       ? this.items.some(predicate as (item: T) => boolean)
       : this.items.includes(predicate);
   }
@@ -363,26 +421,41 @@ export class Collection<T> {
    * @param {(item: T, index: number} fn
    * @returns {this}
    */
-  each(fn: (item: T, index: number) => void): this { this.items.forEach(fn); return this; }
+  each(fn: (item: T, index: number) => void): this {
+    this.items.forEach(fn);
+    return this;
+  }
   /**
    * @param {(acc: U, item: T} fn
    * @returns {U}
    */
-  reduce<U>(fn: (acc: U, item: T) => U, initial: U): U { return this.items.reduce(fn, initial); }
+  reduce<U>(fn: (acc: U, item: T) => U, initial: U): U {
+    return this.items.reduce(fn, initial);
+  }
   /**
    * @param {number} n
    * @returns {Collection<T>}
    */
-  take(n: number): Collection<T> { return new Collection(this.items.slice(0, n)); }
+  take(n: number): Collection<T> {
+    return new Collection(this.items.slice(0, n));
+  }
   /**
    * @param {number} n
    * @returns {Collection<T>}
    */
-  skip(n: number): Collection<T> { return new Collection(this.items.slice(n)); }
-  reverse(): Collection<T> { return new Collection([...this.items].reverse()); }
+  skip(n: number): Collection<T> {
+    return new Collection(this.items.slice(n));
+  }
+  reverse(): Collection<T> {
+    return new Collection([...this.items].reverse());
+  }
 
-  toArray(): T[] { return [...this.items]; }
-  toJSON(): T[] { return this.toArray(); }
+  toArray(): T[] {
+    return [...this.items];
+  }
+  toJSON(): T[] {
+    return this.toArray();
+  }
 }
 
 /** Shorthand: collect([1,2,3]).filter(...).map(...).toArray() */

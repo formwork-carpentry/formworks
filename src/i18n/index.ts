@@ -31,6 +31,6 @@
  * @see Pluralizer — Plural rules for `choice()`
  */
 
-export { Translator, setGlobalTranslator, __, trans, transChoice } from './Translator.js';
-export { Pluralizer } from './pluralization/Pluralizer.js';
-export { MemoryLoader, ObjectLoader } from './loader/Loaders.js';
+export { Translator, setGlobalTranslator, __, trans, transChoice } from "./Translator.js";
+export { Pluralizer } from "./pluralization/Pluralizer.js";
+export { MemoryLoader, ObjectLoader } from "./loader/Loaders.js";

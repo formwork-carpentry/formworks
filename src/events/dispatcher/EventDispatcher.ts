@@ -5,7 +5,11 @@
  * @principles SRP — event routing only; OCP — new events/listeners without modifying dispatcher
  */
 
-import type { EventListener, IEventDispatcher, IEventSubscriber } from "@carpentry/formworks/contracts";
+import type {
+  EventListener,
+  IEventDispatcher,
+  IEventSubscriber,
+} from "@carpentry/formworks/contracts";
 import type { Unsubscribe } from "@carpentry/formworks/core/types";
 
 const WILDCARD_SUFFIX = ".*";

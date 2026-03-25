@@ -4,9 +4,9 @@
  * @patterns Factory Method (creates Loggers), Strategy (selects channels)
  */
 
-import type { ILogChannel } from './types.js';
-import { Logger } from './Logger.js';
-import { ConsoleChannel, NullChannel, ArrayChannel } from './channels.js';
+import { Logger } from "./Logger.js";
+import { ArrayChannel, ConsoleChannel, NullChannel } from "./channels.js";
+import type { ILogChannel } from "./types.js";
 
 // ── LogManager — resolves loggers by channel name ─────────
 
@@ -35,7 +35,7 @@ export class LogManager {
   private channels = new Map<string, ILogChannel>();
   private defaultChannel: string;
 
-  constructor(defaultChannel: string = 'console') {
+  constructor(defaultChannel = "console") {
     this.defaultChannel = defaultChannel;
     this.addChannel(new ConsoleChannel());
     this.addChannel(new NullChannel());
@@ -58,7 +58,10 @@ export class LogManager {
   channel(name?: string): Logger {
     const channelName = name ?? this.defaultChannel;
     const ch = this.channels.get(channelName);
-    if (!ch) throw new Error(`Log channel "${channelName}" not registered. Available: ${[...this.channels.keys()].join(', ')}`);
+    if (!ch)
+      throw new Error(
+        `Log channel "${channelName}" not registered. Available: ${[...this.channels.keys()].join(", ")}`,
+      );
     return new Logger(ch);
   }
 
@@ -67,42 +70,58 @@ export class LogManager {
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  emergency(msg: string, ctx?: Record<string, unknown>): void { this.channel().emergency(msg, ctx); }
+  emergency(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().emergency(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  alert(msg: string, ctx?: Record<string, unknown>): void { this.channel().alert(msg, ctx); }
+  alert(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().alert(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  critical(msg: string, ctx?: Record<string, unknown>): void { this.channel().critical(msg, ctx); }
+  critical(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().critical(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  error(msg: string, ctx?: Record<string, unknown>): void { this.channel().error(msg, ctx); }
+  error(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().error(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  warning(msg: string, ctx?: Record<string, unknown>): void { this.channel().warning(msg, ctx); }
+  warning(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().warning(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  notice(msg: string, ctx?: Record<string, unknown>): void { this.channel().notice(msg, ctx); }
+  notice(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().notice(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  info(msg: string, ctx?: Record<string, unknown>): void { this.channel().info(msg, ctx); }
+  info(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().info(msg, ctx);
+  }
   /**
    * @param {string} msg
    * @param {Object} [ctx]
    */
-  debug(msg: string, ctx?: Record<string, unknown>): void { this.channel().debug(msg, ctx); }
+  debug(msg: string, ctx?: Record<string, unknown>): void {
+    this.channel().debug(msg, ctx);
+  }
 
   /** Replace the default channel with an ArrayChannel for testing */
   /**

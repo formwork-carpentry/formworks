@@ -25,10 +25,10 @@
  * @see Tenancy — Global facade for tenant context operations
  */
 
-export * from './types.js';
-export * from './resolvers.js';
-export * from './store.js';
-export * from './manager.js';
-export * from './facades.js';
-export * from './migrator.js';
-export * from './scope.js';
+export * from "./types.js";
+export * from "./resolvers.js";
+export * from "./store.js";
+export * from "./manager.js";
+export * from "./facades.js";
+export * from "./migrator.js";
+export * from "./scope.js";

@@ -36,7 +36,7 @@ export interface IEventSubscriber {
 export interface IEventDispatcher {
   /**
    * Register a listener for an event.
-  * @param {EventKey<T>} event - Event key (event class preferred; string supports wildcards)
+   * @param {EventKey<T>} event - Event key (event class preferred; string supports wildcards)
    * @param {EventListener} listener - Callback to invoke
    * @returns {void}
    */
@@ -44,7 +44,7 @@ export interface IEventDispatcher {
 
   /**
    * Register a one-time listener (auto-removed after first invocation).
-  * @param {EventKey<T>} event - Event key
+   * @param {EventKey<T>} event - Event key
    * @param {EventListener} listener - Callback to invoke once
    * @returns {void}
    */
@@ -52,31 +52,31 @@ export interface IEventDispatcher {
 
   /**
    * Remove a listener. If no listener specified, removes all for that event.
-  * @param {EventKey} event - Event key
+   * @param {EventKey} event - Event key
    * @param {EventListener} [listener] - Specific listener to remove
    * @returns {void}
    */
   off(event: EventKey, listener?: EventListener): void;
 
   /**
-  * Dispatch an event to all registered listeners.
-  * @param {EventKey<T>} event - Event key
-  * @param {T} [payload] - Data passed to listeners
+   * Dispatch an event to all registered listeners.
+   * @param {EventKey<T>} event - Event key
+   * @param {T} [payload] - Data passed to listeners
    * @returns {Promise<void>}
    * @example
    * ```ts
-  * class OrderPlaced {
-  *   constructor(public readonly orderId: number, public readonly total: number) {}
-  * }
-  *
-  * await events.dispatch(OrderPlaced, new OrderPlaced(123, 99.99));
+   * class OrderPlaced {
+   *   constructor(public readonly orderId: number, public readonly total: number) {}
+   * }
+   *
+   * await events.dispatch(OrderPlaced, new OrderPlaced(123, 99.99));
    * ```
    */
   dispatch<T = unknown>(event: EventKey<T>, payload?: T): Promise<void>;
 
   /**
-  * @deprecated Since 1.0.0, use dispatch() instead.
-  */
+   * @deprecated Since 1.0.0, use dispatch() instead.
+   */
   emit<T = unknown>(event: EventKey<T>, payload?: T): Promise<void>;
 
   listeners(event: EventKey): EventListener[];

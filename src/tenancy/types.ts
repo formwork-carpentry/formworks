@@ -29,9 +29,9 @@ export interface Tenant {
   createdAt?: Date;
 }
 
-export type TenantStatus = 'active' | 'inactive' | 'suspended' | 'pending';
+export type TenantStatus = "active" | "inactive" | "suspended" | "pending";
 
-export type IsolationStrategy = 'database' | 'schema' | 'row';
+export type IsolationStrategy = "database" | "schema" | "row";
 
 // ── Tenant Resolver — identifies tenant from request ──────
 

@@ -142,12 +142,12 @@ export function buildRouteGauger(routes: IRoute[]): RouteGaugerEntry[] {
     .sort((left, right) => left.routeName.localeCompare(right.routeName));
 }
 
-  /**
-   * Generates TypeScript file payloads for typed route helper modules.
-   *
-   * @param {IRoute[]} routes Registered routes.
-   * @returns {RouteGaugerFile[]} Generated module and index files.
-   */
+/**
+ * Generates TypeScript file payloads for typed route helper modules.
+ *
+ * @param {IRoute[]} routes Registered routes.
+ * @returns {RouteGaugerFile[]} Generated module and index files.
+ */
 export function generateRouteGaugerFiles(routes: IRoute[]): RouteGaugerFile[] {
   const manifest = buildRouteGauger(routes);
   const grouped = new Map<string, RouteGaugerEntry[]>();
@@ -179,20 +179,23 @@ export function generateRouteGaugerFiles(routes: IRoute[]): RouteGaugerFile[] {
   files.push({
     fileName: "index.ts",
     moduleName: "index",
-    code: moduleNames.map((moduleName) => `export * from './${moduleName}';`).join("\n") + "\n",
+    code: `${moduleNames.map((moduleName) => `export * from './${moduleName}';`).join("\n")}\n`,
   });
 
   return files;
 }
 
 function renderRouteGaugerAction(entry: RouteGaugerEntry): string {
-  const paramsType = entry.params.length === 0
-    ? ""
-    : `params: { ${entry.params.map((param) => `${param}: string | number`).join("; ")} }`;
-  const signature = paramsType.length === 0 ? "(): RouteGaugerReference" : `(${paramsType}): RouteGaugerReference`;
-  const invocation = entry.params.length === 0
-    ? `defineRouteGaugerReference('${entry.routeName}', '${entry.method}', '${entry.path}')`
-    : `defineRouteGaugerReference('${entry.routeName}', '${entry.method}', '${entry.path}', params)`;
+  const paramsType =
+    entry.params.length === 0
+      ? ""
+      : `params: { ${entry.params.map((param) => `${param}: string | number`).join("; ")} }`;
+  const signature =
+    paramsType.length === 0 ? "(): RouteGaugerReference" : `(${paramsType}): RouteGaugerReference`;
+  const invocation =
+    entry.params.length === 0
+      ? `defineRouteGaugerReference('${entry.routeName}', '${entry.method}', '${entry.path}')`
+      : `defineRouteGaugerReference('${entry.routeName}', '${entry.method}', '${entry.path}', params)`;
 
   return `  ${entry.actionName}${signature} {\n    return ${invocation};\n  },`;
 }
@@ -204,7 +207,11 @@ function extractRouteParams(path: string): string[] {
     .map((segment) => segment.slice(1).replace(/\?$/, ""));
 }
 
-function splitRouteName(name: string): { moduleName: string; exportName: string; actionName: string } {
+function splitRouteName(name: string): {
+  moduleName: string;
+  exportName: string;
+  actionName: string;
+} {
   const parts = name.split(".");
   const moduleSource = parts[0] ?? "route";
   const actionSource = parts.length === 1 ? "index" : parts.slice(1).join(".");

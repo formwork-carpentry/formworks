@@ -4,9 +4,9 @@
  * @patterns Facade
  */
 
-import { Blueprint } from './Blueprint.js';
-import type { IDatabaseAdapter, CompiledQuery } from '@carpentry/formworks/contracts';
-import type { ColumnDefinition, IndexDefinition } from './column-types.js';
+import type { CompiledQuery, IDatabaseAdapter } from "@carpentry/formworks/contracts";
+import { Blueprint } from "./Blueprint.js";
+import type { ColumnDefinition, IndexDefinition } from "./column-types.js";
 
 /**
  * Schema — high-level DDL API: create/drop tables using {@link Blueprint}.
@@ -34,7 +34,7 @@ export class Schema {
    */
   async create(table: string, callback: (blueprint: Blueprint) => void): Promise<void> {
     const bp = new Blueprint(table);
-    bp.operation = 'create';
+    bp.operation = "create";
     callback(bp);
     await this.adapter.execute(this.compileCreate(bp));
 
@@ -52,7 +52,7 @@ export class Schema {
     await this.adapter.execute({
       sql: `DROP TABLE IF EXISTS ${table}`,
       bindings: [],
-      type: 'schema',
+      type: "schema",
     });
   }
 
@@ -66,19 +66,21 @@ export class Schema {
 
     // Add foreign key constraints
     const fks = bp.columns
-      .filter((c) => c.references)
+      .filter((c): c is ColumnDefinition & { references: NonNullable<ColumnDefinition["references"]> } =>
+        Boolean(c.references)
+      )
       .map((c) => {
-        const ref = c.references!;
+        const ref = c.references;
         let fk = `FOREIGN KEY (${c.name}) REFERENCES ${ref.table}(${ref.column})`;
         if (ref.onDelete) fk += ` ON DELETE ${ref.onDelete.toUpperCase()}`;
         if (ref.onUpdate) fk += ` ON UPDATE ${ref.onUpdate.toUpperCase()}`;
         return fk;
       });
 
-    const allParts = [...parts, ...fks].join(', ');
+    const allParts = [...parts, ...fks].join(", ");
     const sql = `CREATE TABLE ${bp.tableName} (${allParts})`;
 
-    return { sql, bindings: [], type: 'schema' };
+    return { sql, bindings: [], type: "schema" };
   }
 
   /**
@@ -96,29 +98,59 @@ export class Schema {
 
     // Type mapping
     switch (col.type) {
-      case 'id': sql += ' INTEGER PRIMARY KEY AUTOINCREMENT'; return sql;
-      case 'uuid': sql += ' VARCHAR(36)'; break;
-      case 'string': sql += ` VARCHAR(${col.length ?? 255})`; break;
-      case 'text': sql += ' TEXT'; break;
-      case 'integer': sql += ' INTEGER'; break;
-      case 'bigInteger': sql += ' BIGINT'; break;
-      case 'float': sql += ' REAL'; break;
-      case 'decimal': sql += ` DECIMAL(${col.precision ?? 8},${col.scale ?? 2})`; break;
-      case 'boolean': sql += ' BOOLEAN'; break;
-      case 'date': sql += ' DATE'; break;
-      case 'datetime': sql += ' DATETIME'; break;
-      case 'timestamp': sql += ' TIMESTAMP'; break;
-      case 'json': sql += ' JSON'; break;
-      case 'binary': sql += ' BLOB'; break;
-      case 'enum': sql += ' VARCHAR(255)'; break;
+      case "id":
+        sql += " INTEGER PRIMARY KEY AUTOINCREMENT";
+        return sql;
+      case "uuid":
+        sql += " VARCHAR(36)";
+        break;
+      case "string":
+        sql += ` VARCHAR(${col.length ?? 255})`;
+        break;
+      case "text":
+        sql += " TEXT";
+        break;
+      case "integer":
+        sql += " INTEGER";
+        break;
+      case "bigInteger":
+        sql += " BIGINT";
+        break;
+      case "float":
+        sql += " REAL";
+        break;
+      case "decimal":
+        sql += ` DECIMAL(${col.precision ?? 8},${col.scale ?? 2})`;
+        break;
+      case "boolean":
+        sql += " BOOLEAN";
+        break;
+      case "date":
+        sql += " DATE";
+        break;
+      case "datetime":
+        sql += " DATETIME";
+        break;
+      case "timestamp":
+        sql += " TIMESTAMP";
+        break;
+      case "json":
+        sql += " JSON";
+        break;
+      case "binary":
+        sql += " BLOB";
+        break;
+      case "enum":
+        sql += " VARCHAR(255)";
+        break;
     }
 
-    if (col.unsigned) sql += ' UNSIGNED';
-    if (col.primaryKey) sql += ' PRIMARY KEY';
-    if (!col.nullable) sql += ' NOT NULL';
-    if (col.unique) sql += ' UNIQUE';
+    if (col.unsigned) sql += " UNSIGNED";
+    if (col.primaryKey) sql += " PRIMARY KEY";
+    if (!col.nullable) sql += " NOT NULL";
+    if (col.unique) sql += " UNIQUE";
     if (col.defaultValue !== undefined) {
-      sql += ` DEFAULT ${typeof col.defaultValue === 'string' ? `'${col.defaultValue}'` : col.defaultValue}`;
+      sql += ` DEFAULT ${typeof col.defaultValue === "string" ? `'${col.defaultValue}'` : col.defaultValue}`;
     }
 
     return sql;
@@ -126,9 +158,9 @@ export class Schema {
 
   private compileIndex(tableName: string, index: IndexDefinition): CompiledQuery {
     return {
-      sql: `CREATE INDEX ${index.name} ON ${tableName} (${index.columns.join(', ')})`,
+      sql: `CREATE INDEX ${index.name} ON ${tableName} (${index.columns.join(", ")})`,
       bindings: [],
-      type: 'schema',
+      type: "schema",
     };
   }
 }

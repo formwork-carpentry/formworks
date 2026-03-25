@@ -3,13 +3,13 @@
  * @description Registers mail manager and default mailer bindings.
  */
 
-import type { IContainer } from '@carpentry/formworks/core/container';
-import { ConfigResolver } from '@carpentry/formworks/core/config';
+import type { ConfigResolver } from "@carpentry/formworks/core/config";
+import type { IContainer } from "@carpentry/formworks/core/container";
 import {
-  createMailManager,
   type MailDriverConfig,
   type MailManager,
-} from '@carpentry/formworks/mail';
+  createMailManager,
+} from "@carpentry/formworks/mail";
 
 /**
  * @description Service provider that wires framework mail delivery services.
@@ -25,7 +25,7 @@ export class MailInfrastructureProvider {
    * @returns {void}
    */
   register(): void {
-    this.app.singleton('mail.manager', () => {
+    this.app.singleton("mail.manager", () => {
       const from = this.resolver.mailFrom();
       return createMailManager(
         this.resolver.mailMailer(),
@@ -36,8 +36,6 @@ export class MailInfrastructureProvider {
       );
     });
 
-    this.app.singleton('mail', (c) =>
-      (c.make('mail.manager') as MailManager).mailer(),
-    );
+    this.app.singleton("mail", (c) => (c.make("mail.manager") as MailManager).mailer());
   }
 }

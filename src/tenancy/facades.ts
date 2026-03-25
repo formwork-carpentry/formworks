@@ -4,14 +4,16 @@
  * @patterns Facade
  */
 
-import type { Tenant, TenantResolverContext } from './types.js';
-import { TenancyManager } from './manager.js';
+import type { TenancyManager } from "./manager.js";
+import type { Tenant, TenantResolverContext } from "./types.js";
 
 let globalTenancyManager: TenancyManager | null = null;
 /**
  * @param {TenancyManager} m
  */
-export function setTenancyManager(m: TenancyManager): void { globalTenancyManager = m; }
+export function setTenancyManager(m: TenancyManager): void {
+  globalTenancyManager = m;
+}
 
 export const Tenancy = {
   tenant: () => getManager().tenant(),
@@ -27,6 +29,6 @@ function getManager(): TenancyManager {
   /**
    * @param {unknown} !globalTenancyManager
    */
-  if (!globalTenancyManager) throw new Error('TenancyManager not initialized.');
+  if (!globalTenancyManager) throw new Error("TenancyManager not initialized.");
   return globalTenancyManager;
 }

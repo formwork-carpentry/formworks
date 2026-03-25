@@ -9,8 +9,8 @@
  *             DRY — shared resolution logic via BaseManager
  */
 
-import { CarpenterFactoryBase, type CarpenterFactoryAdapter } from '@carpentry/formworks/adapters';
-import type { IDatabaseAdapter } from '@carpentry/formworks/contracts';
+import { type CarpenterFactoryAdapter, CarpenterFactoryBase } from "@carpentry/formworks/adapters";
+import type { IDatabaseAdapter } from "@carpentry/formworks/contracts";
 
 export interface DatabaseConnectionConfig {
   /** Driver name: 'sqlite', 'postgres', 'mysql', 'mongodb', 'memory' */
@@ -19,7 +19,10 @@ export interface DatabaseConnectionConfig {
   [key: string]: unknown;
 }
 
-export type DatabaseDriverFactory = CarpenterFactoryAdapter<DatabaseConnectionConfig, IDatabaseAdapter>;
+export type DatabaseDriverFactory = CarpenterFactoryAdapter<
+  DatabaseConnectionConfig,
+  IDatabaseAdapter
+>;
 
 /**
  * DatabaseManager — resolves database connections from configuration.
@@ -40,12 +43,15 @@ export type DatabaseDriverFactory = CarpenterFactoryAdapter<DatabaseConnectionCo
  *
  * @see CarpenterFactoryBase — shared driver registration and resolution
  */
-export class DatabaseManager extends CarpenterFactoryBase<IDatabaseAdapter, DatabaseConnectionConfig> {
-  protected readonly resolverLabel = 'connection';
-  protected readonly domainLabel = 'Database';
+export class DatabaseManager extends CarpenterFactoryBase<
+  IDatabaseAdapter,
+  DatabaseConnectionConfig
+> {
+  protected readonly resolverLabel = "connection";
+  protected readonly domainLabel = "Database";
 
   constructor(
-    defaultConnection: string = 'memory',
+    defaultConnection = "memory",
     configs: Record<string, DatabaseConnectionConfig> = {},
   ) {
     super(defaultConnection, configs);

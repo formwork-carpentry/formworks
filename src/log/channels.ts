@@ -5,8 +5,8 @@
  * @principles OCP (add channels without modifying Logger), LSP (all substitute ILogChannel)
  */
 
-import { LOG_LEVEL_SEVERITY } from './types.js';
-import type { LogEntry, ILogChannel, LogLevel } from './types.js';
+import { LOG_LEVEL_SEVERITY } from "./types.js";
+import type { ILogChannel, LogEntry, LogLevel } from "./types.js";
 
 // ── ConsoleChannel — colored console output ───────────────
 
@@ -24,10 +24,10 @@ import type { LogEntry, ILogChannel, LogLevel } from './types.js';
  * ```
  */
 export class ConsoleChannel implements ILogChannel {
-  readonly name = 'console';
+  readonly name = "console";
   readonly minLevel: LogLevel;
 
-  constructor(minLevel: LogLevel = 'debug') {
+  constructor(minLevel: LogLevel = "debug") {
     this.minLevel = minLevel;
   }
 
@@ -38,19 +38,23 @@ export class ConsoleChannel implements ILogChannel {
     if (!this.shouldLog(entry.level)) return;
 
     const ts = entry.timestamp.toISOString();
-    const ctx = Object.keys(entry.context).length > 0
-      ? ` ${JSON.stringify(entry.context)}`
-      : '';
+    const ctx = Object.keys(entry.context).length > 0 ? ` ${JSON.stringify(entry.context)}` : "";
 
     const line = `[${ts}] ${entry.level.toUpperCase()}: ${entry.message}${ctx}`;
 
     switch (entry.level) {
-      case 'emergency': case 'alert': case 'critical': case 'error':
-        console.error(line); break;
-      case 'warning':
-        console.warn(line); break;
-      case 'debug':
-        console.debug(line); break;
+      case "emergency":
+      case "alert":
+      case "critical":
+      case "error":
+        console.error(line);
+        break;
+      case "warning":
+        console.warn(line);
+        break;
+      case "debug":
+        console.debug(line);
+        break;
       default:
         console.log(line);
     }
@@ -75,7 +79,7 @@ export class ArrayChannel implements ILogChannel {
   readonly minLevel: LogLevel;
   private entries: LogEntry[] = [];
 
-  constructor(name: string = 'array', minLevel: LogLevel = 'debug') {
+  constructor(name = "array", minLevel: LogLevel = "debug") {
     this.name = name;
     this.minLevel = minLevel;
   }
@@ -90,8 +94,12 @@ export class ArrayChannel implements ILogChannel {
 
   // ── Test Assertions ───────────────────────────────────
 
-  all(): LogEntry[] { return [...this.entries]; }
-  count(): number { return this.entries.length; }
+  all(): LogEntry[] {
+    return [...this.entries];
+  }
+  count(): number {
+    return this.entries.length;
+  }
 
   /**
    * @param {LogLevel} level
@@ -111,7 +119,7 @@ export class ArrayChannel implements ILogChannel {
       : this.entries.filter((e) => e.level === level);
 
     if (matches.length === 0) {
-      const msg = messageFragment ? ` containing "${messageFragment}"` : '';
+      const msg = messageFragment ? ` containing "${messageFragment}"` : "";
       throw new Error(`Expected a ${level} log${msg}, but none found.`);
     }
   }
@@ -126,7 +134,9 @@ export class ArrayChannel implements ILogChannel {
       : this.entries.filter((e) => e.level === level);
 
     if (matches.length > 0) {
-      throw new Error(`Expected NO ${level} log${messageFragment ? ` containing "${messageFragment}"` : ''}, but ${matches.length} found.`);
+      throw new Error(
+        `Expected NO ${level} log${messageFragment ? ` containing "${messageFragment}"` : ""}, but ${matches.length} found.`,
+      );
     }
   }
 
@@ -134,11 +144,13 @@ export class ArrayChannel implements ILogChannel {
    * @param {number} n
    */
   assertCount(n: number): void {
-    if (this.entries.length !== n) throw new Error(`Expected ${n} log entries, got ${this.entries.length}.`);
+    if (this.entries.length !== n)
+      throw new Error(`Expected ${n} log entries, got ${this.entries.length}.`);
   }
 
   assertNothingLogged(): void {
-    if (this.entries.length > 0) throw new Error(`Expected no logs, but ${this.entries.length} found.`);
+    if (this.entries.length > 0)
+      throw new Error(`Expected no logs, but ${this.entries.length} found.`);
   }
 
   /**
@@ -154,11 +166,15 @@ export class ArrayChannel implements ILogChannel {
       return true;
     });
     if (matches.length === 0) {
-      throw new Error(`Expected ${level} log with context key "${key}"${value !== undefined ? `=${JSON.stringify(value)}` : ''}, but none found.`);
+      throw new Error(
+        `Expected ${level} log with context key "${key}"${value !== undefined ? `=${JSON.stringify(value)}` : ""}, but none found.`,
+      );
     }
   }
 
-  reset(): void { this.entries = []; }
+  reset(): void {
+    this.entries = [];
+  }
 }
 
 // ── JsonChannel — JSON-structured output (for log aggregators) ──
@@ -169,11 +185,11 @@ export class ArrayChannel implements ILogChannel {
  * Useful when you want machine-readable output (e.g., log aggregation).
  */
 export class JsonChannel implements ILogChannel {
-  readonly name = 'json';
+  readonly name = "json";
   readonly minLevel: LogLevel;
   private output: string[] = [];
 
-  constructor(minLevel: LogLevel = 'debug') {
+  constructor(minLevel: LogLevel = "debug") {
     this.minLevel = minLevel;
   }
 
@@ -194,8 +210,12 @@ export class JsonChannel implements ILogChannel {
     this.output.push(line);
   }
 
-  getOutput(): string[] { return [...this.output]; }
-  reset(): void { this.output = []; }
+  getOutput(): string[] {
+    return [...this.output];
+  }
+  reset(): void {
+    this.output = [];
+  }
 }
 
 // ── NullChannel — discards everything ─────────────────────
@@ -206,9 +226,11 @@ export class JsonChannel implements ILogChannel {
  * Useful for silencing logs in tests or benchmarks.
  */
 export class NullChannel implements ILogChannel {
-  readonly name = 'null';
-  readonly minLevel: LogLevel = 'debug';
-  write(): void { /* discard */ }
+  readonly name = "null";
+  readonly minLevel: LogLevel = "debug";
+  write(): void {
+    /* discard */
+  }
 }
 
 // ── StackChannel — fan-out to multiple channels ───────────
@@ -219,8 +241,8 @@ export class NullChannel implements ILogChannel {
  * This is handy when you want to write to both console and JSON output, etc.
  */
 export class StackChannel implements ILogChannel {
-  readonly name = 'stack';
-  readonly minLevel: LogLevel = 'debug';
+  readonly name = "stack";
+  readonly minLevel: LogLevel = "debug";
   private channels: ILogChannel[];
 
   constructor(channels: ILogChannel[]) {
@@ -236,5 +258,7 @@ export class StackChannel implements ILogChannel {
     }
   }
 
-  getChannels(): ILogChannel[] { return [...this.channels]; }
+  getChannels(): ILogChannel[] {
+    return [...this.channels];
+  }
 }

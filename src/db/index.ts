@@ -24,18 +24,17 @@
  * @principles LSP — adapters substitutable; DIP — ORM depends on IDatabaseAdapter
  */
 
-export type { CompiledQueryType, CompiledQuery, QueryResult } from './types/index.js';
+export type { CompiledQueryType, CompiledQuery, QueryResult } from "./types/index.js";
 export {
   UnsupportedDriverAdapter,
   PostgresAdapterStub,
   MySQLAdapterStub,
   MongoDBAdapterStub,
-} from './unsupported-driver-stubs.js';
-export * from './exceptions.js';
+} from "./unsupported-driver-stubs.js";
+export * from "./exceptions.js";
 export {
   DatabaseManager,
   createDatabaseManager,
   type DatabaseConnectionConfig,
   type DatabaseDriverFactory,
-} from './factory/index.js';
-
+} from "./factory/index.js";

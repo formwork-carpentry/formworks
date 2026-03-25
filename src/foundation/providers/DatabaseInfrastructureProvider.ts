@@ -3,13 +3,13 @@
  * @description Registers database manager and default connection bindings.
  */
 
-import type { IContainer } from '@carpentry/formworks/core/container';
-import { ConfigResolver } from '@carpentry/formworks/core/config';
+import type { ConfigResolver } from "@carpentry/formworks/core/config";
+import type { IContainer } from "@carpentry/formworks/core/container";
 import {
-  createDatabaseManager,
   type DatabaseConnectionConfig,
   type DatabaseManager,
-} from '@carpentry/formworks/db';
+  createDatabaseManager,
+} from "@carpentry/formworks/db";
 
 /**
  * @description Service provider that exposes database manager and default adapter.
@@ -32,15 +32,13 @@ export class DatabaseInfrastructureProvider {
    * @returns {void}
    */
   register(): void {
-    this.app.singleton('db.manager', () => {
+    this.app.singleton("db.manager", () => {
       return createDatabaseManager(
         this.resolver.dbConnection(),
         this.resolver.dbConnections() as Record<string, DatabaseConnectionConfig>,
       );
     });
 
-    this.app.singleton('db', (c) =>
-      (c.make('db.manager') as DatabaseManager).connection(),
-    );
+    this.app.singleton("db", (c) => (c.make("db.manager") as DatabaseManager).connection());
   }
 }

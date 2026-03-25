@@ -4,19 +4,34 @@
  */
 
 const MIME_MAP: Record<string, string> = {
-  'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'png': 'image/png', 'gif': 'image/gif',
-  'webp': 'image/webp', 'svg': 'image/svg+xml', 'bmp': 'image/bmp', 'ico': 'image/x-icon',
-  'pdf': 'application/pdf',
-  'doc': 'application/msword',
-  'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'xls': 'application/vnd.ms-excel',
-  'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-  'csv': 'text/csv', 'txt': 'text/plain', 'html': 'text/html', 'json': 'application/json',
-  'xml': 'application/xml',
-  'zip': 'application/zip', 'gz': 'application/gzip', 'tar': 'application/x-tar',
-  'mp3': 'audio/mpeg', 'wav': 'audio/wav', 'ogg': 'audio/ogg',
-  'mp4': 'video/mp4', 'webm': 'video/webm', 'avi': 'video/x-msvideo',
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  png: "image/png",
+  gif: "image/gif",
+  webp: "image/webp",
+  svg: "image/svg+xml",
+  bmp: "image/bmp",
+  ico: "image/x-icon",
+  pdf: "application/pdf",
+  doc: "application/msword",
+  docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  xls: "application/vnd.ms-excel",
+  xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  csv: "text/csv",
+  txt: "text/plain",
+  html: "text/html",
+  json: "application/json",
+  xml: "application/xml",
+  zip: "application/zip",
+  gz: "application/gzip",
+  tar: "application/x-tar",
+  mp3: "audio/mpeg",
+  wav: "audio/wav",
+  ogg: "audio/ogg",
+  mp4: "video/mp4",
+  webm: "video/webm",
+  avi: "video/x-msvideo",
 };
 
 /**
@@ -33,7 +48,7 @@ const MIME_MAP: Record<string, string> = {
  * ```
  */
 export function mimeFromExtension(ext: string): string {
-  return MIME_MAP[ext.toLowerCase().replace('.', '')] ?? 'application/octet-stream';
+  return MIME_MAP[ext.toLowerCase().replace(".", "")] ?? "application/octet-stream";
 }
 
 /**
@@ -68,8 +83,8 @@ export function extensionFromMime(mime: string): string | null {
  * ```
  */
 export function isImage(mimeOrExt: string): boolean {
-  const mime = mimeOrExt.includes('/') ? mimeOrExt : mimeFromExtension(mimeOrExt);
-  return mime.startsWith('image/');
+  const mime = mimeOrExt.includes("/") ? mimeOrExt : mimeFromExtension(mimeOrExt);
+  return mime.startsWith("image/");
 }
 
 /**
@@ -78,8 +93,13 @@ export function isImage(mimeOrExt: string): boolean {
  * @param mimeOrExt - MIME type or extension.
  */
 export function isDocument(mimeOrExt: string): boolean {
-  const mime = mimeOrExt.includes('/') ? mimeOrExt : mimeFromExtension(mimeOrExt);
-  return mime.includes('pdf') || mime.includes('document') || mime.includes('spreadsheet') || mime.includes('csv');
+  const mime = mimeOrExt.includes("/") ? mimeOrExt : mimeFromExtension(mimeOrExt);
+  return (
+    mime.includes("pdf") ||
+    mime.includes("document") ||
+    mime.includes("spreadsheet") ||
+    mime.includes("csv")
+  );
 }
 
 /**
@@ -88,8 +108,8 @@ export function isDocument(mimeOrExt: string): boolean {
  * @param mimeOrExt - MIME type or extension.
  */
 export function isVideo(mimeOrExt: string): boolean {
-  const mime = mimeOrExt.includes('/') ? mimeOrExt : mimeFromExtension(mimeOrExt);
-  return mime.startsWith('video/');
+  const mime = mimeOrExt.includes("/") ? mimeOrExt : mimeFromExtension(mimeOrExt);
+  return mime.startsWith("video/");
 }
 
 /**
@@ -98,8 +118,8 @@ export function isVideo(mimeOrExt: string): boolean {
  * @param mimeOrExt - MIME type or extension.
  */
 export function isAudio(mimeOrExt: string): boolean {
-  const mime = mimeOrExt.includes('/') ? mimeOrExt : mimeFromExtension(mimeOrExt);
-  return mime.startsWith('audio/');
+  const mime = mimeOrExt.includes("/") ? mimeOrExt : mimeFromExtension(mimeOrExt);
+  return mime.startsWith("audio/");
 }
 
 /**
@@ -116,8 +136,8 @@ export function isAudio(mimeOrExt: string): boolean {
  * ```
  */
 export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 B';
-  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes === 0) return "0 B";
+  const units = ["B", "KB", "MB", "GB", "TB"];
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return `${(bytes / Math.pow(1024, i)).toFixed(i > 0 ? 1 : 0)} ${units[i]}`;
+  return `${(bytes / 1024 ** i).toFixed(i > 0 ? 1 : 0)} ${units[i]}`;
 }

@@ -4,7 +4,7 @@
  * @patterns Composite
  */
 
-import type { MediaItem } from './types.js';
+import type { MediaItem } from "./types.js";
 
 /**
  * A named collection of media items. Use collections to group files by purpose
@@ -47,16 +47,24 @@ export class MediaCollection {
   }
 
   /** Returns a copy of all items. */
-  all(): MediaItem[] { return [...this.items]; }
+  all(): MediaItem[] {
+    return [...this.items];
+  }
 
   /** First item or null if empty. */
-  first(): MediaItem | null { return this.items[0] ?? null; }
+  first(): MediaItem | null {
+    return this.items[0] ?? null;
+  }
 
   /** Last item or null if empty. */
-  last(): MediaItem | null { return this.items[this.items.length - 1] ?? null; }
+  last(): MediaItem | null {
+    return this.items[this.items.length - 1] ?? null;
+  }
 
   /** Number of items in the collection. */
-  count(): number { return this.items.length; }
+  count(): number {
+    return this.items.length;
+  }
 
   /**
    * Filter items by a predicate.
@@ -91,13 +99,18 @@ export class MediaCollection {
   }
 
   /** Items with image MIME types (jpeg, png, gif, webp, etc.). */
-  images(): MediaItem[] { return this.findByMime('image/'); }
+  images(): MediaItem[] {
+    return this.findByMime("image/");
+  }
 
   /** Items that are PDFs or Office documents (docx, xlsx, pptx). */
   documents(): MediaItem[] {
-    return this.items.filter((i) =>
-      i.mimeType.includes('pdf') || i.mimeType.includes('document') ||
-      i.mimeType.includes('spreadsheet') || i.mimeType.includes('presentation')
+    return this.items.filter(
+      (i) =>
+        i.mimeType.includes("pdf") ||
+        i.mimeType.includes("document") ||
+        i.mimeType.includes("spreadsheet") ||
+        i.mimeType.includes("presentation"),
     );
   }
 
@@ -115,8 +128,12 @@ export class MediaCollection {
   }
 
   /** Remove all items from the collection. */
-  clear(): void { this.items = []; }
+  clear(): void {
+    this.items = [];
+  }
 
   /** Serialize to JSON (returns array of items). */
-  toJSON(): MediaItem[] { return this.all(); }
+  toJSON(): MediaItem[] {
+    return this.all();
+  }
 }

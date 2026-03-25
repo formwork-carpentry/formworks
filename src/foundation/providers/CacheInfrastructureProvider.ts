@@ -3,13 +3,13 @@
  * @description Registers cache manager and default cache store bindings.
  */
 
-import type { IContainer } from '@carpentry/formworks/core/container';
-import { ConfigResolver } from '@carpentry/formworks/core/config';
 import {
-  createCacheManager,
-  type CacheStoreConfig,
   type CacheManager,
-} from '@carpentry/formworks/cache';
+  type CacheStoreConfig,
+  createCacheManager,
+} from "@carpentry/formworks/cache";
+import type { ConfigResolver } from "@carpentry/formworks/core/config";
+import type { IContainer } from "@carpentry/formworks/core/container";
 
 /**
  * @description Service provider that wires cache services through the IoC container.
@@ -25,15 +25,13 @@ export class CacheInfrastructureProvider {
    * @returns {void}
    */
   register(): void {
-    this.app.singleton('cache.manager', () => {
+    this.app.singleton("cache.manager", () => {
       return createCacheManager(
         this.resolver.cacheDriver(),
         this.resolver.cacheStores() as Record<string, CacheStoreConfig>,
       );
     });
 
-    this.app.singleton('cache', (c) =>
-      (c.make('cache.manager') as CacheManager).store(),
-    );
+    this.app.singleton("cache", (c) => (c.make("cache.manager") as CacheManager).store());
   }
 }

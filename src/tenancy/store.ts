@@ -4,7 +4,7 @@
  * @patterns Repository
  */
 
-import type { Tenant } from './types.js';
+import type { Tenant } from "./types.js";
 
 export interface ITenantStore {
   /**
@@ -22,7 +22,7 @@ export interface ITenantStore {
    * @param {Omit<Tenant, 'createdAt'>} data
    * @returns {Promise<Tenant>}
    */
-  create(data: Omit<Tenant, 'createdAt'>): Promise<Tenant>;
+  create(data: Omit<Tenant, "createdAt">): Promise<Tenant>;
   /**
    * @param {string | number} id
    * @param {Partial<Tenant>} data
@@ -68,13 +68,15 @@ export class InMemoryTenantStore implements ITenantStore {
     return this.tenants.find((t) => t.id === id) ?? null;
   }
 
-  async all(): Promise<Tenant[]> { return [...this.tenants]; }
+  async all(): Promise<Tenant[]> {
+    return [...this.tenants];
+  }
 
   /**
    * @param {Omit<Tenant, 'createdAt'>} data
    * @returns {Promise<Tenant>}
    */
-  async create(data: Omit<Tenant, 'createdAt'>): Promise<Tenant> {
+  async create(data: Omit<Tenant, "createdAt">): Promise<Tenant> {
     const tenant: Tenant = { ...data, createdAt: new Date() };
     this.tenants.push(tenant);
     return tenant;
@@ -103,9 +105,11 @@ export class InMemoryTenantStore implements ITenantStore {
     return true;
   }
 
-  reset(): void { this.tenants = []; }
+  reset(): void {
+    this.tenants = [];
+  }
 }
 
 // ── TenancyManager — holds current tenant context ─────────
 
-export type TenancyEventHandler = (event: 'switched' | 'ended', tenant: Tenant | null) => void;
+export type TenancyEventHandler = (event: "switched" | "ended", tenant: Tenant | null) => void;

@@ -37,7 +37,7 @@ export interface HttpClientResponse {
   text(): string;
 }
 
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD' | 'OPTIONS';
+export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "HEAD" | "OPTIONS";
 
 export interface PendingRequest {
   method: HttpMethod;
@@ -72,9 +72,9 @@ export interface PendingRequest {
  * @see FakeTransport — Deterministic test-double transport
  */
 export class HttpClient {
-  private baseUrl: string = '';
+  private baseUrl = "";
   private defaultHeaders: Record<string, string> = {};
-  private defaultTimeout: number = 30000;
+  private defaultTimeout = 30000;
   private transport: HttpTransport;
 
   constructor(transport?: HttpTransport) {
@@ -86,21 +86,30 @@ export class HttpClient {
    * @param {string} url
    * @returns {this}
    */
-  withBaseUrl(url: string): this { this.baseUrl = url.replace(/\/$/, ''); return this; }
+  withBaseUrl(url: string): this {
+    this.baseUrl = url.replace(/\/$/, "");
+    return this;
+  }
 
   /** Set default headers */
   /**
    * @param {Record<string, string>} headers
    * @returns {this}
    */
-  withHeaders(headers: Record<string, string>): this { Object.assign(this.defaultHeaders, headers); return this; }
+  withHeaders(headers: Record<string, string>): this {
+    Object.assign(this.defaultHeaders, headers);
+    return this;
+  }
 
   /** Set bearer token */
   /**
    * @param {string} token
    * @returns {this}
    */
-  withToken(token: string): this { this.defaultHeaders['Authorization'] = `Bearer ${token}`; return this; }
+  withToken(token: string): this {
+    this.defaultHeaders.Authorization = `Bearer ${token}`;
+    return this;
+  }
 
   /** Set basic auth */
   /**
@@ -109,7 +118,7 @@ export class HttpClient {
    * @returns {this}
    */
   withBasicAuth(username: string, password: string): this {
-    this.defaultHeaders['Authorization'] = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`;
+    this.defaultHeaders.Authorization = `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`;
     return this;
   }
 
@@ -118,7 +127,10 @@ export class HttpClient {
    * @param {number} ms
    * @returns {this}
    */
-  timeout(ms: number): this { this.defaultTimeout = ms; return this; }
+  timeout(ms: number): this {
+    this.defaultTimeout = ms;
+    return this;
+  }
 
   // ── Request methods ─────────────────────────────────────
 
@@ -128,7 +140,7 @@ export class HttpClient {
    * @returns {RequestBuilder}
    */
   get(url: string, query?: Record<string, string>): RequestBuilder {
-    return this.request('GET', url).query(query ?? {});
+    return this.request("GET", url).query(query ?? {});
   }
 
   /**
@@ -137,7 +149,7 @@ export class HttpClient {
    * @returns {RequestBuilder}
    */
   post(url: string, body?: unknown): RequestBuilder {
-    return this.request('POST', url).body(body);
+    return this.request("POST", url).body(body);
   }
 
   /**
@@ -146,7 +158,7 @@ export class HttpClient {
    * @returns {RequestBuilder}
    */
   put(url: string, body?: unknown): RequestBuilder {
-    return this.request('PUT', url).body(body);
+    return this.request("PUT", url).body(body);
   }
 
   /**
@@ -155,7 +167,7 @@ export class HttpClient {
    * @returns {RequestBuilder}
    */
   patch(url: string, body?: unknown): RequestBuilder {
-    return this.request('PATCH', url).body(body);
+    return this.request("PATCH", url).body(body);
   }
 
   /**
@@ -164,21 +176,29 @@ export class HttpClient {
    * @returns {RequestBuilder}
    */
   delete(url: string, body?: unknown): RequestBuilder {
-    return this.request('DELETE', url).body(body);
+    return this.request("DELETE", url).body(body);
   }
 
   /**
    * @param {string} url
    * @returns {RequestBuilder}
    */
-  head(url: string): RequestBuilder { return this.request('HEAD', url); }
+  head(url: string): RequestBuilder {
+    return this.request("HEAD", url);
+  }
 
   private request(method: HttpMethod, url: string): RequestBuilder {
-    const fullUrl = url.startsWith('http') ? url : `${this.baseUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+    const fullUrl = url.startsWith("http")
+      ? url
+      : `${this.baseUrl}${url.startsWith("/") ? "" : "/"}${url}`;
     return new RequestBuilder(this.transport, {
-      method, url: fullUrl,
+      method,
+      url: fullUrl,
       headers: { ...this.defaultHeaders },
-      query: {}, timeoutMs: this.defaultTimeout, retries: 0, retryDelay: 100,
+      query: {},
+      timeoutMs: this.defaultTimeout,
+      retries: 0,
+      retryDelay: 100,
     });
   }
 }
@@ -211,47 +231,78 @@ export class HttpClient {
  * ```
  */
 export class RequestBuilder {
-  constructor(private transport: HttpTransport, private pending: PendingRequest) {}
+  constructor(
+    private transport: HttpTransport,
+    private pending: PendingRequest,
+  ) {}
 
   /**
    * @param {string} key
    * @param {string} value
    * @returns {this}
    */
-  header(key: string, value: string): this { this.pending.headers[key] = value; return this; }
+  header(key: string, value: string): this {
+    this.pending.headers[key] = value;
+    return this;
+  }
   /**
    * @param {Record<string, string>} h
    * @returns {this}
    */
-  headers(h: Record<string, string>): this { Object.assign(this.pending.headers, h); return this; }
+  headers(h: Record<string, string>): this {
+    Object.assign(this.pending.headers, h);
+    return this;
+  }
   /**
    * @param {Record<string, string>} q
    * @returns {this}
    */
-  query(q: Record<string, string>): this { Object.assign(this.pending.query, q); return this; }
+  query(q: Record<string, string>): this {
+    Object.assign(this.pending.query, q);
+    return this;
+  }
   /**
    * @param {unknown} data
    * @returns {this}
    */
-  body(data: unknown): this { this.pending.bodyData = data; return this; }
+  body(data: unknown): this {
+    this.pending.bodyData = data;
+    return this;
+  }
   /**
    * @param {number} ms
    * @returns {this}
    */
-  timeout(ms: number): this { this.pending.timeoutMs = ms; return this; }
+  timeout(ms: number): this {
+    this.pending.timeoutMs = ms;
+    return this;
+  }
   /**
    * @param {number} times
    * @param {number} [delayMs]
    * @returns {this}
    */
-  retry(times: number, delayMs: number = 100): this { this.pending.retries = times; this.pending.retryDelay = delayMs; return this; }
-  asJson(): this { this.pending.headers['Content-Type'] = 'application/json'; return this; }
-  asForm(): this { this.pending.headers['Content-Type'] = 'application/x-www-form-urlencoded'; return this; }
+  retry(times: number, delayMs = 100): this {
+    this.pending.retries = times;
+    this.pending.retryDelay = delayMs;
+    return this;
+  }
+  asJson(): this {
+    this.pending.headers["Content-Type"] = "application/json";
+    return this;
+  }
+  asForm(): this {
+    this.pending.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    return this;
+  }
   /**
    * @param {string} mime
    * @returns {this}
    */
-  accept(mime: string): this { this.pending.headers['Accept'] = mime; return this; }
+  accept(mime: string): this {
+    this.pending.headers.Accept = mime;
+    return this;
+  }
 
   /** Execute the request */
   async send(): Promise<HttpClientResponse> {
@@ -319,24 +370,34 @@ export class FetchTransport implements HttpTransport {
   }
 
   private attachBody(request: PendingRequest, init: RequestInit): void {
-    if (request.bodyData === undefined || request.method === 'GET' || request.method === 'HEAD') return;
-    if (request.headers['Content-Type']?.includes('json')) {
+    if (request.bodyData === undefined || request.method === "GET" || request.method === "HEAD")
+      return;
+    if (request.headers["Content-Type"]?.includes("json")) {
       init.body = JSON.stringify(request.bodyData);
-    } else if (typeof request.bodyData === 'string') {
+    } else if (typeof request.bodyData === "string") {
       init.body = request.bodyData;
     } else {
       init.body = JSON.stringify(request.bodyData);
-      if (!request.headers['Content-Type']) request.headers['Content-Type'] = 'application/json';
+      if (!request.headers["Content-Type"]) request.headers["Content-Type"] = "application/json";
     }
   }
 
   private async parseResponse(response: Response): Promise<HttpClientResponse> {
-    const contentType = response.headers.get('content-type') ?? '';
+    const contentType = response.headers.get("content-type") ?? "";
     const bodyText = await response.text();
-    const bodyJson = contentType.includes('json') ? JSON.parse(bodyText) : bodyText;
+    const bodyJson = contentType.includes("json") ? JSON.parse(bodyText) : bodyText;
     const headers: Record<string, string> = {};
-    response.headers.forEach((v, k) => { headers[k] = v; });
-    return { status: response.status, headers, body: bodyJson, ok: response.ok, json: <T>() => bodyJson as T, text: () => bodyText };
+    response.headers.forEach((v, k) => {
+      headers[k] = v;
+    });
+    return {
+      status: response.status,
+      headers,
+      body: bodyJson,
+      ok: response.ok,
+      json: <T>() => bodyJson as T,
+      text: () => bodyText,
+    };
   }
 }
 
@@ -393,7 +454,10 @@ export class FakeTransport implements HttpTransport {
    * @param {StubbedResponse} response
    * @returns {this}
    */
-  setDefault(response: StubbedResponse): this { this.defaultResponse = response; return this; }
+  setDefault(response: StubbedResponse): this {
+    this.defaultResponse = response;
+    return this;
+  }
 
   /**
    * @param {PendingRequest} request
@@ -403,35 +467,40 @@ export class FakeTransport implements HttpTransport {
     this.recorded.push({ ...request });
 
     const next = this.responses.shift();
-    const stub = next
-      ? (typeof next === 'function' ? next(request) : next)
-      : this.defaultResponse;
+    const stub = next ? (typeof next === "function" ? next(request) : next) : this.defaultResponse;
 
     const status = stub.status ?? 200;
     const body = stub.body ?? {};
     const headers = stub.headers ?? {};
 
     return {
-      status, headers, body,
+      status,
+      headers,
+      body,
       ok: status >= 200 && status < 300,
       json: <T>() => body as T,
-      text: () => typeof body === 'string' ? body : JSON.stringify(body),
+      text: () => (typeof body === "string" ? body : JSON.stringify(body)),
     };
   }
 
   // ── Test helpers ──────────────────────────────────────
 
-  getRecorded(): PendingRequest[] { return [...this.recorded]; }
+  getRecorded(): PendingRequest[] {
+    return [...this.recorded];
+  }
 
   /**
    * @param {HttpMethod} method
    * @param {string} [urlFragment]
    */
   assertSent(method: HttpMethod, urlFragment?: string): void {
-    const match = this.recorded.some((r) =>
-      r.method === method && (urlFragment === undefined || r.url.includes(urlFragment))
+    const match = this.recorded.some(
+      (r) => r.method === method && (urlFragment === undefined || r.url.includes(urlFragment)),
     );
-    if (!match) throw new Error(`Expected ${method} request${urlFragment ? ` to "${urlFragment}"` : ''}, but none found.`);
+    if (!match)
+      throw new Error(
+        `Expected ${method} request${urlFragment ? ` to "${urlFragment}"` : ""}, but none found.`,
+      );
   }
 
   /**
@@ -439,17 +508,21 @@ export class FakeTransport implements HttpTransport {
    * @param {string} [urlFragment]
    */
   assertNotSent(method: HttpMethod, urlFragment?: string): void {
-    const match = this.recorded.some((r) =>
-      r.method === method && (urlFragment === undefined || r.url.includes(urlFragment))
+    const match = this.recorded.some(
+      (r) => r.method === method && (urlFragment === undefined || r.url.includes(urlFragment)),
     );
-    if (match) throw new Error(`Expected NO ${method} request${urlFragment ? ` to "${urlFragment}"` : ''}, but one was found.`);
+    if (match)
+      throw new Error(
+        `Expected NO ${method} request${urlFragment ? ` to "${urlFragment}"` : ""}, but one was found.`,
+      );
   }
 
   /**
    * @param {number} count
    */
   assertSentCount(count: number): void {
-    if (this.recorded.length !== count) throw new Error(`Expected ${count} requests, got ${this.recorded.length}.`);
+    if (this.recorded.length !== count)
+      throw new Error(`Expected ${count} requests, got ${this.recorded.length}.`);
   }
 
   /**
@@ -457,10 +530,11 @@ export class FakeTransport implements HttpTransport {
    * @param {string} [value]
    */
   assertSentWithHeader(key: string, value?: string): void {
-    const match = this.recorded.some((r) =>
-      key in r.headers && (value === undefined || r.headers[key] === value)
+    const match = this.recorded.some(
+      (r) => key in r.headers && (value === undefined || r.headers[key] === value),
     );
-    if (!match) throw new Error(`Expected request with header "${key}"${value ? `="${value}"` : ''}.`);
+    if (!match)
+      throw new Error(`Expected request with header "${key}"${value ? `="${value}"` : ""}.`);
   }
 
   /**
@@ -468,13 +542,17 @@ export class FakeTransport implements HttpTransport {
    */
   assertSentWithBody(predicate: (body: unknown) => boolean): void {
     if (!this.recorded.some((r) => predicate(r.bodyData))) {
-      throw new Error('No request matched the body predicate.');
+      throw new Error("No request matched the body predicate.");
     }
   }
 
   assertNothingSent(): void {
-    if (this.recorded.length > 0) throw new Error(`Expected no requests, but ${this.recorded.length} were sent.`);
+    if (this.recorded.length > 0)
+      throw new Error(`Expected no requests, but ${this.recorded.length} were sent.`);
   }
 
-  reset(): void { this.recorded = []; this.responses = []; }
+  reset(): void {
+    this.recorded = [];
+    this.responses = [];
+  }
 }

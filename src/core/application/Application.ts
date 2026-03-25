@@ -5,11 +5,11 @@
  * @principles SRP — manages lifecycle only; OCP — providers extend behaviour; DIP — all via IoC
  */
 
+import type { ServiceProvider } from "@carpentry/formworks/contracts/container";
+import type { IContainer } from "@carpentry/formworks/contracts/container";
 import { Config, env } from "../config/Config.js";
 import type { ConfigRepository } from "../config/Config.js";
 import { Container } from "../container/Container.js";
-import type { ServiceProvider } from "@carpentry/formworks/contracts/container";
-import type { IContainer } from "@carpentry/formworks/contracts/container";
 import { ContainerError } from "../exceptions/index.js";
 import type { Dictionary, Token } from "../types/index.js";
 

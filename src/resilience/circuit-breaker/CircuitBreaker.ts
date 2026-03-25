@@ -141,9 +141,7 @@ export class CircuitBreaker {
 
   private transitionTo(newState: CircuitState): void {
     this.state = newState;
-    this.dispatch(
-      newState === "half-open" ? "half-open" : newState === "open" ? "open" : "close",
-    );
+    this.dispatch(newState === "half-open" ? "half-open" : newState === "open" ? "open" : "close");
 
     if (newState === "closed") {
       this.failureCount = 0;

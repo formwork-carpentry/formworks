@@ -18,12 +18,12 @@
  * ```
  */
 
-import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'node:crypto';
-import type { IEncrypter } from '../contracts';
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
+import type { IEncrypter } from "../contracts";
 
-export type { IEncrypter } from '../contracts';
+export type { IEncrypter } from "../contracts";
 
-const ALGORITHM = 'aes-256-gcm';
+const ALGORITHM = "aes-256-gcm";
 const IV_LENGTH = 12;
 const AUTH_TAG_LENGTH = 16;
 
@@ -42,29 +42,30 @@ export class FieldEncryptor implements IEncrypter {
   constructor(config?: Partial<EncryptConfig>) {
     const source = config?.key ?? process.env.APP_KEY;
     if (!source) {
-      throw new Error('Missing APP_KEY for FieldEncryptor.');
+      throw new Error("Missing APP_KEY for FieldEncryptor.");
     }
 
-    const normalized = source.startsWith('base64:') ? source.slice('base64:'.length) : source;
-    const maybeBase64 = Buffer.from(normalized, 'base64');
-    this.key = maybeBase64.length === 32
-      ? maybeBase64
-      : createHash('sha256').update(normalized, 'utf8').digest();
+    const normalized = source.startsWith("base64:") ? source.slice("base64:".length) : source;
+    const maybeBase64 = Buffer.from(normalized, "base64");
+    this.key =
+      maybeBase64.length === 32
+        ? maybeBase64
+        : createHash("sha256").update(normalized, "utf8").digest();
   }
 
   encrypt(value: string): string {
     const iv = randomBytes(IV_LENGTH);
     const cipher = createCipheriv(ALGORITHM, this.key, iv, { authTagLength: AUTH_TAG_LENGTH });
-    const encrypted = Buffer.concat([cipher.update(value, 'utf8'), cipher.final()]);
+    const encrypted = Buffer.concat([cipher.update(value, "utf8"), cipher.final()]);
     const authTag = cipher.getAuthTag();
     // Format: base64(iv + authTag + ciphertext)
-    return Buffer.concat([iv, authTag, encrypted]).toString('base64');
+    return Buffer.concat([iv, authTag, encrypted]).toString("base64");
   }
 
   decrypt(encrypted: string): string {
-    const data = Buffer.from(encrypted, 'base64');
+    const data = Buffer.from(encrypted, "base64");
     if (data.length < IV_LENGTH + AUTH_TAG_LENGTH) {
-      throw new Error('Invalid encrypted value: too short');
+      throw new Error("Invalid encrypted value: too short");
     }
     const iv = data.subarray(0, IV_LENGTH);
     const authTag = data.subarray(IV_LENGTH, IV_LENGTH + AUTH_TAG_LENGTH);
@@ -72,16 +73,16 @@ export class FieldEncryptor implements IEncrypter {
 
     const decipher = createDecipheriv(ALGORITHM, this.key, iv, { authTagLength: AUTH_TAG_LENGTH });
     decipher.setAuthTag(authTag);
-    return decipher.update(ciphertext) + decipher.final('utf8');
+    return decipher.update(ciphertext) + decipher.final("utf8");
   }
 
   generateKey(): string {
-    return randomBytes(32).toString('base64');
+    return randomBytes(32).toString("base64");
   }
 
   /** Static helper to generate a new key without instantiation. */
   static generateKey(): string {
-    return randomBytes(32).toString('base64');
+    return randomBytes(32).toString("base64");
   }
 }
 

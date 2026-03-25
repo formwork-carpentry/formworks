@@ -4,7 +4,7 @@
  * @patterns Strategy (each resolver is a strategy), Chain of Responsibility (ChainResolver)
  */
 
-import type { ITenantResolver, TenantResolverContext } from './types.js';
+import type { ITenantResolver, TenantResolverContext } from "./types.js";
 
 /**
  * Resolves tenant slug from hostname: `acme.localhost` → `acme` when `baseDomain` is `localhost`.
@@ -19,7 +19,7 @@ import type { ITenantResolver, TenantResolverContext } from './types.js';
  * @see ITenantResolver
  */
 export class SubdomainResolver implements ITenantResolver {
-  constructor(private baseDomain: string = 'localhost') {}
+  constructor(private baseDomain = "localhost") {}
 
   /**
    * @param {TenantResolverContext} ctx
@@ -32,7 +32,7 @@ export class SubdomainResolver implements ITenantResolver {
     if (!hostname.endsWith(`.${this.baseDomain}`)) return null;
 
     const subdomain = hostname.slice(0, -(this.baseDomain.length + 1));
-    return subdomain && subdomain !== 'www' ? subdomain : null;
+    return subdomain && subdomain !== "www" ? subdomain : null;
   }
 }
 
@@ -49,7 +49,7 @@ export class SubdomainResolver implements ITenantResolver {
  * @see ITenantResolver
  */
 export class PathResolver implements ITenantResolver {
-  constructor(private prefix: string = '') {}
+  constructor(private prefix = "") {}
 
   /**
    * @param {TenantResolverContext} ctx
@@ -57,9 +57,9 @@ export class PathResolver implements ITenantResolver {
    */
   async resolve(ctx: TenantResolverContext): Promise<string | null> {
     if (!ctx.path) return null;
-    const path = ctx.path.replace(/^\//, '');
-    const segments = path.split('/');
-    const prefixSegments = this.prefix ? this.prefix.replace(/^\//, '').split('/') : [];
+    const path = ctx.path.replace(/^\//, "");
+    const segments = path.split("/");
+    const prefixSegments = this.prefix ? this.prefix.replace(/^\//, "").split("/") : [];
 
     // Skip prefix segments
     const tenantIndex = prefixSegments.length;
@@ -80,7 +80,7 @@ export class PathResolver implements ITenantResolver {
  * @see ITenantResolver
  */
 export class HeaderResolver implements ITenantResolver {
-  constructor(private headerName: string = 'x-tenant-id') {}
+  constructor(private headerName = "x-tenant-id") {}
 
   /**
    * @param {TenantResolverContext} ctx

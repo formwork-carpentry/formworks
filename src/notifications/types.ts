@@ -46,13 +46,13 @@ export interface MailChannelMessage {
 }
 
 export interface SmsChannelMessage {
-  to: string;    // phone number
+  to: string; // phone number
   body: string;
   from?: string;
 }
 
 export interface SlackChannelMessage {
-  channel: string;    // #channel or @user
+  channel: string; // #channel or @user
   text: string;
   blocks?: unknown[]; // Slack Block Kit
   username?: string;
@@ -60,7 +60,7 @@ export interface SlackChannelMessage {
 }
 
 export interface WhatsAppChannelMessage {
-  to: string;         // phone number
+  to: string; // phone number
   body: string;
   templateName?: string;
   templateParams?: Record<string, string>;
@@ -68,7 +68,7 @@ export interface WhatsAppChannelMessage {
 
 export interface WebhookChannelMessage {
   url: string;
-  method?: 'POST' | 'PUT';
+  method?: "POST" | "PUT";
   headers?: Record<string, string>;
   body: Record<string, unknown>;
 }

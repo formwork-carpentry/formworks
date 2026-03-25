@@ -22,7 +22,7 @@
  * @see InfrastructureServiceProvider — Default infrastructure wiring wrapper
  */
 
-export { InfrastructureServiceProvider } from './InfrastructureServiceProvider.js';
-export * from './providers/index.js';
-export { bootstrap } from './Bootstrap.js';
-export type { BootstrapOptions } from './Bootstrap.js';
+export { InfrastructureServiceProvider } from "./InfrastructureServiceProvider.js";
+export * from "./providers/index.js";
+export { bootstrap } from "./Bootstrap.js";
+export type { BootstrapOptions } from "./Bootstrap.js";

@@ -25,26 +25,26 @@
 import {
   createHash,
   createHmac,
-  randomBytes,
   randomInt as cryptoRandomInt,
+  randomBytes,
   randomUUID,
   timingSafeEqual,
-} from 'node:crypto';
+} from "node:crypto";
 
 // ── Token Generation ──────────────────────────────────────
 
 /** Generate a cryptographically secure random hex token. */
 export function generateToken(bytes = 32): string {
-  return randomBytes(bytes).toString('hex');
+  return randomBytes(bytes).toString("hex");
 }
 
 /** Generate a URL-safe base64 token (no +, /, or = characters). */
 export function generateTokenBase64(bytes = 32): string {
   return randomBytes(bytes)
-    .toString('base64')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 }
 
 /** Generate a UUID v4 (delegates to node:crypto). */
@@ -59,7 +59,7 @@ export function secureRandomBytes(length: number): Buffer {
 
 // ── HMAC Signing ──────────────────────────────────────────
 
-export type DigestAlgorithm = 'sha256' | 'sha384' | 'sha512';
+export type DigestAlgorithm = "sha256" | "sha384" | "sha512";
 
 export class CryptoManager {
   generateToken(bytes = 32): string {
@@ -70,11 +70,11 @@ export class CryptoManager {
     return generateUuid();
   }
 
-  hmac(data: string | Buffer, secret: string | Buffer, algo: DigestAlgorithm = 'sha256'): string {
+  hmac(data: string | Buffer, secret: string | Buffer, algo: DigestAlgorithm = "sha256"): string {
     return hmacSign(algo, secret, data);
   }
 
-  hash(data: string | Buffer, algo: DigestAlgorithm | 'md5' = 'sha256'): string {
+  hash(data: string | Buffer, algo: DigestAlgorithm | "md5" = "sha256"): string {
     return hash(algo, data);
   }
 
@@ -88,19 +88,19 @@ export class CryptoManager {
 
   sign(payload: Record<string, unknown> | string, secret: string | Buffer): string {
     const encodedPayload = Buffer.from(
-      typeof payload === 'string' ? payload : JSON.stringify(payload),
-      'utf8',
-    ).toString('base64url');
-    const signature = hmacSign('sha256', secret, encodedPayload);
+      typeof payload === "string" ? payload : JSON.stringify(payload),
+      "utf8",
+    ).toString("base64url");
+    const signature = hmacSign("sha256", secret, encodedPayload);
     return `${encodedPayload}.${signature}`;
   }
 
   verify(token: string, secret: string | Buffer): boolean {
-    const [payload, signature] = token.split('.');
+    const [payload, signature] = token.split(".");
     if (!payload || !signature) {
       return false;
     }
-    const expected = hmacSign('sha256', secret, payload);
+    const expected = hmacSign("sha256", secret, payload);
     return constantTimeEqual(expected, signature);
   }
 }
@@ -111,7 +111,7 @@ export function hmacSign(
   secret: string | Buffer,
   data: string | Buffer,
 ): string {
-  return createHmac(algorithm, secret).update(data).digest('hex');
+  return createHmac(algorithm, secret).update(data).digest("hex");
 }
 
 /**
@@ -131,18 +131,18 @@ export function hmacVerify(
 // ── Hashing ───────────────────────────────────────────────
 
 /** Hash a string with the given algorithm (hex output). */
-export function hash(algorithm: DigestAlgorithm | 'md5', data: string | Buffer): string {
-  return createHash(algorithm).update(data).digest('hex');
+export function hash(algorithm: DigestAlgorithm | "md5", data: string | Buffer): string {
+  return createHash(algorithm).update(data).digest("hex");
 }
 
 /** SHA-256 hash (hex). */
 export function sha256(data: string | Buffer): string {
-  return hash('sha256', data);
+  return hash("sha256", data);
 }
 
 /** SHA-512 hash (hex). */
 export function sha512(data: string | Buffer): string {
-  return hash('sha512', data);
+  return hash("sha512", data);
 }
 
 // ── Constant-Time Comparison ──────────────────────────────
@@ -156,7 +156,7 @@ export function sha512(data: string | Buffer): string {
 export function constantTimeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
   try {
-    return timingSafeEqual(Buffer.from(a, 'utf8'), Buffer.from(b, 'utf8'));
+    return timingSafeEqual(Buffer.from(a, "utf8"), Buffer.from(b, "utf8"));
   } catch {
     return false;
   }

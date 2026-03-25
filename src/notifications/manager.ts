@@ -4,8 +4,8 @@
  * @patterns Mediator, Facade
  */
 
-import type { INotificationChannel, Notifiable, BaseNotification } from './types.js';
-import { ArrayChannel } from './channels.js';
+import { ArrayChannel } from "./channels.js";
+import type { BaseNotification, INotificationChannel, Notifiable } from "./types.js";
 
 /**
  * Routes notifications to registered channels.
@@ -40,7 +40,9 @@ import { ArrayChannel } from './channels.js';
  */
 export class NotificationManager {
   private channels = new Map<string, INotificationChannel>();
-  private globalMiddleware: Array<(n: BaseNotification, channel: string, notifiable: Notifiable) => boolean> = [];
+  private globalMiddleware: Array<
+    (n: BaseNotification, channel: string, notifiable: Notifiable) => boolean
+  > = [];
 
   /** Register a channel */
   /**
@@ -81,12 +83,16 @@ export class NotificationManager {
 
     for (const channelName of channels) {
       // Run middleware — return false to skip this channel
-      const proceed = this.globalMiddleware.every((fn) => fn(notification, channelName, notifiable));
+      const proceed = this.globalMiddleware.every((fn) =>
+        fn(notification, channelName, notifiable),
+      );
       if (!proceed) continue;
 
       const channel = this.channels.get(channelName);
       if (!channel) {
-        throw new Error(`Notification channel "${channelName}" is not registered. Available: ${[...this.channels.keys()].join(', ')}`);
+        throw new Error(
+          `Notification channel "${channelName}" is not registered. Available: ${[...this.channels.keys()].join(", ")}`,
+        );
       }
 
       // Resolve the message for this channel
@@ -135,20 +141,25 @@ export class NotificationManager {
     return fakes;
   }
 
-  private resolveMessage(notification: BaseNotification, channel: string, notifiable: Notifiable): unknown {
+  private resolveMessage(
+    notification: BaseNotification,
+    channel: string,
+    notifiable: Notifiable,
+  ): unknown {
     const methodMap: Record<string, string> = {
-      mail: 'toMail',
-      sms: 'toSms',
-      slack: 'toSlack',
-      whatsapp: 'toWhatsApp',
-      webhook: 'toWebhook',
-      database: 'toDatabase',
+      mail: "toMail",
+      sms: "toSms",
+      slack: "toSlack",
+      whatsapp: "toWhatsApp",
+      webhook: "toWebhook",
+      database: "toDatabase",
     };
 
-    const methodName = methodMap[channel] ?? `to${channel.charAt(0).toUpperCase() + channel.slice(1)}`;
+    const methodName =
+      methodMap[channel] ?? `to${channel.charAt(0).toUpperCase() + channel.slice(1)}`;
     const method = (notification as unknown as Record<string, unknown>)[methodName];
 
-    if (typeof method === 'function') {
+    if (typeof method === "function") {
       return method.call(notification, notifiable);
     }
 
@@ -164,7 +175,9 @@ let globalNotificationManager: NotificationManager | null = null;
 /**
  * @param {NotificationManager} m
  */
-export function setNotificationManager(m: NotificationManager): void { globalNotificationManager = m; }
+export function setNotificationManager(m: NotificationManager): void {
+  globalNotificationManager = m;
+}
 
 /** Send a notification to a notifiable — global helper */
 /**
@@ -172,11 +185,14 @@ export function setNotificationManager(m: NotificationManager): void { globalNot
  * @param {BaseNotification} notification
  * @returns {Promise<void>}
  */
-export async function notify(notifiable: Notifiable, notification: BaseNotification): Promise<void> {
+export async function notify(
+  notifiable: Notifiable,
+  notification: BaseNotification,
+): Promise<void> {
   /**
    * @param {unknown} !globalNotificationManager
    */
-  if (!globalNotificationManager) throw new Error('NotificationManager not initialized.');
+  if (!globalNotificationManager) throw new Error("NotificationManager not initialized.");
   return globalNotificationManager.send(notifiable, notification);
 }
 
@@ -186,10 +202,13 @@ export async function notify(notifiable: Notifiable, notification: BaseNotificat
  * @param {BaseNotification} notification
  * @returns {Promise<void>}
  */
-export async function notifyAll(notifiables: Notifiable[], notification: BaseNotification): Promise<void> {
+export async function notifyAll(
+  notifiables: Notifiable[],
+  notification: BaseNotification,
+): Promise<void> {
   /**
    * @param {unknown} !globalNotificationManager
    */
-  if (!globalNotificationManager) throw new Error('NotificationManager not initialized.');
+  if (!globalNotificationManager) throw new Error("NotificationManager not initialized.");
   return globalNotificationManager.sendBulk(notifiables, notification);
 }

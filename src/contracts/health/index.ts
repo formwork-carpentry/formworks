@@ -17,7 +17,7 @@ export interface HealthCheckResult {
   /** Component name (e.g., 'database', 'redis', 'disk') */
   name: string;
   /** Component status */
-  status: 'healthy' | 'degraded' | 'unhealthy';
+  status: "healthy" | "degraded" | "unhealthy";
   /** Human-readable message */
   message?: string;
   /** Response time in milliseconds */
@@ -29,7 +29,7 @@ export interface HealthCheckResult {
 /** Aggregated health report. */
 export interface HealthReport {
   /** Overall status (worst of all component statuses) */
-  status: 'healthy' | 'degraded' | 'unhealthy';
+  status: "healthy" | "degraded" | "unhealthy";
   /** Individual component results */
   checks: HealthCheckResult[];
   /** Timestamp of this report */

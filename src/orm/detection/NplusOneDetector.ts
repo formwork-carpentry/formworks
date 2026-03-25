@@ -50,9 +50,9 @@ const DEFAULT_CONFIG: NplusOneConfig = {
  */
 function normalizeQuery(sql: string): string {
   return sql
-    .replace(/'[^']*'/g, '?')       // Replace string literals
-    .replace(/\b\d+\b/g, '?')        // Replace numeric literals
-    .replace(/\s+/g, ' ')            // Normalize whitespace
+    .replace(/'[^']*'/g, "?") // Replace string literals
+    .replace(/\b\d+\b/g, "?") // Replace numeric literals
+    .replace(/\s+/g, " ") // Normalize whitespace
     .trim();
 }
 
@@ -141,7 +141,7 @@ export class NplusOneDetector {
   analyze(): NplusOneWarning[] {
     for (const [pattern, records] of this.patternCounts) {
       if (records.length >= this.config.threshold) {
-        const existing = this.warnings.find(w => w.queryPattern === pattern);
+        const existing = this.warnings.find((w) => w.queryPattern === pattern);
         if (existing) {
           existing.count = records.length;
           existing.occurrences = records.map((r) => {
@@ -173,7 +173,7 @@ export class NplusOneDetector {
     const tableName = this.extractTableName(pattern);
     const suggestion = tableName
       ? `Consider using eager loading: .with('${tableName}') to avoid N+1 queries.`
-      : 'Consider using eager loading or batch queries to reduce query count.';
+      : "Consider using eager loading or batch queries to reduce query count.";
 
     const warning: NplusOneWarning = {
       queryPattern: pattern,
@@ -196,8 +196,10 @@ export class NplusOneDetector {
 
     if (this.config.throwOnDetection) {
       throw Object.assign(
-        new Error(`N+1 query detected: "${pattern}" executed ${records.length} times. ${suggestion}`),
-        { code: 'N_PLUS_ONE_DETECTED', warning },
+        new Error(
+          `N+1 query detected: "${pattern}" executed ${records.length} times. ${suggestion}`,
+        ),
+        { code: "N_PLUS_ONE_DETECTED", warning },
       );
     }
   }
